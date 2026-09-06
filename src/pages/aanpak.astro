@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Onze aanpak — Finable"
+  description="Hoe Finable je finance-functie inricht: van dagelijkse verwerking tot maandgesprek, met een vast team en één aanspreekpunt."
+  active="aanpak"
+>
+  <!-- Hero -->
+  <section class="aanpak-hero">
+    <div class="container">
+      <p class="eyebrow">Onze aanpak</p>
+      <h1>Finance als functie, niet als losse taken.</h1>
+      <p class="aanpak-intro">Finable neemt je finance-functie over als team. Niet als losse taken die je zelf moet coördineren, maar als een samenhangend geheel met controle, ritme en een vast aanspreekpunt.</p>
+    </div>
+  </section>
+
+  <!-- Wat we overnemen -->
+  <section class="tint">
+    <div class="container">
+      <p class="section-number">01</p>
+      <h2>Wat we overnemen.</h2>
+      <div class="aanpak-scope-grid">
+        <div class="aanpak-scope">
+          <h3>Dagelijkse finance</h3>
+          <p>Factuurverwerking, bankboekingen, debiteuren- en crediteurenbeheer.</p>
+        </div>
+        <div class="aanpak-scope">
+          <h3>Maandafsluiting</h3>
+          <p>Aansluitingen, btw-aangifte, intercompany, dossieropbouw.</p>
+        </div>
+        <div class="aanpak-scope">
+          <h3>Controlling</h3>
+          <p>Marge-analyse, cash monitoring, afwijkingsanalyse.</p>
+        </div>
+        <div class="aanpak-scope">
+          <h3>Managementrapportage</h3>
+          <p>Maandcijfers, duiding en bespreking in het maandgesprek.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vergelijking -->
+  <section>
+    <div class="container">
+      <p class="section-number">02</p>
+      <h2>Vier manieren om finance te organiseren.</h2>
+      <p class="aanpak-sub">Welke past het best bij jouw fase?</p>
+      <div class="aanpak-compare">
+        <div class="aanpak-compare-card">
+          <h3>Iemand aannemen</h3>
+          <ul>
+            <li>Dichtbij en beschikbaar</li>
+            <li>Afhankelijk van één persoon</li>
+            <li>Wervingskosten en risico</li>
+          </ul>
+        </div>
+        <div class="aanpak-compare-card">
+          <h3>Een interimmer</h3>
+          <ul>
+            <li>Snel beschikbaar</li>
+            <li>Tijdelijke oplossing</li>
+            <li>Geen borging</li>
+          </ul>
+        </div>
+        <div class="aanpak-compare-card">
+          <h3>Accountant uitbreiden</h3>
+          <ul>
+            <li>Vertrouwd</li>
+            <li>Niet ingericht op dagelijkse finance</li>
+            <li>Beperkte capaciteit</li>
+          </ul>
+        </div>
+        <div class="aanpak-compare-card aanpak-compare-card--highlight">
+          <h3>Finable</h3>
+          <ul>
+            <li>Vast team, niet afhankelijk van één persoon</li>
+            <li>Dagelijkse finance tot controlling</li>
+            <li>Eén vast aanspreekpunt</li>
+            <li>Vaste maandprijs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="tint">
+    <div class="container aanpak-cta">
+      <h2>Benieuwd wat dit voor jouw organisatie betekent?</h2>
+      <div class="aanpak-cta-actions">
+        <a href="/gesprek" class="btn btn-primary">Plan een gesprek →</a>
+        <a href="/indicatie" class="btn btn-secondary">Vraag een indicatie aan →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .aanpak-hero { padding: var(--space-xl) 0; }
+  .aanpak-hero h1 { margin-bottom: 16px; max-width: 600px; }
+  .aanpak-intro { font-size: 1.0625rem; max-width: 600px; }
+  .aanpak-sub { font-size: 1.0625rem; margin: 8px 0 32px; }
+
+  .aanpak-scope-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .aanpak-scope {
+    padding: 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .aanpak-scope h3 { font-size: 1.125rem; margin-bottom: 8px; }
+  .aanpak-scope p { font-size: 0.9375rem; }
+
+  .aanpak-compare {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .aanpak-compare-card {
+    padding: 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .aanpak-compare-card--highlight {
+    background: #F7E8DE;
+    border-color: #E9C9B5;
+  }
+  .aanpak-compare-card h3 { font-size: 1.125rem; margin-bottom: 12px; }
+  .aanpak-compare-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .aanpak-compare-card li {
+    font-size: 0.9375rem;
+    padding-left: 16px;
+    position: relative;
+  }
+  .aanpak-compare-card li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .aanpak-cta {
+    text-align: center;
+    padding: var(--space-xl) 0;
+  }
+  .aanpak-cta h2 { margin-bottom: 24px; }
+  .aanpak-cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1024px) {
+    .aanpak-scope-grid { grid-template-columns: 1fr 1fr; }
+    .aanpak-compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .aanpak-scope-grid { grid-template-columns: 1fr; }
+    .aanpak-compare { grid-template-columns: 1fr; }
+  }
+</style>

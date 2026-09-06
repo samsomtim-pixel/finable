@@ -1,0 +1,112 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  active?: string;
+}
+const { active } = Astro.props;
+---
+<header class="header">
+  <div class="container header-inner">
+    <Logo />
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <a href="/hoe-het-werkt" class:list={[{ active: active === 'hoe-het-werkt' }]}>Hoe het werkt</a>
+      <a href="/aanpak" class:list={[{ active: active === 'aanpak' }]}>Aanpak</a>
+      <a href="/over" class:list={[{ active: active === 'over' }]}>Over</a>
+    </nav>
+    <a href="/gesprek" class="btn btn-primary header-cta">Plan een gesprek →</a>
+    <button class="menu-toggle" aria-label="Menu openen" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="mobile-menu" hidden>
+    <nav aria-label="Mobiel menu">
+      <a href="/hoe-het-werkt">Hoe het werkt</a>
+      <a href="/aanpak">Aanpak</a>
+      <a href="/over">Over</a>
+      <a href="/gesprek" class="btn btn-primary" style="margin-top: 8px; justify-content: center;">Plan een gesprek →</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 24px;
+  }
+  .nav {
+    display: flex;
+    gap: 32px;
+    margin-left: auto;
+  }
+  .nav a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--body-color);
+    transition: color 0.2s;
+  }
+  .nav a:hover,
+  .nav a.active {
+    color: var(--navy);
+  }
+  .header-cta {
+    margin-left: 24px;
+    padding: 10px 22px;
+    font-size: 0.875rem;
+  }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    padding: 4px;
+  }
+  .mobile-menu {
+    border-top: 1px solid var(--line);
+    padding: 16px var(--px) 24px;
+  }
+  .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mobile-menu a {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--navy);
+    padding: 8px 0;
+  }
+
+  @media (max-width: 1024px) {
+    .nav { display: none; }
+    .header-cta { display: none; }
+    .menu-toggle { display: block; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.hidden;
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>

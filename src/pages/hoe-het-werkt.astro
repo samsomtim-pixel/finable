@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Hoe het werkt — Finable"
+  description="Van kennismaking tot maandgesprek: zo ziet een samenwerking met Finable eruit."
+  active="hoe-het-werkt"
+>
+  <!-- Hero -->
+  <section class="hww-hero">
+    <div class="container">
+      <p class="eyebrow">Hoe het werkt</p>
+      <h1>Van kennismaking tot maandgesprek.</h1>
+      <p class="hww-intro">Een samenwerking met Finable begint met een gesprek. Geen offerte op basis van omzet, maar een helder voorstel op basis van wat je nodig hebt.</p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="tint">
+    <div class="container">
+      <div class="hww-steps">
+        <div class="hww-step">
+          <span class="section-number">01</span>
+          <h2>Kennismaking</h2>
+          <p>Een vrijblijvend gesprek van 30 minuten. We leren je organisatie en finance-situatie kennen.</p>
+        </div>
+        <div class="hww-step">
+          <span class="section-number">02</span>
+          <h2>Voorstel</h2>
+          <p>Op basis van het gesprek stellen we een voorstel samen: scope, team, werkwijze en maandprijs.</p>
+        </div>
+        <div class="hww-step">
+          <span class="section-number">03</span>
+          <h2>Onboarding</h2>
+          <p>We sluiten aan op je bestaande systemen en processen. Het team leert je organisatie kennen.</p>
+        </div>
+        <div class="hww-step">
+          <span class="section-number">04</span>
+          <h2>Maandritme</h2>
+          <p>Het vaste team draait de dagelijkse finance, sluit maandelijks af en rapporteert. Tim bespreekt de resultaten met je.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container hww-cta">
+      <h2>Benieuwd hoe dat eruitziet voor jouw organisatie?</h2>
+      <a href="/gesprek" class="btn btn-primary">Plan een gesprek →</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hww-hero { padding: var(--space-xl) 0; }
+  .hww-hero h1 { margin-bottom: 16px; max-width: 600px; }
+  .hww-intro { font-size: 1.0625rem; max-width: 560px; }
+
+  .hww-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .hww-step {
+    padding: 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .hww-step h2 {
+    font-size: 1.375rem;
+    margin-bottom: 8px;
+  }
+  .hww-step p { font-size: 0.9375rem; }
+
+  .hww-cta {
+    text-align: center;
+    padding: var(--space-xl) 0;
+  }
+  .hww-cta h2 { margin-bottom: 24px; }
+
+  @media (max-width: 640px) {
+    .hww-steps { grid-template-columns: 1fr; }
+  }
+</style>

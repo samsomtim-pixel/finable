@@ -1,0 +1,654 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Vraag een indicatie aan — Finable"
+  description="Beantwoord een paar vragen over je organisatie en finance. Op basis daarvan maakt Finable een eerste indicatie van de maandelijkse kosten."
+>
+  <!-- Hero -->
+  <section class="ind-hero">
+    <div class="container ind-hero-grid">
+      <div class="ind-hero-content">
+        <p class="eyebrow">Vraag een indicatie aan</p>
+        <h1>Wat zou Finable voor jouw organisatie kosten?</h1>
+        <p>Beantwoord een paar vragen over je organisatie en finance. Op basis daarvan maken we een eerste indicatie van de maandelijkse kosten.</p>
+        <p class="ind-accent">Geen standaardpakket. Geen prijs op basis van omzet.</p>
+      </div>
+      <div class="ind-steps-indicator" aria-label="Voortgang">
+        <div class="ind-step-dot" data-step-dot="1">
+          <span class="ind-dot">01</span>
+          <span class="ind-dot-label">Organisatie</span>
+        </div>
+        <div class="ind-step-line"></div>
+        <div class="ind-step-dot" data-step-dot="2">
+          <span class="ind-dot">02</span>
+          <span class="ind-dot-label">Finance</span>
+        </div>
+        <div class="ind-step-line"></div>
+        <div class="ind-step-dot" data-step-dot="3">
+          <span class="ind-dot">03</span>
+          <span class="ind-dot-label">Indicatie</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main layout -->
+  <section class="ind-main">
+    <div class="container ind-layout">
+      <!-- Left context -->
+      <div class="ind-left">
+        <div class="ind-left-panel" data-leftstep="1">
+          <p class="section-number">01</p>
+          <h2>Jouw organisatie.</h2>
+          <p>Eerst willen we begrijpen wat er staat. Zo kunnen we een realistische indicatie geven die past bij jouw situatie.</p>
+        </div>
+        <div class="ind-left-panel" data-leftstep="2" hidden>
+          <p class="section-number">02</p>
+          <h2>Jouw finance.</h2>
+          <p>We hoeven niet alles over te nemen. Vertel ons wat er nu loopt en waar je hulp bij zoekt.</p>
+        </div>
+        <div class="ind-left-panel" data-leftstep="3" hidden>
+          <p class="section-number">03</p>
+          <h2>Bijna klaar.</h2>
+          <p>Nog een paar gegevens, dan kan Tim je aanvraag bekijken.</p>
+        </div>
+
+        <div class="ind-trust" data-trust-block>
+          <div class="ind-trust-item">
+            <strong>Persoonlijk</strong>
+            <p>Je aanvraag wordt door Tim persoonlijk bekeken.</p>
+          </div>
+          <div class="ind-trust-item">
+            <strong>Onderbouwd</strong>
+            <p>Je indicatie is gebaseerd op je organisatie, volume en gewenste scope.</p>
+          </div>
+          <div class="ind-trust-item">
+            <strong>Vrijblijvend</strong>
+            <p>Dit is een indicatie, geen contract.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="ind-card">
+        <!-- Step 1 -->
+        <div data-formstep="1">
+          <div class="ind-question">
+            <h3>Hoe groot is je organisatie?</h3>
+            <p class="ind-subtitle">Kies het aantal medewerkers.</p>
+            <div class="ind-grid4">
+              <button type="button" class="ind-tile" data-tile data-group="grootte" data-value="1–10">1–10</button>
+              <button type="button" class="ind-tile" data-tile data-group="grootte" data-value="10–25">10–25</button>
+              <button type="button" class="ind-tile" data-tile data-group="grootte" data-value="25–50">25–50</button>
+              <button type="button" class="ind-tile" data-tile data-group="grootte" data-value="50+">50+</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>Uit hoeveel entiteiten bestaat je organisatie?</h3>
+            <p class="ind-subtitle">Denk aan bv's, landen of divisies.</p>
+            <div class="ind-grid3">
+              <button type="button" class="ind-tile" data-tile data-group="entiteiten" data-value="1">1</button>
+              <button type="button" class="ind-tile" data-tile data-group="entiteiten" data-value="2–3">2–3</button>
+              <button type="button" class="ind-tile" data-tile data-group="entiteiten" data-value="4+">4+</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>In welke landen ben je actief?</h3>
+            <p class="ind-subtitle">Meerdere antwoorden mogelijk.</p>
+            <div class="ind-grid3">
+              <button type="button" class="ind-tile" data-tile data-group="landen" data-value="Alleen Nederland" data-multi="1">Alleen Nederland</button>
+              <button type="button" class="ind-tile" data-tile data-group="landen" data-value="Europa" data-multi="1">Europa</button>
+              <button type="button" class="ind-tile" data-tile data-group="landen" data-value="Wereldwijd" data-multi="1">Wereldwijd</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>Website van je organisatie</h3>
+            <input type="url" class="ind-input" id="fin-website" placeholder="https://" />
+          </div>
+
+          <div class="ind-footer">
+            <span class="ind-step-label">Stap 1 van 3</span>
+            <button type="button" class="btn btn-primary" data-next>Volgende stap →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div data-formstep="2" hidden>
+          <div class="ind-question">
+            <h3>Waar zoek je hulp bij?</h3>
+            <p class="ind-subtitle">Meerdere antwoorden mogelijk.</p>
+            <div class="ind-grid2">
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Dagelijkse finance" data-multi="1">
+                <strong>Dagelijkse finance</strong>
+                <span>Facturen · bank · debiteuren</span>
+              </button>
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Maandafsluiting" data-multi="1">
+                <strong>Maandafsluiting</strong>
+                <span>Aansluitingen · btw · dossier</span>
+              </button>
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Controlling" data-multi="1">
+                <strong>Controlling</strong>
+                <span>Marge · cash · afwijkingen</span>
+              </button>
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Managementrapportage" data-multi="1">
+                <strong>Managementrapportage</strong>
+                <span>Cijfers · duiding · gesprek</span>
+              </button>
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Payroll" data-multi="1">
+                <strong>Payroll</strong>
+                <span>Salarisadministratie</span>
+              </button>
+              <button type="button" class="ind-card-opt" data-tile data-group="hulp" data-value="Weet ik nog niet" data-multi="1">
+                <strong>Weet ik nog niet</strong>
+                <span>Graag samen bepalen</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>Wie doet finance op dit moment?</h3>
+            <div class="ind-grid4">
+              <button type="button" class="ind-tile" data-tile data-group="wie" data-value="Externe boekhouder">Een externe boekhouder</button>
+              <button type="button" class="ind-tile" data-tile data-group="wie" data-value="Iemand intern">Iemand intern</button>
+              <button type="button" class="ind-tile" data-tile data-group="wie" data-value="Ikzelf">Ikzelf</button>
+              <button type="button" class="ind-tile" data-tile data-group="wie" data-value="Combinatie">Combinatie</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>Loopt dat naar tevredenheid?</h3>
+            <input type="text" class="ind-input" id="fin-tevreden" placeholder="Wat gaat goed, wat niet?" />
+          </div>
+
+          <div class="ind-question">
+            <h3>Hoeveel facturen gaan er ongeveer per maand doorheen?</h3>
+            <p class="ind-subtitle">Inkoop en verkoop samen.</p>
+            <div class="ind-grid4">
+              <button type="button" class="ind-tile" data-tile data-group="facturen" data-value="Tot 100">Tot 100</button>
+              <button type="button" class="ind-tile" data-tile data-group="facturen" data-value="100–300">100–300</button>
+              <button type="button" class="ind-tile" data-tile data-group="facturen" data-value="300–800">300–800</button>
+              <button type="button" class="ind-tile" data-tile data-group="facturen" data-value="800+">800+</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <h3>In welk boekhoudpakket zit de administratie nu?</h3>
+            <div class="ind-grid4">
+              <button type="button" class="ind-tile" data-tile data-group="pakket" data-value="Exact">Exact</button>
+              <button type="button" class="ind-tile" data-tile data-group="pakket" data-value="Twinfield">Twinfield</button>
+              <button type="button" class="ind-tile" data-tile data-group="pakket" data-value="Moneybird">Moneybird</button>
+              <button type="button" class="ind-tile" data-tile data-group="pakket" data-value="Anders of nog niets">Anders of nog niets</button>
+            </div>
+          </div>
+
+          <div class="ind-footer">
+            <span class="ind-step-label">Stap 2 van 3</span>
+            <div class="ind-footer-btns">
+              <button type="button" class="ind-back" data-prev>Vorige</button>
+              <button type="button" class="btn btn-primary" data-next>Volgende stap →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div data-formstep="3" hidden>
+          <div class="ind-question">
+            <h3>Wat loopt op dit moment het meest vast?</h3>
+            <textarea class="ind-input" id="fin-vast" rows="3" placeholder="Bijvoorbeeld: de cijfers komen te laat, of de vacature raakt niet vervuld."></textarea>
+          </div>
+
+          <div class="ind-question">
+            <h3>Wanneer zou je willen starten?</h3>
+            <div class="ind-grid4">
+              <button type="button" class="ind-tile" data-tile data-group="start" data-value="Zo snel mogelijk">Zo snel mogelijk</button>
+              <button type="button" class="ind-tile" data-tile data-group="start" data-value="Binnen 3 maanden">Binnen 3 maanden</button>
+              <button type="button" class="ind-tile" data-tile data-group="start" data-value="Later dit jaar">Later dit jaar</button>
+              <button type="button" class="ind-tile" data-tile data-group="start" data-value="Nog oriënterend">Nog oriënterend</button>
+            </div>
+          </div>
+
+          <div class="ind-question">
+            <label for="fin-naam" class="ind-label">Je naam</label>
+            <input type="text" class="ind-input" id="fin-naam" placeholder="Voor- en achternaam" required />
+          </div>
+
+          <div class="ind-question">
+            <label for="fin-email" class="ind-label">Zakelijk e-mailadres</label>
+            <input type="email" class="ind-input" id="fin-email" placeholder="jij@bedrijf.nl" required />
+          </div>
+
+          <div class="ind-question">
+            <label for="fin-tel" class="ind-label">Telefoonnummer <span class="ind-optional">(optioneel)</span></label>
+            <input type="tel" class="ind-input" id="fin-tel" placeholder="06 …" />
+          </div>
+
+          <div class="ind-question">
+            <label for="fin-extra" class="ind-label">Nog iets dat we moeten weten? <span class="ind-optional">(optioneel)</span></label>
+            <textarea class="ind-input" id="fin-extra" rows="2"></textarea>
+          </div>
+
+          <p class="ind-privacy">We gebruiken je gegevens alleen om je indicatie op te stellen en contact op te nemen.</p>
+
+          <div class="ind-error" data-formerror hidden>
+            Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl">tim@finable.nl</a> — dan pakken we het op.
+          </div>
+
+          <div class="ind-footer">
+            <span class="ind-step-label">Stap 3 van 3</span>
+            <div class="ind-footer-btns">
+              <button type="button" class="ind-back" data-prev>Vorige</button>
+              <button type="button" class="btn btn-primary" data-submit>Verstuur aanvraag</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Done -->
+        <div data-formstep="done" hidden>
+          <h2>Dank je. Hier kan ik mee aan de slag.</h2>
+          <div class="ind-done-steps">
+            <div class="ind-done-step">
+              <span class="ind-done-num">01</span>
+              <p>Ik bekijk je aanvraag persoonlijk.</p>
+            </div>
+            <div class="ind-done-step">
+              <span class="ind-done-num">02</span>
+              <p>Heb ik nog een vraag, dan bel of mail ik je.</p>
+            </div>
+            <div class="ind-done-step">
+              <span class="ind-done-num">03</span>
+              <p>Binnen twee werkdagen ontvang je een eerste indicatie.</p>
+            </div>
+          </div>
+          <div class="ind-done-footer">
+            <span>Liever eerder even sparren?</span>
+            <a href="/gesprek" class="text-link">Plan een gesprek →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ind-hero { padding: var(--space-lg) 0; }
+  .ind-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .ind-hero h1 { margin-bottom: 12px; font-size: clamp(1.5rem, 3vw, 2.25rem); }
+  .ind-hero p { font-size: 1rem; max-width: 520px; }
+  .ind-accent {
+    font-weight: 500;
+    color: var(--navy);
+    margin-top: 12px;
+  }
+
+  /* Step indicator */
+  .ind-steps-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .ind-step-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .ind-dot {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #9AA0A6;
+    transition: all 0.2s;
+  }
+  .ind-dot-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #9AA0A6;
+    transition: color 0.2s;
+  }
+  .ind-step-dot[data-active] .ind-dot {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--white);
+  }
+  .ind-step-dot[data-active] .ind-dot-label {
+    color: var(--terracotta);
+  }
+  .ind-step-line {
+    width: clamp(30px, 5vw, 70px);
+    height: 1.5px;
+    background: var(--line);
+    margin: 0 4px;
+    margin-bottom: 28px;
+  }
+
+  /* Layout */
+  .ind-main { padding: 0 0 var(--space-2xl); }
+  .ind-layout {
+    display: grid;
+    grid-template-columns: 0.66fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .ind-left { position: sticky; top: 104px; }
+  .ind-left h2 { margin-bottom: 12px; }
+  .ind-left p { font-size: 0.9375rem; }
+
+  /* Trust block */
+  .ind-trust {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--section);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ind-trust-item strong { color: var(--navy); font-size: 0.875rem; display: block; }
+  .ind-trust-item p { font-size: 0.8125rem; margin-top: 2px; }
+
+  /* Form card */
+  .ind-card {
+    background: var(--white);
+    border: 1px solid #EEE9E3;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 50px -30px rgba(44,62,80,.35);
+    padding: clamp(28px, 3.5vw, 44px);
+  }
+  .ind-question { margin-bottom: 28px; }
+  .ind-question h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 6px;
+  }
+  .ind-subtitle { font-size: 0.8125rem; color: var(--body-color); margin-bottom: 12px; }
+  .ind-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .ind-optional { font-weight: 400; color: var(--body-color); }
+
+  /* Grids */
+  .ind-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .ind-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ind-grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  /* Tiles */
+  .ind-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 12px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid #E6E1DB;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .ind-tile:hover { border-color: #C9BFB4; }
+  .ind-tile[data-active="1"] {
+    border-color: var(--terracotta);
+    background: #F9EBE2;
+    color: var(--terracotta);
+  }
+
+  /* Card options */
+  .ind-card-opt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid #E6E1DB;
+    background: transparent;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+  }
+  .ind-card-opt:hover { border-color: #C9BFB4; }
+  .ind-card-opt[data-active="1"] {
+    border-color: var(--terracotta);
+    background: #F9EBE2;
+  }
+  .ind-card-opt strong { font-size: 0.9375rem; color: var(--navy); }
+  .ind-card-opt span { font-size: 0.8125rem; color: var(--body-color); margin-top: 2px; }
+
+  /* Inputs */
+  .ind-input {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #E6E1DB;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--navy);
+    background: transparent;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .ind-input:focus { border-color: var(--terracotta); box-shadow: 0 0 0 2px rgba(196,100,58,0.15); }
+  .ind-input::placeholder { color: #9AA0A6; }
+
+  /* Footer */
+  .ind-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #EFEAE4;
+  }
+  .ind-step-label { font-size: 0.8125rem; color: #8A94A0; }
+  .ind-footer-btns { display: flex; gap: 12px; align-items: center; }
+  .ind-back {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--body-color);
+    cursor: pointer;
+    padding: 14px 16px;
+  }
+  .ind-back:hover { color: var(--navy); }
+
+  /* Privacy & error */
+  .ind-privacy { font-size: 0.8125rem; color: #8A94A0; margin-bottom: 16px; }
+  .ind-error {
+    padding: 14px 18px;
+    background: #FBEDE6;
+    border: 1px solid #E9C9B5;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    color: #B2532B;
+    margin-bottom: 16px;
+  }
+  .ind-error a { text-decoration: underline; }
+
+  /* Done */
+  [data-formstep="done"] h2 { margin-bottom: 32px; }
+  .ind-done-steps { display: flex; flex-direction: column; gap: 20px; }
+  .ind-done-step {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .ind-done-num {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    background: var(--section);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .ind-done-step p { font-size: 0.9375rem; color: var(--navy); }
+  .ind-done-footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #EFEAE4;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .ind-hero-grid { grid-template-columns: 1fr; }
+    .ind-steps-indicator { margin-top: 24px; }
+    .ind-layout { grid-template-columns: 1fr; gap: 32px; }
+    .ind-left { position: static; }
+    .ind-grid4 { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .ind-grid4 { grid-template-columns: 1fr; }
+    .ind-grid3 { grid-template-columns: 1fr; }
+    .ind-grid2 { grid-template-columns: 1fr; }
+    .ind-footer { flex-direction: column; gap: 16px; align-items: stretch; }
+    .ind-footer-btns { justify-content: space-between; }
+  }
+</style>
+
+<script>
+  const sel: Record<string, string | string[] | null> = {};
+  let step = 1;
+
+  function syncTiles() {
+    document.querySelectorAll<HTMLElement>('[data-tile]').forEach(tile => {
+      const group = tile.dataset.group!;
+      const value = tile.dataset.value!;
+      const multi = tile.dataset.multi === '1';
+      const current = sel[group];
+      let active = false;
+      if (multi && Array.isArray(current)) {
+        active = current.includes(value);
+      } else {
+        active = current === value;
+      }
+      tile.dataset.active = active ? '1' : '0';
+    });
+  }
+
+  function syncSteps() {
+    document.querySelectorAll<HTMLElement>('[data-formstep]').forEach(el => {
+      el.hidden = el.dataset.formstep !== String(step);
+    });
+    document.querySelectorAll<HTMLElement>('[data-leftstep]').forEach(el => {
+      el.hidden = el.dataset.leftstep !== String(step);
+    });
+    document.querySelectorAll<HTMLElement>('[data-step-dot]').forEach(dot => {
+      if (Number(dot.dataset.stepDot) === step) {
+        dot.setAttribute('data-active', '');
+      } else {
+        dot.removeAttribute('data-active');
+      }
+    });
+    const trust = document.querySelector<HTMLElement>('[data-trust-block]');
+    if (trust) trust.hidden = step > 3;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-tile]').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const group = tile.dataset.group!;
+      const value = tile.dataset.value!;
+      const multi = tile.dataset.multi === '1';
+      if (multi) {
+        if (!Array.isArray(sel[group])) sel[group] = [];
+        const arr = sel[group] as string[];
+        const idx = arr.indexOf(value);
+        if (idx >= 0) arr.splice(idx, 1);
+        else arr.push(value);
+      } else {
+        sel[group] = sel[group] === value ? null : value;
+      }
+      syncTiles();
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-next]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (step < 3) { step++; syncSteps(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-prev]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (step > 1) { step--; syncSteps(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    });
+  });
+
+  const submitBtn = document.querySelector<HTMLElement>('[data-submit]');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', async () => {
+      const data = {
+        ...sel,
+        website: (document.getElementById('fin-website') as HTMLInputElement)?.value,
+        tevredenheid: (document.getElementById('fin-tevreden') as HTMLInputElement)?.value,
+        vastloopt: (document.getElementById('fin-vast') as HTMLTextAreaElement)?.value,
+        naam: (document.getElementById('fin-naam') as HTMLInputElement)?.value,
+        email: (document.getElementById('fin-email') as HTMLInputElement)?.value,
+        telefoon: (document.getElementById('fin-tel') as HTMLInputElement)?.value,
+        extra: (document.getElementById('fin-extra') as HTMLTextAreaElement)?.value,
+      };
+
+      const errEl = document.querySelector<HTMLElement>('[data-formerror]');
+      if (errEl) errEl.hidden = true;
+
+      try {
+        const res = await fetch('/api/indicatie', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          step = 4;
+          document.querySelectorAll<HTMLElement>('[data-formstep]').forEach(el => {
+            el.hidden = el.dataset.formstep !== 'done';
+          });
+          document.querySelectorAll<HTMLElement>('[data-leftstep]').forEach(el => { el.hidden = true; });
+          if (document.querySelector<HTMLElement>('[data-trust-block]')) {
+            document.querySelector<HTMLElement>('[data-trust-block]')!.hidden = true;
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          if (errEl) errEl.hidden = false;
+        }
+      } catch {
+        if (errEl) errEl.hidden = false;
+      }
+    });
+  }
+
+  syncSteps();
+  syncTiles();
+</script>
