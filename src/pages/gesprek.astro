@@ -5,6 +5,9 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_GESPREK ?? '';
 const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
+// TODO: CONNECT REAL BOOKING PROVIDER — zet op true zodra echte beschikbaarheid uit de agenda-provider komt.
+// Tot die tijd blijft de kalender verborgen: geen illustratieve data/tijden als echte beschikbaarheid tonen.
+const bookingProviderConnected = false;
 ---
 <Layout title="Plan een gesprek — Finable" description="Plan 30 minuten met Tim. We kijken hoe je finance nu is georganiseerd, waar het knelt en wat Finable eventueel kan overnemen.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
@@ -63,7 +66,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
             </div>
             <p style="font-size:14px;color:var(--body)">Je ontvangt de bevestiging en agenda-uitnodiging per e-mail.</p>
           </div>
-          <div data-notbooked data-booking-endpoint={endpoint} data-access-key={accessKey}>
+          <div data-notbooked data-booking-endpoint={endpoint} data-access-key={accessKey} data-booking-disabled={!bookingProviderConnected}>
             <div class="book-split" style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:26px">
               <div>
                 <div class="lbl" style="margin-bottom:12px">Je spreekt met Tim</div>
@@ -75,6 +78,9 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 
             <div style="height:1px;background:var(--line);margin-bottom:24px"></div>
 
+            <!-- Tot de agenda-provider is gekoppeld: geen kalender, wel de mail-route. -->
+            <p data-booking-notice hidden={bookingProviderConnected} style="font-size:15px;color:var(--body);text-wrap:pretty">Online een moment kiezen is nog niet beschikbaar. Mail <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> — dan plannen we samen een moment.</p>
+            <div data-booking-ui hidden={!bookingProviderConnected}>
             <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:14px">Selecteer een datum en tijd</div>
             <div style="font-size:12px;color:var(--body);margin-bottom:8px"><span data-month-label></span></div>
             <div data-cal class="cal-grid" style="margin-bottom:22px" aria-label="Kies een datum"></div>
@@ -89,6 +95,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
             <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-top:14px">
               <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#5F6B76" stroke-width="1.5"><rect x="3" y="8" width="12" height="8" rx="1.5"/><path d="M6 8V6a3 3 0 016 0v2"/></svg>
               <span style="font-size:13px;color:var(--body)">Geen verplichtingen. Je ontvangt een bevestiging per e-mail.</span>
+            </div>
             </div>
           </div>
       </div>
@@ -144,7 +151,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
   // tot de agenda-integratie is gekoppeld. Bevestiging alleen na een succesvolle response.
   const root = document.querySelector<HTMLElement>('[data-notbooked]');
   const bookedEl = document.querySelector<HTMLElement>('[data-booked]');
-  if (root && bookedEl) {
+  if (root && bookedEl && root.dataset.bookingDisabled !== 'true') {
     const calEl = root.querySelector<HTMLElement>('[data-cal]')!;
     const slotsWrap = root.querySelector<HTMLElement>('[data-slots-wrap]')!;
     const slotsEl = root.querySelector<HTMLElement>('[data-slots]')!;

@@ -1,4 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    { "source": "/vacature", "destination": "/finance-hire", "permanent": true },
+    { "source": "/vacature/", "destination": "/finance-hire", "permanent": true }
+  ]
 }
