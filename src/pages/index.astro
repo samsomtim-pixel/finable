@@ -76,7 +76,7 @@ import Button from '../components/Button.astro';
         <div class="fn">Managementrapportage</div>
       </div>
       <div style="height:1px;background:rgba(255,255,255,0.14);max-width:1000px;margin:44px auto 30px"></div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
+      <div class="navy-trio" style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
         <span>Eén team.</span>
         <span style="color:var(--on-dark-tertiary)">·</span>
         <span>Eén aanspreekpunt.</span>
@@ -236,6 +236,13 @@ import Button from '../components/Button.astro';
     .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
+  }
+  /* Mobiel (≤639): compositie */
+  @media (max-width:639px){
+    .navy-trio{flex-direction:column;gap:6px!important}
+    .navy-trio>span[style]{display:none}
+    .flow{gap:12px}
+    .cols4>div,.cols4t>div{padding:18px 0!important}
   }
   @media (max-width:639px){
     .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}

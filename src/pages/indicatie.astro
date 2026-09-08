@@ -280,8 +280,19 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
   }
   @media (max-width:639px){
     .fin-grid2{grid-template-columns:1fr}
+    /* Volgorde: stapintro → formulier → 'Persoonlijk bekeken' */
+    .fin-layout{gap:28px!important}
+    .fin-left{display:contents}
+    .fin-left>div:first-child{min-height:0!important}
+    .fin-layout>form{order:1;padding:24px!important}
+    .fin-left>div:last-child{order:2;max-width:none!important;margin:0!important}
+    /* Korte numerieke keuzes mogen naast elkaar; landen onder elkaar */
+    .fin-grid3:not(:has([data-group="landen"])){grid-template-columns:repeat(3,1fr)}
+    .fin-tile{min-height:52px}
+    /* Actie-rij: knop volle breedte, 'Vorige' eronder */
     .ind-actions{flex-wrap:wrap}
-    .ind-actions>div{width:100%;justify-content:space-between}
+    .ind-actions>div{width:100%;flex-direction:column-reverse;align-items:stretch;gap:6px}
+    .btn-prev{width:100%}
   }
 </style>
 

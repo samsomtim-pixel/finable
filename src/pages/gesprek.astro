@@ -143,6 +143,12 @@ const bookingProviderConnected = false;
     .mail-note{display:none}
     .cal-cell{min-height:48px}
     .cal-grid{grid-template-columns:repeat(auto-fill,minmax(44px,1fr))}
+    /* Volgorde: intro → 01–03 → Tim/boeking → direct contact */
+    .layout{display:flex!important;flex-direction:column;gap:0!important}
+    .layout>div:first-child{display:contents}
+    .layout>div:first-child>div:last-child{order:2}
+    .layout>div:last-child{order:1;margin-top:36px}
+    .book-split{grid-template-columns:1fr auto!important;gap:16px!important}
   }
 </style>
 

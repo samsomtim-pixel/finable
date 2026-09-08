@@ -202,6 +202,8 @@ import Button from '../components/Button.astro';
     .over-note{display:none}
     .over-team{grid-template-columns:1fr!important;gap:36px!important}
     .over-cta>div:first-child{max-width:150px}
+    .fin-3col{gap:10px}
+    .fin-3col>div{padding:8px 0!important;border-left:none!important}
   }
   @media (max-width:639px){
     .over-stats{grid-template-columns:1fr!important;gap:18px}
@@ -210,5 +212,11 @@ import Button from '../components/Button.astro';
     .over-2col{grid-template-columns:1fr!important}
     .over-refs{grid-template-columns:1fr 1fr!important;gap:16px!important}
     .over-refs>div{padding:0!important;border-left:none!important}
+    /* Mobiel: eerst de copy, dan de foto; portretten twee per rij */
+    .over-hero{gap:28px!important}
+    .over-hero>div:last-child{order:0}
+    .over-hero>div:last-child>div:first-child{height:240px!important}
+    .fin-4port{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
+    .fin-4port div[style*="margin-top:14px"]{margin-top:10px!important}
   }
 </style>

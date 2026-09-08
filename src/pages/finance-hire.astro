@@ -68,6 +68,16 @@ import Button from '../components/Button.astro';
   <section class="wrap" style="padding-top:64px;padding-bottom:72px">
     <div class="lbl" style="margin-bottom:22px">De afweging</div>
     <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:40px">Eén finance-hire versus Finable.</h2>
+    
+    <!-- Mobiel (≤639): dezelfde vergelijking per onderwerp onder elkaar, zodat je niet hoeft terug te scrollen. -->
+    <div class="cmp-m">
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén profiel</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Verschillende finance-expertises</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">± 32&ndash;40 uur capaciteit</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Capaciteit rond wat nodig is</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Vakantie, ziekte of opzegging</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Minder afhankelijk van één persoon</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Alles bij één persoon</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Werk verdeeld naar expertise</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Salaris + werkgeverslasten</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Vaste maandprijs</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Zelf recruitment en onboarding</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Bestaand finance-team</span></div></div>
+    </div>
     <div class="cmp" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.9fr);gap:clamp(24px,3vw,44px);align-items:start">
       <div style="border:1px solid var(--line);border-radius:12px;padding:30px 32px">
         <h3 style="font-size:21px;margin-bottom:18px">Eén finance-hire</h3>
@@ -230,8 +240,31 @@ import Button from '../components/Button.astro';
   .cta-p{grid-template-columns:1fr!important;gap:24px!important}
   }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
+  .cmp-m{display:none}
+  @media (max-width:1023px){
+    .split>div[style*="padding-top:44px"]{padding-top:0!important}
+  }
   @media (max-width:639px){
     .cta-p{grid-template-columns:1fr!important}
     .cta-p>div:first-child{max-width:160px}
+    /* Vergelijking per onderwerp: hire-waarde boven, Finable-waarde eronder (zacht terracotta) */
+    .cmp-m{display:flex;flex-direction:column;margin-bottom:36px;border-top:1px solid var(--line)}
+    .cmp-m-pair{padding:12px 0;border-bottom:1px solid var(--line)}
+    .cmp-m-row{display:flex;flex-direction:column;gap:3px;padding:8px 12px}
+    .cmp-m-k{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--body)}
+    .cmp-m-v{font-size:15px;color:var(--body);line-height:1.45}
+    .cmp-m-row.is-fin{background:var(--terracotta-soft);border-radius:10px}
+    .cmp-m-row.is-fin .cmp-m-k{color:var(--terracotta)}
+    .cmp-m-row.is-fin .cmp-m-v{color:var(--navy);font-weight:500}
+    .cmp>div:nth-child(-n+2){display:none}
+    .cmp{gap:0!important}
+    /* Categorielabels leesbaar */
+    .split div[style*="font-size:11px"]{font-size:12px!important;opacity:.85!important}
+    /* Navy-flow: icoon links van de titel, compacte verticale reeks */
+    .flow{gap:12px}
+    .flow>div{display:grid;grid-template-columns:30px 1fr;column-gap:14px;align-items:start}
+    .flow>div>svg{grid-row:1/3;margin:2px 0 0!important}
+    .flow .fa{margin-left:8px}
+    .navy-grid{gap:28px!important}
   }
 </style>
