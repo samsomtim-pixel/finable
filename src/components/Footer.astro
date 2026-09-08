@@ -1,81 +1,31 @@
 ---
-import Logo from './Logo.astro';
+// Footer. Bron: hoe-het-werkt-nav2. marginTop is alleen op /hoe-het-werkt gezet (40px), elders afwezig.
+interface Props {
+  marginTop?: string;
+}
+const { marginTop } = Astro.props;
+const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-top:${marginTop}` : '');
 ---
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-left">
-      <Logo />
-      <p class="footer-company">Finable B.V. · KVK 91234567</p>
+<footer style={footerStyle}>
+  <div class="wrap" style="padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--navy);letter-spacing:-0.02em">Finable<span style="color:var(--terracotta)">.</span></div>
+      <!-- Vervangen door de werkelijke gegevens vóór livegang. -->
+      <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — handelsnaam van [STATUTAIRE NAAM] · KVK [NUMMER]</div>
     </div>
-    <div class="footer-right">
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <span class="footer-sep">|</span>
-        <a href="#">Voorwaarden</a>
-      </div>
-      <span class="footer-lang">NL</span>
+    <!-- Privacy- en Voorwaarden-pagina's moeten nog gebouwd en juridisch gecontroleerd worden. -->
+    <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
+      <a href="#" class="ft-link">Privacy</a>
+      <a href="#" class="ft-link">Voorwaarden</a>
+      <span style="display:flex;align-items:center;gap:6px">NL <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#5F6B76" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></span>
     </div>
   </div>
 </footer>
 
-<style>
-  .footer {
-    border-top: 1px solid var(--line);
-    padding: 32px 0;
-  }
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .footer-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .footer-company {
-    font-size: 0.8125rem;
-    color: var(--body-color);
-  }
-  .footer-right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .footer-links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.8125rem;
-  }
-  .footer-links a {
-    color: var(--body-color);
-    transition: color 0.2s;
-  }
-  .footer-links a:hover {
-    color: var(--navy);
-  }
-  .footer-sep {
-    color: var(--line);
-  }
-  .footer-lang {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--body-color);
-  }
-
-  @media (max-width: 640px) {
-    .footer-inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .footer-left {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
+<style is:global>
+  .ft-link{color:var(--body)}
+  .ft-link:hover{color:var(--terracotta)}
+  @media (max-width:1023px){
+    .ft-link{padding:10px 0;display:inline-flex;align-items:center;min-height:44px}
   }
 </style>

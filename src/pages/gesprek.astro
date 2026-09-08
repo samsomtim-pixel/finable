@@ -1,194 +1,118 @@
 ---
-import Base from '../layouts/Base.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_GESPREK ?? '';
+const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 ---
-<Base
-  title="Plan een gesprek — Finable"
-  description="Vrijblijvend, in 30 minuten. Geen standaardverhaal, maar een eerlijk gesprek over jouw situatie."
->
-  <section class="gesprek-hero">
-    <div class="container gesprek-grid">
-      <div class="gesprek-content">
-        <p class="eyebrow">Plan een gesprek</p>
-        <h1>Laten we kijken wat Finable voor jouw bedrijf kan betekenen.</h1>
-        <p class="gesprek-body">Vrijblijvend, in 30 minuten. Geen standaardverhaal, maar een eerlijk gesprek over jouw situatie.</p>
-      </div>
-      <div class="gesprek-card">
-        <form class="gesprek-form" id="gesprek-form">
-          <div class="gesprek-field">
-            <label for="g-naam">Je naam</label>
-            <input type="text" id="g-naam" name="naam" placeholder="Voor- en achternaam" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-email">Zakelijk e-mailadres</label>
-            <input type="email" id="g-email" name="email" placeholder="jij@bedrijf.nl" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-telefoon">Telefoonnummer <span class="gesprek-optional">(optioneel)</span></label>
-            <input type="tel" id="g-telefoon" name="telefoon" placeholder="06 …" />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-bedrijf">Bedrijf</label>
-            <input type="text" id="g-bedrijf" name="bedrijf" placeholder="Naam van je organisatie" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-bericht">Waar wil je het over hebben? <span class="gesprek-optional">(optioneel)</span></label>
-            <textarea id="g-bericht" name="bericht" rows="3" placeholder="Vertel kort waar je tegenaan loopt."></textarea>
-          </div>
-          <div class="gesprek-hp" aria-hidden="true">
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </div>
-          <p class="gesprek-privacy">We gebruiken je gegevens alleen om contact op te nemen over je gesprek.</p>
-          <div class="gesprek-error" id="gesprek-error" hidden>
-            Er ging iets mis. Mail ons op <a href="mailto:tim@finable.nl">tim@finable.nl</a>.
-          </div>
-          <button type="submit" class="btn btn-primary gesprek-submit" id="gesprek-submit">Verstuur →</button>
-        </form>
-        <div class="gesprek-done" id="gesprek-done" hidden>
-          <h2>Dank je.</h2>
-          <p>Tim neemt zo snel mogelijk contact met je op.</p>
+<Layout title="Plan een gesprek — Finable" description="Plan een vrijblijvend gesprek van 30 minuten met Tim. We kijken waar je finance staat, wat we zouden overnemen en of Finable past.">
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <section class="wrap" style="padding-top:44px;padding-bottom:72px">
+    <div class="fin-layout">
+
+      <!-- LEFT -->
+      <div>
+        <div class="lbl" style="margin-bottom:20px">Een gesprek van 30 minuten</div>
+        <h1 style="font-size:clamp(32px,4.4vw,52px);margin-bottom:22px;text-wrap:balance">Dertig minuten om te kijken wat we kunnen overnemen.</h1>
+        <p style="font-size:clamp(16px,1.9vw,19px);color:var(--body);max-width:500px;margin-bottom:40px;text-wrap:pretty">Geen verkooppraatje. We kijken naar waar je finance staat, wat het meest knelt, en of Finable past.</p>
+
+        <div style="display:flex;flex-direction:column;gap:22px;margin-bottom:40px">
+          <div style="display:flex;gap:16px"><span style="font-family:'Playfair Display',serif;color:var(--terracotta);font-size:18px;flex-shrink:0">01</span><div><div style="font-weight:600;color:var(--navy);font-size:17px">Waar je finance nu staat</div><div style="font-size:15px;color:var(--body)">Systemen, entiteiten en wat je vandaag mist.</div></div></div>
+          <div style="display:flex;gap:16px"><span style="font-family:'Playfair Display',serif;color:var(--terracotta);font-size:18px;flex-shrink:0">02</span><div><div style="font-weight:600;color:var(--navy);font-size:17px">Wat we zouden overnemen</div><div style="font-size:15px;color:var(--body)">Wat we kunnen overnemen — nu en later.</div></div></div>
+          <div style="display:flex;gap:16px"><span style="font-family:'Playfair Display',serif;color:var(--terracotta);font-size:18px;flex-shrink:0">03</span><div><div style="font-weight:600;color:var(--navy);font-size:17px">Of het past</div><div style="font-size:15px;color:var(--body)">Een eerlijk beeld — ook als het antwoord nee is.</div></div></div>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:24px">
+          <div style="font-size:15px;color:var(--body);margin-bottom:4px">Liever eerst schrijven?</div>
+          <a href="mailto:tim@finable.nl" style="font-family:'Playfair Display',serif;font-size:22px;color:var(--terracotta)">tim@finable.nl</a>
+          <div style="font-size:15px;color:var(--body);margin-top:18px">Liever eerst een prijsindicatie? <a href="/indicatie" style="font-weight:600">Vraag een indicatie aan →</a></div>
         </div>
       </div>
+
+      <!-- RIGHT: FORM -->
+      <div style="background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px -30px rgba(27,58,92,.35);padding:clamp(28px,3.5vw,44px)">
+        <div data-gesprek-done hidden style="padding:12px 0">
+            <div style="width:56px;height:56px;border-radius:999px;background:var(--terracotta);display:flex;align-items:center;justify-content:center;margin-bottom:24px"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 13l5 5L21 7"/></svg></div>
+            <h2 style="font-size:26px;color:var(--navy);margin-bottom:12px">Dank je — je aanvraag staat genoteerd.</h2>
+            <p style="font-size:16px;color:var(--body)">Tim neemt binnen twee werkdagen contact met je op om een moment te plannen.</p>
+          </div>
+        <form data-gesprek-form data-endpoint={endpoint} data-access-key={accessKey} novalidate>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
+            <h2 style="font-size:24px;color:var(--navy);margin-bottom:6px">Plan je gesprek</h2>
+            <p style="font-size:15px;color:var(--body);margin-bottom:28px">Drie velden, meer niet.</p>
+            <div style="margin-bottom:20px">
+              <label for="fin-naam" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Naam</label>
+              <input type="text" id="fin-naam" name="naam" required class="fin-input" placeholder="Voor- en achternaam">
+            </div>
+            <div style="margin-bottom:20px">
+              <label for="fin-email" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">E-mail</label>
+              <input type="email" id="fin-email" name="email" required class="fin-input" placeholder="jij@bedrijf.nl">
+            </div>
+            <div style="margin-bottom:8px">
+              <label for="fin-ent" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Aantal entiteiten</label>
+              <input type="number" id="fin-ent" name="entiteiten" min="1" required class="fin-input" placeholder="Bijv. 3">
+              <p style="font-size:13px;color:var(--body);margin-top:8px">We vragen entiteiten, geen omzet — dat bepaalt het werk.</p>
+            </div>
+            <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:16px">Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> — dan pakken we het op.</p>
+            <button type="submit" data-submit class="btn" style="width:100%;background:var(--terracotta);color:var(--white);font-weight:600;font-size:16px;font-family:inherit;padding:15px;border:none;border-radius:999px;cursor:pointer;margin-top:24px">Verstuur aanvraag</button>
+            <p style="font-size:13px;color:var(--body);text-align:center;margin-top:16px">We gebruiken je gegevens alleen om contact op te nemen.</p>
+        </form>
+      </div>
+
     </div>
   </section>
 
-  <section class="tint">
-    <div class="container gesprek-trust">
-      <div class="gesprek-trust-item">
-        <strong>Vrijblijvend</strong>
-        <p>Geen verplichtingen, geen verkooppraatje.</p>
-      </div>
-      <div class="gesprek-trust-item">
-        <strong>30 minuten</strong>
-        <p>Kort en to the point.</p>
-      </div>
-      <div class="gesprek-trust-item">
-        <strong>Persoonlijk</strong>
-        <p>Je spreekt direct met Tim.</p>
-      </div>
-    </div>
-  </section>
-</Base>
+  <Footer />
 
-<style>
-  .gesprek-hero { padding: var(--space-xl) 0 var(--space-2xl); }
-  .gesprek-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: start;
-  }
-  .gesprek-content { padding-top: 32px; }
-  .gesprek-content h1 { margin-bottom: 16px; }
-  .gesprek-body { font-size: 1.0625rem; max-width: 440px; }
+</div>
+</Layout>
 
-  .gesprek-card {
-    background: var(--white);
-    border: 1px solid #EEE9E3;
-    border-radius: var(--radius-xl);
-    box-shadow: 0 20px 50px -30px rgba(44,62,80,.35);
-    padding: clamp(28px, 3.5vw, 44px);
-  }
-  .gesprek-field { margin-bottom: 20px; }
-  .gesprek-field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--navy);
-    display: block;
-    margin-bottom: 8px;
-  }
-  .gesprek-optional { font-weight: 400; color: var(--body-color); }
-  .gesprek-field input,
-  .gesprek-field textarea {
-    width: 100%;
-    padding: 13px 16px;
-    border-radius: 10px;
-    border: 1.5px solid #E6E1DB;
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    color: var(--navy);
-    background: transparent;
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.2s;
-  }
-  .gesprek-field input:focus,
-  .gesprek-field textarea:focus {
-    border-color: var(--terracotta);
-    box-shadow: 0 0 0 2px rgba(196,100,58,0.15);
-  }
-  .gesprek-field input::placeholder,
-  .gesprek-field textarea::placeholder { color: #9AA0A6; }
-  .gesprek-hp { position: absolute; left: -9999px; }
-  .gesprek-privacy { font-size: 0.8125rem; color: #8A94A0; margin-bottom: 20px; }
-  .gesprek-error {
-    padding: 14px 18px;
-    background: #FBEDE6;
-    border: 1px solid #E9C9B5;
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    color: #B2532B;
-    margin-bottom: 16px;
-  }
-  .gesprek-error a { text-decoration: underline; }
-  .gesprek-submit { width: 100%; justify-content: center; }
-
-  .gesprek-done h2 { margin-bottom: 12px; }
-
-  .gesprek-trust {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    padding: var(--space-lg) 0;
-  }
-  .gesprek-trust-item {
-    text-align: center;
-    padding: 24px;
-  }
-  .gesprek-trust-item strong { color: var(--navy); font-size: 1rem; display: block; margin-bottom: 4px; }
-  .gesprek-trust-item p { font-size: 0.875rem; }
-
-  @media (max-width: 1024px) {
-    .gesprek-grid { grid-template-columns: 1fr; }
-    .gesprek-content { padding-top: 0; }
-  }
-  @media (max-width: 640px) {
-    .gesprek-trust { grid-template-columns: 1fr; }
-  }
+<style is:global>
+  body{line-height:1.6}
+  h1,h2,h3{line-height:1.12}
+  .fin-input{width:100%;padding:13px 16px;background:var(--white);border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy)}
+  .fin-input::placeholder{color:var(--body)}
+  .fin-input:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  .fin-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+  @media (max-width:1023px){ .fin-layout{grid-template-columns:1fr;gap:36px} .fin-navmid{display:none!important} }
+  .btn[disabled]{opacity:.6;cursor:progress;filter:none}
 </style>
 
 <script>
-  const form = document.getElementById('gesprek-form') as HTMLFormElement;
-  const done = document.getElementById('gesprek-done') as HTMLElement;
-  const errEl = document.getElementById('gesprek-error') as HTMLElement;
-  const submitBtn = document.getElementById('gesprek-submit') as HTMLButtonElement;
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errEl.hidden = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Bezig…';
-
-    const data = Object.fromEntries(new FormData(form));
-    if (data._gotcha) return;
-
-    try {
-      const res = await fetch('/api/gesprek', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) {
+  // Verzending naar de formulierdienst. Bevestiging alleen bij een succesvolle response.
+  const form = document.querySelector<HTMLFormElement>('[data-gesprek-form]');
+  const doneEl = document.querySelector<HTMLElement>('[data-gesprek-done]');
+  if (form && doneEl) {
+    const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value ?? '';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = form.querySelector<HTMLElement>('[data-formerror]');
+      const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
+      if (err) err.style.display = 'none';
+      if (val('_gotcha')) return; // honeypot
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const endpoint = form.dataset.endpoint || '';
+      const label = btn?.textContent ?? '';
+      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Versturen…'; }
+      try {
+        if (!endpoint) throw new Error('Geen formulier-endpoint geconfigureerd (PUBLIC_FORM_ENDPOINT_GESPREK).');
+        const payload: Record<string, string> = { formulier: 'gesprek', _subject: 'Nieuwe gespreksaanvraag via finable.nl', naam: val('naam'), email: val('email'), entiteiten: val('entiteiten') };
+        if (form.dataset.accessKey) payload.access_key = form.dataset.accessKey;
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+        if (!res.ok) throw new Error('bad status ' + res.status);
         form.hidden = true;
-        done.hidden = false;
-      } else {
-        errEl.hidden = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Verstuur →';
+        doneEl.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (ex) {
+        console.error(ex);
+        if (err) err.style.display = 'block';
+        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; }
       }
-    } catch {
-      errEl.hidden = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Verstuur →';
-    }
-  });
+    });
+  }
 </script>

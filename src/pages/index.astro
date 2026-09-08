@@ -1,466 +1,244 @@
 ---
-import Base from '../layouts/Base.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
 ---
-<Base
-  title="Finable — een heel finance-team voor je groeiende bedrijf"
-  description="Finable runt je dagelijkse finance met een vast team, voor één vaste maandprijs. Van boekhouding tot controlling en managementrapportage."
->
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <p class="eyebrow">Een heel finance-team voor je groeiende bedrijf</p>
-        <h1>Outsourced that feels like in&#8209;house.</h1>
-        <p class="hero-sub">
-          <strong>Een heel finance-team.</strong><br />
-          <strong>Voor minder dan één controller.</strong>
-        </p>
-        <p class="hero-body">Finable runt je dagelijkse finance met een vast team, voor één vaste maandprijs. Van boekhouding tot controlling en managementrapportage.</p>
-        <div class="hero-actions">
-          <a href="/gesprek" class="btn btn-primary">Plan een gesprek →</a>
-          <a href="/aanpak" class="btn btn-secondary">Bekijk onze aanpak</a>
-        </div>
-      </div>
-      <div class="hero-visual" role="img" aria-label="Sfeerfoto werkplek"></div>
-    </div>
-  </section>
+<Layout title="Finable — een heel finance-team voor je groeiende bedrijf" description="Finable runt je dagelijkse finance met een vast team, voor één vaste maandprijs. Van dagelijkse finance tot controlling en managementrapportage.">
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
-  <!-- Herkenning -->
-  <section class="tint herkenning">
-    <div class="container herkenning-grid">
-      <div class="herkenning-head">
-        <p class="eyebrow">Herken je dit?</p>
-        <h2>Je bent niet de enige.</h2>
+  <Header />
+
+  <!-- HERO -->
+  <section class="wrap" style="padding-top:48px;padding-bottom:72px">
+    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(36px,4.6vw,72px);align-items:center">
+      <div>
+        <div class="lbl" style="margin-bottom:26px">Finance-as-a-service</div>
+        <h1 style="font-size:clamp(38px,5vw,64px);line-height:1.04;margin-bottom:26px">Outsourced that feels like in-house.</h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--body);max-width:500px;text-wrap:pretty">Finable runt je dagelijkse finance voor één vaste maandprijs. Van boekhouding en maandafsluiting tot controlling en managementrapportage.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
+          <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+          <a href="/hoe-het-werkt" style="font-weight:600;font-size:16px;color:var(--terracotta)">Bekijk hoe Finable werkt &rarr;</a>
+        </div>
       </div>
-      <div class="herkenning-cards">
-        <div class="herkenning-card">
-          <h3>Je finance-vacature blijft open.</h3>
-          <p>Goede mensen zijn schaars en duur.</p>
+      <div style="position:relative">
+        <div style="display:flex;align-items:stretch;gap:22px;margin-bottom:26px">
+          <div style="width:3px;background:var(--terracotta);border-radius:999px;flex-shrink:0"></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--navy)">Een heel finance-team.</span><br><span style="color:var(--terracotta)">Voor minder dan één controller.</span></div>
         </div>
-        <div class="herkenning-card">
-          <h3>Finance hangt aan één persoon.</h3>
-          <p>Te veel risico als iemand uitvalt.</p>
-        </div>
-        <div class="herkenning-card">
-          <h3>Je stuurt te veel op gevoel.</h3>
-          <p>Je mist actuele inzichten om te kunnen groeien.</p>
+        <div style="height:clamp(200px,22vw,260px)"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: stilleven — rustige werkplek"><span>stilleven — rustige werkplek</span></div></div>
+        <div class="hero-note" style="position:absolute;right:-6px;bottom:-22px;width:150px;text-align:center;pointer-events:none">
+          <div class="cav" style="font-size:22px">alsof we gewoon bij je team horen.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Zo werkt het -->
-  <section class="mechanism">
-    <div class="container">
-      <div class="mech-head">
-        <p class="eyebrow">Zo werkt het</p>
-        <h2>Je dagelijkse finance.<br />Van uitvoering tot gesprek.</h2>
-        <p>Eén vast team neemt het afgesproken werk over en brengt het in een vast maandelijks ritme.</p>
+  <!-- HERKENNING -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:72px">
+    <div class="rule" style="margin-bottom:44px"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px">
+      <h2 style="font-size:clamp(26px,3.2vw,38px)">Herken je dit?</h2>
+      <div style="font-size:15px;color:var(--body)">Drie situaties waarin bedrijven ons bellen.</div>
+    </div>
+    <div class="cols4t" style="display:grid;grid-template-columns:repeat(3,1fr)">
+      <div>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg>
+        <h3 style="font-size:20px;margin-bottom:10px">Je finance-vacature blijft open.</h3>
+        <p style="font-size:15px;color:var(--body)">Goede mensen zijn schaars en duur.</p>
       </div>
-      <div class="mech-flow">
-        <div class="mech-step">
-          <div class="mech-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
-          </div>
-          <strong>Uitvoeren</strong>
-          <span>Dagelijkse finance</span>
-        </div>
-        <div class="mech-arrow" aria-hidden="true">→</div>
-        <div class="mech-step">
-          <div class="mech-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          </div>
-          <strong>Afsluiten</strong>
-          <span>Maandafsluiting en btw</span>
-        </div>
-        <div class="mech-arrow" aria-hidden="true">→</div>
-        <div class="mech-step">
-          <div class="mech-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21H4.6c-.56 0-.84 0-1.054-.109a1 1 0 0 1-.437-.437C3 20.24 3 19.96 3 19.4V3"/><path d="m7 14 4-4 4 4 6-6"/></svg>
-          </div>
-          <strong>Controleren</strong>
-          <span>Controlling</span>
-        </div>
-        <div class="mech-arrow" aria-hidden="true">→</div>
-        <div class="mech-step">
-          <div class="mech-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>
-          </div>
-          <strong>Rapporteren</strong>
-          <span>Managementrapportage</span>
-        </div>
-        <div class="mech-arrow" aria-hidden="true">→</div>
-        <div class="mech-step">
-          <div class="mech-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <strong>Bespreken</strong>
-          <span>Maandgesprek</span>
-        </div>
+      <div>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg>
+        <h3 style="font-size:20px;margin-bottom:10px">Finance hangt aan één persoon.</h3>
+        <p style="font-size:15px;color:var(--body)">Te veel risico als iemand uitvalt.</p>
       </div>
-      <div class="mech-footer">
-        <p>We sluiten aan op wat er al staat en nemen over wat nodig is.</p>
-        <a href="/aanpak" class="text-link">Bekijk onze aanpak →</a>
+      <div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg>
+        <h3 style="font-size:20px;margin-bottom:10px">Je stuurt te veel op gevoel.</h3>
+        <p style="font-size:15px;color:var(--body)">Je mist actuele inzichten om te groeien.</p>
       </div>
     </div>
   </section>
 
-  <!-- Vier manieren -->
-  <section class="compare">
-    <div class="container">
-      <div class="compare-head">
+  <!-- NAVY ANKER · FINANCE-FUNCTIE -->
+  <section class="navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:80px;padding-bottom:80px;text-align:center">
+      <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">De finance-functie</div>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--white);margin-bottom:44px">Finable runt je dagelijkse finance.</h2>
+      <div class="flow" style="max-width:1000px;margin:0 auto;text-align:left">
+        <div class="fn">Dagelijkse finance</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Maandafsluiting</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Controlling</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Managementrapportage</div>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.14);max-width:1000px;margin:44px auto 30px"></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
+        <span>Eén team.</span>
+        <span style="color:var(--on-dark-tertiary)">·</span>
+        <span>Eén aanspreekpunt.</span>
+        <span style="color:var(--on-dark-tertiary)">·</span>
+        <span>Eén vaste maandprijs.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAT PAST BIJ JOUW SITUATIE -->
+  <section class="wrap" style="padding-top:80px;padding-bottom:72px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+      <h2 style="font-size:clamp(26px,3.2vw,38px)">Wat past bij jouw situatie?</h2>
+      <a href="/aanpak" style="font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk de volledige vergelijking &rarr;</a>
+    </div>
+    <div class="cols4">
+      <div>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">Iemand aannemen</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Dichtbij, maar afhankelijk van één persoon.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">Een interimmer</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Snel capaciteit, maar tijdelijk.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">Accountant uitbreiden</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Vertrouwd, maar niet op dagelijkse finance ingericht.</p>
+      </div>
+      <div>
+        <div class="lbl" style="margin-bottom:12px">Finable</div>
+        <p style="font-size:15px;color:var(--navy);line-height:1.6">Een vast team dat de finance-functie overneemt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KLANTCASE -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:72px">
+    <div class="rule" style="margin-bottom:52px"></div>
+    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.9fr);gap:clamp(28px,4vw,56px);align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <img src="/images/the-good-roll.webp" alt="Logo The Good Roll" width="200" height="200" style="width:72px;height:72px;border-radius:999px;display:block">
         <div>
-          <p class="eyebrow">Vier manieren om je finance te organiseren</p>
-          <h2>Wat past bij jouw situatie?</h2>
+          <div class="lbl" style="color:var(--body);margin-bottom:6px">Klantcase · The Good Roll</div>
+          <div style="font-size:15px;color:var(--body)">Sander de Klerk</div>
         </div>
-        <a href="/aanpak" class="text-link compare-link">Bekijk de volledige vergelijking →</a>
       </div>
-      <div class="compare-grid">
-        <div class="compare-card">
-          <h3>Iemand aannemen</h3>
-          <p>Dichtbij, maar afhankelijk van één persoon.</p>
+      <div>
+        <p style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);color:var(--navy);line-height:1.2;margin-bottom:22px;text-wrap:balance">Van sceptisch naar <span style="color:var(--terracotta)">&ldquo;ik zou het iedereen aanraden.&rdquo;</span></p>
+        <p style="font-size:16px;color:var(--body);max-width:640px;text-wrap:pretty">Sander was eerst huiverig om zijn finance uit handen te geven. Dus begon hij klein: alleen het inboeken. Het vertrouwen groeide en Finable nam steeds meer over. Inmiddels wordt vrijwel zijn hele dagelijkse finance door het team gedaan.</p>
+      </div>
+    </div>
+    <div class="rule" style="margin-top:52px"></div>
+  </section>
+
+  <!-- ZEKERHEDEN -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+      <h2 style="font-size:clamp(26px,3.2vw,38px)">Waar je op kunt rekenen</h2>
+      <div style="font-size:15px;color:var(--body)">Een samenwerking die met je meegroeit.</div>
+    </div>
+    <div class="cols4t" style="display:grid;grid-template-columns:repeat(4,1fr)">
+      <div>
+        <div class="lbl" style="color:var(--navy);margin-bottom:12px">Vast team</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Een vaste bezetting die je organisatie leert kennen.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:var(--navy);margin-bottom:12px">Vast aanspreekpunt</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Eén persoon die de samenwerking kent en met je bespreekt wat er speelt.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:var(--navy);margin-bottom:12px">Controle in het proces</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Inhoudelijke controles en reviews horen bij het vaste werkproces.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:var(--navy);margin-bottom:12px">Vaste maandprijs</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Vooraf duidelijk wat we overnemen en wat het kost.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ + TIM -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
+    <div class="rule" style="margin-bottom:44px"></div>
+    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(40px,5vw,72px);align-items:start">
+      <div>
+        <div class="lbl" style="margin-bottom:28px">Veelgestelde vragen</div>
+        <div style="max-width:900px">
+          <details class="fin-faq"><summary><span class="fin-faq-q">Voor welke bedrijven is Finable bedoeld?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Finable is bedoeld voor groeiende bedrijven die hun finance professioneler willen organiseren zonder direct een volledige interne finance-afdeling op te bouwen. Vaak gaat het om organisaties waar de dagelijkse administratie inmiddels meer vraagt, de afhankelijkheid van één persoon te groot wordt of waar structurele capaciteit ontbreekt voor maandafsluiting, controlling en managementrapportage. We kijken daarbij niet alleen naar de omvang van een organisatie, maar vooral naar de werkzaamheden en complexiteit achter de finance-functie.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Welke finance-werkzaamheden kan Finable overnemen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Dat verschilt per organisatie. Finable kan werkzaamheden verzorgen van dagelijkse finance en maandafsluiting tot controlling en managementrapportage. We beginnen daarom niet met een standaardpakket, maar met wat er vandaag al staat. Wat goed werkt kan blijven staan; waar capaciteit of expertise ontbreekt, kan Finable overnemen. Dat kan één onderdeel van finance zijn, maar ook vrijwel de volledige dagelijkse finance. De verdeling kan later worden aangepast wanneer de organisatie of behoefte verandert.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Vervangt Finable onze boekhouder of accountant?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Niet noodzakelijk. We kijken eerst welke onderdelen van de huidige inrichting goed functioneren en hoe Finable daarop kan aansluiten. Een accountant kan bijvoorbeeld betrokken blijven bij de jaarrekening, fiscale werkzaamheden of andere specialistische vraagstukken, terwijl Finable de dagelijkse finance, maandafsluiting, controlling en managementrapportage verzorgt. Voor de start spreken we duidelijk af welke werkzaamheden bij welke partij liggen, zodat verantwoordelijkheden helder zijn en werkzaamheden niet dubbel worden uitgevoerd.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Hoe wordt de maandprijs bepaald?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>De maandprijs hangt af van het werk dat Finable overneemt en de omvang en complexiteit van de finance-organisatie. Denk bijvoorbeeld aan de werkzaamheden die binnen de samenwerking vallen, het volume dat verwerkt moet worden en de complexiteit rondom afsluiting, controlling en rapportage. Op basis van de huidige situatie en de gewenste verdeling maken we vooraf een passende indicatie.</p></div></details>
         </div>
-        <div class="compare-card">
-          <h3>Een interimmer</h3>
-          <p>Snel capaciteit, maar tijdelijk.</p>
+        <div style="margin-top:26px"><a href="/hoe-het-werkt" style="font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</a></div>
+      </div>
+      <div style="border-left:1px solid var(--line);padding-left:clamp(28px,3vw,48px)">
+        <div class="lbl" style="margin-bottom:20px">Persoonlijk kennismaken</div>
+        <div class="tim-row" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
+          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div>
+            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px">Benieuwd of Finable bij jouw organisatie past?</h2>
+            <p style="font-size:15px;color:var(--body);text-wrap:pretty">Plan 30 minuten met Tim om te bespreken hoe je finance nu is georganiseerd en waar Finable kan overnemen of versterken.</p>
+          </div>
         </div>
-        <div class="compare-card">
-          <h3>Accountant uitbreiden</h3>
-          <p>Vertrouwd, maar niet ingericht op dagelijkse finance.</p>
-        </div>
-        <div class="compare-card compare-card--highlight">
-          <h3>Finable</h3>
-          <p>Een vast team dat de finance-functie overneemt.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+          <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+          <div style="font-size:14px;color:var(--body);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Oprichter Finable</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Klantcase -->
-  <section class="tint testimonial">
-    <div class="container testimonial-grid">
-      <div class="testimonial-portrait" role="img" aria-label="Portret Sander de Klerk"></div>
-      <div class="testimonial-content">
-        <p class="testimonial-lead">Van sceptisch naar:</p>
-        <blockquote>
-          <p>&ldquo;Ik zou het iedereen aanraden.&rdquo;</p>
-        </blockquote>
-        <div class="testimonial-attr">
-          <strong>Sander de Klerk</strong>
-          <span>Founder, The Good Roll</span>
-        </div>
-      </div>
-      <div class="testimonial-logo-col">
-        <div class="testimonial-logo" role="img" aria-label="Logo The Good Roll"></div>
-        <a href="/aanpak" class="text-link">Lees het hele verhaal →</a>
-      </div>
-    </div>
-  </section>
+  <Footer />
 
-  <!-- Waar je op kunt rekenen -->
-  <section class="trust-points">
-    <div class="container">
-      <div class="trust-head">
-        <p class="eyebrow">Waar je op kunt rekenen</p>
-        <h2>Een samenwerking die met je meegroeit.</h2>
-      </div>
-      <div class="trust-grid">
-        <div class="trust-card">
-          <h3>Vast team</h3>
-          <p>Je werkt met een vaste bezetting die je organisatie leert kennen.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Vast aanspreekpunt</h3>
-          <p>Eén persoon die de samenwerking kent en met je bespreekt wat er speelt.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Controle in het proces</h3>
-          <p>Inhoudelijke controles en reviews zijn onderdeel van het vaste werkproces.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Vaste maandprijs</h3>
-          <p>Vooraf duidelijk wat binnen de afgesproken scope valt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+</Layout>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container cta-grid">
-      <div class="cta-portrait" role="img" aria-label="Portret Tim Samsom"></div>
-      <div class="cta-headline">
-        <p class="eyebrow" style="color: #C3CCD4;">Plan een gesprek</p>
-        <h2 style="color: var(--white);">Laten we kijken wat Finable voor jouw bedrijf kan betekenen.</h2>
-        <p class="cta-attr" style="color: #9FB0C0;">— Tim</p>
-      </div>
-      <div class="cta-body">
-        <p style="color: #C3CCD4;">Vrijblijvend, in 30 minuten. Geen standaardverhaal, maar een eerlijk gesprek over jouw situatie.</p>
-        <a href="/gesprek" class="btn btn-dark">Plan een gesprek →</a>
-      </div>
-    </div>
-  </section>
-</Base>
-
-<style>
-  /* Hero */
-  .hero { padding: var(--space-xl) 0 var(--space-2xl); }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+  .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.15}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
+  .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
+  .flow .fa{align-self:center;color:var(--terracotta)}
+  .cols4{display:grid;grid-template-columns:repeat(4,1fr)}
+  .cols4>div{padding:0 30px;border-left:1px solid var(--line)}
+  .cols4>div:first-child{padding-left:0;border-left:none}
+  .cols4t>div{padding:0 26px;border-left:1px solid var(--line)}
+  .cols4t>div:first-child{padding-left:0;border-left:none}
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:24px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(17px,1.7vw,20px);color:var(--navy);line-height:1.35;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:17px;height:17px;flex-shrink:0;margin-top:6px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:7.5px;width:17px;height:2px}
+  .fin-faq-ic::after{left:7.5px;top:0;width:2px;height:17px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:720px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
+  .cta-p{display:grid;grid-template-columns:clamp(150px,18vw,220px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center}
+  @media (max-width:1023px){
+  .hero{grid-template-columns:1fr!important;gap:40px!important}
+  .hero-note{display:none!important}
+  .flow{grid-template-columns:1fr;gap:16px}
+  .flow .fa{transform:rotate(90deg);justify-self:start}
+  .cols4,.cols4t{grid-template-columns:1fr 1fr;gap:26px 0}
+  .cols4>div,.cols4t>div{padding:22px 0;border-left:none;border-top:1px solid var(--line)}
+  .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:none}
+  .case{grid-template-columns:1fr!important;gap:28px!important}
+  .cta-p{grid-template-columns:1fr;gap:24px}
+  .endmod{grid-template-columns:1fr!important;gap:36px!important}
+  .endmod>div:last-child{border-left:none!important;padding-left:0!important}
   }
-  .hero h1 { margin-bottom: 16px; }
-  .hero-sub {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    color: var(--navy);
-    line-height: 1.4;
-    margin-bottom: 16px;
+  /* Responsive (bouwopdracht §5): 1024 / 640 */
+  @media (max-width:1023px){
+    .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
+    .tim-row{grid-template-columns:1fr!important}
+    .tim-row>div:first-child{max-width:150px}
   }
-  .hero-body {
-    font-size: 1.0625rem;
-    max-width: 480px;
-    margin-bottom: 32px;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .hero-visual {
-    aspect-ratio: 4/3;
-    background: repeating-linear-gradient(135deg, #EAE3DA 0, #EAE3DA 1px, #F0EBE4 1px, #F0EBE4 12px);
-    border-radius: var(--radius-lg);
-  }
-
-  /* Herkenning */
-  .herkenning { padding: var(--space-xl) 0; }
-  .herkenning-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 44px;
-    align-items: start;
-  }
-  .herkenning-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  .herkenning-card {
-    padding: 24px;
-    border-left: 1px solid var(--line);
-  }
-  .herkenning-card:first-child { border-left: none; }
-  .herkenning-card h3 {
-    font-size: 1.125rem;
-    margin-bottom: 8px;
-  }
-  .herkenning-card p { font-size: 0.9375rem; }
-
-  /* Mechanism */
-  .mechanism {
-    background: var(--slate);
-    border-radius: var(--radius-xl);
-    margin: 0 var(--px);
-    padding: var(--space-xl) 0;
-  }
-  .mech-head {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .mech-head .eyebrow { color: #9FB0C0; }
-  .mech-head h2 { color: var(--white); }
-  .mech-head p { color: #C3CCD4; font-size: 1.0625rem; max-width: 540px; margin: 16px auto 0; }
-  .mech-flow {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
-    gap: 8px;
-    align-items: start;
-    margin-bottom: 40px;
-  }
-  .mech-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-  }
-  .mech-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-pill);
-    background: rgba(255,255,255,0.1);
-    color: var(--white);
-  }
-  .mech-step strong { color: var(--white); font-size: 0.9375rem; }
-  .mech-step span { color: #AEBAC6; font-size: 0.8125rem; }
-  .mech-arrow {
-    color: #AEBAC6;
-    font-size: 1.25rem;
-    padding-top: 12px;
-  }
-  .mech-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 20px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .mech-footer p { color: #C3CCD4; font-size: 0.9375rem; }
-  .mech-footer .text-link { color: var(--white); }
-  .mech-footer .text-link:hover { color: #E0E5EA; }
-
-  /* Compare */
-  .compare { padding: var(--space-xl) 0; }
-  .compare-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .compare-link { white-space: nowrap; }
-  .compare-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .compare-card {
-    padding: 28px;
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-  }
-  .compare-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
-  .compare-card p { font-size: 0.9375rem; }
-  .compare-card--highlight {
-    background: #F7E8DE;
-    border-color: #E9C9B5;
-  }
-
-  /* Testimonial */
-  .testimonial { padding: var(--space-xl) 0; }
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: 200px 1fr auto;
-    gap: 40px;
-    align-items: center;
-  }
-  .testimonial-portrait {
-    width: 200px;
-    height: 200px;
-    border-radius: var(--radius-pill);
-    background: repeating-linear-gradient(135deg, #DFD6CD 0, #DFD6CD 1px, #E8E1D8 1px, #E8E1D8 12px);
-  }
-  .testimonial-lead {
-    font-size: 0.9375rem;
-    color: var(--body-color);
-    margin-bottom: 8px;
-  }
-  blockquote p {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    color: var(--navy);
-    line-height: 1.3;
-    font-weight: 500;
-  }
-  .testimonial-attr {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .testimonial-attr strong { color: var(--navy); font-size: 0.9375rem; }
-  .testimonial-attr span { font-size: 0.8125rem; }
-  .testimonial-logo-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-  .testimonial-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: var(--radius-md);
-    background: repeating-linear-gradient(135deg, #DFD6CD 0, #DFD6CD 1px, #E8E1D8 1px, #E8E1D8 12px);
-  }
-
-  /* Trust Points */
-  .trust-points { padding: var(--space-xl) 0; }
-  .trust-head { margin-bottom: 32px; }
-  .trust-head h2 { max-width: 480px; }
-  .trust-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .trust-card {
-    padding: 28px;
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-  }
-  .trust-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
-  .trust-card p { font-size: 0.9375rem; }
-
-  /* CTA Section */
-  .cta-section {
-    background: var(--navy);
-    border-radius: var(--radius-xl);
-    margin: 0 var(--px) var(--space-xl);
-    padding: var(--space-xl) 0;
-  }
-  .cta-grid {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 40px;
-    align-items: center;
-  }
-  .cta-portrait {
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius-pill);
-    background: repeating-linear-gradient(135deg, #243F5F 0, #243F5F 1px, #2B486B 1px, #2B486B 12px);
-  }
-  .cta-attr { margin-top: 8px; }
-  .cta-body {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-visual { max-width: 500px; }
-    .herkenning-grid { grid-template-columns: 1fr; }
-    .herkenning-cards { grid-template-columns: 1fr; }
-    .herkenning-card { border-left: none; border-top: 1px solid var(--line); padding: 20px 0; }
-    .herkenning-card:first-child { border-top: none; }
-    .mech-flow { grid-template-columns: 1fr; gap: 16px; }
-    .mech-arrow { display: none; }
-    .mech-step { flex-direction: row; text-align: left; gap: 16px; }
-    .compare-grid { grid-template-columns: 1fr 1fr; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .testimonial-portrait { width: 120px; height: 120px; }
-    .trust-grid { grid-template-columns: 1fr 1fr; }
-    .cta-grid { grid-template-columns: 1fr; text-align: center; }
-    .cta-portrait { margin: 0 auto; }
-    .cta-body { align-items: center; }
-    .mechanism { margin: 0; border-radius: 0; }
-    .cta-section { margin: 0 0 var(--space-lg); border-radius: 0; }
-  }
-
-  @media (max-width: 640px) {
-    .compare-grid { grid-template-columns: 1fr; }
-    .trust-grid { grid-template-columns: 1fr; }
+  @media (max-width:639px){
+    .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}
+    .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:1px solid var(--line)}
+    .cols4>div:first-child,.cols4t>div:first-child{border-top:none;padding-top:0}
   }
 </style>

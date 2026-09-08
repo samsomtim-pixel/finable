@@ -1,424 +1,214 @@
 ---
-import Base from '../layouts/Base.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
 ---
-<Base
-  title="Over Finable — Tim Samsom en het team"
-  description="Wie er achter Finable staat: Tim Samsom als vast aanspreekpunt, en een vast finance-team van specialisten dat het vakwerk doet."
-  active="over"
->
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <p class="eyebrow">Over Finable</p>
-        <h1>Eén vast aanspreekpunt. Een heel finance-team erachter.</h1>
-        <p class="hero-body">Geen anoniem administratiekantoor. Je hebt één gezicht dat je kent, met een ervaren team dat het dagelijkse finance-werk uitvoert.</p>
-      </div>
-      <div class="hero-visual-wrap">
-        <div class="hero-portrait" role="img" aria-label="Portret Tim Samsom"></div>
-        <p class="hero-handwritten">Je weet altijd wie je kunt bellen.</p>
-      </div>
-    </div>
-  </section>
+<Layout title="Over Finable — Tim Samsom en het team" description="Wie er achter Finable staat: Tim Samsom als vast aanspreekpunt, en een vast finance-team van specialisten dat het vakwerk doet.">
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
-  <!-- 01 Waarom -->
-  <section class="tint">
-    <div class="container section-two-col">
-      <div class="section-left">
-        <p class="section-number">01</p>
-        <h2>Waarom ik Finable begon.</h2>
-      </div>
-      <div class="section-right">
-        <p>Ik zag bij groeiende bedrijven steeds hetzelfde probleem. Finance was belangrijk genoeg om beter te organiseren, maar nog niet groot genoeg voor een compleet intern team. De ondernemer deed te veel zelf, kennis zat bij één persoon of de volgende finance-hire bleef uit.</p>
-        <p>Tegelijk zag ik dat het anders kon: niet afhankelijk zijn van één nieuwe medewerker, maar werken met een vast finance-team en één aanspreekpunt dat zorgt dat het geheel werkt.</p>
-        <p><strong>Vanuit dat idee is Finable ontstaan.</strong></p>
-        <blockquote class="pull-quote">
-          <p>&ldquo;Finance moest beter georganiseerd worden — zonder meteen een compleet intern team te bouwen.&rdquo;</p>
-        </blockquote>
-      </div>
-    </div>
-  </section>
+  <Header active="over" />
 
-  <!-- 02 Mijn rol -->
-  <section>
-    <div class="container">
-      <p class="section-number">02</p>
-      <h2>Mijn rol is simpel.</h2>
-      <p class="section-caption">Drie dingen waar je op kunt rekenen.</p>
-      <div class="role-cards">
-        <div class="role-card">
-          <h3>01 · Ik ken je bedrijf.</h3>
-          <p>Ik ben je vaste aanspreekpunt en voer het maandgesprek met je.</p>
+  <!-- HERO -->
+  <section class="wrap" style="padding-top:40px;padding-bottom:60px">
+    <div class="over-hero" style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center">
+      <div>
+        <div class="lbl" style="margin-bottom:22px">Over Finable</div>
+        <h1 style="font-size:clamp(36px,5vw,60px);color:var(--navy);margin-bottom:26px;text-wrap:balance">Eén vast aanspreekpunt. Een heel finance-team erachter.</h1>
+        <p style="font-size:clamp(17px,2vw,21px);color:var(--body);max-width:520px;text-wrap:pretty">Geen anoniem administratiekantoor. Je hebt één gezicht dat je kent, met een ervaren team dat het dagelijkse finance-werk uitvoert.</p>
+      </div>
+      <div style="position:relative;display:flex;justify-content:flex-end;align-items:center;min-height:320px">
+        <div role="img" aria-label="Portret Tim Samsom (placeholder)" style="width:100%;height:clamp(280px,32vw,380px);border-radius:16px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 12px,var(--line) 12px,var(--line) 24px);display:flex;align-items:flex-end;justify-content:center">
+          <span style="font-family:monospace;font-size:12px;color:var(--body);margin-bottom:24px">portret Tim (landscape)</span>
         </div>
-        <div class="role-card">
-          <h3>02 · Ik bewaak de samenwerking.</h3>
-          <p>Ik bewaak de samenwerking en zorg dat afspraken worden opgevolgd.</p>
-        </div>
-        <div class="role-card">
-          <h3>03 · Ik los het op als iets vastloopt.</h3>
-          <p>Je hoeft niet zelf uit te zoeken wie binnen het team iets moet oppakken.</p>
+        <div class="over-note" style="position:absolute;left:-16px;top:8px;max-width:180px">
+          <div style="font-family:'Caveat',cursive;font-size:24px;line-height:1.25;color:var(--navy)">Je weet altijd wie je kunt bellen.</div>
+          <svg width="80" height="52" viewBox="0 0 80 52" fill="none" style="margin-top:2px"><path d="M4 6C18 36 44 44 72 40" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M64 31l9 10-14 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 03 Geen accountant -->
-  <section class="tint">
-    <div class="container section-two-col">
-      <div class="section-left">
-        <p class="section-number">03</p>
-        <h2>Ik ben geen accountant. En dat hoeft ook niet.</h2>
+  <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
+
+  <!-- 01 · WAAROM -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:56px">
+    <div style="margin-bottom:36px">
+      <div class="lbl" style="margin-bottom:18px">Waarom Finable</div>
+      <h2 class="fin-sechead">Waarom ik Finable begon.</h2>
+    </div>
+    <div class="over-2col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center">
+      <div>
+        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Ik zag bij groeiende bedrijven steeds hetzelfde probleem. Finance was belangrijk genoeg om beter te organiseren, maar nog niet groot genoeg voor een compleet intern team. De ondernemer deed te veel zelf, kennis zat bij één persoon of de volgende finance-hire bleef uit.</p>
+        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Tegelijk zag ik dat het anders kon: niet afhankelijk zijn van één nieuwe medewerker, maar werken met een vast finance-team en één aanspreekpunt dat zorgt dat het geheel werkt.</p>
+        <p style="font-size:16px;color:var(--navy);font-weight:500">Vanuit dat idee is Finable ontstaan.</p>
       </div>
-      <div class="section-right">
-        <p>Ik ben geen accountant of controller van huis uit. Mijn rol binnen Finable is daarom niet om zelf iedere boeking te verwerken of iedere inhoudelijke controle uit te voeren. Dat vakwerk ligt bij de finance-professionals in het team.</p>
-        <p>Ik bewaak de afspraken, zorg dat problemen worden opgepakt en ben het vaste aanspreekpunt voor de klant.</p>
-        <div class="callout">
-          <p><strong>Het vakwerk bij de vakmensen.</strong></p>
-          <p><strong>Eén vast aanspreekpunt voor jou.</strong></p>
-        </div>
+      <div>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.35;color:var(--navy)">“Finance moest beter georganiseerd worden — zonder meteen een compleet intern team te bouwen.”</p>
+        <div style="width:56px;height:3px;background:var(--terracotta);margin-top:24px;border-radius:999px"></div>
       </div>
     </div>
   </section>
 
-  <!-- 04 De motor -->
-  <section>
-    <div class="container">
-      <p class="section-number">04</p>
-      <h2>De motor achter Finable.</h2>
-      <p class="section-sub"><strong>Het vakwerk zit bij finance-professionals.</strong></p>
-      <p class="section-body">Achter Finable staat een vast finance-team van ruim twintig specialisten. Mensen die dagelijks werken aan boekhouding, afsluitingen, controlling en rapportage voor groeiende en internationale organisaties. Je werkt met een vaste bezetting die je bedrijf, processen en systemen leert kennen.</p>
-      <p class="section-body">Het team bestaat uit Chartered Accountants en andere finance-specialisten, met meer dan dertig jaar gecombineerde ervaring. Binnen het team zit een Big Four-achtergrond (EY) en expertise in financial reporting, compliance, procesautomatisering en internationale finance.</p>
-      <p class="section-body"><strong>Inhoudelijke controles en reviews zijn onderdeel van het vaste werkproces.</strong></p>
+  <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
-      <!-- Team portraits -->
-      <div class="team-grid">
-        <div class="team-member">
-          <div class="team-portrait" role="img" aria-label="Portret Janesh Gupta"></div>
-          <strong>Janesh Gupta</strong>
-          <span class="team-role">CA · Jurist</span>
-          <span class="team-tag">EY alumnus</span>
-        </div>
-        <div class="team-member">
-          <div class="team-portrait" role="img" aria-label="Portret Rishabh Goyal"></div>
-          <strong>Rishabh Goyal</strong>
-          <span class="team-role">CA</span>
-          <span class="team-tag">EY alumnus</span>
-        </div>
-        <div class="team-member">
-          <div class="team-portrait" role="img" aria-label="Portret Himanshu Poddar"></div>
-          <strong>Himanshu Poddar</strong>
-          <span class="team-role">CA</span>
-          <span class="team-tag">Tax &amp; Transfer Pricing</span>
-        </div>
-        <div class="team-member">
-          <div class="team-portrait" role="img" aria-label="Portret Shilpa Goyal"></div>
-          <strong>Shilpa Goyal</strong>
-          <span class="team-role">CA</span>
-          <span class="team-tag">US Startup Finance</span>
-        </div>
+  <!-- 02 · MIJN ROL -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:56px">
+    <div style="margin-bottom:40px">
+      <div class="lbl" style="margin-bottom:18px">Mijn rol</div>
+      <h2 class="fin-sechead">Mijn rol is simpel.</h2>
+    </div>
+    <div class="fin-3col">
+      <div style="display:flex;gap:18px;padding:8px 32px 8px 0">
+        <div style="width:52px;height:52px;border-radius:999px;background:rgba(196,100,58,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.6"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg></div>
+        <div><h3 style="font-size:18px;color:var(--navy);margin-bottom:8px">Ik ken je bedrijf.</h3><p class="fin-cap">Ik ben je vaste aanspreekpunt en voer het maandgesprek met je.</p></div>
       </div>
-
-      <!-- Proof points -->
-      <div class="proof-grid">
-        <div class="proof-item">
-          <span class="proof-number">20+</span>
-          <span class="proof-label">Finance-specialisten in het vaste team</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-number">CA</span>
-          <span class="proof-label">Chartered Accountants in het senior team</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-number">EY</span>
-          <span class="proof-label">Big Four-achtergrond binnen de teamleiding</span>
-        </div>
+      <div class="fin-vsep" style="display:flex;gap:18px;padding:8px 32px;border-left:1px solid var(--line)">
+        <div style="width:52px;height:52px;border-radius:999px;background:rgba(196,100,58,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="26" height="26" viewBox="0 0 26 28" fill="none" stroke="#C4643A" stroke-width="1.6"><path d="M13 3l9 3v7c0 6-4 10-9 12C8 23 4 19 4 13V6z"/><path d="M9 13l3 3 5-6"/></svg></div>
+        <div><h3 style="font-size:18px;color:var(--navy);margin-bottom:8px">Ik bewaak de samenwerking.</h3><p class="fin-cap">Ik bewaak de samenwerking en zorg dat afspraken worden opgevolgd.</p></div>
       </div>
-
-      <!-- Reference strip -->
-      <div class="ref-strip">
-        <p class="ref-label">Ervaring van het team</p>
-        <div class="ref-companies">
-          <div class="ref-company">
-            <strong>Talogy Group</strong>
-            <span>Global HR</span>
-          </div>
-          <div class="ref-company">
-            <strong>Trodat</strong>
-            <span>Oostenrijk</span>
-          </div>
-          <div class="ref-company">
-            <strong>KidZink</strong>
-            <span>Dubai</span>
-          </div>
-          <div class="ref-company">
-            <strong>Occassion</strong>
-            <span>Verenigde Staten</span>
-          </div>
-        </div>
-        <p class="ref-footnote">Ervaring met internationale organisaties, meerdere entiteiten, valuta en jurisdicties.</p>
-        <p class="ref-footnote">Die ervaring zit in hetzelfde vaste team dat achter Finable staat.</p>
+      <div class="fin-vsep" style="display:flex;gap:18px;padding:8px 0 8px 32px;border-left:1px solid var(--line)">
+        <div style="width:52px;height:52px;border-radius:999px;background:rgba(196,100,58,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.6"><path d="M5 5h18v14H13l-6 5v-5H5z"/></svg></div>
+        <div><h3 style="font-size:18px;color:var(--navy);margin-bottom:8px">Ik los het op als iets vastloopt.</h3><p class="fin-cap">Je hoeft niet zelf uit te zoeken wie binnen het team iets moet oppakken.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 05 Eén aanspreekpunt -->
-  <section class="tint">
-    <div class="container">
-      <p class="section-number">05</p>
-      <h2>Eén aanspreekpunt. Een team erachter.</h2>
-      <p class="section-caption">Zo werkt Finable.</p>
-      <div class="flow-cards">
-        <div class="flow-card">
-          <h3>Vast finance-team</h3>
-          <p>Uitvoeren · Afsluiten · Controleren · Rapporteren</p>
-        </div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-card">
-          <h3>Tim + jouw organisatie</h3>
-          <p>Bespreken</p>
-        </div>
+  <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
+
+  <!-- SAMENWERKING -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:56px">
+    <div style="margin-bottom:36px">
+      <div class="lbl" style="margin-bottom:18px">Samenwerking</div>
+      <h2 class="fin-sechead">Het juiste werk bij de juiste mensen.</h2>
+    </div>
+    <div class="over-2col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:44px;align-items:center">
+      <div>
+        <p style="font-size:16px;color:var(--body)">Tim kent de organisatie, bewaakt de samenwerking en zorgt dat finance goed blijft draaien. Het financiële vakwerk ligt bij de finance-professionals in het team — zo ligt het juiste werk altijd bij de juiste mensen.</p>
+      </div>
+      <div style="background:rgba(196,100,58,0.10);border-radius:12px;padding:34px 36px">
+        <div style="width:48px;height:3px;background:var(--terracotta);margin-bottom:20px;border-radius:999px"></div>
+        <p style="font-family:'Playfair Display',serif;font-size:23px;color:var(--navy);line-height:1.35;margin-bottom:8px">Het vakwerk bij de vakmensen.</p>
+        <p style="font-family:'Playfair Display',serif;font-size:23px;color:var(--terracotta);line-height:1.35">Eén vast aanspreekpunt voor jou.</p>
       </div>
     </div>
   </section>
+
+  <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
+
+  <!-- 04 · DE MOTOR (heaviest) -->
+  <section class="wrap" style="padding-top:72px;padding-bottom:72px">
+    <div style="margin-bottom:28px">
+      <div class="lbl" style="margin-bottom:18px">Het team achter Finable</div>
+      <h2 class="fin-sechead" style="font-size:clamp(30px,4vw,46px)">De mensen die je finance laten draaien.</h2>
+    </div>
+    <p style="font-size:16px;color:var(--body);max-width:620px;margin:0 0 48px 0">Je werkt met finance-professionals met verschillende expertises, die samen je dagelijkse finance uitvoeren en ondersteunen.</p>
+
+    <div class="over-team" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start">
+      <!-- left text -->
+      <div>
+        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Achter Finable staat een vast finance-team van ruim twintig specialisten. Mensen die dagelijks werken aan boekhouding, afsluitingen, controlling en rapportage voor groeiende en internationale organisaties. Je werkt met een vaste bezetting die je bedrijf, processen en systemen leert kennen.</p>
+        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Het team bestaat uit Chartered Accountants en andere finance-specialisten, met meer dan dertig jaar gecombineerde ervaring. Binnen het team zit een Big Four-achtergrond (EY) en expertise in financial reporting, compliance, procesautomatisering en internationale finance.</p>
+        <p style="font-size:16px;color:var(--navy);font-weight:500">Inhoudelijke controles en reviews zijn onderdeel van het vaste werkproces.</p>
+      </div>
+      <!-- right portraits -->
+      <div class="fin-4port">
+        <div>
+          <div role="img" aria-label="Portret Janesh Gupta (placeholder)" style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 9px,var(--line) 9px,var(--line) 18px);display:flex;align-items:flex-end;justify-content:center"><span style="font-family:monospace;font-size:10px;color:var(--body);margin-bottom:14px">portret</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Janesh Gupta</div><div style="font-size:13px;color:var(--body)">CA · Jurist</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
+        </div>
+        <div>
+          <div role="img" aria-label="Portret Rishabh Goyal (placeholder)" style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 9px,var(--line) 9px,var(--line) 18px);display:flex;align-items:flex-end;justify-content:center"><span style="font-family:monospace;font-size:10px;color:var(--body);margin-bottom:14px">portret</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Rishabh Goyal</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
+        </div>
+        <div>
+          <div role="img" aria-label="Portret Himanshu Poddar (placeholder)" style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 9px,var(--line) 9px,var(--line) 18px);display:flex;align-items:flex-end;justify-content:center"><span style="font-family:monospace;font-size:10px;color:var(--body);margin-bottom:14px">portret</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Himanshu Poddar</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">Tax &amp; Transfer Pricing</div></div>
+        </div>
+        <div>
+          <div role="img" aria-label="Portret Shilpa Goyal (placeholder)" style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 9px,var(--line) 9px,var(--line) 18px);display:flex;align-items:flex-end;justify-content:center"><span style="font-family:monospace;font-size:10px;color:var(--body);margin-bottom:14px">portret</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Shilpa Goyal</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">US Startup Finance</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- proof + reference row -->
+    <div class="over-team" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start;margin-top:52px">
+      <!-- proof points -->
+      <div class="over-stats" style="display:grid;grid-template-columns:repeat(3,1fr)">
+        <div style="padding-right:20px"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">20+</div><p class="fin-cap" style="margin-top:8px">Finance-specialisten in het vaste team</p></div>
+        <div style="padding:0 20px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">CA</div><p class="fin-cap" style="margin-top:8px">Chartered Accountants in het senior team</p></div>
+        <div style="padding-left:20px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">EY</div><p class="fin-cap" style="margin-top:8px">Big Four-achtergrond binnen de teamleiding</p></div>
+      </div>
+      <!-- reference strip -->
+      <div>
+        <div class="lbl" style="border-top:1px solid var(--line);padding-top:14px;color:var(--body);margin-bottom:20px">Ervaring van het team</div>
+        <div class="over-refs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:18px">
+          <div style="padding-right:16px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Talogy Group</div><div style="font-size:12px;color:var(--body)">Global HR</div></div>
+          <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Trodat</div><div style="font-size:12px;color:var(--body)">Oostenrijk</div></div>
+          <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">KidZink</div><div style="font-size:12px;color:var(--body)">Dubai</div></div>
+          <div style="padding-left:16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Occassion</div><div style="font-size:12px;color:var(--body)">Verenigde Staten</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--body)">Ervaring met internationale organisaties, meerdere entiteiten, valuta en jurisdicties.</p>
+        <p style="font-size:13px;color:var(--body)">Die ervaring zit in hetzelfde vaste team dat achter Finable staat.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
   <!-- CTA -->
-  <section class="cta-banner">
-    <div class="container cta-banner-grid">
-      <div class="cta-banner-portrait" role="img" aria-label="Portret Tim Samsom"></div>
-      <div class="cta-banner-content">
-        <h2>Benieuwd of Finable bij jouw organisatie past?</h2>
-        <p>Plan een vrijblijvend gesprek met Tim.</p>
-        <a href="/gesprek" class="btn btn-dark">Plan een gesprek →</a>
-        <div class="cta-banner-attr">
-          <strong>Tim Samsom</strong>
-          <span>Oprichter Finable</span>
-        </div>
+  <section class="wrap" style="padding-top:24px;padding-bottom:80px">
+    <div class="over-cta" style="border-top:1px solid var(--line);padding-top:56px;display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center">
+      <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div>
+        <div class="lbl" style="margin-bottom:16px">Persoonlijk kennismaken</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.7vw,34px);color:var(--navy);line-height:1.1;margin-bottom:12px;text-wrap:balance">Benieuwd of Finable bij jouw organisatie past?</h2>
+        <p style="font-size:16px;color:var(--body);max-width:520px;text-wrap:pretty">Plan 30 minuten met Tim om te bespreken hoe je finance nu is georganiseerd en waar Finable kan overnemen of versterken.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+        <Button href="/gesprek">Plan een gesprek →</Button>
+        <div style="font-size:14px;color:var(--body);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Oprichter Finable</div>
       </div>
     </div>
   </section>
-</Base>
 
-<style>
-  /* Hero */
-  .hero { padding: var(--space-xl) 0 var(--space-2xl); }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  .hero h1 { margin-bottom: 16px; }
-  .hero-body { font-size: 1.0625rem; max-width: 480px; }
-  .hero-visual-wrap { position: relative; }
-  .hero-portrait {
-    aspect-ratio: 3/2;
-    background: repeating-linear-gradient(135deg, #DFD6CD 0, #DFD6CD 1px, #E8E1D8 1px, #E8E1D8 12px);
-    border-radius: var(--radius-lg);
-  }
-  .hero-handwritten {
-    font-family: var(--font-hand);
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--terracotta);
-    transform: rotate(-3deg);
-    margin-top: 12px;
-    text-align: center;
-  }
+  <Footer />
 
-  /* Two-column sections */
-  .section-two-col {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 44px;
-    align-items: start;
-  }
-  .section-sub { color: var(--navy); margin: 8px 0 16px; font-size: 1.0625rem; }
-  .section-body { font-size: 1.0625rem; max-width: 640px; }
-  .section-caption { color: var(--body-color); font-size: 0.875rem; margin: 8px 0 24px; }
+</div>
+</Layout>
 
-  /* Pull quote */
-  .pull-quote {
-    margin-top: 32px;
-    padding-left: 20px;
-    border-left: 3px solid var(--terracotta);
+<style is:global>
+  body{line-height:1.6}
+  .fin-secnum{font-family:'Playfair Display',serif;font-weight:500;color:var(--terracotta);font-size:clamp(38px,4.4vw,58px);line-height:.9}
+  .fin-sechead{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:clamp(26px,3.4vw,38px)}
+  .fin-cap{font-size:15px;color:var(--body)}
+  .fin-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .fin-4port{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .fin-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:center}
+  @media (max-width:1023px){
+  .fin-3col{grid-template-columns:1fr;gap:0}
+  .fin-3col .fin-vsep{border-left:none;padding-left:0;padding-right:0}
+  .fin-4port{grid-template-columns:repeat(2,1fr);gap:20px}
+  .fin-flow{grid-template-columns:1fr;gap:18px}
+  .fin-flow .fin-arrow{transform:rotate(90deg);justify-self:center}
+  .over-cta{grid-template-columns:1fr!important;gap:24px!important}
   }
-  .pull-quote p {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--navy);
-    line-height: 1.4;
-    font-style: italic;
+  @media (max-width:639px){ .fin-4port{grid-template-columns:1fr} }
+  /* Responsive (bouwopdracht §5): 1024 / 640 */
+  @media (max-width:1023px){
+    .over-hero{grid-template-columns:1fr!important}
+    .over-hero>div:last-child{order:-1;min-height:0!important}
+    .over-note{display:none}
+    .over-team{grid-template-columns:1fr!important;gap:36px!important}
+    .over-cta>div:first-child{max-width:150px}
   }
-
-  /* Role cards */
-  .role-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .role-card {
-    padding: 28px;
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-  }
-  .role-card h3 { font-size: 1rem; margin-bottom: 8px; }
-  .role-card p { font-size: 0.9375rem; }
-
-  /* Callout */
-  .callout {
-    margin-top: 24px;
-    padding: 24px;
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-  }
-  .callout p { color: var(--navy); font-size: 1rem; }
-
-  /* Team grid */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin: 40px 0;
-  }
-  .team-member {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .team-portrait {
-    aspect-ratio: 3/4;
-    background: repeating-linear-gradient(135deg, #DFD6CD 0, #DFD6CD 1px, #E8E1D8 1px, #E8E1D8 12px);
-    border-radius: var(--radius-md);
-  }
-  .team-member strong { color: var(--navy); font-size: 0.9375rem; }
-  .team-role { font-size: 0.8125rem; color: var(--body-color); }
-  .team-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--terracotta);
-    background: #F7E8DE;
-    padding: 4px 10px;
-    border-radius: var(--radius-pill);
-    align-self: flex-start;
-  }
-
-  /* Proof points */
-  .proof-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 40px 0;
-  }
-  .proof-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 24px;
-    background: var(--section);
-    border-radius: var(--radius-md);
-  }
-  .proof-number {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .proof-label { font-size: 0.875rem; color: var(--body-color); }
-
-  /* Reference strip */
-  .ref-strip {
-    padding: 28px;
-    background: var(--section);
-    border-radius: var(--radius-lg);
-  }
-  .ref-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--body-color);
-    margin-bottom: 20px;
-  }
-  .ref-companies {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  .ref-company strong { color: var(--navy); font-size: 0.9375rem; display: block; }
-  .ref-company span { font-size: 0.8125rem; color: var(--body-color); }
-  .ref-footnote { font-size: 0.8125rem; color: var(--body-color); }
-
-  /* Flow cards */
-  .flow-cards {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .flow-card {
-    flex: 1;
-    min-width: 240px;
-    padding: 28px;
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-  }
-  .flow-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
-  .flow-card p { font-size: 0.9375rem; }
-  .flow-arrow {
-    font-size: 1.5rem;
-    color: var(--body-color);
-  }
-
-  /* CTA Banner */
-  .cta-banner {
-    background: var(--navy);
-    border-radius: var(--radius-xl);
-    margin: 0 var(--px) var(--space-xl);
-    padding: var(--space-xl) 0;
-  }
-  .cta-banner-grid {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-  .cta-banner-portrait {
-    width: 120px;
-    height: 120px;
-    border-radius: var(--radius-pill);
-    background: repeating-linear-gradient(135deg, #243F5F 0, #243F5F 1px, #2B486B 1px, #2B486B 12px);
-  }
-  .cta-banner h2 { color: var(--white); margin-bottom: 8px; }
-  .cta-banner-content p { color: #C3CCD4; margin-bottom: 20px; }
-  .cta-banner-attr {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .cta-banner-attr strong { color: var(--white); font-size: 0.875rem; }
-  .cta-banner-attr span { color: #9FB0C0; font-size: 0.8125rem; }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .section-two-col { grid-template-columns: 1fr; gap: 24px; }
-    .role-cards { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
-    .proof-grid { grid-template-columns: 1fr; }
-    .ref-companies { grid-template-columns: 1fr 1fr; }
-    .cta-banner { margin: 0 0 var(--space-lg); border-radius: 0; }
-    .cta-banner-grid { grid-template-columns: 1fr; text-align: center; }
-    .cta-banner-portrait { margin: 0 auto; }
-  }
-
-  @media (max-width: 640px) {
-    .team-grid { grid-template-columns: 1fr; }
-    .ref-companies { grid-template-columns: 1fr; }
-    .flow-arrow { display: none; }
+  @media (max-width:639px){
+    .over-stats{grid-template-columns:1fr!important;gap:18px}
+    .over-stats>div{padding:18px 0 0!important;border-left:none!important;border-top:1px solid var(--line)}
+    .over-stats>div:first-child{padding-top:0!important;border-top:none}
+    .over-2col{grid-template-columns:1fr!important}
+    .over-refs{grid-template-columns:1fr 1fr!important;gap:16px!important}
+    .over-refs>div{padding:0!important;border-left:none!important}
   }
 </style>
