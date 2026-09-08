@@ -1,0 +1,53 @@
+/* Mobiel systeem (≤639px). Desktop ≥1024 en tablet blijven ongewijzigd.
+   Doel: gefocust, rustig, direct — geen gekrompen desktop. Inline desktopwaarden worden
+   hier per waarde vertaald naar één mobiele schaal, zodat elke pagina hetzelfde ritme krijgt. */
+@media (max-width: 639px) {
+  /* --- Typografische schaal: H1 32 · H2 26 · H3 20 · body 16 · meta 14 · eyebrow 12 --- */
+  h1 { font-size: clamp(28px, 8vw, 32px) !important; line-height: 1.08 !important; text-wrap: balance; }
+  h2[style*="font-size:clamp(26px"],
+  h2[style*="font-size:clamp(28px"],
+  h2[style*="font-size:clamp(30px"] { font-size: 26px !important; line-height: 1.12 !important; text-wrap: balance; }
+  h2[style*="font-size:clamp(24px"] { font-size: 24px !important; text-wrap: balance; }
+  h3[style*="font-size:clamp(26px"],
+  h3[style*="font-size:clamp(24px"] { font-size: 24px !important; text-wrap: balance; }
+  h3[style*="font-size:21px"] { font-size: 20px !important; }
+  p[style*="font-size:clamp(17px"],
+  p[style*="font-size:clamp(16px"] { font-size: 16px !important; }
+
+  /* --- Verticaal ritme: desktopwaarden → mobiele stappen 56 / 44 / 32 --- */
+  .wrap[style*="padding-top:84px"], .wrap[style*="padding-top:80px"],
+  .wrap[style*="padding-top:76px"], .wrap[style*="padding-top:72px"] { padding-top: 56px !important; }
+  .wrap[style*="padding-bottom:84px"], .wrap[style*="padding-bottom:80px"],
+  .wrap[style*="padding-bottom:76px"], .wrap[style*="padding-bottom:72px"] { padding-bottom: 56px !important; }
+  .wrap[style*="padding-top:64px"], .wrap[style*="padding-top:60px"], .wrap[style*="padding-top:56px"] { padding-top: 44px !important; }
+  .wrap[style*="padding-bottom:64px"], .wrap[style*="padding-bottom:60px"], .wrap[style*="padding-bottom:56px"] { padding-bottom: 44px !important; }
+  .wrap[style*="padding-top:48px"], .wrap[style*="padding-top:44px"], .wrap[style*="padding-top:40px"], .wrap[style*="padding-top:36px"] { padding-top: 28px !important; }
+  .wrap[style*="padding-bottom:48px"], .wrap[style*="padding-bottom:44px"], .wrap[style*="padding-bottom:40px"] { padding-bottom: 36px !important; }
+  .rule[style*="margin-bottom:52px"], .rule[style*="margin-bottom:44px"] { margin-bottom: 32px !important; }
+  .rule[style*="margin-top:52px"] { margin-top: 32px !important; }
+  header nav.wrap { padding-top: 18px !important; padding-bottom: 18px !important; }
+
+  /* --- CTA-hiërarchie: één dominante knop, volle breedte; secundaire link eronder --- */
+  .btn:not(.nav-cta):not(.nav-panel-cta) {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%; min-height: 52px; text-align: center; white-space: normal;
+  }
+  /* Knop + tekstlink of knop + naam die op desktop naast elkaar staan, komen onder elkaar. */
+  div[style*="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px"],
+  div[style*="display:flex;flex-wrap:wrap;align-items:center;gap:20px"],
+  div[style*="display:flex;flex-direction:column;align-items:flex-start;gap:18px"] {
+    flex-direction: column !important; align-items: stretch !important; gap: 14px !important;
+  }
+  div[style*="display:flex;flex-wrap:wrap;align-items:center;gap:20px"] > div[style*="font-size:14px"],
+  div[style*="display:flex;flex-direction:column;align-items:flex-start;gap:18px"] > div[style*="font-size:14px"] { margin-top: 4px; }
+
+  /* --- Navy-ankers: kop en subregel onder elkaar, geen verspreide flex-rij --- */
+  .navy .wrap > div[style*="align-items:flex-end"] { margin-bottom: 36px !important; }
+  .navy .wrap > div[style*="align-items:flex-end"] > p { max-width: none !important; }
+
+  /* --- Kopregel + rechterregel ("Herken je dit?" + subregel): onder elkaar, rustiger --- */
+  div[style*="display:flex;align-items:baseline;justify-content:space-between"] { gap: 8px !important; margin-bottom: 32px !important; }
+
+  /* --- Placeholders en beeld: rustige, vaste hoogte --- */
+  .ph span { font-size: 10px; }
+}

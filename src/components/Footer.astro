@@ -1,0 +1,36 @@
+---
+// Footer. Bron: hoe-het-werkt-nav2. marginTop is alleen op /hoe-het-werkt gezet (40px), elders afwezig.
+interface Props {
+  marginTop?: string;
+}
+const { marginTop } = Astro.props;
+const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-top:${marginTop}` : '');
+---
+<footer style={footerStyle}>
+  <div class="wrap" style="padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--navy);letter-spacing:-0.02em">Finable<span style="color:var(--terracotta)">.</span></div>
+      <!-- Vervangen door de werkelijke gegevens vóór livegang. -->
+      <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — handelsnaam van [STATUTAIRE NAAM] · KVK [NUMMER]</div>
+    </div>
+    <!-- Privacy- en Voorwaarden-pagina's moeten nog gebouwd en juridisch gecontroleerd worden. -->
+    <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
+      <a href="#" class="ft-link">Privacy</a>
+      <a href="#" class="ft-link">Voorwaarden</a>
+      <a href="/finance-hire" class="ft-link">Finance-hire of Finable?</a>
+      <span style="display:flex;align-items:center;gap:6px">NL <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#5F6B76" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></span>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .ft-link{color:var(--body)}
+  .ft-link:hover{color:var(--terracotta)}
+  @media (max-width:1023px){
+    .ft-link{padding:10px 0;display:inline-flex;align-items:center;min-height:44px}
+  }
+  @media (max-width:639px){
+    .ft-links{flex-wrap:wrap;gap:4px 22px!important}
+    .ft-link{white-space:nowrap}
+  }
+</style>

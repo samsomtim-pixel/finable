@@ -1,0 +1,11 @@
+---
+// Primaire CTA-knop. Bron: hoe-het-werkt-nav2 (15px 28px / 999px; nav-variant 12px 24px).
+interface Props {
+  href: string;
+  size?: 'md' | 'sm';
+  class?: string;
+  style?: string;
+}
+const { href, size = 'md', class: cls, style } = Astro.props;
+---
+<a href={href} class:list={['btn', size === 'sm' && 'btn-sm', cls]} style={style}><slot /></a>

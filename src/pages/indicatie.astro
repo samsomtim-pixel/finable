@@ -1,0 +1,379 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_INDICATIE ?? '';
+const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
+---
+<Layout title="Vraag een indicatie aan — Finable" description="Beantwoord een paar vragen over je organisatie en finance. Op basis daarvan maakt Finable een eerste indicatie van de maandelijkse kosten.">
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO -->
+  <section class="wrap" style="padding-top:36px;padding-bottom:40px">
+    <div class="ind-hero" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.9fr);gap:48px;align-items:center">
+      <div>
+        <div class="lbl" style="margin-bottom:20px">Vraag een indicatie aan</div>
+        <h1 style="font-size:clamp(34px,4.6vw,54px);color:var(--navy);margin-bottom:22px;text-wrap:balance">Wat zou Finable voor jouw organisatie kosten?</h1>
+        <p style="font-size:clamp(16px,1.9vw,19px);color:var(--body);max-width:500px;margin-bottom:22px;text-wrap:pretty">Beantwoord een paar vragen over je organisatie en finance. Het Finable-team bekijkt je situatie en stuurt je binnen twee werkdagen een eerste indicatie van de maandelijkse kosten.</p>
+        <div style="display:flex;align-items:center;gap:14px"><span style="width:32px;height:2px;background:var(--terracotta);flex-shrink:0"></span><span style="font-size:14px;color:var(--body)">Geen standaardpakket. Geen prijs op basis van omzet.</span></div>
+      </div>
+      <!-- STEP INDICATOR -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:0">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="1" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--terracotta);background:var(--terracotta);color:var(--white)">01</div>
+          <div data-steplabel="1" style="font-size:14px;font-weight:600;color:var(--terracotta)">Organisatie</div>
+        </div>
+        <div data-stepline="1" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="2" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--line);background:transparent;color:var(--body)">02</div>
+          <div data-steplabel="2" style="font-size:14px;font-weight:600;color:var(--body)">Finance</div>
+        </div>
+        <div data-stepline="2" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="3" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--line);background:transparent;color:var(--body)">03</div>
+          <div data-steplabel="3" style="font-size:14px;font-weight:600;color:var(--body)">Indicatie</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT -->
+  <section class="wrap" style="padding-top:16px;padding-bottom:80px">
+    <div class="fin-layout">
+
+      <!-- LEFT CONTEXT (sticky) -->
+      <div class="fin-left">
+        <div style="min-height:200px">
+          <div data-leftstep="1">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">01</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Jouw organisatie.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">Eerst de omvang en structuur. Dat helpt om in te schatten hoeveel finance-werk er achter je organisatie zit.</p>
+          </div>
+          <div data-leftstep="2" style="display:none">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">02</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Jouw finance.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">We hoeven niet alles over te nemen. Vertel ons wat er nu gebeurt en welke onderdelen Finable mogelijk kan overnemen.</p>
+          </div>
+          <div data-leftstep="3" style="display:none">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">03</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Jouw indicatie.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">Genoeg om een eerste inschatting te maken. Laat je gegevens achter en het Finable-team stuurt je binnen twee werkdagen een persoonlijke indicatie.</p>
+          </div>
+        </div>
+
+        <!-- personal module -->
+        <div style="background:var(--terracotta-soft);border-radius:12px;padding:28px 30px;margin:28px 0;max-width:360px">
+          <div class="lbl" style="margin-bottom:14px">Persoonlijk bekeken</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:12px">Door het Finable-team bekeken.</h3>
+          <p style="font-size:14px;color:var(--body);line-height:1.6">Het Finable-team kijkt naar je antwoorden en maakt een eerste indicatie op basis van jouw situatie. Zo weet je snel wat Finable voor je organisatie kan betekenen.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM CARD -->
+      <form data-indicatie-form data-endpoint={endpoint} data-access-key={accessKey} novalidate style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(28px,3.5vw,44px)">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
+
+        <!-- STEP 1 -->
+        <div data-formstep="1">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Hoe groot is je organisatie?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Kies het aantal medewerkers.</p>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="1–10"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#5F6B76" stroke-width="1.5"><circle cx="14" cy="10" r="4.5"/><path d="M6 23c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg>1–10</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="10–25"><svg width="30" height="26" viewBox="0 0 34 28" fill="none" stroke="#5F6B76" stroke-width="1.5"><circle cx="17" cy="9" r="4"/><circle cx="7" cy="12" r="3"/><path d="M9 23c0-4 3.5-6.5 8-6.5s8 2.5 8 6.5"/></svg>10–25</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="25–50"><svg width="32" height="26" viewBox="0 0 38 28" fill="none" stroke="#5F6B76" stroke-width="1.5"><circle cx="19" cy="9" r="4"/><circle cx="8" cy="12" r="3"/><circle cx="30" cy="12" r="3"/><path d="M10 23c0-4 4-6.5 9-6.5s9 2.5 9 6.5"/></svg>25–50</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="50+"><svg width="34" height="26" viewBox="0 0 40 28" fill="none" stroke="#5F6B76" stroke-width="1.5"><circle cx="20" cy="8" r="3.5"/><circle cx="9" cy="11" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="14" cy="13" r="2.5"/><circle cx="26" cy="13" r="2.5"/><path d="M8 24c0-4 5-6 12-6s12 2 12 6"/></svg>50+</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Uit hoeveel entiteiten bestaat je organisatie?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Denk aan bv's, landen of divisies.</p>
+            <div class="fin-grid3">
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="1">1</button>
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="2–3">2–3</button>
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="4+">4+</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Waar is je organisatie actief?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Meerdere antwoorden mogelijk.</p>
+            <div class="fin-grid3">
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Nederland" style="flex-direction:row;gap:10px">Nederland</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Europa" style="flex-direction:row;gap:10px">Europa</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Internationaal" style="flex-direction:row;gap:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Internationaal</button>
+            </div>
+          </div>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Stap 1 van 3</span>
+            <button type="button" data-step-next class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Volgende stap →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div data-formstep="2" style="display:none">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Waar zoek je hulp bij?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Meerdere antwoorden mogelijk.</p>
+            <div class="fin-grid2">
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Dagelijkse finance"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Dagelijkse finance</span><span style="font-size:13px;color:var(--body)">Facturen · bank · debiteuren</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Maandafsluiting"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.6 3.1 3 7 3s7-1.4 7-3V6M5 12v6c0 1.6 3.1 3 7 3s7-1.4 7-3v-6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Maandafsluiting</span><span style="font-size:13px;color:var(--body)">Aansluitingen · btw · dossier</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Controlling"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Controlling</span><span style="font-size:13px;color:var(--body)">Marge · cash · afwijkingen</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Managementrapportage"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><circle cx="12" cy="12" r="8"/><path d="M12 12V4M12 12l6 3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Managementrapportage</span><span style="font-size:13px;color:var(--body)">Cijfers · duiding · gesprek</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Payroll"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><rect x="4" y="6" width="16" height="12" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h3M14 14h3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Payroll</span><span style="font-size:13px;color:var(--body)">Salarisadministratie</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Weet ik nog niet"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="18" r="0.6" fill="#5F6B76"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Weet ik nog niet</span><span style="font-size:13px;color:var(--body)">Graag samen bepalen</span></span></button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">Wie doet finance op dit moment?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="Externe boekhouder">Een externe boekhouder</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="Iemand intern">Iemand intern</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="Ikzelf">Ikzelf</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="Combinatie">Combinatie</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Hoeveel facturen gaan er ongeveer per maand doorheen?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Inkoop en verkoop samen.</p>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="Tot 100">Tot 100</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="100–300">100–300</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="300–800">300–800</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="800+">800+</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">In welk boekhoudpakket zit de administratie nu?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Exact">Exact</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Twinfield">Twinfield</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Moneybird">Moneybird</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Anders of nog niets">Anders of nog niets</button>
+            </div>
+          </div>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Stap 2 van 3</span>
+            <div style="display:flex;align-items:center;gap:18px">
+              <button type="button" data-step-prev class="btn-prev" style="background:none;border:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--body);cursor:pointer">Vorige</button>
+              <button type="button" data-step-next class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Volgende stap →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div data-formstep="3" style="display:none">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">Wanneer zou je willen starten?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Zo snel mogelijk">Zo snel mogelijk</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Binnen 3 maanden">Binnen 3 maanden</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Later dit jaar">Later dit jaar</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Nog oriënterend">Nog oriënterend</button>
+            </div>
+          </div>
+          <div style="height:1px;background:var(--line);margin:28px 0"></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 20px">
+            <div style="margin-bottom:20px"><label for="fin-naam" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Je naam</label><input type="text" id="fin-naam" name="naam" required class="fin-input" placeholder="Voor- en achternaam"></div>
+            <div style="margin-bottom:20px"><label for="fin-email" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Zakelijk e-mailadres</label><input type="email" id="fin-email" name="email" required class="fin-input" placeholder="jij@bedrijf.nl"></div>
+          </div>
+          <div style="margin-bottom:20px"><label for="fin-website" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Website van je organisatie <span style="font-weight:400;color:var(--body)">(optioneel)</span></label><input type="url" id="fin-website" name="website" class="fin-input" placeholder="https://"></div>
+          <div style="margin-bottom:20px"><label for="fin-tel" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Telefoonnummer <span style="font-weight:400;color:var(--body)">(optioneel)</span></label><input type="tel" id="fin-tel" name="tel" class="fin-input" placeholder="06 …"></div>
+          <p style="font-size:13px;color:var(--body);margin-top:14px">We gebruiken je gegevens alleen om je indicatie op te stellen en contact op te nemen.</p>
+          <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:14px">Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> — dan pakken we het op.</p>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Stap 3 van 3</span>
+            <div style="display:flex;align-items:center;gap:18px">
+              <button type="button" data-step-prev class="btn-prev" style="background:none;border:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--body);cursor:pointer">Vorige</button>
+              <button type="submit" data-submit class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Vraag mijn indicatie aan →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- END SCREEN -->
+        <div data-formstep="done" style="display:none">
+          <div style="width:56px;height:56px;border-radius:999px;background:var(--terracotta);display:flex;align-items:center;justify-content:center;margin-bottom:26px">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 13l5 5L21 7"/></svg>
+          </div>
+          <h2 style="font-size:clamp(26px,3vw,34px);color:var(--navy);margin-bottom:28px;text-wrap:balance">Dank je. Hier kunnen we mee aan de slag.</h2>
+          <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:32px">
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">01</span><span style="font-size:16px;color:var(--body)">Het Finable-team bekijkt je aanvraag.</span></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">02</span><span style="font-size:16px;color:var(--body)">Als er nog iets ontbreekt, nemen we even contact met je op.</span></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">03</span><span style="font-size:16px;color:var(--body)">Binnen twee werkdagen ontvang je een eerste indicatie.</span></div>
+          </div>
+          <p style="font-size:14px;color:var(--body)">Liever eerst even sparren? <a href="/gesprek" style="font-weight:600">Plan een gesprek →</a></p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
+    <div style="height:1px;background:var(--line);margin-bottom:44px"></div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <h2 style="font-size:clamp(26px,3.4vw,38px);font-family:'Playfair Display',Georgia,serif;color:var(--navy)">Veelgestelde vragen</h2>
+      <div style="font-size:15px;color:var(--body)">Hoe de prijs en een indicatie tot stand komen.</div>
+    </div>
+    <div style="max-width:860px">
+      <details class="fin-faq"><summary><span class="fin-faq-q">Waarop is de maandprijs gebaseerd?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>De maandprijs wordt bepaald door het werk dat Finable overneemt en de omvang en complexiteit daarvan. Daarbij kijken we onder andere naar de werkzaamheden die binnen de samenwerking vallen, het volume dat verwerkt moet worden en de complexiteit rondom afsluiting, controlling en rapportage. Omzet gebruiken we niet als eenvoudige maatstaf voor de prijs, omdat die op zichzelf weinig zegt over de hoeveelheid finance-werk die nodig is.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Wat valt binnen de vaste maandprijs?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Voor de start spreken we af welke werkzaamheden Finable overneemt en welke binnen de vaste maandprijs vallen. Daardoor is duidelijk welk terugkerend werk onderdeel is van de samenwerking en welke verantwoordelijkheden bij Finable liggen. De precieze invulling verschilt per organisatie, omdat een bedrijf dat alleen controlling en rapportage uitbesteedt iets anders nodig heeft dan een organisatie die vrijwel de volledige dagelijkse finance door Finable laat uitvoeren.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Wat gebeurt er als onze organisatie of werkzaamheden veranderen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Een finance-functie verandert mee met de organisatie. Wanneer volumes toenemen, nieuwe entiteiten ontstaan of Finable meer of minder werkzaamheden gaat uitvoeren, bekijken we opnieuw of de bestaande afspraken nog passen. Als de omvang van het werk structureel verandert, kan dat ook gevolgen hebben voor de maandprijs. Zulke wijzigingen bespreken we vooraf; de taakverdeling en prijs veranderen niet stilzwijgend omdat de organisatie groeit.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Kan Finable met een beperkt deel van finance beginnen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Ja. Een samenwerking hoeft niet te beginnen met de volledige finance-functie. We kunnen starten met de werkzaamheden waar op dat moment capaciteit of expertise ontbreekt en andere onderdelen laten staan. De maandprijs sluit vervolgens aan op het werk dat Finable daadwerkelijk overneemt. Wanneer later meer werkzaamheden bij Finable worden ondergebracht, kunnen we de inrichting en bijbehorende prijs opnieuw bekijken.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Wat gebeurt er nadat ik een indicatie aanvraag?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Na je aanvraag bekijkt het Finable-team de informatie die je hebt ingevuld. De gegevens geven een eerste beeld van je organisatie, het volume en de werkzaamheden waarvoor je Finable overweegt. Op basis daarvan kan Finable beoordelen welke inrichting waarschijnlijk past en een eerste indicatie van de maandelijkse kosten geven. Een indicatie is bedoeld als eerste inschatting en is nog geen overeenkomst.</p></div></details>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  body{line-height:1.6}
+  h1,h2,h3{line-height:1.12}
+  .fin-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 12px;background:var(--white);border:1px solid var(--line);border-radius:12px;font-size:15px;font-weight:500;color:var(--navy);cursor:pointer;text-align:center;transition:border-color .15s,background .15s;font-family:inherit}
+  .fin-tile:hover{border-color:var(--line)}
+  .fin-tile[data-active="1"]{border-color:var(--terracotta);background:rgba(196,100,58,0.10);color:var(--terracotta)}
+  .fin-tile[data-active="1"] svg{stroke:var(--terracotta)}
+  .fin-card-opt{display:flex;gap:14px;align-items:flex-start;padding:18px;background:var(--white);border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s;text-align:left}
+  .fin-card-opt:hover{border-color:var(--line)}
+  .fin-card-opt[data-active="1"]{border-color:var(--terracotta);background:rgba(196,100,58,0.10)}
+  .fin-card-opt[data-active="1"] svg{stroke:var(--terracotta)}
+  .fin-input{width:100%;padding:13px 16px;background:var(--white);border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy)}
+  .fin-input::placeholder{color:var(--body)}
+  .fin-input:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
+  .fin-tile:focus-visible,.fin-card-opt:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  .fin-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .fin-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .fin-grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .fin-layout{display:grid;grid-template-columns:minmax(0,0.66fr) minmax(0,1fr);gap:56px;align-items:start}
+  .fin-left{position:sticky;top:32px}
+  @media (max-width:1023px){
+  .fin-layout{grid-template-columns:1fr;gap:32px}
+  .fin-left{position:static}
+  .fin-grid4{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:639px){ .fin-grid3{grid-template-columns:1fr} }
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding:26px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(18px,2vw,22px);color:var(--navy);line-height:1.3;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:18px;height:18px;flex-shrink:0;margin-top:5px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:8px;width:18px;height:2px}
+  .fin-faq-ic::after{left:8px;top:0;width:2px;height:18px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:720px;padding:2px 0 30px;font-size:16px;color:var(--body);line-height:1.72}
+  .fin-faq-a p{margin-bottom:14px}
+  .fin-faq-a p:last-child{margin-bottom:0}
+  .btn-prev{min-height:44px;padding:0 4px}
+  .btn[disabled]{opacity:.6;cursor:progress;filter:none}
+  /* Responsive (bouwopdracht §5): 1024 / 640 */
+  @media (max-width:1023px){
+    .ind-hero{grid-template-columns:1fr!important;gap:32px!important}
+    .ind-hero>div:last-child{justify-content:flex-start!important}
+  }
+  @media (max-width:639px){
+    .fin-grid2{grid-template-columns:1fr}
+    /* Volgorde: stapintro → formulier → 'Persoonlijk bekeken' */
+    .fin-layout{gap:28px!important}
+    .fin-left{display:contents}
+    .fin-left>div:first-child{min-height:0!important}
+    .fin-layout>form{order:1;padding:24px!important}
+    .fin-left>div:last-child{order:2;max-width:none!important;margin:0!important}
+    /* Korte numerieke keuzes mogen naast elkaar; landen onder elkaar */
+    .fin-grid3:not(:has([data-group="landen"])){grid-template-columns:repeat(3,1fr)}
+    .fin-tile{min-height:52px}
+    /* Actie-rij: knop volle breedte, 'Vorige' eronder */
+    .ind-actions{flex-wrap:wrap}
+    .ind-actions>div{width:100%;flex-direction:column-reverse;align-items:stretch;gap:6px}
+    .btn-prev{width:100%}
+  }
+</style>
+
+<script>
+  // Meerstapsflow + verzending (vanilla JS). Bevestiging alleen bij een succesvolle response.
+  const form = document.querySelector<HTMLFormElement>('[data-indicatie-form]');
+  if (form) {
+    const sel: Record<string, string | string[] | null> = {};
+    let step = 1;
+    let done = false;
+    const tiles = form.querySelectorAll<HTMLButtonElement>('[data-tile]');
+    const sync = () => {
+      tiles.forEach((t) => {
+        const g = t.dataset.group!, v = t.dataset.value!, cur = sel[g];
+        const on = Array.isArray(cur) ? cur.indexOf(v) >= 0 : cur === v;
+        t.setAttribute('data-active', on ? '1' : '0');
+        t.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      const cur = done ? 'done' : String(step);
+      form.querySelectorAll<HTMLElement>('[data-formstep]').forEach((el) => { el.style.display = el.dataset.formstep === cur ? 'block' : 'none'; });
+      document.querySelectorAll<HTMLElement>('[data-leftstep]').forEach((el) => { el.style.display = (!done && el.dataset.leftstep === String(step)) ? 'block' : 'none'; });
+      for (let i = 1; i <= 3; i++) {
+        const active = !done && i === step;
+        const dot = document.querySelector<HTMLElement>('[data-stepdot="' + i + '"]');
+        const lab = document.querySelector<HTMLElement>('[data-steplabel="' + i + '"]');
+        if (dot) { dot.style.background = active ? 'var(--terracotta)' : 'transparent'; dot.style.borderColor = active ? 'var(--terracotta)' : 'var(--line)'; dot.style.color = active ? 'var(--white)' : 'var(--body)'; }
+        if (lab) lab.style.color = active ? 'var(--terracotta)' : 'var(--body)';
+      }
+    };
+    tiles.forEach((t) => {
+      t.addEventListener('click', () => {
+        const group = t.dataset.group!, val = t.dataset.value!, multi = t.dataset.multi === '1';
+        if (multi) {
+          const arr = Array.isArray(sel[group]) ? (sel[group] as string[]).slice() : [];
+          const i = arr.indexOf(val);
+          if (i >= 0) arr.splice(i, 1); else arr.push(val);
+          sel[group] = arr;
+        } else {
+          sel[group] = sel[group] === val ? null : val;
+        }
+        sync();
+      });
+    });
+    const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    form.querySelectorAll('[data-step-next]').forEach((b) => b.addEventListener('click', () => { step = Math.min(3, step + 1); sync(); toTop(); }));
+    form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => { step = Math.max(1, step - 1); sync(); toTop(); }));
+
+    const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value ?? '';
+    const collect = () => {
+      const out: Record<string, string> = { formulier: 'indicatie', _subject: 'Nieuwe indicatie-aanvraag via finable.nl' };
+      for (const g of ['grootte', 'entiteiten', 'landen', 'hulp', 'wie', 'facturen', 'pakket', 'start']) {
+        const v = sel[g];
+        out[g] = Array.isArray(v) ? v.join(', ') : (v ?? '');
+      }
+      Object.assign(out, { naam: val('naam'), email: val('email'), telefoon: val('tel'), website: val('website') });
+      return out;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = form.querySelector<HTMLElement>('[data-formerror]');
+      const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
+      if (err) err.style.display = 'none';
+      if (val('_gotcha')) return; // honeypot
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const endpoint = form.dataset.endpoint || '';
+      const label = btn?.textContent ?? '';
+      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Versturen…'; }
+      try {
+        if (!endpoint) throw new Error('Geen formulier-endpoint geconfigureerd (PUBLIC_FORM_ENDPOINT_INDICATIE).');
+        const payload: Record<string, string> = collect();
+        if (form.dataset.accessKey) payload.access_key = form.dataset.accessKey;
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+        if (!res.ok) throw new Error('bad status ' + res.status);
+        done = true; sync(); toTop();
+      } catch (ex) {
+        console.error(ex);
+        if (err) err.style.display = 'block';
+        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; }
+      }
+    });
+    sync();
+  }
+</script>

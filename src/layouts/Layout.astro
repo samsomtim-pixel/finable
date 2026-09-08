@@ -1,0 +1,73 @@
+---
+// <head> + basisstijlen die in elke pagina stonden. Header en Footer worden per pagina geplaatst.
+import '../styles/tokens.css';
+import '../styles/fonts.css';
+import '../styles/mobile.css';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+const site = Astro.site ?? new URL('https://finable.nl');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og.png', site).href;
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <link rel="canonical" href={canonical}>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Finable">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  <link rel="preload" href="/fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="sitemap" href="/sitemap-index.xml">
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--navy);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--terracotta);text-decoration:none}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-0.01em;color:var(--navy)}
+  /* Container: 1240px, 48px horizontale padding op desktop, 24px op mobiel. Nav en content delen deze. */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+  /* Eyebrow-label: één definitie voor de hele site. */
+  .lbl{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta)}
+  .rule{height:1px;background:var(--line)}
+  /* Primaire CTA-knop (Button.astro). */
+  .btn{background:var(--terracotta);color:var(--white);font-weight:600;font-size:16px;padding:15px 28px;border-radius:999px;white-space:nowrap;display:inline-block}
+  .btn-sm{font-size:15px;padding:12px 24px}
+  .btn:hover{filter:brightness(0.92);color:var(--white)}
+  /* Placeholder voor beeld dat nog wordt aangeleverd (vervangt image-slot.js). */
+  .ph{width:100%;height:100%;background:var(--line);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+  .ph span{font-family:monospace;font-size:11px;color:var(--body);margin-bottom:14px;padding:0 10px;text-align:center}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  @media (max-width:1023px){
+    .wrap{padding:0 24px}
+    /* Tikdoelen: tekstlinks krijgen extra klikbare hoogte zonder de regelhoogte te veranderen. */
+    a:not(.btn):not([aria-label="Finable"]){padding-top:14px;padding-bottom:14px}
+    a[aria-label="Finable"]{padding:7px 0;margin:-7px 0}
+  }
+</style>

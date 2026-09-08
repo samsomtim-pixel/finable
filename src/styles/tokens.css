@@ -1,0 +1,12 @@
+/* Design tokens — exact dezelfde waarden als in de prototypes. */
+:root {
+  --navy: #1B3A5C;
+  --terracotta: #C4643A;
+  --body: #5F6B76;
+  --line: #E5E5E1;
+  --white: #FFFFFF;
+  --section: #F3F3F1;
+  --terracotta-soft: rgba(196,100,58,0.08);
+  --on-dark-secondary: rgba(255,255,255,0.72);
+  --on-dark-tertiary: rgba(255,255,255,0.58);
+}

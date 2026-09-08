@@ -1,7 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "buildCommand": "",
-  "installCommand": "",
-  "outputDirectory": "."
+  "framework": "astro",
+  "redirects": [
+    { "source": "/vacature", "destination": "/finance-hire", "permanent": true },
+    { "source": "/vacature/", "destination": "/finance-hire", "permanent": true }
+  ]
 }
