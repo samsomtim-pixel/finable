@@ -73,7 +73,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
       </div>
 
       <!-- RIGHT: FORM CARD -->
-      <form data-indicatie-form data-endpoint={endpoint} data-access-key={accessKey} novalidate style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(28px,3.5vw,44px)">
+      <form data-indicatie-form data-endpoint={endpoint} data-access-key={accessKey} data-lang="nl" data-subject="Nieuwe indicatie-aanvraag via finable.nl" data-busy="Versturen…" novalidate style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(28px,3.5vw,44px)">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
 
         <!-- STEP 1 -->
@@ -297,83 +297,5 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 </style>
 
 <script>
-  // Meerstapsflow + verzending (vanilla JS). Bevestiging alleen bij een succesvolle response.
-  const form = document.querySelector<HTMLFormElement>('[data-indicatie-form]');
-  if (form) {
-    const sel: Record<string, string | string[] | null> = {};
-    let step = 1;
-    let done = false;
-    const tiles = form.querySelectorAll<HTMLButtonElement>('[data-tile]');
-    const sync = () => {
-      tiles.forEach((t) => {
-        const g = t.dataset.group!, v = t.dataset.value!, cur = sel[g];
-        const on = Array.isArray(cur) ? cur.indexOf(v) >= 0 : cur === v;
-        t.setAttribute('data-active', on ? '1' : '0');
-        t.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
-      const cur = done ? 'done' : String(step);
-      form.querySelectorAll<HTMLElement>('[data-formstep]').forEach((el) => { el.style.display = el.dataset.formstep === cur ? 'block' : 'none'; });
-      document.querySelectorAll<HTMLElement>('[data-leftstep]').forEach((el) => { el.style.display = (!done && el.dataset.leftstep === String(step)) ? 'block' : 'none'; });
-      for (let i = 1; i <= 3; i++) {
-        const active = !done && i === step;
-        const dot = document.querySelector<HTMLElement>('[data-stepdot="' + i + '"]');
-        const lab = document.querySelector<HTMLElement>('[data-steplabel="' + i + '"]');
-        if (dot) { dot.style.background = active ? 'var(--terracotta)' : 'transparent'; dot.style.borderColor = active ? 'var(--terracotta)' : 'var(--line)'; dot.style.color = active ? 'var(--white)' : 'var(--body)'; }
-        if (lab) lab.style.color = active ? 'var(--terracotta)' : 'var(--body)';
-      }
-    };
-    tiles.forEach((t) => {
-      t.addEventListener('click', () => {
-        const group = t.dataset.group!, val = t.dataset.value!, multi = t.dataset.multi === '1';
-        if (multi) {
-          const arr = Array.isArray(sel[group]) ? (sel[group] as string[]).slice() : [];
-          const i = arr.indexOf(val);
-          if (i >= 0) arr.splice(i, 1); else arr.push(val);
-          sel[group] = arr;
-        } else {
-          sel[group] = sel[group] === val ? null : val;
-        }
-        sync();
-      });
-    });
-    const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-    form.querySelectorAll('[data-step-next]').forEach((b) => b.addEventListener('click', () => { step = Math.min(3, step + 1); sync(); toTop(); }));
-    form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => { step = Math.max(1, step - 1); sync(); toTop(); }));
-
-    const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value ?? '';
-    const collect = () => {
-      const out: Record<string, string> = { formulier: 'indicatie', _subject: 'Nieuwe indicatie-aanvraag via finable.nl' };
-      for (const g of ['grootte', 'entiteiten', 'landen', 'hulp', 'wie', 'facturen', 'pakket', 'start']) {
-        const v = sel[g];
-        out[g] = Array.isArray(v) ? v.join(', ') : (v ?? '');
-      }
-      Object.assign(out, { naam: val('naam'), email: val('email'), telefoon: val('tel'), website: val('website') });
-      return out;
-    };
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const err = form.querySelector<HTMLElement>('[data-formerror]');
-      const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
-      if (err) err.style.display = 'none';
-      if (val('_gotcha')) return; // honeypot
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      const endpoint = form.dataset.endpoint || '';
-      const label = btn?.textContent ?? '';
-      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Versturen…'; }
-      try {
-        if (!endpoint) throw new Error('Geen formulier-endpoint geconfigureerd (PUBLIC_FORM_ENDPOINT_INDICATIE).');
-        const payload: Record<string, string> = collect();
-        if (form.dataset.accessKey) payload.access_key = form.dataset.accessKey;
-        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
-        if (!res.ok) throw new Error('bad status ' + res.status);
-        done = true; sync(); toTop();
-      } catch (ex) {
-        console.error(ex);
-        if (err) err.style.display = 'block';
-        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; }
-      }
-    });
-    sync();
-  }
+  import '../scripts/indicatie-form.ts';
 </script>
