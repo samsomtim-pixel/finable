@@ -48,6 +48,13 @@
   /* --- Kopregel + rechterregel ("Herken je dit?" + subregel): onder elkaar, rustiger --- */
   div[style*="display:flex;align-items:baseline;justify-content:space-between"] { gap: 8px !important; margin-bottom: 32px !important; }
 
-  /* --- Placeholders en beeld: rustige, vaste hoogte --- */
-  .ph span { font-size: 10px; }
+  /* --- Vergelijking per onderwerp (Finance-team, Finance-hire): hire-waarde boven, Finable-waarde eronder --- */
+  .cmp-m { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .cmp-m-pair { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .cmp-m-row { display: flex; flex-direction: column; gap: 3px; padding: 8px 12px; }
+  .cmp-m-k { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--body); }
+  .cmp-m-v { font-size: 15px; color: var(--body); line-height: 1.45; }
+  .cmp-m-row.is-fin { background: var(--terracotta-soft); border-radius: 10px; }
+  .cmp-m-row.is-fin .cmp-m-k { color: var(--terracotta); }
+  .cmp-m-row.is-fin .cmp-m-v { color: var(--navy); font-weight: 500; }
 }
