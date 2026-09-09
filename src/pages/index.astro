@@ -27,7 +27,8 @@ import Button from '../components/Button.astro';
           <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--navy)">Een heel finance-team.</span><br><span style="color:var(--terracotta)">Voor minder dan één controller.</span></div>
         </div>
         <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--body)">Overweeg je een controller aan te nemen? </span><a href="/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Vergelijk de opties &rarr;</a></div>
-        <div style="height:clamp(200px,22vw,260px)"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: stilleven — rustige werkplek"><span>stilleven — rustige werkplek</span></div></div>
+        <!-- Hero-foto alleen op desktop (≥1024px). Onder die breedte bewust weggelaten (display:none), niet verkleind: de compositie (vier mensen, twee schermen) wordt op smalle schermen ruis en de hero-tekst krijgt de volle breedte. -->
+        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg met het Finable-team via videobellen, spreadsheet op scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:1px solid var(--line)"></picture></div>
         <div class="hero-note" style="position:absolute;right:-6px;bottom:-22px;width:150px;text-align:center;pointer-events:none">
           <div class="cav" style="font-size:22px">alsof we gewoon bij je team horen.</div>
         </div>
@@ -233,6 +234,7 @@ import Button from '../components/Button.astro';
   }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
+    .hero-img{display:none}
     .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
