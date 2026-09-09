@@ -28,7 +28,7 @@ import Button from '../components/Button.astro';
         </div>
         <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--body)">Overweeg je een controller aan te nemen? </span><a href="/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Vergelijk de opties &rarr;</a></div>
         <!-- Hero-foto alleen op desktop (≥1024px). Onder die breedte bewust weggelaten (display:none), niet verkleind: de compositie (vier mensen, twee schermen) wordt op smalle schermen ruis en de hero-tekst krijgt de volle breedte. -->
-        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><img src="/images/hero-team-call.webp" alt="Overleg met het Finable-team via videobellen, spreadsheet op scherm" width="1600" height="800" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:1px solid var(--line)"></div>
+        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg met het Finable-team via videobellen, spreadsheet op scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:1px solid var(--line)"></picture></div>
         <div class="hero-note" style="position:absolute;right:-6px;bottom:-22px;width:150px;text-align:center;pointer-events:none">
           <div class="cav" style="font-size:22px">alsof we gewoon bij je team horen.</div>
         </div>
