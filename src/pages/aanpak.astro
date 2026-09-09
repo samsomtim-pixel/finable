@@ -58,6 +58,13 @@ import Button from '../components/Button.astro';
         <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px">Eén persoon hoeft niet alles te kunnen.</h2>
         <p style="font-size:16px;color:var(--body);text-wrap:pretty">Finance vraagt om verschillende disciplines. Toch komen die in groeiende bedrijven vaak samen in één functieprofiel.</p>
       </div>
+      <!-- Mobiel (≤639): dezelfde vergelijking per onderwerp onder elkaar. -->
+      <div class="cmp-m">
+        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén functieprofiel</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Verschillende expertises</span></div></div>
+        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Capaciteit van één persoon</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Capaciteit van een team</span></div></div>
+        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Kennis bij één persoon</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Kennis verdeeld in het team</span></div></div>
+        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén beschikbaarheid</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Continuïteit binnen het team</span></div></div>
+      </div>
       <div class="why-cmp">
         <div class="cmp-col">
           <div class="ch" style="color:var(--body)">Eén finance-hire</div>
@@ -267,6 +274,7 @@ import Button from '../components/Button.astro';
   .indic{grid-template-columns:1fr;gap:22px}
   .cta-p{grid-template-columns:1fr;gap:24px}
   }
+  @media (min-width:640px){.cmp-m{display:none}}
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
     .hero{grid-template-columns:1fr!important;gap:40px!important}
@@ -279,7 +287,15 @@ import Button from '../components/Button.astro';
   }
   @media (max-width:639px){
     .disc{grid-template-columns:1fr}
-    .why-cmp{grid-template-columns:1fr!important}
+    /* 3 · Vergelijking per onderwerp in plaats van twee lange lijsten */
+    .why-cmp{display:none}
+    /* 4 · Navy-anker stopt na het mechanisme; vervolgtekst op wit eronder */
+    .navy .wrap>div[style*="height:1px;background:rgba(255,255,255,0.14)"]{display:none}
+    .navy-end{background:var(--white);margin:44px -24px -56px;padding:44px 24px 48px}
+    .navy-end h3{color:var(--navy)!important}
+    .navy-end p{color:var(--body)!important}
+    /* 2 · Indicatie-CTA: neutrale kaart, knop in volle terracotta */
+    .indic{background:var(--section)}
     .collage{height:auto}
     .collage .cframe{position:static;width:100%!important;transform:none!important;aspect-ratio:4/5}
     .collage .cframe:not(:first-child){display:none}
