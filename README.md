@@ -13,12 +13,31 @@ npm run build    # statische output in dist/
 - `src/layouts/Layout.astro` — `<head>`, metadata (canonical, Open Graph, Twitter), basisstijlen, container `.wrap`, eyebrow `.lbl`, knop `.btn`.
 - `src/components/Header.astro`, `Footer.astro`, `Button.astro` — de gedeelde onderdelen (bron: hoe-het-werkt).
 - `src/styles/tokens.css` — kleurtokens. `src/styles/fonts.css` — zelf gehoste fonts in `public/fonts/`.
-- `src/pages/*.astro` — de zeven pagina's. `/finance-hire` ("Finance-hire of Finable?") staat in elke footer en in de sitemap; `/vacature` redirect er permanent naartoe.
+- `src/pages/*.astro` — de zeven Nederlandse pagina's. `/finance-hire` ("Finance-hire of Finable?") staat in elke footer en in de sitemap; `/vacature` redirect er permanent naartoe.
+- `src/pages/en/*.astro` — de zeven Engelse pagina's (zie *Engelse site*).
+- `src/lib/i18n.ts` — de NL↔EN paginakoppeling, taal uit de route, canonical/hreflang-helpers.
+- `src/scripts/indicatie-form.ts` — de meerstapslogica van het indicatie-/estimate-formulier, gedeeld door `/indicatie` en `/en/estimate`.
 - `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — WebP-afbeeldingen. `public/og.png` — deelafbeelding.
+
+## Engelse site
+
+Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal of locatie: de bezoeker kiest via **NL · EN** (header, mobiel menu, footer). De wissel linkt altijd naar de equivalente pagina.
+
+| Nederlands | Engels |
+|---|---|
+| `/` | `/en/` |
+| `/aanpak` | `/en/finance-team` |
+| `/hoe-het-werkt` | `/en/how-it-works` |
+| `/over` | `/en/about` |
+| `/indicatie` | `/en/estimate` |
+| `/gesprek` | `/en/book-a-call` |
+| `/finance-hire` | `/en/finance-hire` |
+
+`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
 
 ## Formulieren en boeking
 
-`/indicatie` post JSON naar een formulierdienst (Formspree, Web3Forms of Basin). `/gesprek` heeft een boekingsmodule die uitgeschakeld blijft tot een echte agenda-provider is gekoppeld (`bookingProviderConnected` in `src/pages/gesprek.astro`); tot die tijd toont de kaart de mail-route. Zet in Vercel de omgevingsvariabelen uit `.env.example`:
+`/indicatie` en `/en/estimate` posten dezelfde JSON (plus `taal`) naar dezelfde formulierdienst (Formspree, Web3Forms of Basin). `/gesprek` heeft een boekingsmodule die uitgeschakeld blijft tot een echte agenda-provider is gekoppeld (`bookingProviderConnected` in `src/pages/gesprek.astro`); tot die tijd toont de kaart de mail-route en rendert `/en/book-a-call` alleen die mail-route (geen kalender, geen boekingsscript). Zet in Vercel de omgevingsvariabelen uit `.env.example`:
 
 ```
 PUBLIC_FORM_ENDPOINT_GESPREK=https://formspree.io/f/<id>
@@ -30,6 +49,6 @@ Zonder endpoint toont het formulier de foutmelding met `tim@finable.nl` als teru
 
 ## Nog niet ingevuld (vóór livegang)
 
-- `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer; Privacy en Voorwaarden linken naar `#`.
+- `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer (Engels: `[LEGAL ENTITY]` en `[NUMBER]`); Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
 - Beeld: stillevens op home, /aanpak en /hoe-het-werkt, teamportretten en hero-portret op /over (placeholders met `.ph`).
 - Domein in `astro.config.mjs` (`site`) controleren.

@@ -1,36 +1,56 @@
 ---
 // Footer. Bron: hoe-het-werkt-nav2. marginTop is alleen op /hoe-het-werkt gezet (40px), elders afwezig.
+// De Engelse footer volgt dezelfde visuele structuur (merk links, links rechts) met de Engelse linkgroepen.
+import { alternates, langOf } from '../lib/i18n';
 interface Props {
   marginTop?: string;
 }
 const { marginTop } = Astro.props;
+const lang = langOf(Astro.url.pathname);
+const alt = alternates(Astro.url.pathname);
 const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-top:${marginTop}` : '');
 ---
 <footer style={footerStyle}>
   <div class="wrap" style="padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
     <div>
       <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--navy);letter-spacing:-0.02em">Finable<span style="color:var(--terracotta)">.</span></div>
+      {lang === 'en' && <div style="font-size:14px;color:var(--body);margin-top:4px">Finance-as-a-Service for growing companies.</div>}
       <!-- Vervangen door de werkelijke gegevens vóór livegang. -->
-      <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — handelsnaam van [STATUTAIRE NAAM] · KVK [NUMMER]</div>
+      {lang === 'en'
+        ? <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — trading name of [LEGAL ENTITY] · Chamber of Commerce [NUMBER]</div>
+        : <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — handelsnaam van [STATUTAIRE NAAM] · KVK [NUMMER]</div>}
     </div>
-    <!-- Privacy- en Voorwaarden-pagina's moeten nog gebouwd en juridisch gecontroleerd worden. -->
-    <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
-      <a href="#" class="ft-link">Privacy</a>
-      <a href="#" class="ft-link">Voorwaarden</a>
-      <a href="/finance-hire" class="ft-link">Finance-hire of Finable?</a>
-      <span style="display:flex;align-items:center;gap:6px">NL <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#5F6B76" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></span>
-    </div>
+    <!-- Privacy- en Voorwaarden-pagina's moeten nog gebouwd en juridisch gecontroleerd worden (NL én EN). -->
+    {lang === 'en' ? (
+      <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
+        <span class="ft-group"><a href="/en/how-it-works" class="ft-link">How Finable works</a><a href="/en/finance-team" class="ft-link">Finance team</a><a href="/en/about" class="ft-link">About</a></span>
+        <span class="ft-group"><a href="/en/estimate" class="ft-link">Get an estimate</a><a href="/en/finance-hire" class="ft-link">Finance hire or Finable?</a><a href="/en/book-a-call" class="ft-link">Book a call</a></span>
+        <span class="ft-group"><a href="#" class="ft-link">Privacy</a><a href="#" class="ft-link">Terms</a></span>
+        <nav class="lang-switch" aria-label="Language"><a href={alt.nl} hreflang="nl" lang="nl" class:list={[{ 'is-on': false }]}>NL</a><span aria-hidden="true">·</span><a href={alt.en} hreflang="en" lang="en" class="is-on" aria-current="page">EN</a></nav>
+      </div>
+    ) : (
+      <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
+        <a href="#" class="ft-link">Privacy</a>
+        <a href="#" class="ft-link">Voorwaarden</a>
+        <a href="/finance-hire" class="ft-link">Finance-hire of Finable?</a>
+        <nav class="lang-switch" aria-label="Taal"><a href={alt.nl} hreflang="nl" lang="nl" class="is-on" aria-current="page">NL</a><span aria-hidden="true">·</span><a href={alt.en} hreflang="en" lang="en">EN</a></nav>
+      </div>
+    )}
   </div>
 </footer>
 
 <style is:global>
   .ft-link{color:var(--body)}
   .ft-link:hover{color:var(--terracotta)}
+  .ft-group{display:inline-flex;align-items:center;gap:26px}
+  .ft-links .lang-switch{margin-left:8px}
   @media (max-width:1023px){
     .ft-link{padding:10px 0;display:inline-flex;align-items:center;min-height:44px}
+    .ft-links{flex-wrap:wrap;gap:4px 22px!important}
+    .ft-group{flex-wrap:wrap;gap:4px 22px}
   }
   @media (max-width:639px){
-    .ft-links{flex-wrap:wrap;gap:4px 22px!important}
     .ft-link{white-space:nowrap}
+    .ft-links .lang-switch{margin-left:0;min-height:44px}
   }
 </style>

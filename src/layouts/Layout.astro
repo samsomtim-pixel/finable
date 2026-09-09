@@ -1,8 +1,10 @@
 ---
 // <head> + basisstijlen die in elke pagina stonden. Header en Footer worden per pagina geplaatst.
+// Taal is route-based (/en/…); canonical + hreflang (nl, en, x-default → NL) komen uit lib/i18n.
 import '../styles/tokens.css';
 import '../styles/fonts.css';
 import '../styles/mobile.css';
+import { alternates, langOf, absolute } from '../lib/i18n';
 
 interface Props {
   title: string;
@@ -11,11 +13,16 @@ interface Props {
 }
 const { title, description, noindex = false } = Astro.props;
 const site = Astro.site ?? new URL('https://finable.nl');
-const canonical = new URL(Astro.url.pathname, site).href;
+const path = Astro.url.pathname;
+const lang = langOf(path);
+const alt = alternates(path);
+const canonical = absolute(path, site);
+const hrefNl = absolute(alt.nl, site);
+const hrefEn = absolute(alt.en, site);
 const ogImage = new URL('/og.png', site).href;
 ---
 <!doctype html>
-<html lang="nl">
+<html lang={lang}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,10 +30,14 @@ const ogImage = new URL('/og.png', site).href;
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
   <link rel="canonical" href={canonical}>
+  <link rel="alternate" hreflang="nl" href={hrefNl}>
+  <link rel="alternate" hreflang="en" href={hrefEn}>
+  <link rel="alternate" hreflang="x-default" href={hrefNl}>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Finable">
-  <meta property="og:locale" content="nl_NL">
+  <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'nl_NL'}>
+  <meta property="og:locale:alternate" content={lang === 'en' ? 'nl_NL' : 'en_GB'}>
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
@@ -64,10 +75,17 @@ const ogImage = new URL('/og.png', site).href;
   .ph{width:100%;height:100%;background:var(--section);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
   .ph span{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);padding:0 16px;text-align:center;line-height:1.5}
   button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  /* Taalwissel NL · EN: klein en secundair aan de hoofdnavigatie. */
+  .lang-switch{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--body)}
+  .lang-switch a{color:var(--body);padding:4px 2px}
+  .lang-switch a.is-on{color:var(--navy)}
+  .lang-switch a:hover{color:var(--terracotta)}
+  .lang-switch span{color:var(--line);font-weight:400}
   @media (max-width:1023px){
     .wrap{padding:0 24px}
     /* Tikdoelen: tekstlinks krijgen extra klikbare hoogte zonder de regelhoogte te veranderen. */
     a:not(.btn):not([aria-label="Finable"]){padding-top:14px;padding-bottom:14px}
     a[aria-label="Finable"]{padding:7px 0;margin:-7px 0}
+    .lang-switch a{padding-left:8px;padding-right:8px}
   }
 </style>

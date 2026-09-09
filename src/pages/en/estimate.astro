@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_INDICATIE ?? '';
+const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
+---
+<Layout title="Get an estimate — Finable" description="Answer a few questions about your organisation and finance setup. The Finable team reviews your situation and sends you an initial estimate of the monthly cost.">
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO -->
+  <section class="wrap" style="padding-top:36px;padding-bottom:40px">
+    <div class="ind-hero" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.9fr);gap:48px;align-items:center">
+      <div>
+        <div class="lbl" style="margin-bottom:20px">Get an estimate</div>
+        <h1 style="font-size:clamp(34px,4.6vw,54px);color:var(--navy);margin-bottom:22px;text-wrap:balance">What would Finable cost for your organisation?</h1>
+        <p style="font-size:clamp(16px,1.9vw,19px);color:var(--body);max-width:500px;text-wrap:pretty">Answer a few questions about your organisation and finance setup. The Finable team will review your situation and send you an initial estimate of the monthly cost within two business days.</p>
+      </div>
+      <!-- STEP INDICATOR -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:0">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="1" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--terracotta);background:var(--terracotta);color:var(--white)">01</div>
+          <div data-steplabel="1" style="font-size:14px;font-weight:600;color:var(--terracotta)">Organisation</div>
+        </div>
+        <div data-stepline="1" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="2" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--line);background:transparent;color:var(--body)">02</div>
+          <div data-steplabel="2" style="font-size:14px;font-weight:600;color:var(--body)">Finance</div>
+        </div>
+        <div data-stepline="2" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div data-stepdot="3" style="width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--line);background:transparent;color:var(--body)">03</div>
+          <div data-steplabel="3" style="font-size:14px;font-weight:600;color:var(--body)">Estimate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT -->
+  <section class="wrap" style="padding-top:16px;padding-bottom:80px">
+    <div class="fin-layout">
+
+      <!-- LEFT CONTEXT (sticky) -->
+      <div class="fin-left">
+        <div style="min-height:200px">
+          <div data-leftstep="1">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">01</div>
+            <div class="lbl" style="margin-bottom:12px">Organisation</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy)">First, tell us a little<br>about your organisation.</h2>
+          </div>
+          <div data-leftstep="2" style="display:none">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">02</div>
+            <div class="lbl" style="margin-bottom:12px">Finance</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy)">How is finance organised today?</h2>
+          </div>
+          <div data-leftstep="3" style="display:none">
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">03</div>
+            <div class="lbl" style="margin-bottom:12px">Your estimate</div>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Enough to make<br>an initial assessment.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">Leave your details below and the Finable team will review your answers and send you a personalised estimate within two business days.</p>
+          </div>
+        </div>
+
+        <!-- personal review module -->
+        <div style="background:var(--terracotta-soft);border-radius:12px;padding:28px 30px;margin:28px 0;max-width:360px">
+          <div class="lbl" style="margin-bottom:14px">Personally reviewed</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:12px">Reviewed by the Finable team.</h3>
+          <p style="font-size:14px;color:var(--body);line-height:1.6">The Finable team reviews your answers and prepares an initial estimate based on your situation. So you'll quickly have an idea of what Finable could look like for your organisation.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM CARD -->
+      <form data-indicatie-form data-endpoint={endpoint} data-access-key={accessKey} data-lang="en" data-subject="New estimate request via finable.nl" data-busy="Sending…" novalidate style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(28px,3.5vw,44px)">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
+
+        <!-- STEP 1 -->
+        <div data-formstep="1">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">How many people work at your company?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="1–10"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="14" cy="10" r="4.5"/><path d="M6 23c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg>1–10</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="10–25"><svg width="30" height="26" viewBox="0 0 34 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="17" cy="9" r="4"/><circle cx="7" cy="12" r="3"/><path d="M9 23c0-4 3.5-6.5 8-6.5s8 2.5 8 6.5"/></svg>10–25</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="25–50"><svg width="32" height="26" viewBox="0 0 38 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="19" cy="9" r="4"/><circle cx="8" cy="12" r="3"/><circle cx="30" cy="12" r="3"/><path d="M10 23c0-4 4-6.5 9-6.5s9 2.5 9 6.5"/></svg>25–50</button>
+              <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="50+"><svg width="34" height="26" viewBox="0 0 40 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="20" cy="8" r="3.5"/><circle cx="9" cy="11" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="14" cy="13" r="2.5"/><circle cx="26" cy="13" r="2.5"/><path d="M8 24c0-4 5-6 12-6s12 2 12 6"/></svg>50+</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">How many legal entities do you have?</h3>
+            <div class="fin-grid3">
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="1">1</button>
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="2–3">2–3</button>
+              <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="4+">4+</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Where does your company operate?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Select all that apply.</p>
+            <div class="fin-grid3">
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Netherlands" style="flex-direction:row;gap:10px">Netherlands</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Europe" style="flex-direction:row;gap:10px">Europe</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="International" style="flex-direction:row;gap:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>International</button>
+            </div>
+          </div>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Step 1 of 3</span>
+            <button type="button" data-step-next class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div data-formstep="2" style="display:none">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">What would you like Finable to help with?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Select all that apply.</p>
+            <div class="fin-grid2">
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Day-to-day finance"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Day-to-day finance</span><span style="font-size:13px;color:var(--body)">Invoices · bank · receivables</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Month-end close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.6 3.1 3 7 3s7-1.4 7-3V6M5 12v6c0 1.6 3.1 3 7 3s7-1.4 7-3v-6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Month-end close</span><span style="font-size:13px;color:var(--body)">Reconciliations · VAT · month-end file</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Controlling"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Controlling</span><span style="font-size:13px;color:var(--body)">Margins · cash · variances</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Management reporting"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 12V4M12 12l6 3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Management reporting</span><span style="font-size:13px;color:var(--body)">Numbers · context · discussion</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Payroll"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h3M14 14h3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Payroll</span><span style="font-size:13px;color:var(--body)">Payroll administration</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="I'm not sure yet"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="18" r="0.6" fill="#5F6B76"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">I'm not sure yet</span><span style="font-size:13px;color:var(--body)">Happy to work it out together</span></span></button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">How is your finance currently organised?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="External bookkeeper or accountant">External bookkeeper or accountant</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="Internal finance team">Internal finance team</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="We handle it ourselves">We handle it ourselves</button>
+              <button type="button" class="fin-tile" data-tile data-group="wie" data-value="A combination">A combination</button>
+            </div>
+          </div>
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">Roughly how many invoices do you process each month?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="Up to 100">Up to 100</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="100–300">100–300</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="300–800">300–800</button>
+              <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="800+">800+</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">Which accounting software do you use?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Exact">Exact</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Twinfield">Twinfield</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Moneybird">Moneybird</button>
+              <button type="button" class="fin-tile" data-tile data-group="pakket" data-value="Something else or none yet">Something else or none yet</button>
+            </div>
+          </div>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Step 2 of 3</span>
+            <div style="display:flex;align-items:center;gap:18px">
+              <button type="button" data-step-prev class="btn-prev" style="background:none;border:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--body);cursor:pointer">← Back</button>
+              <button type="button" data-step-next class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Continue →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div data-formstep="3" style="display:none">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:14px">When would you like to get started?</h3>
+            <div class="fin-grid4">
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="As soon as possible">As soon as possible</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Within 1–3 months">Within 1–3 months</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="Later">Later</button>
+              <button type="button" class="fin-tile" data-tile data-group="start" data-value="I'm not sure yet">I'm not sure yet</button>
+            </div>
+          </div>
+          <div style="height:1px;background:var(--line);margin:28px 0"></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 20px">
+            <div style="margin-bottom:20px"><label for="fin-naam" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Name</label><input type="text" id="fin-naam" name="naam" required class="fin-input" placeholder="Your name" autocomplete="name"></div>
+            <div style="margin-bottom:20px"><label for="fin-email" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Business email</label><input type="email" id="fin-email" name="email" required class="fin-input" placeholder="name@company.com" autocomplete="email"></div>
+          </div>
+          <div style="margin-bottom:20px"><label for="fin-website" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Company website <span style="font-weight:400;color:var(--body)">(optional)</span></label><input type="text" inputmode="url" id="fin-website" name="website" class="fin-input" placeholder="company.com" autocomplete="url"></div>
+          <div style="margin-bottom:20px"><label for="fin-tel" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Phone number <span style="font-weight:400;color:var(--body)">(optional)</span></label><input type="tel" id="fin-tel" name="tel" class="fin-input" placeholder="Optional" autocomplete="tel"></div>
+          <p style="font-size:13px;color:var(--body);margin-top:14px">We only use your details to prepare your estimate and get in touch with you.</p>
+          <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:14px">Something went wrong while sending your request. Email it to <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> and we'll pick it up from there.</p>
+          <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
+            <span style="font-size:14px;color:var(--body)">Step 3 of 3</span>
+            <div style="display:flex;align-items:center;gap:18px">
+              <button type="button" data-step-prev class="btn-prev" style="background:none;border:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--body);cursor:pointer">← Back</button>
+              <button type="submit" data-submit class="btn" style="background:var(--terracotta);color:var(--white);font-weight:600;font-size:15px;font-family:inherit;padding:14px 26px;border:none;border-radius:999px;cursor:pointer">Get my estimate →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- END SCREEN -->
+        <div data-formstep="done" style="display:none">
+          <div style="width:56px;height:56px;border-radius:999px;background:var(--terracotta);display:flex;align-items:center;justify-content:center;margin-bottom:26px">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true"><path d="M5 13l5 5L21 7"/></svg>
+          </div>
+          <div class="lbl" style="margin-bottom:14px">Thank you</div>
+          <h2 style="font-size:clamp(26px,3vw,34px);color:var(--navy);margin-bottom:28px;text-wrap:balance">Thanks. We've got<br>what we need.</h2>
+          <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:32px">
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">01</span><span style="font-size:16px;color:var(--body)">The Finable team reviews your request.</span></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">02</span><span style="font-size:16px;color:var(--body)">If anything is missing, we'll get in touch.</span></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">03</span><span style="font-size:16px;color:var(--body)">You'll receive an initial estimate within two business days.</span></div>
+          </div>
+          <p style="font-size:14px;color:var(--body)">Prefer to talk first? <a href="/en/book-a-call" style="font-weight:600">Book a call →</a></p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
+    <div style="height:1px;background:var(--line);margin-bottom:44px"></div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">Frequently asked questions</div>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);font-family:'Playfair Display',Georgia,serif;color:var(--navy)">About your estimate.</h2>
+      </div>
+    </div>
+    <div style="max-width:860px">
+      <details class="fin-faq"><summary><span class="fin-faq-q">How is the monthly fee determined?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>There is no standard package based simply on company size or revenue. We look at the scope of work, the volume involved and the complexity of your finance operation. Based on that, the Finable team prepares an initial estimate for a fixed monthly fee.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Will I see a price immediately?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>No. Your answers are reviewed by the Finable team first. This allows us to give you an estimate that reflects your actual finance setup rather than showing a generic calculator result.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Is the estimate a final proposal?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>No. It's an initial indication based on the information you provide. If there appears to be a fit, we can discuss the scope in more detail before agreeing on a final proposal.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Do I have to outsource my entire finance function?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>No. Finable can take over one part of your finance operation or almost the entire day-to-day function. The estimate is based on the scope that appears relevant to your situation.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">Can I get an estimate if I'm not sure what we need?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Yes. You don't need to know the exact scope beforehand. Select &ldquo;I'm not sure yet&rdquo; and we'll use the rest of your answers to understand your situation.</p></div></details>
+      <details class="fin-faq"><summary><span class="fin-faq-q">What happens after I submit the form?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>The Finable team reviews your answers. If anything important is missing, we'll get in touch. Otherwise, you'll receive an initial estimate within two business days.</p></div></details>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  body{line-height:1.6}
+  h1,h2,h3{line-height:1.12}
+  .fin-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 12px;background:var(--white);border:1px solid var(--line);border-radius:12px;font-size:15px;font-weight:500;color:var(--navy);cursor:pointer;text-align:center;transition:border-color .15s,background .15s;font-family:inherit}
+  .fin-tile:hover{border-color:var(--line)}
+  .fin-tile[data-active="1"]{border-color:var(--terracotta);background:rgba(196,100,58,0.10);color:var(--terracotta)}
+  .fin-tile[data-active="1"] svg{stroke:var(--terracotta)}
+  .fin-card-opt{display:flex;gap:14px;align-items:flex-start;padding:18px;background:var(--white);border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s;text-align:left}
+  .fin-card-opt:hover{border-color:var(--line)}
+  .fin-card-opt[data-active="1"]{border-color:var(--terracotta);background:rgba(196,100,58,0.10)}
+  .fin-card-opt[data-active="1"] svg{stroke:var(--terracotta)}
+  .fin-input{width:100%;padding:13px 16px;background:var(--white);border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy)}
+  .fin-input::placeholder{color:var(--body)}
+  .fin-input:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
+  .fin-tile:focus-visible,.fin-card-opt:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  .fin-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .fin-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .fin-grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .fin-layout{display:grid;grid-template-columns:minmax(0,0.66fr) minmax(0,1fr);gap:56px;align-items:start}
+  .fin-left{position:sticky;top:32px}
+  @media (max-width:1023px){
+  .fin-layout{grid-template-columns:1fr;gap:32px}
+  .fin-left{position:static}
+  .fin-grid4{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:639px){ .fin-grid3{grid-template-columns:1fr} }
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding:26px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(18px,2vw,22px);color:var(--navy);line-height:1.3;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:18px;height:18px;flex-shrink:0;margin-top:5px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:8px;width:18px;height:2px}
+  .fin-faq-ic::after{left:8px;top:0;width:2px;height:18px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:720px;padding:2px 0 30px;font-size:16px;color:var(--body);line-height:1.72}
+  .fin-faq-a p{margin-bottom:14px}
+  .fin-faq-a p:last-child{margin-bottom:0}
+  .btn-prev{min-height:44px;padding:0 4px}
+  .btn[disabled]{opacity:.6;cursor:progress;filter:none}
+  /* Responsive: 1024 / 640 */
+  @media (max-width:1023px){
+    .ind-hero{grid-template-columns:1fr!important;gap:32px!important}
+    .ind-hero>div:last-child{justify-content:flex-start!important}
+  }
+  @media (max-width:639px){
+    .fin-grid2{grid-template-columns:1fr}
+    .fin-layout{gap:28px!important}
+    .fin-left{display:contents}
+    .fin-left>div:first-child{min-height:0!important}
+    .fin-layout>form{order:1;padding:24px!important}
+    .fin-left>div:last-child{order:2;max-width:none!important;margin:0!important}
+    .fin-grid3:not(:has([data-group="landen"])){grid-template-columns:repeat(3,1fr)}
+    .fin-tile{min-height:52px}
+    .ind-actions{flex-wrap:wrap}
+    .ind-actions>div{width:100%;flex-direction:column-reverse;align-items:stretch;gap:6px}
+    .btn-prev{width:100%}
+  }
+</style>
+
+<script>
+  import '../../scripts/indicatie-form.ts';
+</script>
