@@ -445,9 +445,10 @@ import Base from '../layouts/Base.astro';
     .herkenning-cards { grid-template-columns: 1fr; }
     .herkenning-card { border-left: none; border-top: 1px solid var(--line); padding: 20px 0; }
     .herkenning-card:first-child { border-top: none; }
-    .mech-flow { grid-template-columns: 1fr; gap: 16px; }
+    .mech-flow { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .mech-arrow { display: none; }
-    .mech-step { flex-direction: row; text-align: left; gap: 16px; }
+    .mech-step { flex-direction: row; text-align: left; gap: 16px; min-width: 0; }
+    .mech-step strong, .mech-step span { min-width: 0; overflow-wrap: anywhere; }
     .compare-grid { grid-template-columns: 1fr 1fr; }
     .testimonial-grid { grid-template-columns: 1fr; }
     .testimonial-portrait { width: 120px; height: 120px; }
