@@ -9,18 +9,22 @@ import Button from '../../components/Button.astro';
 
   <Header active="hoe-het-werkt" />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:44px;padding-bottom:64px">
+  <!-- HERO (navy) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
     <div class="hero" style="display:grid;grid-template-columns:minmax(0,0.96fr) minmax(0,1.04fr);gap:clamp(36px,4.4vw,68px);align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:26px">How Finable works</div>
-        <h1 style="font-size:clamp(34px,4.4vw,56px);line-height:1.05;margin-bottom:26px;text-wrap:balance">No standard package. We start with your business.</h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--body);max-width:500px;text-wrap:pretty">Every finance function is different. We first look at what's already in place, what works and what's missing. From there, we decide together what Finable should take over.</p>
-        <div style="margin-top:34px"><Button href="/en/book-a-call">Book a call &rarr;</Button></div>
+        <h1 style="font-size:clamp(36px,4.8vw,60px);line-height:1.05;margin-bottom:26px">No standard package. We start with <span class="em">your business.</span></h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:500px;text-wrap:pretty">Every finance function is different. We first look at what's already in place, what works and what's missing. From there, we decide together what Finable should take over.</p>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:30px">
+          <span style="width:40px;height:2px;background:var(--terracotta);flex-shrink:0"></span>
+          <span style="font-size:15px;font-weight:600;color:var(--white)">Pragmatic. Personal. Always tailored.</span>
+        </div>
       </div>
 
       <div style="position:relative">
-        <div class="hero-right" style="display:grid;grid-template-columns:minmax(0,1fr) clamp(120px,13vw,168px);gap:26px;align-items:center">
+        <div class="hero-right" style="display:grid;grid-template-columns:1fr;gap:26px;align-items:center">
           <div class="tri">
             <div>
               <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
@@ -37,7 +41,6 @@ import Button from '../../components/Button.astro';
               <div class="tl">What should<br>Finable take over?</div>
             </div>
           </div>
-          <div style="height:clamp(230px,26vw,300px)"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: still life — plant · books · ceramics"><span>still life — plant · books · ceramics</span></div></div>
         </div>
         <div class="hero-note" style="position:absolute;top:-14px;left:20%;width:170px;text-align:center;pointer-events:none">
           <div class="cav" style="font-size:22px">What works, stays.</div>
@@ -45,20 +48,19 @@ import Button from '../../components/Button.astro';
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <!-- STEP 01 · FINANCE SCAN -->
+  <!-- 1 · SCAN -->
   <section class="wrap" style="padding-top:56px;padding-bottom:40px">
     <div class="scan-grid">
       <div>
-        <div class="lbl" style="margin-bottom:20px">Finance scan</div>
+        <div class="lbl" style="margin-bottom:20px">1 &nbsp;·&nbsp; We start with a scan</div>
         <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin-bottom:20px">First, we understand what's already there.</h2>
         <p style="font-size:16px;color:var(--body);text-wrap:pretty">We look at how finance is organised today: who does what, which systems you use, how the month-end close works and what management gets to see.</p>
       </div>
       <div class="scan-mid" style="display:flex;gap:16px;align-items:center">
         <div style="flex:1">
-          <div class="scan-ex">Example</div>
-          <div class="scan-cat" style="color:var(--navy)">Already working well</div>
           <div class="scan-row">
             <span class="mark" style="border:1.5px solid var(--navy)"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#1B3A5C" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3.5"/></svg></span>
             <div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Daily finance</div><div style="font-size:13px;color:var(--body)">Invoices, transactions and administration are running smoothly.</div></div>
@@ -67,14 +69,13 @@ import Button from '../../components/Button.astro';
             <span class="mark" style="border:1.5px solid var(--navy)"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#1B3A5C" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3.5"/></svg></span>
             <div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Month-end close</div><div style="font-size:13px;color:var(--body)">The process is clear and the numbers are reliable.</div></div>
           </div>
-          <div class="scan-cat" style="color:var(--terracotta);margin-top:14px">Needs more attention</div>
           <div class="scan-row">
             <span class="mark" style="border:1.5px solid var(--terracotta)"></span>
             <div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Controlling</div><div style="font-size:13px;color:var(--body)">There isn't enough time or expertise to properly review what is happening behind the numbers.</div></div>
           </div>
           <div class="scan-row">
             <span class="mark" style="border:1.5px solid var(--terracotta);color:var(--terracotta);font-weight:700;font-size:13px;font-family:'Inter',sans-serif">!</span>
-            <div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Management reporting</div><div style="font-size:13px;color:var(--body)">Management doesn't consistently get the information it needs.</div></div>
+            <div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Reporting &amp; insight</div><div style="font-size:13px;color:var(--body)">Management doesn't consistently get the information it needs.</div></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
@@ -82,25 +83,24 @@ import Button from '../../components/Button.astro';
           <div class="cav" style="font-size:20px;max-width:96px">This is where Finable can strengthen.</div>
         </div>
       </div>
-      <div style="height:clamp(220px,24vw,280px)"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: detail — notebook &amp; pen"><span>detail — notebook &amp; pen</span></div></div>
     </div>
     <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.6vw,46px);color:var(--navy);line-height:1.12;margin-top:clamp(44px,5vw,68px);max-width:960px;text-wrap:balance">What works, stays. We strengthen what's missing.</h3>
   </section>
 
-  <!-- STEP 02 · SCOPE (soft terracotta) -->
+  <!-- 2 · SCOPE (soft terracotta) -->
   <section style="background:var(--terracotta-soft);margin-top:40px">
     <div class="wrap" style="padding-top:72px;padding-bottom:72px">
       <div class="scope-flex" style="display:grid;grid-template-columns:minmax(0,0.72fr) minmax(0,1.28fr);gap:clamp(32px,4vw,64px);align-items:center">
         <div>
-          <div class="lbl" style="margin-bottom:20px">Scope</div>
+          <div class="lbl" style="margin-bottom:20px">2 &nbsp;·&nbsp; Together we define the scope</div>
           <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin-bottom:20px">From one part to almost your entire finance function.</h2>
           <p style="font-size:16px;color:var(--body);text-wrap:pretty">Finable doesn't have to take over everything at once. Together, we decide which responsibilities stay with your organisation and which become part of the Finable team's scope.</p>
         </div>
         <div style="position:relative">
           <div class="scope-labels" style="display:flex;justify-content:space-between;gap:16px;margin-bottom:2px">
-            <span class="lbl" style="color:var(--navy)">One part</span>
-            <span class="lbl" style="color:var(--navy)">More responsibility</span>
-            <span class="lbl" style="color:var(--navy)">Almost everything</span>
+            <span class="lbl" style="letter-spacing:0.14em;color:var(--navy)">One part</span>
+            <span class="lbl" style="letter-spacing:0.14em;color:var(--navy)">More responsibility</span>
+            <span class="lbl" style="letter-spacing:0.14em;color:var(--navy)">Almost everything</span>
           </div>
           <div class="scope-line"><i class="hollow" style="left:0"></i><i style="left:50%;transform:translateX(-50%)"></i><i style="right:0"></i></div>
           <div class="scope-split" style="display:flex;justify-content:space-between;gap:40px;margin-top:22px">
@@ -122,11 +122,11 @@ import Button from '../../components/Button.astro';
     </div>
   </section>
 
-  <!-- STEP 03 · SETUP -->
+  <!-- 3 · SETUP -->
   <section class="wrap" style="padding-top:80px;padding-bottom:72px">
     <div style="max-width:680px;margin-bottom:48px">
-      <div class="lbl" style="margin-bottom:20px">Setup</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin-bottom:18px">Take over carefully.<br>Then simply keep it running.</h2>
+      <div class="lbl" style="margin-bottom:20px">3 &nbsp;·&nbsp; We set up the collaboration</div>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin-bottom:18px">Take over carefully. Then simply keep it running.</h2>
       <p style="font-size:16px;color:var(--body);max-width:600px;text-wrap:pretty">Once the scope is clear, we set up the collaboration around your existing organisation. We agree on responsibilities, arrange access to the right systems and make sure the Finable team has what it needs to take over the work properly.</p>
     </div>
 
@@ -152,18 +152,16 @@ import Button from '../../components/Button.astro';
         <div class="tl-item"><div style="position:relative"><span class="tl-dot"></span><span class="tl-line"></span></div><div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:17px;color:var(--navy)">Handover</div><p style="font-size:14px;color:var(--body)">Controlled, step by step.</p></div></div>
         <div class="tl-item"><div style="position:relative"><span class="tl-dot"></span><span class="tl-line"></span></div><div><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:17px;color:var(--navy)">Operational</div><p style="font-size:14px;color:var(--body)">Then it simply runs.</p></div></div>
       </div>
-
-      <div style="height:clamp(280px,30vw,360px)"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: detail — workspace / laptop"><span>detail — workspace / laptop</span></div></div>
     </div>
   </section>
 
-  <!-- STEP 04 · EVERY MONTH (navy anchor) -->
+  <!-- 4 · EVERY MONTH (navy anchor) -->
   <section class="navy" style="background:var(--navy)">
     <div class="wrap" style="padding-top:84px;padding-bottom:84px">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:52px">
         <div style="max-width:640px">
-          <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">Every month</div>
-          <h2 style="font-size:clamp(30px,3.6vw,46px);color:var(--white);line-height:1.08">A clear rhythm.<br>Every month.</h2>
+          <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">4 &nbsp;·&nbsp; Then, every month</div>
+          <h2 style="font-size:clamp(30px,3.6vw,46px);color:var(--white);line-height:1.08">A clear rhythm. Every month.</h2>
         </div>
         <p style="font-size:15px;color:var(--on-dark-secondary);max-width:380px;text-wrap:pretty">Once everything is running, finance becomes a recurring operational rhythm. The team does the work, closes the month, checks the numbers and turns them into reporting you can actually use.</p>
       </div>
@@ -186,7 +184,7 @@ import Button from '../../components/Button.astro';
         <svg class="ca" width="24" height="14" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
         <div>
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
-          <div class="cn">Report</div><div class="cd">Management reporting</div>
+          <div class="cn">Report</div><div class="cd">Reporting &amp; insight</div>
         </div>
         <svg class="ca" width="24" height="14" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
         <div>
@@ -197,37 +195,29 @@ import Button from '../../components/Button.astro';
 
       <div style="height:1px;background:rgba(255,255,255,0.14);margin:56px 0 40px"></div>
 
-      <div class="navy-end">
+      <div class="navy-end" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,3.4vw,56px);align-items:end">
         <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,42px);color:var(--white);line-height:1.12">Finance keeps running. You know what's going on.</h3>
+        <div>
+          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:14px;text-wrap:pretty">No surprises, just insight. That's what we do it for.</p>
+          <a href="/en/book-a-call" style="color:var(--terracotta);font-weight:600;font-size:15px">Book a call &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- THE RESULT -->
-  <section class="wrap" style="padding-top:72px;padding-bottom:40px">
-    <div class="result" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:start">
-      <div>
-        <div class="lbl" style="margin-bottom:20px">The result</div>
-        <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.08">Less finance to manage.<br>More clarity on the business.</h2>
-      </div>
-      <p style="font-size:16px;color:var(--body);text-wrap:pretty;padding-top:6px">The operational work has a clear owner, the month closes in a structured way and management gets a consistent view of the numbers.</p>
-    </div>
-    <div class="rule" style="margin-top:52px"></div>
-  </section>
-
-  <!-- FAQ + TIM -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:40px">
+  <!-- FAQ + TIM (white) -->
+  <section style="background:var(--white);margin-top:8px">
+    <div class="wrap" style="padding-top:68px;padding-bottom:68px">
     <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
-        <div class="lbl" style="margin-bottom:18px">Frequently asked questions</div>
-        <h2 style="font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-bottom:28px">Before we get started.</h2>
+        <div class="lbl" style="margin-bottom:28px">Frequently asked questions</div>
         <details class="fin-faq"><summary><span class="fin-faq-q">Do you always take over our entire finance function?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>No. Finable can start with one part of your finance operation or take over almost the entire day-to-day function. We first look at what's already working and then define a scope that makes sense for your organisation.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">What happens to our existing bookkeeper or accountant?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>That depends on your current setup. If an existing partner still has a useful role, they don't automatically need to disappear. We define clearly who is responsible for what and make sure the different parts of finance work together.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">Do we need to switch systems?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Not necessarily. We start with the tools and processes you already use. What works can stay. If a change would materially improve the way finance operates, we'll discuss it during the setup.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">How does the handover work?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Once the scope is agreed, we map responsibilities, arrange access and collect the information the team needs. We then transfer the work in a structured way before it becomes part of the recurring Finable operation.</p></div></details>
         <div data-faq-hidden style="display:none">
           <details class="fin-faq"><summary><span class="fin-faq-q">Who do we contact when we have a question?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>You have a fixed point of contact who knows your organisation and keeps the collaboration connected. You don't have to work out which person in the finance team handles which part of the work.</p></div></details>
-          <details class="fin-faq"><summary><span class="fin-faq-q">Can the scope change later?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Yes. The scope can grow as your organisation changes. You might start with day-to-day finance and month-end close, for example, and add controlling or management reporting later when the need arises.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Can the scope change later?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Yes. The scope can grow as your organisation changes. You might start with day-to-day finance and month-end close, for example, and add controlling or reporting and insight later when the need arises.</p></div></details>
           <details class="fin-faq"><summary><span class="fin-faq-q">How quickly can Finable get started?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>That depends on the current setup and the scope being transferred. A relatively straightforward finance operation can naturally be handed over more easily than a complex setup involving several entities, systems or existing partners. We determine the approach after the initial scan.</p></div></details>
         </div>
         <div data-faq-morewrap style="margin-top:26px">
@@ -237,8 +227,8 @@ import Button from '../../components/Button.astro';
 
       <div style="border-left:1px solid var(--line);padding-left:clamp(28px,3vw,48px)">
         <div class="lbl" style="margin-bottom:20px">Personal introduction</div>
-        <div class="cta-p" style="grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
-          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="tim-row" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
+          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
           <div>
             <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px">Curious what this could look like for your organisation?</h2>
             <p style="font-size:15px;color:var(--body);text-wrap:pretty">Book 30 minutes with Tim to talk through how your finance is organised today and what Finable could take over.</p>
@@ -250,9 +240,10 @@ import Button from '../../components/Button.astro';
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <Footer marginTop="40px" />
+  <Footer />
 
 </div>
 </Layout>
@@ -263,12 +254,10 @@ import Button from '../../components/Button.astro';
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.15}
   .tri{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:start;text-align:center}
   .tri .ic{width:56px;height:56px;border-radius:999px;border:1.5px solid var(--terracotta);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-  .tri .tl{font-size:14px;font-weight:600;color:var(--navy);line-height:1.3}
+  .tri .tl{font-size:14px;font-weight:600;color:var(--white);line-height:1.3}
   .tri .ta{align-self:center;color:var(--terracotta)}
-  .scan-ex{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--body);border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin-bottom:14px}
-  .scan-cat{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:4px}
   .scan-row{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line)}
-  .scan-cat+.scan-row{border-top:none;padding-top:6px}
+  .scan-row:first-child{border-top:none;padding-top:0}
   .mark{width:24px;height:24px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
   .scope-line{position:relative;height:2px;background:var(--terracotta);margin:18px 0}
   .scope-line i{position:absolute;top:-6px;width:14px;height:14px;border-radius:999px;background:var(--terracotta);border:3px solid var(--white);box-shadow:0 0 0 1px var(--terracotta)}
@@ -294,9 +283,8 @@ import Button from '../../components/Button.astro';
   details.fin-faq[open] .fin-faq-ic::after{opacity:0}
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
   .fin-faq-a{max-width:760px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
-  .scan-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr) minmax(0,0.85fr);gap:clamp(28px,3.4vw,52px);align-items:center}
-  .work-grid{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,0.85fr) minmax(0,0.8fr);gap:clamp(28px,3.4vw,48px);align-items:start}
-  .cta-p{display:grid;grid-template-columns:clamp(150px,18vw,220px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center}
+  .scan-grid{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(28px,3.4vw,52px);align-items:center}
+  .work-grid{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1fr);gap:clamp(28px,3.4vw,48px);align-items:start}
   @media (max-width:1023px){
   .hero-right{grid-template-columns:1fr!important}
   .tri{grid-template-columns:1fr;gap:16px}
@@ -306,19 +294,16 @@ import Button from '../../components/Button.astro';
   .scan-grid{grid-template-columns:1fr;gap:32px}
   .scope-flex{grid-template-columns:1fr!important}
   .work-grid{grid-template-columns:1fr;gap:32px}
-  .result{grid-template-columns:1fr!important;gap:24px!important}
-  .result>p{padding-top:0!important}
   .cyc{grid-template-columns:1fr;gap:18px}
   .cyc .ca{transform:rotate(90deg);justify-self:start;margin:0}
-  .cta-p{grid-template-columns:1fr;gap:24px}
   }
-  /* Responsive: 1024 / 640 */
   @media (max-width:1023px){
     .hero{grid-template-columns:1fr!important;gap:40px!important}
     .navy-end{grid-template-columns:1fr!important}
     .endmod{grid-template-columns:1fr!important;gap:36px!important}
     .endmod>div:last-child{border-left:none!important;padding-left:0!important}
-    .cta-p>div:first-child{max-width:150px}
+    .tim-row{grid-template-columns:1fr!important}
+    .tim-row>div:first-child{max-width:150px}
   }
   @media (max-width:639px){
     .scope-labels{flex-direction:column;gap:14px;position:relative;padding-left:28px;margin-bottom:0!important}
@@ -338,7 +323,6 @@ import Button from '../../components/Button.astro';
     .cyc>div>svg{grid-row:1/3;margin-top:2px}
     .cyc .cn{margin:0 0 2px}
     .cyc .ca{margin:0 0 0 6px!important;justify-self:start}
-    .cta-p{grid-template-columns:1fr!important;gap:18px!important}
     .work-grid{gap:36px!important}
   }
 </style>

@@ -9,29 +9,29 @@ import Button from '../../components/Button.astro';
 
   <Header active="over" />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:40px;padding-bottom:60px">
+  <!-- HERO (navy) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:64px">
     <div class="over-hero" style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:22px">About Finable</div>
-        <h1 style="font-size:clamp(36px,5vw,60px);color:var(--navy);margin-bottom:26px;text-wrap:balance">One point of contact.<br>A complete finance team behind it.</h1>
-        <p style="font-size:clamp(17px,2vw,21px);color:var(--body);max-width:520px;text-wrap:pretty">Finable isn't an anonymous finance provider. You have one person who knows your business, backed by an experienced team that runs the day-to-day finance work.</p>
+        <h1 style="font-size:clamp(36px,5vw,60px);margin-bottom:26px;text-wrap:balance">One point of contact. <span class="em">A complete finance team behind it.</span></h1>
+        <p style="font-size:clamp(17px,2vw,21px);color:rgba(255,255,255,.78);max-width:520px;text-wrap:pretty">Finable isn't an anonymous finance provider. You have one person who knows your business, backed by an experienced team that runs the day-to-day finance work.</p>
       </div>
       <div style="position:relative;display:flex;justify-content:flex-end;align-items:center;min-height:320px">
-        <div class="ph" role="img" aria-label="Portrait of Tim Samsom (placeholder)" style="width:100%;height:clamp(280px,32vw,380px);border-radius:16px">
-          <span>portrait of Tim (landscape)</span>
-        </div>
+        <div class="over-photo" style="width:100%;height:clamp(280px,32vw,380px);border-radius:16px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         <div class="over-note" style="position:absolute;left:-16px;top:8px;max-width:180px">
-          <div style="font-family:'Caveat',cursive;font-size:24px;line-height:1.25;color:var(--navy)">You always know who to call.</div>
+          <div style="font-family:'Caveat',cursive;font-size:24px;line-height:1.25;color:var(--white)">You always know who to call.</div>
           <svg width="80" height="52" viewBox="0 0 80 52" fill="none" style="margin-top:2px" aria-hidden="true"><path d="M4 6C18 36 44 44 72 40" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M64 31l9 10-14 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
   <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
-  <!-- WHY FINABLE -->
+  <!-- 01 · WHY -->
   <section class="wrap" style="padding-top:56px;padding-bottom:56px">
     <div style="margin-bottom:36px">
       <div class="lbl" style="margin-bottom:18px">Why Finable</div>
@@ -45,7 +45,7 @@ import Button from '../../components/Button.astro';
         <p style="font-size:16px;color:var(--navy);font-weight:500">So you get the capability of a finance team without having to build one yourself.</p>
       </div>
       <div>
-        <div style="width:56px;height:3px;background:var(--terracotta);margin-bottom:24px;border-radius:999px"></div>
+        <div style="width:56px;height:3px;background:var(--terracotta);margin-bottom:24px;border-radius:2px"></div>
         <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.6vw,30px);line-height:1.2;color:var(--navy)">Tim Samsom</div>
         <div style="font-size:16px;color:var(--body);margin-top:6px">Founder, Finable</div>
       </div>
@@ -54,7 +54,7 @@ import Button from '../../components/Button.astro';
 
   <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
-  <!-- MY ROLE -->
+  <!-- 02 · MY ROLE -->
   <section class="wrap" style="padding-top:56px;padding-bottom:56px">
     <div style="margin-bottom:40px">
       <div class="lbl" style="margin-bottom:18px">My role</div>
@@ -82,14 +82,14 @@ import Button from '../../components/Button.astro';
   <section class="wrap" style="padding-top:56px;padding-bottom:56px">
     <div style="margin-bottom:36px">
       <div class="lbl" style="margin-bottom:18px">How we work</div>
-      <h2 class="fin-sechead">The right work,<br>with the right people.</h2>
+      <h2 class="fin-sechead">The right work, with the right people.</h2>
     </div>
     <div class="over-2col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:44px;align-items:center">
       <div>
         <p style="font-size:16px;color:var(--body)">I stay close to your organisation and keep the collaboration on track. The finance work itself is handled by the professionals in the team with the expertise it requires.</p>
       </div>
-      <div style="background:rgba(196,100,58,0.10);border-radius:12px;padding:34px 36px">
-        <div style="width:48px;height:3px;background:var(--terracotta);margin-bottom:20px;border-radius:999px"></div>
+      <div style="background:rgba(196,100,58,0.10);border-radius:16px;padding:34px 36px">
+        <div style="width:48px;height:3px;background:var(--terracotta);margin-bottom:20px;border-radius:2px"></div>
         <p style="font-family:'Playfair Display',serif;font-size:23px;color:var(--navy);line-height:1.35;margin-bottom:8px">Finance expertise where it belongs.</p>
         <p style="font-family:'Playfair Display',serif;font-size:23px;color:var(--terracotta);line-height:1.35">One point of contact for you.</p>
       </div>
@@ -98,38 +98,36 @@ import Button from '../../components/Button.astro';
 
   <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
-  <!-- THE TEAM BEHIND FINABLE -->
+  <!-- 04 · THE TEAM BEHIND FINABLE -->
   <section class="wrap" style="padding-top:72px;padding-bottom:72px">
     <div style="margin-bottom:28px">
       <div class="lbl" style="margin-bottom:18px">The team behind Finable</div>
-      <h2 class="fin-sechead" style="font-size:clamp(30px,4vw,46px)">The people who keep<br>your finance running.</h2>
+      <h2 class="fin-sechead" style="font-size:clamp(30px,4vw,46px)">The people who keep your finance running.</h2>
     </div>
     <p style="font-size:16px;color:var(--body);max-width:620px;margin:0 0 48px 0">A fixed team of finance professionals works behind the scenes to keep the operation running, close the month, control the numbers and prepare reporting.</p>
 
     <div class="over-team" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start">
-      <!-- left text -->
       <div>
-        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Behind Finable is a fixed finance team of more than twenty specialists. People who work every day on bookkeeping, month-end closes, controlling and reporting for growing and international organisations. You work with a fixed team that gets to know your company, processes and systems.</p>
-        <p style="font-size:16px;color:var(--body);margin-bottom:18px">The team consists of Chartered Accountants and other finance specialists, with more than thirty years of combined experience. Within the team there is a Big Four background (EY) and expertise in financial reporting, compliance, process automation and international finance.</p>
-        <p style="font-size:16px;color:var(--navy);font-weight:500">Substantive checks and reviews are part of the standard way of working.</p>
+        <p style="font-size:16px;color:var(--body);margin-bottom:18px">Behind Finable is a finance team with experience in bookkeeping, month-end close, controlling, reporting and international finance.</p>
+        <p style="font-size:16px;color:var(--body)">You work with a fixed team that gets to know your company, processes and systems. Within the team, the work is divided based on the expertise it requires.</p>
       </div>
-      <!-- right portraits -->
+      <!-- Two real portraits, two intentionally neutral slots until the photos are supplied -->
       <div class="fin-4port">
         <div>
-          <div role="img" aria-label="Portrait of Janesh Gupta (placeholder)" class="ph" style="aspect-ratio:3/4;border-radius:12px;height:auto"><span>portrait</span></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Janesh Gupta</div><div style="font-size:13px;color:var(--body)">CA · Lawyer</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
+          <div style="aspect-ratio:3/4;border-radius:12px;overflow:hidden"><img src="/images/janesh-gupta.webp" alt="Janesh Gupta" width="400" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Janesh Gupta</div><div style="font-size:13px;color:var(--body)">Chartered Accountant · Lawyer</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
         </div>
         <div>
-          <div role="img" aria-label="Portrait of Rishabh Goyal (placeholder)" class="ph" style="aspect-ratio:3/4;border-radius:12px;height:auto"><span>portrait</span></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Rishabh Goyal</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
+          <div role="img" aria-label="Portrait of Rishabh Goyal (to follow)" class="port-pending"><span>portrait to follow</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Rishabh Goyal</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
         </div>
         <div>
-          <div role="img" aria-label="Portrait of Himanshu Poddar (placeholder)" class="ph" style="aspect-ratio:3/4;border-radius:12px;height:auto"><span>portrait</span></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Himanshu Poddar</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">Tax &amp; Transfer Pricing</div></div>
+          <div role="img" aria-label="Portrait of Himanshu Poddar (to follow)" class="port-pending"><span>portrait to follow</span></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Himanshu Poddar</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">Tax &amp; Transfer Pricing</div></div>
         </div>
         <div>
-          <div role="img" aria-label="Portrait of Shilpa Goyal (placeholder)" class="ph" style="aspect-ratio:3/4;border-radius:12px;height:auto"><span>portrait</span></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Shilpa Goyal</div><div style="font-size:13px;color:var(--body)">CA</div><div style="font-size:13px;color:var(--terracotta)">US Startup Finance</div></div>
+          <div style="aspect-ratio:3/4;border-radius:12px;overflow:hidden"><img src="/images/shilpa-goyal.webp" alt="Shilpa Goyal" width="400" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Shilpa Goyal</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">US Startup Finance</div></div>
         </div>
       </div>
     </div>
@@ -137,41 +135,42 @@ import Button from '../../components/Button.astro';
     <!-- proof + reference row -->
     <div class="over-team" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start;margin-top:52px">
       <div class="over-stats" style="display:grid;grid-template-columns:repeat(3,1fr)">
+        <!-- VERIFY WITH JANESH BEFORE PRODUCTION: 20+ finance specialists -->
         <div style="padding-right:20px"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">20+</div><p class="fin-cap" style="margin-top:8px">Finance specialists in the fixed team</p></div>
         <div style="padding:0 20px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">CA</div><p class="fin-cap" style="margin-top:8px">Chartered Accountants in the senior team</p></div>
         <div style="padding-left:20px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--terracotta);line-height:1">EY</div><p class="fin-cap" style="margin-top:8px">Big Four background within the team leadership</p></div>
       </div>
+      <!-- reference strip: experience of the people behind Finable, not a client list -->
       <div>
-        <div class="lbl" style="border-top:1px solid var(--line);padding-top:14px;color:var(--body);margin-bottom:20px">The team's experience</div>
+        <div style="border-top:1px solid var(--line);padding-top:14px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--body);margin-bottom:20px">The team's experience</div>
         <div class="over-refs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:18px">
           <div style="padding-right:16px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Talogy Group</div><div style="font-size:12px;color:var(--body)">Global HR</div></div>
           <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Trodat</div><div style="font-size:12px;color:var(--body)">Austria</div></div>
-          <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">KidZink</div><div style="font-size:12px;color:var(--body)">Dubai</div></div>
+          <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">KidzInk</div><div style="font-size:12px;color:var(--body)">Dubai</div></div>
           <div style="padding-left:16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Occassion</div><div style="font-size:12px;color:var(--body)">United States</div></div>
         </div>
-        <p style="font-size:13px;color:var(--body)">Experience with international organisations, multiple entities, currencies and jurisdictions.</p>
-        <p style="font-size:13px;color:var(--body)">That experience sits in the same fixed team behind Finable.</p>
+        <p style="font-size:13px;color:var(--body)">Experience with international organisations, multiple entities, currencies and jurisdictions. That experience sits in the same fixed team behind Finable.</p>
       </div>
     </div>
-
-    <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.6vw,46px);color:var(--navy);line-height:1.12;margin-top:clamp(48px,5vw,72px);max-width:920px;text-wrap:balance">The scale of a team.<br>The attention of a dedicated finance partner.</h3>
   </section>
 
   <div class="wrap"><div style="height:1px;background:var(--line)"></div></div>
 
-  <!-- CTA -->
-  <section class="wrap" style="padding-top:24px;padding-bottom:80px">
-    <div class="over-cta" style="border-top:1px solid var(--line);padding-top:56px;display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center">
-      <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <!-- CTA (navy) -->
+  <section style="background:var(--navy)">
+    <div class="wrap" style="padding-top:64px;padding-bottom:72px">
+    <div class="over-cta" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center">
+      <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       <div>
         <div class="lbl" style="margin-bottom:16px">Personal introduction</div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.7vw,34px);color:var(--navy);line-height:1.1;margin-bottom:12px;text-wrap:balance">Curious whether Finable<br>could work for your organisation?</h2>
-        <p style="font-size:16px;color:var(--body);max-width:520px;text-wrap:pretty">Book 30 minutes with Tim to talk through how your finance is organised today and where Finable could take over or strengthen the function.</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.7vw,34px);color:var(--white);line-height:1.1;margin-bottom:12px;text-wrap:balance">Curious whether Finable could work for your organisation?</h2>
+        <p style="font-size:16px;color:var(--on-dark-secondary);max-width:520px;text-wrap:pretty">Book 30 minutes with Tim to talk through how your finance is organised today and where Finable could take over or strengthen the function.</p>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px">
         <Button href="/en/book-a-call">Book a call &rarr;</Button>
-        <div style="font-size:14px;color:var(--body);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Founder, Finable</div>
+        <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Founder, Finable</div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -186,6 +185,8 @@ import Button from '../../components/Button.astro';
   .fin-cap{font-size:15px;color:var(--body)}
   .fin-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
   .fin-4port{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .port-pending{aspect-ratio:3/4;border-radius:12px;background:#ECEAE6;display:flex;align-items:flex-end;justify-content:center}
+  .port-pending span{font-family:monospace;font-size:10px;color:#9A9186;margin-bottom:14px}
   @media (max-width:1023px){
   .fin-3col{grid-template-columns:1fr;gap:0}
   .fin-3col .fin-vsep{border-left:none;padding-left:0;padding-right:0}
@@ -193,7 +194,6 @@ import Button from '../../components/Button.astro';
   .over-cta{grid-template-columns:1fr!important;gap:24px!important}
   }
   @media (max-width:639px){ .fin-4port{grid-template-columns:1fr} }
-  /* Responsive: 1024 / 640 */
   @media (max-width:1023px){
     .over-hero{grid-template-columns:1fr!important}
     .over-hero>div:last-child{order:-1;min-height:0!important}
@@ -212,7 +212,7 @@ import Button from '../../components/Button.astro';
     .over-refs>div{padding:0!important;border-left:none!important}
     .over-hero{gap:28px!important}
     .over-hero>div:last-child{order:0}
-    .over-hero>div:last-child>div:first-child{height:240px!important}
+    .over-photo{height:240px!important}
     .fin-4port{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
     .fin-4port div[style*="margin-top:14px"]{margin-top:10px!important}
   }

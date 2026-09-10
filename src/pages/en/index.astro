@@ -4,35 +4,37 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Button from '../../components/Button.astro';
 ---
-<Layout title="Finable — a complete finance team for your growing company" description="Finable runs your day-to-day finance with a fixed team for one fixed monthly fee. From bookkeeping and month-end close to controlling and management reporting.">
+<Layout title="Finable — a complete finance team for your growing company" description="Finable runs your day-to-day finance with a fixed team for one fixed monthly fee. From day-to-day finance to controlling and reporting & insight.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:48px;padding-bottom:72px">
+  <!-- HERO (navy) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:64px;padding-bottom:80px">
     <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(36px,4.6vw,72px);align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:26px">Finance-as-a-Service</div>
-        <h1 style="font-size:clamp(38px,5vw,64px);line-height:1.04;margin-bottom:26px">Outsourced that<br>feels like in-house.</h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--body);max-width:500px;text-wrap:pretty">Finable runs your day-to-day finance for one fixed monthly fee. From bookkeeping and month-end close to controlling and management reporting.</p>
+        <h1 style="font-size:clamp(38px,5vw,60px);line-height:1.06;margin-bottom:26px">Outsourced that<br>feels like<br><span class="em hero-em" style="font-size:clamp(52px,7vw,88px);line-height:1;display:inline-block;margin-top:10px">in-house.</span></h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:500px;text-wrap:pretty">Finable runs your day-to-day finance for one fixed monthly fee. From bookkeeping and month-end close to controlling and reporting.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
           <Button href="/en/book-a-call">Book a call &rarr;</Button>
-          <a href="/en/how-it-works" style="font-weight:600;font-size:16px;color:var(--terracotta)">See how Finable works &rarr;</a>
+          <a href="/en/how-it-works" class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">See how Finable works &rarr;</a>
         </div>
       </div>
       <div style="position:relative">
         <div style="display:flex;align-items:stretch;gap:22px;margin-bottom:26px">
-          <div style="width:3px;background:var(--terracotta);border-radius:999px;flex-shrink:0"></div>
-          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--navy)">A complete finance team.</span><br><span style="color:var(--terracotta)">For less than the cost of one controller.</span></div>
+          <div style="width:3px;background:var(--terracotta);border-radius:2px;flex-shrink:0"></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--white)">A complete finance team.</span><br><span style="color:var(--terracotta)">For less than the cost of one controller.</span></div>
         </div>
-        <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--body)">Considering hiring a controller? </span><a href="/en/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Compare your options &rarr;</a></div>
-        <!-- Hero photo on desktop only (≥1024px); hidden below that width, not shrunk. -->
-        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Video call with the Finable team, spreadsheet on screen" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:1px solid var(--line)"></picture></div>
-        <div class="hero-note" style="position:absolute;right:-6px;bottom:-60px;width:230px;text-align:center;pointer-events:none">
+        <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--on-dark-secondary)">Considering hiring a controller? </span><a href="/en/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Compare your options &rarr;</a></div>
+        <!-- Image slot from the design (home-hero-still), filled with the supplied collaboration photo; desktop only (≥1024px). -->
+        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Video call with the Finable team, spreadsheet on screen" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
+        <div class="hero-note" style="position:absolute;right:-6px;bottom:-62px;width:230px;text-align:center;pointer-events:none">
           <div class="cav" style="font-size:22px">Just like they're part of your team.</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -62,98 +64,100 @@ import Button from '../../components/Button.astro';
     </div>
   </section>
 
-  <!-- YOUR FINANCE TEAM -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
-    <div class="rule" style="margin-bottom:52px"></div>
-    <div class="prop" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:start">
-      <div>
-        <div class="lbl" style="margin-bottom:20px">Your finance team</div>
-        <h2 style="font-size:clamp(28px,3.6vw,44px);line-height:1.08">Not one finance hire.<br>A complete finance team.</h2>
+  <!-- EXPERIENCE / LOGO PROOF — experience of the people behind Finable, not a client list. -->
+  <section style="background:var(--terracotta-tint)">
+    <div class="wrap" style="padding-top:40px;padding-bottom:40px">
+      <div style="margin-bottom:24px;text-align:center">
+        <div class="lbl">Experience of the team behind Finable</div>
       </div>
-      <div>
-        <p style="font-size:16px;color:var(--body);margin-bottom:16px;text-wrap:pretty">Growing companies need more than bookkeeping. But building an entire finance department in-house is expensive and takes time.</p>
-        <p style="font-size:16px;color:var(--body);text-wrap:pretty">Finable gives you the finance expertise you need in one team — without having to hire each role yourself.</p>
-        <div style="display:flex;align-items:center;gap:18px;margin-top:28px">
-          <span style="width:40px;height:2px;background:var(--terracotta);flex-shrink:0"></span>
-          <span style="font-size:15px;font-weight:600;color:var(--navy)">One team · One point of contact · One fixed monthly fee</span>
-        </div>
-        <div style="margin-top:26px"><a href="/en/finance-team" style="font-weight:600;font-size:15px;color:var(--terracotta)">Meet your finance team &rarr;</a></div>
+      <div class="logo-row" style="display:grid;grid-template-columns:repeat(6,1fr);gap:32px 44px;align-items:center;justify-items:center">
+        <img src="/images/logos/logo-trodat.jpg" alt="Trodat" width="456" height="124" style="max-height:38px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-kidzink.png" alt="Kidzink" width="330" height="83" style="max-height:28px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-talogy.png" alt="Talogy" width="185" height="52" style="max-height:28px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-cavallaro.jpg" alt="Cavallaro Napoli" width="800" height="300" style="max-height:32px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-trunkrs.svg" alt="Trunkrs" width="501" height="72" style="max-height:22px;max-width:120px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-the-good-roll.png" alt="The Good Roll" width="662" height="663" style="max-height:48px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
       </div>
     </div>
   </section>
 
-  <!-- NAVY ANCHOR · YOUR DAY-TO-DAY FINANCE -->
+  <!-- NAVY ANCHOR · THE FINANCE FUNCTION -->
   <section class="navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:80px;padding-bottom:80px">
-      <div style="max-width:640px;margin-bottom:48px">
-        <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">Your day-to-day finance</div>
-        <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--white);line-height:1.08">From daily finance<br>to management reporting.</h2>
+    <div class="wrap" style="padding-top:80px;padding-bottom:80px;text-align:center">
+      <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">The finance function</div>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--white);margin-bottom:44px">Finable runs your day-to-day finance.</h2>
+      <div class="flow" style="max-width:1000px;margin:0 auto;text-align:left">
+        <div class="fn">Daily finance</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Month-end close</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Controlling</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Reporting &amp; insight</div>
       </div>
-      <div class="flow">
-        <div><div class="fn">Daily finance</div><div class="fd">Invoices, bank transactions, accounts receivable and the day-to-day work that keeps finance running.</div></div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div><div class="fn">Month-end close</div><div class="fd">Reconciliations, checks and a structured monthly close.</div></div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div><div class="fn">Controlling</div><div class="fd">Margins, cash flow and variances — checked and understood.</div></div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div><div class="fn">Management reporting</div><div class="fd">Clear numbers, context and reporting for management.</div></div>
+      <div style="height:1px;background:rgba(255,255,255,0.14);max-width:1000px;margin:44px auto 30px"></div>
+      <div class="navy-trio" style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
+        <span>One team.</span>
+        <span style="color:var(--on-dark-tertiary)">·</span>
+        <span>One point of contact.</span>
+        <span style="color:var(--on-dark-tertiary)">·</span>
+        <span>One fixed monthly fee.</span>
       </div>
-      <div style="height:1px;background:rgba(255,255,255,0.14);margin:48px 0 32px"></div>
-      <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.3vw,28px);color:var(--white);max-width:760px;text-wrap:balance">The right expertise for every part. One team for the whole finance function.</p>
     </div>
   </section>
 
-  <!-- PART OF YOUR TEAM -->
+  <!-- WHAT FITS YOUR SITUATION -->
   <section class="wrap" style="padding-top:80px;padding-bottom:72px">
-    <div class="lbl" style="margin-bottom:20px">Part of your team</div>
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
-      <h2 style="font-size:clamp(26px,3.2vw,38px);line-height:1.1">Close enough to know<br>how your business works.</h2>
-      <p style="font-size:15px;color:var(--body);max-width:440px;text-wrap:pretty">You work with a fixed team that gets to know your company, your systems and the way you work. One point of contact keeps everything connected.</p>
+      <h2 style="font-size:clamp(26px,3.2vw,38px)">What fits your situation?</h2>
+      <a href="/en/finance-team" style="font-weight:600;font-size:15px;color:var(--terracotta)">See the full comparison &rarr;</a>
     </div>
-    <div class="cols4t" style="display:grid;grid-template-columns:repeat(3,1fr)">
+    <div class="cols4">
       <div>
-        <svg width="30" height="26" viewBox="0 0 40 34" fill="none" stroke="#C4643A" stroke-width="1.6" style="margin-bottom:18px" aria-hidden="true"><circle cx="20" cy="10" r="5"/><circle cx="8" cy="13" r="4"/><circle cx="32" cy="13" r="4"/><path d="M10 28c0-5 4.5-8 10-8s10 3 10 8"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">A fixed team</h3>
-        <p style="font-size:15px;color:var(--body)">People who get to know your organisation.</p>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">Hiring someone</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Close by, but dependent on one person.</p>
       </div>
       <div>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.6" style="margin-bottom:18px" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">The right expertise</h3>
-        <p style="font-size:15px;color:var(--body)">Different finance skills for different parts of the work.</p>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">An interim professional</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Quick capacity, but temporary.</p>
       </div>
       <div>
-        <svg width="28" height="28" viewBox="0 0 26 24" fill="none" stroke="#C4643A" stroke-width="1.6" style="margin-bottom:18px" aria-hidden="true"><path d="M3 4h13v9H8l-4 3z"/><path d="M11 14v3h9l3 3v-9h-4"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">One point of contact</h3>
-        <p style="font-size:15px;color:var(--body)">You always know who to turn to.</p>
+        <div class="lbl" style="color:var(--body);margin-bottom:12px">Extending your accountant</div>
+        <p style="font-size:15px;color:var(--body);line-height:1.6">Familiar, but not set up for day-to-day finance.</p>
+      </div>
+      <div>
+        <div class="lbl" style="margin-bottom:12px">Finable</div>
+        <p style="font-size:15px;color:var(--navy);line-height:1.6">A fixed team that takes over the finance function.</p>
       </div>
     </div>
   </section>
 
-  <!-- THE GOOD ROLL -->
+  <!-- CLIENT CASE -->
   <section class="wrap" style="padding-top:8px;padding-bottom:72px">
     <div class="rule" style="margin-bottom:52px"></div>
-    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.9fr);gap:clamp(28px,4vw,56px);align-items:center">
+    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.7fr) clamp(185px,19vw,245px);gap:clamp(24px,3.5vw,48px);align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <img src="/images/the-good-roll.webp" alt="The Good Roll logo" width="200" height="200" style="width:72px;height:72px;border-radius:999px;display:block">
+        <img src="/images/the-good-roll.png" alt="The Good Roll logo" width="662" height="663" style="width:72px;height:72px;border-radius:999px;display:block">
         <div>
-          <div class="lbl" style="color:var(--body);margin-bottom:6px">The Good Roll</div>
-          <div style="font-size:15px;color:var(--body)">Sander de Klerk, The Good Roll</div>
+          <div class="lbl" style="color:var(--body);margin-bottom:6px">Client case · The Good Roll</div>
+          <div style="font-size:15px;color:var(--body)">Sander de Klerk</div>
         </div>
       </div>
       <div>
         <p style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);color:var(--navy);line-height:1.2;margin-bottom:22px;text-wrap:balance">From starting small to outsourcing almost the entire <span style="color:var(--terracotta)">day-to-day finance function.</span></p>
         <p style="font-size:16px;color:var(--body);max-width:640px;text-wrap:pretty">Sander was initially hesitant to outsource his finance. So he started small: just the bookkeeping. As trust grew, so did the scope. Today, the Finable team handles almost all of The Good Roll's day-to-day finance.</p>
       </div>
+      <div class="case-img" style="aspect-ratio:1200/711;border-radius:12px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk, The Good Roll" width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
     </div>
     <div class="rule" style="margin-top:52px"></div>
   </section>
 
   <!-- BUILT FOR GROWING COMPANIES -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
-    <div class="lbl" style="margin-bottom:20px">Built for growing companies</div>
+  <section style="background:var(--terracotta-tint)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:56px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
-      <h2 style="font-size:clamp(26px,3.2vw,38px);line-height:1.1">Finance that keeps up<br>as you grow.</h2>
-      <div style="font-size:15px;color:var(--body);max-width:440px">Start with what you need today. Expand the scope when your organisation needs more.</div>
+      <h2 style="font-size:clamp(26px,3.2vw,38px)">Finance that keeps up as you grow.</h2>
+      <div style="font-size:15px;color:var(--body)">Start with what you need today. Expand the scope when your organisation needs more.</div>
     </div>
     <div class="cols4t" style="display:grid;grid-template-columns:repeat(4,1fr)">
       <div>
@@ -173,37 +177,38 @@ import Button from '../../components/Button.astro';
         <p style="font-size:15px;color:var(--body);line-height:1.6">A clear scope and monthly fee based on the finance work your organisation needs.</p>
       </div>
     </div>
-    <div style="margin-top:36px"><a href="/en/how-it-works" style="font-weight:600;font-size:15px;color:var(--terracotta)">See how Finable works &rarr;</a></div>
+    </div>
   </section>
 
-  <!-- FAQ + TIM -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
-    <div class="rule" style="margin-bottom:44px"></div>
-    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(40px,5vw,72px);align-items:start">
+  <!-- FAQ + TIM (navy) -->
+  <section class="faq-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:68px;padding-bottom:68px">
+    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
-        <div class="lbl" style="margin-bottom:18px">Frequently asked questions</div>
-        <h2 style="font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-bottom:28px">A few things you may<br>want to know.</h2>
+        <div class="lbl" style="margin-bottom:28px">Frequently asked questions</div>
         <div style="max-width:900px">
           <details class="fin-faq"><summary><span class="fin-faq-q">What kind of companies is Finable for?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Finable is built for growing companies that need more from finance than bookkeeping alone, but don't necessarily want to build a complete finance department in-house. We typically work with organisations where finance has become too important or complex to keep organising around one person or an external bookkeeper.</p></div></details>
-          <details class="fin-faq"><summary><span class="fin-faq-q">What finance work can Finable take over?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>From day-to-day finance and month-end close to controlling and management reporting. The exact scope depends on your organisation. Finable can take over one part of the finance function or run almost all of your day-to-day finance.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">What finance work can Finable take over?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>From day-to-day finance and month-end close to controlling and reporting and insight. The exact scope depends on your organisation. Finable can take over one part of the finance function or run almost all of your day-to-day finance.</p></div></details>
           <details class="fin-faq"><summary><span class="fin-faq-q">Does Finable replace our bookkeeper or accountant?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>It depends on your current setup. We start by looking at what is already working. If your accountant or another finance partner still has a useful role, they can remain part of the setup. Finable focuses on making sure the operational finance function works as a whole.</p></div></details>
           <details class="fin-faq"><summary><span class="fin-faq-q">How is the monthly fee determined?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>There is no standard package based simply on company size or revenue. We look at the work involved, the scope you want Finable to take over and the complexity of your finance operation. Based on that, Finable provides an indication for a fixed monthly fee.</p></div></details>
         </div>
+        <div style="margin-top:26px"><a href="/en/how-it-works" style="font-weight:600;font-size:15px;color:var(--terracotta)">See all frequently asked questions &rarr;</a></div>
       </div>
-      <div style="border-left:1px solid var(--line);padding-left:clamp(28px,3vw,48px)">
+      <div class="endmod-cta" style="border-left:1px solid var(--on-dark-line);padding-left:clamp(28px,3vw,48px)">
         <div class="lbl" style="margin-bottom:20px">Personal introduction</div>
         <div class="tim-row" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
-          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
           <div>
-            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px">Curious whether Finable could work for your company?</h2>
-            <p style="font-size:15px;color:var(--body);text-wrap:pretty">Book 30 minutes with Tim to talk through how your finance is organised today and where Finable could take over or strengthen the function.</p>
+            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px;color:var(--white)">Curious whether Finable could work for your company?</h2>
+            <p style="font-size:15px;color:var(--on-dark-secondary);text-wrap:pretty">Book 30 minutes with Tim to talk through how your finance is organised today and where Finable could take over or strengthen the function.</p>
           </div>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px">
           <Button href="/en/book-a-call">Book a call &rarr;</Button>
-          <div style="font-size:14px;color:var(--body);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Founder, Finable</div>
+          <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Founder, Finable</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -215,10 +220,10 @@ import Button from '../../components/Button.astro';
 <style is:global>
   a{transition:opacity .15s}
   a:hover{opacity:.72}
+  .on-dark-link:hover{color:var(--terracotta);opacity:1}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.15}
-  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:20px;align-items:start}
-  .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white);margin-bottom:8px}
-  .flow .fd{font-size:14px;color:var(--on-dark-secondary);line-height:1.5}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
+  .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
   .flow .fa{align-self:center;color:var(--terracotta)}
   .cols4{display:grid;grid-template-columns:repeat(4,1fr)}
   .cols4>div{padding:0 30px;border-left:1px solid var(--line)}
@@ -237,32 +242,33 @@ import Button from '../../components/Button.astro';
   details.fin-faq[open] .fin-faq-ic::after{opacity:0}
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
   .fin-faq-a{max-width:720px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
-  .cta-p{display:grid;grid-template-columns:clamp(150px,18vw,220px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center}
   @media (max-width:1023px){
   .hero{grid-template-columns:1fr!important;gap:40px!important}
   .hero-note{display:none!important}
-  .prop{grid-template-columns:1fr!important;gap:28px!important}
   .flow{grid-template-columns:1fr;gap:16px}
   .flow .fa{transform:rotate(90deg);justify-self:start}
   .cols4,.cols4t{grid-template-columns:1fr 1fr;gap:26px 0}
   .cols4>div,.cols4t>div{padding:22px 0;border-left:none;border-top:1px solid var(--line)}
   .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:none}
   .case{grid-template-columns:1fr!important;gap:28px!important}
-  .cta-p{grid-template-columns:1fr;gap:24px}
+  .case-img{max-width:420px}
+  .logo-row{grid-template-columns:repeat(3,1fr)!important;gap:28px 32px!important}
   .endmod{grid-template-columns:1fr!important;gap:36px!important}
-  .endmod>div:last-child{border-left:none!important;padding-left:0!important}
+  .endmod>div:last-child{border-left:none!important;padding-left:0!important;border-top:1px solid var(--on-dark-line);padding-top:36px!important}
   }
-  /* Responsive: 1024 / 640 */
   @media (max-width:1023px){
     .hero-img{display:none}
     .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
   }
-  /* Mobile (≤639) */
   @media (max-width:639px){
+    .hero-em{font-size:clamp(44px,13vw,56px)!important}
+    .navy-trio{flex-direction:column;gap:6px!important}
+    .navy-trio>span[style]{display:none}
     .flow{gap:12px}
     .cols4>div,.cols4t>div{padding:18px 0!important}
+    .logo-row{grid-template-columns:repeat(2,1fr)!important;gap:24px 28px!important}
   }
   @media (max-width:639px){
     .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}

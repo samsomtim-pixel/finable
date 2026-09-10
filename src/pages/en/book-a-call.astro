@@ -10,36 +10,37 @@ import Footer from '../../components/Footer.astro';
 
   <Header />
 
-  <section class="wrap" style="padding-top:44px;padding-bottom:80px">
+  <!-- The whole page sits on navy; the booking card is white. -->
+  <section class="talk-navy hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
     <div class="layout">
 
       <!-- LEFT -->
-      <div>
+      <div class="talk-left">
         <div class="lbl" style="margin-bottom:20px">Book a call</div>
-        <h1 style="font-size:clamp(32px,4.4vw,52px);margin-bottom:22px;text-wrap:balance">Let's look at how your<br>finance works today.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--body);max-width:500px;margin-bottom:44px;text-wrap:pretty">In 30 minutes, we'll talk through how your finance is organised today, where things get stuck and what Finable could take over. No lengthy intake. Just a conversation to see if there's a fit.</p>
+        <h1 style="font-size:clamp(32px,4.4vw,52px);margin-bottom:22px;text-wrap:balance">Let's look at how your finance <span class="em">works today.</span></h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);max-width:500px;margin-bottom:44px;text-wrap:pretty">In 30 minutes, we'll talk through how your finance is organised today, where things get stuck and what Finable could take over. No lengthy intake. Just a conversation to see if there's a fit.</p>
 
         <div style="position:relative">
           <div style="position:absolute;left:9px;top:12px;bottom:60px;width:1px;background:var(--line)"></div>
           <div style="display:flex;flex-direction:column;gap:26px">
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">01</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">Where you are today</div><div style="font-size:15px;color:var(--body)">How finance is currently organised and where things are getting stuck.</div></div>
+              <span class="stepnum">01</span>
+              <div><div class="st">Where you are today</div><div class="sd">How finance is currently organised and where things are getting stuck.</div></div>
             </div>
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">02</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">What Finable could take over</div><div style="font-size:15px;color:var(--body)">From one part of finance to almost the entire day-to-day function.</div></div>
+              <span class="stepnum">02</span>
+              <div><div class="st">What Finable could take over</div><div class="sd">From one part of finance to almost the entire day-to-day function.</div></div>
             </div>
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">03</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">Whether it's a good fit</div><div style="font-size:15px;color:var(--body)">A straightforward view of what makes sense for your organisation — even if Finable isn't the answer.</div></div>
+              <span class="stepnum">03</span>
+              <div><div class="st">Whether it's a good fit</div><div class="sd">A straightforward view of what makes sense for your organisation — even if Finable isn't the answer.</div></div>
             </div>
           </div>
         </div>
 
-        <div style="border-top:1px solid var(--line);margin-top:36px;padding-top:26px;position:relative">
-          <div class="lbl" style="margin-bottom:10px">Prefer to write first?</div>
-          <h3 style="font-size:20px;color:var(--navy);margin-bottom:10px">Rather start with an email?</h3>
+        <div style="border-top:1px solid var(--on-dark-line);margin-top:36px;padding-top:26px;position:relative">
+          <div style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:8px">Prefer to write first?</div>
           <a href="mailto:tim@finable.nl" style="display:inline-flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:21px;color:var(--terracotta)">
             <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M3 6l8 6 8-6"/></svg>
             tim@finable.nl &rarr;
@@ -50,27 +51,25 @@ import Footer from '../../components/Footer.astro';
         </div>
       </div>
 
-      <!-- RIGHT: BOOKING MODULE (provider disabled → email fallback only) -->
-      <div style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(24px,3vw,34px)">
+      <!-- RIGHT: BOOKING MODULE (white on navy; provider disabled → email fallback only) -->
+      <div class="book-card" style="background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(24px,3vw,34px)">
         <div class="book-split" style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:26px">
           <div>
             <div class="lbl" style="margin-bottom:12px">You'll speak with Tim</div>
-            <h2 style="font-size:clamp(22px,2.4vw,28px);line-height:1.14;margin-bottom:8px">Book your call with Tim.</h2>
-            <div style="font-size:15px;color:var(--body)"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span> · Founder, Finable</div>
-            <div style="font-size:15px;color:var(--body);margin-top:2px">30 minutes · Online</div>
+            <h2 style="font-size:clamp(22px,2.4vw,28px);line-height:1.14;margin-bottom:8px;color:var(--navy)">Book your call with Tim.</h2>
+            <div style="font-size:15px;color:var(--body)">30 minutes · Online</div>
           </div>
-          <div style="width:84px;height:84px;border-radius:12px;overflow:hidden;flex-shrink:0"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="width:84px;height:84px;border-radius:14px;overflow:hidden;flex-shrink:0"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         </div>
 
         <div style="height:1px;background:var(--line);margin-bottom:24px"></div>
 
-        <p data-booking-notice style="font-size:15px;color:var(--body);text-wrap:pretty;margin-bottom:18px">Online booking isn't available yet. Email Tim directly and we'll find a time that works.</p>
-        <a href="mailto:tim@finable.nl" style="display:inline-flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:21px;color:var(--terracotta)">
-          <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M3 6l8 6 8-6"/></svg>
-          tim@finable.nl &rarr;
-        </a>
+        <p data-booking-notice style="font-size:15px;color:var(--body);text-wrap:pretty">Online booking isn't available yet. Email <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> directly and we'll find a time that works.</p>
       </div>
 
+    </div>
+
+    <div class="talk-foot" style="max-width:1240px;margin-top:28px;font-size:15px;color:var(--on-dark-secondary)">Prefer an estimate first? <a href="/en/estimate" style="font-weight:600">Get an estimate &rarr;</a></div>
     </div>
   </section>
 
@@ -86,11 +85,9 @@ import Footer from '../../components/Footer.astro';
   h1,h2,h3{line-height:1.12}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.1}
   .layout{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);gap:clamp(40px,4.6vw,64px);align-items:start}
-  @media (max-width:1023px){
-  .layout{grid-template-columns:1fr;gap:40px}
-  .book-split{grid-template-columns:1fr!important}
-  }
-  /* Responsive: 1024 / 640 */
+  .stepnum{position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px}
+  .talk-left .st{font-family:'Playfair Display',serif;font-weight:600;color:var(--white);font-size:19px;margin-bottom:3px}
+  .talk-left .sd{font-size:15px;color:var(--on-dark-secondary)}
   @media (max-width:1023px){
     .layout{grid-template-columns:1fr!important;gap:40px!important}
     .book-split{grid-template-columns:1fr!important}
