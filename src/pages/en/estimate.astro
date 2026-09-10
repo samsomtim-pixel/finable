@@ -10,31 +10,34 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 
   <Header />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:36px;padding-bottom:40px">
+  <!-- HERO (navy) -->
+  <section class="hero-navy ind-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:52px;padding-bottom:52px">
     <div class="ind-hero" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.9fr);gap:48px;align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:20px">Get an estimate</div>
-        <h1 style="font-size:clamp(34px,4.6vw,54px);color:var(--navy);margin-bottom:22px;text-wrap:balance">What would Finable cost for your organisation?</h1>
-        <p style="font-size:clamp(16px,1.9vw,19px);color:var(--body);max-width:500px;text-wrap:pretty">Answer a few questions about your organisation and finance setup. The Finable team will review your situation and send you an initial estimate of the monthly cost within two business days.</p>
+        <h1 style="font-size:clamp(34px,4.6vw,54px);margin-bottom:22px;text-wrap:balance">What would Finable cost for your organisation?</h1>
+        <p style="font-size:clamp(16px,1.9vw,19px);color:rgba(255,255,255,.78);max-width:500px;margin-bottom:22px;text-wrap:pretty">Answer a few questions about your organisation and finance setup. The Finable team will review your situation and send you an initial estimate of the monthly cost within two business days.</p>
+        <div style="display:flex;align-items:center;gap:14px"><span style="width:32px;height:2px;background:var(--terracotta);flex-shrink:0"></span><span style="font-size:14px;color:rgba(255,255,255,.78)">No standard package. No price based on revenue.</span></div>
       </div>
-      <!-- STEP INDICATOR -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:0">
+      <!-- STEP INDICATOR (kleuren via [data-active] in CSS) -->
+      <div class="ind-steps" style="display:flex;align-items:center;justify-content:center;gap:0">
         <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
           <div class="stepdot" data-stepdot="1" data-active="1">01</div>
           <div class="steplabel" data-steplabel="1" data-active="1">Organisation</div>
         </div>
-        <div data-stepline="1" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div class="stepline" data-stepline="1"></div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
           <div class="stepdot" data-stepdot="2" data-active="0">02</div>
           <div class="steplabel" data-steplabel="2" data-active="0">Finance</div>
         </div>
-        <div data-stepline="2" style="width:clamp(30px,5vw,70px);height:1.5px;background:var(--line);margin:0 6px 26px"></div>
+        <div class="stepline" data-stepline="2"></div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
           <div class="stepdot" data-stepdot="3" data-active="0">03</div>
           <div class="steplabel" data-steplabel="3" data-active="0">Estimate</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -47,23 +50,22 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
         <div style="min-height:200px">
           <div data-leftstep="1">
             <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">01</div>
-            <div class="lbl" style="margin-bottom:12px">Organisation</div>
-            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy)">First, tell us a little<br>about your organisation.</h2>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Your organisation.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">First, tell us a little about your organisation. Its size and structure help us estimate how much finance work sits behind it.</p>
           </div>
           <div data-leftstep="2" style="display:none">
             <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">02</div>
-            <div class="lbl" style="margin-bottom:12px">Finance</div>
-            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy)">How is finance organised today?</h2>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Your finance.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">We don't have to take over everything. Tell us how finance is organised today and which parts Finable might take over.</p>
           </div>
           <div data-leftstep="3" style="display:none">
             <div style="font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:var(--terracotta);line-height:.9;margin-bottom:16px">03</div>
-            <div class="lbl" style="margin-bottom:12px">Your estimate</div>
-            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Enough to make<br>an initial assessment.</h2>
-            <p style="font-size:16px;color:var(--body);max-width:340px">Leave your details below and the Finable team will review your answers and send you a personalised estimate within two business days.</p>
+            <h2 style="font-size:clamp(24px,3vw,32px);color:var(--navy);margin-bottom:14px">Your estimate.</h2>
+            <p style="font-size:16px;color:var(--body);max-width:340px">Enough to make an initial assessment. Leave your details below and the Finable team will review your answers and send you a personalised estimate within two business days.</p>
           </div>
         </div>
 
-        <!-- personal review module -->
+        <!-- personal module -->
         <div style="background:var(--terracotta-soft);border-radius:12px;padding:28px 30px;margin:28px 0;max-width:360px">
           <div class="lbl" style="margin-bottom:14px">Personally reviewed</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:12px">Reviewed by the Finable team.</h3>
@@ -78,7 +80,8 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
         <!-- STEP 1 -->
         <div data-formstep="1">
           <div style="margin-bottom:28px">
-            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">How many people work at your company?</h3>
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">How many people work at your company?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Choose the number of employees.</p>
             <div class="fin-grid4">
               <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="1–10"><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="14" cy="10" r="4.5"/><path d="M6 23c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg>1–10</button>
               <button type="button" class="fin-tile" data-tile data-group="grootte" data-value="10–25"><svg width="30" height="26" viewBox="0 0 34 28" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="17" cy="9" r="4"/><circle cx="7" cy="12" r="3"/><path d="M9 23c0-4 3.5-6.5 8-6.5s8 2.5 8 6.5"/></svg>10–25</button>
@@ -87,7 +90,8 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
             </div>
           </div>
           <div style="margin-bottom:28px">
-            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">How many legal entities do you have?</h3>
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">How many legal entities do you have?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Think of companies, countries or divisions.</p>
             <div class="fin-grid3">
               <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="1">1</button>
               <button type="button" class="fin-tile" data-tile data-group="entiteiten" data-value="2–3">2–3</button>
@@ -95,11 +99,26 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
             </div>
           </div>
           <div style="margin-bottom:28px">
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px"><label for="fin-branche" style="font:inherit;color:inherit">Which industry is your organisation in?</label></h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">It gives us an early picture of your environment.</p>
+            <select id="fin-branche" name="branche" data-branche class="fin-select">
+              <option value="">Choose your industry…</option>
+              <option>Professional services</option>
+              <option>SaaS / Technology</option>
+              <option>E-commerce / Retail</option>
+              <option>Manufacturing</option>
+              <option>Financial services</option>
+              <option>Healthcare</option>
+              <option>Hospitality</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div style="margin-bottom:28px">
             <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Where does your company operate?</h3>
             <p style="font-size:14px;color:var(--body);margin-bottom:16px">Select all that apply.</p>
             <div class="fin-grid3">
-              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Netherlands" style="flex-direction:row;gap:10px">Netherlands</button>
-              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Europe" style="flex-direction:row;gap:10px">Europe</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Netherlands" style="flex-direction:row;gap:10px"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#AE1C28"/><rect y="5.3" width="22" height="5.3" fill="#fff"/><rect y="10.6" width="22" height="5.3" fill="#21468B"/></svg>Netherlands</button>
+              <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="Europe" style="flex-direction:row;gap:10px"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#164194"/><g fill="#FFD200"><circle cx="11" cy="4" r="0.9"/><circle cx="11" cy="12" r="0.9"/><circle cx="7" cy="8" r="0.9"/><circle cx="15" cy="8" r="0.9"/><circle cx="8.5" cy="5" r="0.9"/><circle cx="13.5" cy="5" r="0.9"/><circle cx="8.5" cy="11" r="0.9"/><circle cx="13.5" cy="11" r="0.9"/></g></svg>Europe</button>
               <button type="button" class="fin-tile" data-tile data-group="landen" data-multi="1" data-value="International" style="flex-direction:row;gap:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>International</button>
             </div>
           </div>
@@ -118,7 +137,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
               <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Day-to-day finance"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Day-to-day finance</span><span style="font-size:13px;color:var(--body)">Invoices · bank · receivables</span></span></button>
               <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Month-end close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.6 3.1 3 7 3s7-1.4 7-3V6M5 12v6c0 1.6 3.1 3 7 3s7-1.4 7-3v-6"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Month-end close</span><span style="font-size:13px;color:var(--body)">Reconciliations · VAT · month-end file</span></span></button>
               <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Controlling"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Controlling</span><span style="font-size:13px;color:var(--body)">Margins · cash · variances</span></span></button>
-              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Management reporting"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 12V4M12 12l6 3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Management reporting</span><span style="font-size:13px;color:var(--body)">Numbers · context · discussion</span></span></button>
+              <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Reporting & insight"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 12V4M12 12l6 3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Reporting &amp; insight</span><span style="font-size:13px;color:var(--body)">Numbers · context · discussion</span></span></button>
               <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="Payroll"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h3M14 14h3"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">Payroll</span><span style="font-size:13px;color:var(--body)">Payroll administration</span></span></button>
               <button type="button" class="fin-card-opt" data-tile data-group="hulp" data-multi="1" data-value="I'm not sure yet"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5F6B76" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="18" r="0.6" fill="#5F6B76"/></svg><span><span style="display:block;font-weight:600;font-size:16px;color:var(--navy)">I'm not sure yet</span><span style="font-size:13px;color:var(--body)">Happy to work it out together</span></span></button>
             </div>
@@ -133,7 +152,8 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
             </div>
           </div>
           <div style="margin-bottom:28px">
-            <h3 style="font-size:21px;color:var(--navy);margin-bottom:16px">Roughly how many invoices do you process each month?</h3>
+            <h3 style="font-size:21px;color:var(--navy);margin-bottom:4px">Roughly how many invoices do you process each month?</h3>
+            <p style="font-size:14px;color:var(--body);margin-bottom:16px">Purchase and sales combined.</p>
             <div class="fin-grid4">
               <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="Up to 100">Up to 100</button>
               <button type="button" class="fin-tile" data-tile data-group="facturen" data-value="100–300">100–300</button>
@@ -193,8 +213,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
           <div style="width:56px;height:56px;border-radius:999px;background:var(--terracotta);display:flex;align-items:center;justify-content:center;margin-bottom:26px">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true"><path d="M5 13l5 5L21 7"/></svg>
           </div>
-          <div class="lbl" style="margin-bottom:14px">Thank you</div>
-          <h2 style="font-size:clamp(26px,3vw,34px);color:var(--navy);margin-bottom:28px;text-wrap:balance">Thanks. We've got<br>what we need.</h2>
+          <h2 style="font-size:clamp(26px,3vw,34px);color:var(--navy);margin-bottom:28px;text-wrap:balance">Thanks. We've got what we need.</h2>
           <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:32px">
             <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">01</span><span style="font-size:16px;color:var(--body)">The Finable team reviews your request.</span></div>
             <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--terracotta);flex-shrink:0">02</span><span style="font-size:16px;color:var(--body)">If anything is missing, we'll get in touch.</span></div>
@@ -211,10 +230,8 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
   <section class="wrap" style="padding-top:8px;padding-bottom:80px">
     <div style="height:1px;background:var(--line);margin-bottom:44px"></div>
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px">
-      <div>
-        <div class="lbl" style="margin-bottom:14px">Frequently asked questions</div>
-        <h2 style="font-size:clamp(26px,3.4vw,38px);font-family:'Playfair Display',Georgia,serif;color:var(--navy)">About your estimate.</h2>
-      </div>
+      <h2 style="font-size:clamp(26px,3.4vw,38px);font-family:'Playfair Display',Georgia,serif;color:var(--navy)">Frequently asked questions</h2>
+      <div style="font-size:15px;color:var(--body)">How the fee and your estimate come about.</div>
     </div>
     <div style="max-width:860px">
       <details class="fin-faq"><summary><span class="fin-faq-q">How is the monthly fee determined?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>There is no standard package based simply on company size or revenue. We look at the scope of work, the volume involved and the complexity of your finance operation. Based on that, the Finable team prepares an initial estimate for a fixed monthly fee.</p></div></details>
@@ -234,11 +251,12 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 <style is:global>
   body{line-height:1.6}
   h1,h2,h3{line-height:1.12}
-  /* Step indicator on white: colours via [data-active], set by scripts/indicatie-form.ts */
-  .stepdot{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid var(--line);background:transparent;color:var(--body)}
+  /* Step indicator on navy: colours via [data-active], set by scripts/indicatie-form.ts */
+  .stepdot{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;border:1.5px solid rgba(255,255,255,0.3);background:transparent;color:rgba(255,255,255,0.6)}
   .stepdot[data-active="1"]{border-color:var(--terracotta);background:var(--terracotta);color:var(--white)}
-  .steplabel{font-size:14px;font-weight:600;color:var(--body)}
+  .steplabel{font-size:14px;font-weight:600;color:rgba(255,255,255,0.6)}
   .steplabel[data-active="1"]{color:var(--terracotta)}
+  .stepline{width:clamp(30px,5vw,70px);height:1.5px;background:rgba(255,255,255,0.2);margin:0 6px 26px}
   .fin-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 12px;background:var(--white);border:1px solid var(--line);border-radius:12px;font-size:15px;font-weight:500;color:var(--navy);cursor:pointer;text-align:center;transition:border-color .15s,background .15s;font-family:inherit}
   .fin-tile:hover{border-color:var(--line)}
   .fin-tile[data-active="1"]{border-color:var(--terracotta);background:rgba(196,100,58,0.10);color:var(--terracotta)}
@@ -250,6 +268,8 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
   .fin-input{width:100%;padding:13px 16px;background:var(--white);border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy)}
   .fin-input::placeholder{color:var(--body)}
   .fin-input:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
+  .fin-select{width:100%;max-width:420px;font-family:'Inter',system-ui,sans-serif;font-size:15px;color:var(--navy);background:var(--white);border:1px solid var(--line);border-radius:10px;padding:13px 16px}
+  .fin-select:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
   .fin-tile:focus-visible,.fin-card-opt:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
   .fin-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .fin-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -278,20 +298,24 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
   .fin-faq-a p:last-child{margin-bottom:0}
   .btn-prev{min-height:44px;padding:0 4px}
   .btn[disabled]{opacity:.6;cursor:progress;filter:none}
-  /* Responsive: 1024 / 640 */
+  /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
     .ind-hero{grid-template-columns:1fr!important;gap:32px!important}
     .ind-hero>div:last-child{justify-content:flex-start!important}
   }
   @media (max-width:639px){
     .fin-grid2{grid-template-columns:1fr}
+    /* Volgorde: stapintro → formulier → 'Persoonlijk bekeken' */
     .fin-layout{gap:28px!important}
     .fin-left{display:contents}
     .fin-left>div:first-child{min-height:0!important}
     .fin-layout>form{order:1;padding:24px!important}
     .fin-left>div:last-child{order:2;max-width:none!important;margin:0!important}
+    /* Korte numerieke keuzes mogen naast elkaar; landen onder elkaar */
     .fin-grid3:not(:has([data-group="landen"])){grid-template-columns:repeat(3,1fr)}
     .fin-tile{min-height:52px}
+    .fin-select{max-width:none}
+    /* Actie-rij: knop volle breedte, 'Vorige' eronder */
     .ind-actions{flex-wrap:wrap}
     .ind-actions>div{width:100%;flex-direction:column-reverse;align-items:stretch;gap:6px}
     .btn-prev{width:100%}

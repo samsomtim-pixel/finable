@@ -9,25 +9,20 @@ import Button from '../../components/Button.astro';
 
   <Header />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:48px;padding-bottom:72px">
-    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:clamp(36px,4.6vw,68px);align-items:center">
+  <!-- HERO (navy, single column: typography is the visual) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
+    <div class="hero" style="display:grid;grid-template-columns:1fr;gap:clamp(36px,4.6vw,68px);align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:26px">Considering a finance hire?</div>
-        <h1 style="font-size:clamp(36px,4.6vw,58px);line-height:1.05;margin-bottom:26px">You're looking for one finance professional.<br>You may need a finance team.</h1>
-        <p style="font-size:clamp(16px,1.6vw,19px);color:var(--body);max-width:520px;text-wrap:pretty">Day-to-day finance, month-end close, controlling and management reporting all require different kinds of expertise. What starts as a vacancy for one person can quickly become an entire finance function.</p>
+        <h1 style="font-size:clamp(36px,4.6vw,58px);line-height:1.05;margin-bottom:26px">You're looking for one finance professional. <span class="em">You may need a finance team.</span></h1>
+        <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:520px;text-wrap:pretty">Day-to-day finance, month-end close, controlling and reporting and insight all require different kinds of expertise. What starts as a vacancy for one person can quickly become an entire finance function.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
           <Button href="#alternative">See the alternative &rarr;</Button>
           <a href="/en/book-a-call" style="font-weight:600;font-size:16px;color:var(--terracotta)">Book a call &rarr;</a>
         </div>
       </div>
-      <div style="position:relative">
-        <div style="aspect-ratio:4/3;border-radius:12px;overflow:hidden"><div class="ph" style="border-radius:12px;" role="img" aria-label="Placeholder: calm workspace / office"><span>calm workspace / office</span></div></div>
-        <div class="hero-note" style="position:absolute;left:-8px;top:24px;width:130px;text-align:center;pointer-events:none">
-          <div class="cav" style="font-size:26px">More than a vacancy.</div>
-          <svg width="60" height="40" viewBox="0 0 60 40" fill="none" stroke="#C4643A" stroke-width="2" style="margin-top:2px" aria-hidden="true"><path d="M6 4c4 18 16 28 40 30M46 34l4-8M46 34l-9-1"/></svg>
-        </div>
-      </div>
+    </div>
     </div>
   </section>
 
@@ -38,23 +33,23 @@ import Button from '../../components/Button.astro';
     <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
         <div class="lbl" style="margin-bottom:22px">The role</div>
-        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:26px">It often starts with<br>one job description.</h2>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:26px">It often starts with one job description.</h2>
         <div>
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:0 0 4px">Accounting</div>
+          <div class="cat">Accounting</div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Oversee the financial administration</span></div>
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:16px 0 4px">Financial control</div>
+          <div class="cat" style="margin-top:16px">Financial control</div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Run the month-end close</span></div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Review the numbers and explain variances</span></div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Monitor cash flow and working capital</span></div>
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:16px 0 4px">Reporting &amp; planning</div>
+          <div class="cat" style="margin-top:16px">Reporting &amp; planning</div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Prepare management reports</span></div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Build budgets and forecasts</span></div>
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:16px 0 4px">Business control</div>
+          <div class="cat" style="margin-top:16px">Business control</div>
           <div class="chk"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg><span style="font-size:16px;color:var(--navy)">Advise management based on the numbers</span></div>
         </div>
       </div>
       <div class="vdiv" style="background:var(--line)"></div>
-      <div style="padding-top:44px">
+      <div class="reveal" style="padding-top:44px">
         <div style="width:44px;height:2px;background:var(--terracotta);margin-bottom:24px"></div>
         <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.14;margin-bottom:24px">That's not just one role.<br>That's a finance function.</h2>
         <p style="font-size:16px;color:var(--body);max-width:520px;text-wrap:pretty;margin-bottom:18px">What often starts as a vacancy for one finance professional turns out to combine several different roles — from accounting and financial control to reporting and business control. Different responsibilities require different kinds of expertise.</p>
@@ -68,35 +63,35 @@ import Button from '../../components/Button.astro';
   <!-- THE DECISION -->
   <section class="wrap" style="padding-top:64px;padding-bottom:72px">
     <div class="lbl" style="margin-bottom:22px">The decision</div>
-    <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:40px">One finance hire<br>or a complete finance team?</h2>
+    <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:40px">One finance hire or a complete finance team?</h2>
 
     <!-- Mobile (≤639): the same comparison, topic by topic. -->
     <div class="cmp-m">
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>One profile</strong><br>One person's experience and expertise.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>Different finance expertise</strong><br>Different parts of the work can be handled by different professionals.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>Around 32&ndash;40 hours of capacity</strong><br>One person's working week.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>Capacity around the work</strong><br>The team is organised around the agreed finance scope.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>Dependent on one person</strong><br>Availability changes with holidays, illness or departure.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>Less dependent on one person</strong><br>The function is organised across a team.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>Everything sits with one person</strong><br>Different finance responsibilities compete for the same time.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>Work matched to expertise</strong><br>Different responsibilities can sit with the people best suited to them.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>Salary + employer costs</strong><br>The cost of employing the role.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>One fixed monthly fee</strong><br>Based on the agreed scope and finance operation.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v"><strong>You recruit and onboard</strong><br>Finding, hiring and developing the right person stays with you.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v"><strong>An existing finance team</strong><br>You don't have to build the team yourself.</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">One profile</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Different finance expertise</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">Around 32&ndash;40 hours of capacity</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Capacity around the work</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">Dependent on one person</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Less dependent on one person</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">Everything sits with one person</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Work matched to expertise</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">Salary + employer costs</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">One fixed monthly fee</span></div></div>
+      <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">One finance hire</span><span class="cmp-m-v">You recruit and onboard</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">An existing finance team</span></div></div>
     </div>
     <div class="cmp" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.9fr);gap:clamp(24px,3vw,44px);align-items:start">
       <div style="border:1px solid var(--line);border-radius:12px;padding:30px 32px">
         <h3 style="font-size:21px;margin-bottom:18px">One finance hire</h3>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">One profile</div><div class="cmp-d">One person's experience and expertise.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">Around 32&ndash;40 hours of capacity</div><div class="cmp-d">One person's working week.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">Dependent on one person</div><div class="cmp-d">Availability changes with holidays, illness or departure.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">Everything sits with one person</div><div class="cmp-d">Different finance responsibilities compete for the same time.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">Salary + employer costs</div><div class="cmp-d">The cost of employing the role.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
-        <div class="cmp-row"><div><div class="cmp-t" style="color:var(--body)">You recruit and onboard</div><div class="cmp-d">Finding, hiring and developing the right person stays with you.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">One profile</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">Around 32&ndash;40 hours of capacity</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">Dependent on one person</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">Everything sits with one person</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">Salary + employer costs</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
+        <div class="cmp-row"><span style="color:var(--body)">You recruit and onboard</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6.5 10h7"/></svg></div>
       </div>
       <div style="border:1px solid rgba(196,100,58,0.22);border-radius:12px;padding:30px 32px;background:var(--terracotta-soft)">
         <h3 style="font-size:21px;margin-bottom:18px;color:var(--terracotta)">Finable</h3>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">Different finance expertise</div><div class="cmp-d">Different parts of the work can be handled by different professionals.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">Capacity around the work</div><div class="cmp-d">The team is organised around the agreed finance scope.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">Less dependent on one person</div><div class="cmp-d">The function is organised across a team.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">Work matched to expertise</div><div class="cmp-d">Different responsibilities can sit with the people best suited to them.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">One fixed monthly fee</div><div class="cmp-d">Based on the agreed scope and finance operation.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><div><div class="cmp-t" style="color:var(--navy)">An existing finance team</div><div class="cmp-d">You don't have to build the team yourself.</div></div><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">Different finance expertise</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">Capacity around the work</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">Less dependent on one person</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">Work matched to expertise</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">One fixed monthly fee</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
+        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span style="color:var(--navy)">An existing finance team</span><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10l2.5 2.5L14 7"/></svg></div>
       </div>
       <div style="padding-top:6px">
         <div style="width:44px;height:2px;background:var(--terracotta);margin-bottom:22px"></div>
@@ -111,7 +106,7 @@ import Button from '../../components/Button.astro';
   <section id="alternative" style="background:var(--navy)">
     <div class="wrap" style="padding-top:76px;padding-bottom:76px">
       <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">The alternative</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);color:var(--white);margin-bottom:48px">Organise finance around<br>the work that needs to be done.</h2>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);color:var(--white);margin-bottom:48px">Your complete finance function. In one team.</h2>
       <div class="navy-grid" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(36px,4vw,64px);align-items:center">
         <div class="flow">
           <div>
@@ -134,7 +129,7 @@ import Button from '../../components/Button.astro';
           <svg class="fa" width="24" height="14" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
           <div>
             <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:14px" aria-hidden="true"><path d="M8 4h12l6 6v18H8z"/><path d="M19 4v7h7"/><path d="M12 18l3 3 5-6"/></svg>
-            <h3 style="font-size:15px;color:var(--white);margin-bottom:8px;font-family:'Inter',sans-serif;font-weight:600">Management reporting</h3>
+            <h3 style="font-size:15px;color:var(--white);margin-bottom:8px;font-family:'Inter',sans-serif;font-weight:600">Reporting &amp; insight</h3>
             <p style="font-size:13px;color:var(--on-dark-secondary);line-height:1.55">Turning the numbers into useful information for management.</p>
           </div>
         </div>
@@ -152,10 +147,9 @@ import Button from '../../components/Button.astro';
   <!-- WHEN EACH OPTION FITS -->
   <section class="wrap" style="padding-top:72px;padding-bottom:72px">
     <div class="lbl" style="margin-bottom:22px">When each option fits</div>
-    <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:40px">Sometimes Finable makes sense.<br>Sometimes hiring does.</h2>
     <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
-        <h3 style="font-size:clamp(20px,2.2vw,26px);margin-bottom:22px">Finable may be a better fit when&hellip;</h3>
+        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">Finable may be a better fit when…</h2>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Your company is growing and finance is becoming broader than bookkeeping.</span></div>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You need several types of finance expertise, but not necessarily each of them full-time.</span></div>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You want to be less dependent on one finance employee.</span></div>
@@ -164,7 +158,7 @@ import Button from '../../components/Button.astro';
       </div>
       <div class="vdiv" style="background:var(--line)"></div>
       <div>
-        <h3 style="font-size:clamp(20px,2.2vw,26px);margin-bottom:22px">An internal hire may be a better fit when&hellip;</h3>
+        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">An internal hire may be a better fit when…</h2>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You have enough work for one clearly defined specialist role full-time.</span></div>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">The person needs to be physically embedded in the organisation every day.</span></div>
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">The role is highly specific to your business and requires continuous internal involvement.</span></div>
@@ -176,12 +170,12 @@ import Button from '../../components/Button.astro';
 
   <div class="wrap"><div class="rule"></div></div>
 
-  <!-- FAQ + TIM -->
-  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+  <!-- FAQ + TIM (navy) -->
+  <section class="faq-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:68px;padding-bottom:72px">
     <div class="end" style="display:grid;grid-template-columns:minmax(0,1.1fr) 1px minmax(0,0.9fr);gap:clamp(40px,5vw,68px);align-items:start">
       <div>
-        <div class="lbl" style="margin-bottom:18px">Frequently asked questions</div>
-        <h2 style="font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-bottom:26px">Finance hire or Finable?</h2>
+        <div class="lbl" style="margin-bottom:26px">Frequently asked questions</div>
         <details class="fin-faq"><summary><span class="fin-faq-q">Can Finable replace a finance hire?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>In some situations, yes. If the role you're trying to fill combines day-to-day finance, month-end close, controlling and reporting, organising the work across a Finable team can be an alternative to hiring one person. In other situations, a dedicated internal hire may make more sense.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">What if we want to hire someone later?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>That's possible. Your finance setup doesn't have to stay the same forever. As your organisation grows, responsibilities can move in-house or the Finable scope can change. The aim is to organise finance around what the business needs at each stage.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">Who actually does the work?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>The work is handled by finance professionals within the Finable team. Different responsibilities can be handled by different people depending on the expertise required, while you maintain one clear point of contact.</p></div></details>
@@ -190,17 +184,18 @@ import Button from '../../components/Button.astro';
         <details class="fin-faq"><summary><span class="fin-faq-q">What happens if someone is ill or on holiday?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Because the work is organised across a team, you're less dependent on the availability of one individual. Processes, responsibilities and relevant knowledge are structured so work can be picked up within the team when necessary.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">When is hiring someone internally the better option?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>An internal hire can be the better choice when you have enough work for a clearly defined full-time role, need someone deeply embedded in the organisation every day or want to build and manage the finance function internally.</p></div></details>
       </div>
-      <div class="vdiv" style="background:var(--line)"></div>
+      <div class="vdiv" style="background:var(--on-dark-line)"></div>
       <div class="cta-p" style="display:grid;grid-template-columns:clamp(120px,15vw,160px) minmax(0,1fr);gap:26px;align-items:start">
-        <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         <div>
           <div class="lbl" style="margin-bottom:16px">Personal introduction</div>
-          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px">Considering hiring<br>someone for finance?</h2>
-          <p style="font-size:15px;color:var(--body);margin-bottom:22px;text-wrap:pretty">Book 30 minutes with Tim to talk through what you're looking for in a finance hire and whether a Finable team could be a logical alternative.</p>
+          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px;color:var(--white)">Considering hiring someone for finance?</h2>
+          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:22px;text-wrap:pretty">Book 30 minutes with Tim to talk through what you're looking for in a finance hire and whether a Finable team could be a logical alternative.</p>
           <Button href="/en/book-a-call">Book a call &rarr;</Button>
-          <div style="font-size:14px;color:var(--body);line-height:1.45;margin-top:20px"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Founder, Finable</div>
+          <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45;margin-top:20px"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Founder, Finable</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -213,14 +208,11 @@ import Button from '../../components/Button.astro';
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.1}
+  .cat{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:0 0 4px}
   .chk{display:flex;align-items:flex-start;gap:14px;padding:11px 0}
   .chk svg{flex-shrink:0;margin-top:2px}
-  .cmp-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:15px}
+  .cmp-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:15px}
   .cmp-row:first-of-type{border-top:none}
-  .cmp-row>svg{flex-shrink:0;margin-top:2px}
-  .cmp-t{font-weight:600;line-height:1.4}
-  .cmp-d{font-size:14px;color:var(--body);line-height:1.5;margin-top:3px}
-  .cmp-m-v strong{font-weight:600;color:inherit}
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:16px;align-items:start}
   .flow .fa{align-self:center;color:var(--terracotta);padding-top:4px}
   details.fin-faq{border-top:1px solid var(--line)}
@@ -237,9 +229,9 @@ import Button from '../../components/Button.astro';
   .fin-faq-a{max-width:640px;padding:0 0 24px;font-size:15px;color:var(--body);line-height:1.7}
   @media (max-width:1023px){
   .hero{grid-template-columns:1fr!important;gap:36px!important}
-  .hero-note{display:none!important}
   .split{grid-template-columns:1fr!important;gap:40px!important}
   .split .vdiv{display:none!important}
+  .reveal{padding-top:0!important}
   .cmp{grid-template-columns:1fr!important;gap:24px!important}
   .flow{grid-template-columns:1fr;gap:16px}
   .flow .fa{transform:rotate(90deg);justify-self:start}
@@ -248,18 +240,14 @@ import Button from '../../components/Button.astro';
   .end .vdiv{display:none!important}
   .cta-p{grid-template-columns:1fr!important;gap:24px!important}
   }
-  /* Responsive: 1024 / 640 */
   @media (min-width:640px){.cmp-m{display:none}}
-  @media (max-width:1023px){
-    .split>div[style*="padding-top:44px"]{padding-top:0!important}
-  }
   @media (max-width:639px){
     .cta-p{grid-template-columns:1fr!important}
     .cta-p>div:first-child{max-width:160px}
     .cmp-m{margin-bottom:36px}
     .cmp>div:nth-child(-n+2){display:none}
     .cmp{gap:0!important}
-    .split div[style*="font-size:11px"]{font-size:12px!important;opacity:.85!important}
+    .cat{font-size:12px;opacity:.85}
     .flow{gap:12px}
     .flow>div{display:grid;grid-template-columns:30px 1fr;column-gap:14px;align-items:start}
     .flow>div>svg{grid-row:1/3;margin:2px 0 0!important}

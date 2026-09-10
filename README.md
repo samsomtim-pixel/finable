@@ -49,12 +49,11 @@ Zonder endpoint toont het formulier de foutmelding met `tim@finable.nl` als teru
 
 ## Ontwerp (Claude Design, september 2026)
 
-De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2 v2.dc.html`): witte navigatie, navy hero met warm-witte H1 en terracotta nadruk, editoriale witte/zacht-getinte secties, selectieve navy-ankers en een witte footer. De capability-taal is site-breed **Dagelijkse finance → Maandafsluiting → Controlling → Rapportage & inzicht**; "managementrapportage" komt alleen nog voor in de vacaturetekst op /finance-hire (bewust). De Engelse pagina's onder `/en/` volgen nog het eerdere ontwerp.
+De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2 v2.dc.html`): witte navigatie, navy hero met warm-witte H1 en terracotta nadruk, editoriale witte/zacht-getinte secties, selectieve navy-ankers en een witte footer. De capability-taal is site-breed **Dagelijkse finance → Maandafsluiting → Controlling → Rapportage & inzicht**; "managementrapportage" komt alleen nog voor in de vacaturetekst op /finance-hire (bewust). De Engelse pagina's onder `/en/` volgen dezelfde v2-opbouw met de goedgekeurde Engelse copy (Brits-Engels).
 
 ## Nog niet ingevuld (vóór livegang)
 
 - `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer (Engels: `[LEGAL ENTITY]` en `[NUMBER]`); Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
 - Portretten van Rishabh Goyal en Himanshu Poddar op /over (bewust neutrale plek, `.port-pending`).
 - "20+ finance-specialisten" op /over verifiëren (zie HTML-comment ter plekke).
-- De Engelse pagina's (`src/pages/en/`) hebben nog de stillevens/portret-placeholders (`.ph`) van het vorige ontwerp.
 - Domein in `astro.config.mjs` (`site`) controleren.
