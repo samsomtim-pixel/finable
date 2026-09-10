@@ -13,40 +13,14 @@ import Base from '../layouts/Base.astro';
         <p class="gesprek-body">Vrijblijvend, in 30 minuten. Geen standaardverhaal, maar een eerlijk gesprek over jouw situatie.</p>
       </div>
       <div class="gesprek-card">
-        <form class="gesprek-form" id="gesprek-form">
-          <div class="gesprek-field">
-            <label for="g-naam">Je naam</label>
-            <input type="text" id="g-naam" name="naam" placeholder="Voor- en achternaam" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-email">Zakelijk e-mailadres</label>
-            <input type="email" id="g-email" name="email" placeholder="jij@bedrijf.nl" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-telefoon">Telefoonnummer <span class="gesprek-optional">(optioneel)</span></label>
-            <input type="tel" id="g-telefoon" name="telefoon" placeholder="06 …" />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-bedrijf">Bedrijf</label>
-            <input type="text" id="g-bedrijf" name="bedrijf" placeholder="Naam van je organisatie" required />
-          </div>
-          <div class="gesprek-field">
-            <label for="g-bericht">Waar wil je het over hebben? <span class="gesprek-optional">(optioneel)</span></label>
-            <textarea id="g-bericht" name="bericht" rows="3" placeholder="Vertel kort waar je tegenaan loopt."></textarea>
-          </div>
-          <div class="gesprek-hp" aria-hidden="true">
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </div>
-          <p class="gesprek-privacy">We gebruiken je gegevens alleen om contact op te nemen over je gesprek.</p>
-          <div class="gesprek-error" id="gesprek-error" hidden>
-            Er ging iets mis. Mail ons op <a href="mailto:tim@finable.nl">tim@finable.nl</a>.
-          </div>
-          <button type="submit" class="btn btn-primary gesprek-submit" id="gesprek-submit">Verstuur →</button>
-        </form>
-        <div class="gesprek-done" id="gesprek-done" hidden>
-          <h2>Dank je.</h2>
-          <p>Tim neemt zo snel mogelijk contact met je op.</p>
-        </div>
+        <div
+          class="calendly-inline-widget"
+          id="calendly-embed"
+          data-url="https://calendly.com/tim-finable/30min"
+        ></div>
+        <noscript>
+          <p>Zet JavaScript aan om een gesprek in te plannen, of mail ons op <a href="mailto:tim@finable.nl">tim@finable.nl</a>.</p>
+        </noscript>
       </div>
     </div>
   </section>
@@ -86,53 +60,24 @@ import Base from '../layouts/Base.astro';
     border: 1px solid #EEE9E3;
     border-radius: var(--radius-xl);
     box-shadow: 0 20px 50px -30px rgba(44,62,80,.35);
-    padding: clamp(28px, 3.5vw, 44px);
+    padding: clamp(20px, 3.5vw, 44px);
+    overflow: hidden;
   }
-  .gesprek-field { margin-bottom: 20px; }
-  .gesprek-field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--navy);
-    display: block;
-    margin-bottom: 8px;
-  }
-  .gesprek-optional { font-weight: 400; color: var(--body-color); }
-  .gesprek-field input,
-  .gesprek-field textarea {
-    width: 100%;
-    padding: 13px 16px;
-    border-radius: 10px;
-    border: 1.5px solid #E6E1DB;
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    color: var(--navy);
-    background: transparent;
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.2s;
-  }
-  .gesprek-field input:focus,
-  .gesprek-field textarea:focus {
-    border-color: var(--terracotta);
-    box-shadow: 0 0 0 2px rgba(196,100,58,0.15);
-  }
-  .gesprek-field input::placeholder,
-  .gesprek-field textarea::placeholder { color: #9AA0A6; }
-  .gesprek-hp { position: absolute; left: -9999px; }
-  .gesprek-privacy { font-size: 0.8125rem; color: #8A94A0; margin-bottom: 20px; }
-  .gesprek-error {
-    padding: 14px 18px;
-    background: #FBEDE6;
-    border: 1px solid #E9C9B5;
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    color: #B2532B;
-    margin-bottom: 16px;
-  }
-  .gesprek-error a { text-decoration: underline; }
-  .gesprek-submit { width: 100%; justify-content: center; }
 
-  .gesprek-done h2 { margin-bottom: 12px; }
+  /* Calendly inline embed — responsive, no forced min-width so it never
+     overflows the viewport on small screens. */
+  .calendly-inline-widget {
+    width: 100%;
+    min-width: 0;
+    height: 720px;
+  }
+  @media (max-width: 1024px) {
+    .calendly-inline-widget { height: 760px; }
+  }
+  @media (max-width: 640px) {
+    .gesprek-card { padding: 12px; }
+    .calendly-inline-widget { height: 940px; }
+  }
 
   .gesprek-trust {
     display: grid;
@@ -157,38 +102,42 @@ import Base from '../layouts/Base.astro';
 </style>
 
 <script>
-  const form = document.getElementById('gesprek-form') as HTMLFormElement;
-  const done = document.getElementById('gesprek-done') as HTMLElement;
-  const errEl = document.getElementById('gesprek-error') as HTMLElement;
-  const submitBtn = document.getElementById('gesprek-submit') as HTMLButtonElement;
+  // Calendly inline embed for /gesprek only. The external widget script is
+  // loaded here (page-scoped), never site-wide, and guarded so it is not
+  // injected twice if this script runs again.
+  const CALENDLY_SCRIPT = 'https://assets.calendly.com/assets/external/widget.js';
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errEl.hidden = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Bezig…';
+  function loadCalendly() {
+    if (document.querySelector(`script[src="${CALENDLY_SCRIPT}"]`)) return;
+    const s = document.createElement('script');
+    s.src = CALENDLY_SCRIPT;
+    s.async = true;
+    document.body.appendChild(s);
+  }
 
-    const data = Object.fromEntries(new FormData(form));
-    if (data._gotcha) return;
+  // Analytics: listen for Calendly postMessage events and only push a
+  // conversion to the dataLayer once a booking is actually confirmed.
+  // Fires on calendly.event_scheduled — never on load, open, date or time
+  // selection. Guarded so the listener is attached only once.
+  function attachCalendlyListener() {
+    if ((window as any).__calendlyListenerAttached) return;
+    (window as any).__calendlyListenerAttached = true;
 
-    try {
-      const res = await fetch('/api/gesprek', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+    window.addEventListener('message', (e: MessageEvent) => {
+      if (e.origin !== 'https://calendly.com') return;
+      const data = e.data;
+      if (!data || typeof data !== 'object') return;
+      if (data.event !== 'calendly.event_scheduled') return;
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'book_call_complete',
+        booking_provider: 'calendly',
+        booking_type: '30min',
       });
-      if (res.ok) {
-        form.hidden = true;
-        done.hidden = false;
-      } else {
-        errEl.hidden = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Verstuur →';
-      }
-    } catch {
-      errEl.hidden = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Verstuur →';
-    }
-  });
+    });
+  }
+
+  attachCalendlyListener();
+  loadCalendly();
 </script>
