@@ -14,17 +14,14 @@ const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-t
   <div class="wrap" style="padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
     <div>
       <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--navy);letter-spacing:-0.02em">Finable<span style="color:var(--terracotta)">.</span></div>
-      {lang === 'en' && <div style="font-size:14px;color:var(--body);margin-top:4px">Finance-as-a-Service for growing companies.</div>}
-      <!-- Vervangen door de werkelijke gegevens vóór livegang. -->
-      {lang === 'en'
-        ? <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — trading name of [LEGAL ENTITY] · Chamber of Commerce [NUMBER]</div>
-        : <div style="font-size:14px;color:var(--body);margin-top:4px">Finable — handelsnaam van [STATUTAIRE NAAM] · KVK [NUMMER]</div>}
+      <div style="font-size:14px;color:var(--body);margin-top:4px">{lang === 'en' ? 'Finance-as-a-Service for growing companies.' : 'Finance-as-a-Service voor groeiende bedrijven.'}</div>
+      <div style="font-size:14px;color:var(--body);margin-top:4px">{lang === 'en' ? 'Finable · Dutch Chamber of Commerce 99623544' : 'Finable · KVK 99623544'}</div>
     </div>
     <!-- Privacy- en Voorwaarden-pagina's moeten nog gebouwd en juridisch gecontroleerd worden (NL én EN). -->
     {lang === 'en' ? (
       <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
         <span class="ft-group"><a href="/en/how-it-works" class="ft-link">How Finable works</a><a href="/en/finance-team" class="ft-link">Finance team</a><a href="/en/about" class="ft-link">About</a></span>
-        <span class="ft-group"><a href="/en/estimate" class="ft-link">Get an estimate</a><a href="/en/finance-hire" class="ft-link">Finance hire or Finable?</a><a href="/en/book-a-call" class="ft-link">Book a call</a></span>
+        <span class="ft-group"><a href="/en/estimate" class="ft-link">Get an estimate</a><a href="/en/finance-hire" class="ft-link">Hiring finance or Finable?</a><a href="/en/book-a-call" class="ft-link">Book a call</a></span>
         <span class="ft-group"><a href="#" class="ft-link">Privacy</a><a href="#" class="ft-link">Terms</a></span>
         <nav class="lang-switch" aria-label="Language"><a href={alt.nl} hreflang="nl" lang="nl" class:list={[{ 'is-on': false }]}>NL</a><span aria-hidden="true">·</span><a href={alt.en} hreflang="en" lang="en" class="is-on" aria-current="page">EN</a></nav>
       </div>

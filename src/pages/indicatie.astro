@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_INDICATIE ?? '';
 const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 ---
-<Layout title="Vraag een indicatie aan — Finable" description="Beantwoord een paar vragen over je organisatie en finance. Op basis daarvan maakt Finable een eerste indicatie van de maandelijkse kosten.">
+<Layout title="Vraag een indicatie aan · Finable" description="Beantwoord een paar vragen over je organisatie en finance. Op basis daarvan maakt Finable een eerste indicatie van de maandelijkse kosten.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
@@ -198,7 +198,7 @@ const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
           <div style="margin-bottom:20px"><label for="fin-website" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Website van je organisatie <span style="font-weight:400;color:var(--body)">(optioneel)</span></label><input type="url" id="fin-website" name="website" class="fin-input" placeholder="https://" autocomplete="url"></div>
           <div style="margin-bottom:20px"><label for="fin-tel" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Telefoonnummer <span style="font-weight:400;color:var(--body)">(optioneel)</span></label><input type="tel" id="fin-tel" name="tel" class="fin-input" placeholder="06 …" autocomplete="tel"></div>
           <p style="font-size:13px;color:var(--body);margin-top:14px">We gebruiken je gegevens alleen om je indicatie op te stellen en contact op te nemen.</p>
-          <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:14px">Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> — dan pakken we het op.</p>
+          <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:14px">Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a>, dan pakken we het op.</p>
           <div class="ind-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
             <span style="font-size:14px;color:var(--body)">Stap 3 van 3</span>
             <div style="display:flex;align-items:center;gap:18px">

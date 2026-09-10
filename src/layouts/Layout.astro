@@ -12,7 +12,7 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, noindex = false } = Astro.props;
-const site = Astro.site ?? new URL('https://finable.nl');
+const site = Astro.site ?? new URL('https://www.finable.nl');
 const path = Astro.url.pathname;
 const lang = langOf(path);
 const alt = alternates(path);
@@ -20,6 +20,17 @@ const canonical = absolute(path, site);
 const hrefNl = absolute(alt.nl, site);
 const hrefEn = absolute(alt.en, site);
 const ogImage = new URL('/og.png', site).href;
+// Organization-schema met uitsluitend geverifieerde gegevens (geen reviews, aantallen, prijzen of oprichtingsdatum).
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Finable',
+  url: new URL('/', site).href,
+  logo: new URL('/assets/finable-logo.svg', site).href,
+  email: 'tim@finable.nl',
+  founder: { '@type': 'Person', name: 'Tim Samsom' },
+  identifier: { '@type': 'PropertyValue', propertyID: 'KVK', value: '99623544' },
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -34,6 +45,7 @@ const ogImage = new URL('/og.png', site).href;
   <link rel="alternate" hreflang="en" href={hrefEn}>
   <link rel="alternate" hreflang="x-default" href={hrefNl}>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Finable">
   <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'nl_NL'}>
@@ -51,6 +63,7 @@ const ogImage = new URL('/og.png', site).href;
   <link rel="preload" href="/fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="sitemap" href="/sitemap-index.xml">
+  <script type="application/ld+json" set:html={JSON.stringify(organization)} />
 </head>
 <body>
   <slot />
@@ -78,7 +91,7 @@ const ogImage = new URL('/og.png', site).href;
   /* Navy hero: H1 warm-wit, nadruk in terracotta (span). */
   .hero-navy h1{color:var(--warm-white)}
   .hero-navy h1 .em{color:var(--terracotta)}
-  /* Handgeschreven Caveat-commentaar: warm-wit op navy, terracotta op wit/licht. Pijlen en strepen blijven terracotta. */
+  /* Handgeschreven Caveat-commentaar: persoonlijke notities op navy warm-wit; proces-/diagramnotities altijd terracotta (inline override); op wit/licht terracotta. Pijlen en strepen blijven terracotta. */
   .hero-navy .cav{color:var(--warm-white)}
   /* FAQ-module op navy (home, finance-team, finance-hire). */
   .faq-navy details.fin-faq{border-top-color:rgba(255,255,255,0.16)}

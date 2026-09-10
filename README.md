@@ -17,7 +17,7 @@ npm run build    # statische output in dist/
 - `src/pages/en/*.astro` — de zeven Engelse pagina's (zie *Engelse site*).
 - `src/lib/i18n.ts` — de NL↔EN paginakoppeling, taal uit de route, canonical/hreflang-helpers.
 - `src/scripts/indicatie-form.ts` — de meerstapslogica van het indicatie-/estimate-formulier, gedeeld door `/indicatie` en `/en/estimate`.
-- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — foto's als WebP (Tim, team, Sander/The Good Roll, Janesh, Shilpa), `public/images/logos/` — de elf logo's van de bewegende ervaringsrail op de home (`LogoMarquee.astro`), in eigen merkkleuren. `public/og.png` — deelafbeelding.
+- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — foto's als WebP (Tim, team, Sander/The Good Roll, Janesh, Shilpa), `public/images/logos/` — de twaalf logo's van de bewegende ervaringsrail op de home (`LogoMarquee.astro`), in eigen merkkleuren. `public/og.png` — deelafbeelding.
 
 ## Engelse site
 
@@ -25,7 +25,7 @@ Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal
 
 | Nederlands | Engels |
 |---|---|
-| `/` | `/en/` |
+| `/` | `/en` |
 | `/aanpak` | `/en/finance-team` |
 | `/hoe-het-werkt` | `/en/how-it-works` |
 | `/over` | `/en/about` |
@@ -33,7 +33,7 @@ Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal
 | `/gesprek` | `/en/book-a-call` |
 | `/finance-hire` | `/en/finance-hire` |
 
-`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
+`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`; alle URL's op `https://www.finable.nl` zonder trailing slash. De head bevat ook een Apple touch icon en een Organization-JSON-LD met alleen geverifieerde gegevens. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
 
 ## Formulieren en boeking
 
@@ -53,7 +53,7 @@ De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2
 
 ## Nog niet ingevuld (vóór livegang)
 
-- `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer (Engels: `[LEGAL ENTITY]` en `[NUMBER]`); Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
+- Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
 - Portretten van Rishabh Goyal en Himanshu Poddar op /over (bewust neutrale plek, `.port-pending`).
 - "20+ finance-specialisten" op /over verifiëren (zie HTML-comment ter plekke).
 - Domein in `astro.config.mjs` (`site`) controleren.
