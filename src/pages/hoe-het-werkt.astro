@@ -205,6 +205,18 @@ import Button from '../components/Button.astro';
     </div>
   </section>
 
+  <!-- INDICATIE (zelfde component als op /aanpak) -->
+  <section class="wrap" style="padding-top:64px;padding-bottom:0">
+    <div class="indic">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">Indicatie</div>
+        <p style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,28px);color:var(--navy);line-height:1.2">Krijg een indicatie voor jouw finance-team.</p>
+      </div>
+      <p style="font-size:16px;color:var(--body);text-wrap:pretty">Beantwoord een paar vragen over je organisatie en finance-situatie.</p>
+      <Button href="/indicatie" size="sm" style="text-align:center">Bekijk je indicatie &rarr;</Button>
+    </div>
+  </section>
+
   <!-- FAQ + TIM (white) -->
   <section style="background:var(--white);margin-top:8px">
     <div class="wrap" style="padding-top:68px;padding-bottom:68px">
@@ -285,6 +297,7 @@ import Button from '../components/Button.astro';
   details.fin-faq[open] .fin-faq-ic::after{opacity:0}
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
   .fin-faq-a{max-width:760px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
+  .indic{background:var(--terracotta-soft);border-radius:10px;padding:clamp(28px,3.4vw,44px) clamp(28px,4vw,52px);display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1fr) auto;gap:clamp(24px,3vw,44px);align-items:center}
   .scan-grid{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(28px,3.4vw,52px);align-items:center}
   .work-grid{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1fr);gap:clamp(28px,3.4vw,48px);align-items:start}
   @media (max-width:1023px){
@@ -296,6 +309,7 @@ import Button from '../components/Button.astro';
   .scan-grid{grid-template-columns:1fr;gap:32px}
   .scope-flex{grid-template-columns:1fr!important}
   .work-grid{grid-template-columns:1fr;gap:32px}
+  .indic{grid-template-columns:1fr;gap:22px}
   .cyc{grid-template-columns:1fr;gap:18px}
   .cyc .ca{transform:rotate(90deg);justify-self:start;margin:0}
   }
@@ -330,6 +344,8 @@ import Button from '../components/Button.astro';
     .cyc .cn{margin:0 0 2px}
     .cyc .ca{margin:0 0 0 6px!important;justify-self:start}
     .work-grid{gap:36px!important}
+    .indic{background:var(--section)}
+    .indic>a{justify-self:start}
   }
 </style>
 
