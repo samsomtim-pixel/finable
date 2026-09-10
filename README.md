@@ -35,6 +35,22 @@ Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal
 
 `Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
 
+## Engelse site
+
+Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal of locatie: de bezoeker kiest via **NL · EN** (header, mobiel menu, footer). De wissel linkt altijd naar de equivalente pagina.
+
+| Nederlands | Engels |
+|---|---|
+| `/` | `/en/` |
+| `/aanpak` | `/en/finance-team` |
+| `/hoe-het-werkt` | `/en/how-it-works` |
+| `/over` | `/en/about` |
+| `/indicatie` | `/en/estimate` |
+| `/gesprek` | `/en/book-a-call` |
+| `/finance-hire` | `/en/finance-hire` |
+
+`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
+
 ## Formulieren en boeking
 
 `/indicatie` en `/en/estimate` posten dezelfde JSON (plus `taal`) naar dezelfde formulierdienst (Formspree, Web3Forms of Basin). `/gesprek` heeft een boekingsmodule die uitgeschakeld blijft tot een echte agenda-provider is gekoppeld (`bookingProviderConnected` in `src/pages/gesprek.astro`); tot die tijd toont de kaart de mail-route en rendert `/en/book-a-call` alleen die mail-route (geen kalender, geen boekingsscript). Zet in Vercel de omgevingsvariabelen uit `.env.example`:
