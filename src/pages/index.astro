@@ -4,35 +4,37 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 ---
-<Layout title="Finable — een heel finance-team voor je groeiende bedrijf" description="Finable runt je dagelijkse finance met een vast team, voor één vaste maandprijs. Van dagelijkse finance tot controlling en managementrapportage.">
+<Layout title="Finable — een heel finance-team voor je groeiende bedrijf" description="Finable runt je dagelijkse finance met een vast team, voor één vaste maandprijs. Van dagelijkse finance tot controlling en rapportage en inzicht.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
 
-  <!-- HERO -->
-  <section class="wrap" style="padding-top:48px;padding-bottom:72px">
+  <!-- HERO (navy) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:64px;padding-bottom:80px">
     <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(36px,4.6vw,72px);align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:26px">Finance-as-a-service</div>
-        <h1 style="font-size:clamp(38px,5vw,64px);line-height:1.04;margin-bottom:26px">Outsourced that feels like in-house.</h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--body);max-width:500px;text-wrap:pretty">Finable runt je dagelijkse finance voor één vaste maandprijs. Van boekhouding en maandafsluiting tot controlling en managementrapportage.</p>
+        <h1 style="font-size:clamp(38px,5vw,60px);line-height:1.06;margin-bottom:26px">Outsourced that<br>feels like<br><span class="em hero-em" style="font-size:clamp(52px,7vw,88px);line-height:1;display:inline-block;margin-top:10px">in-house.</span></h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:500px;text-wrap:pretty">Finable runt je dagelijkse finance voor één vaste maandprijs. Van boekhouding en maandafsluiting tot controlling en rapportage.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
           <Button href="/gesprek">Plan een gesprek &rarr;</Button>
-          <a href="/hoe-het-werkt" style="font-weight:600;font-size:16px;color:var(--terracotta)">Bekijk hoe Finable werkt &rarr;</a>
+          <a href="/hoe-het-werkt" class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">Bekijk hoe Finable werkt &rarr;</a>
         </div>
       </div>
       <div style="position:relative">
         <div style="display:flex;align-items:stretch;gap:22px;margin-bottom:26px">
-          <div style="width:3px;background:var(--terracotta);border-radius:999px;flex-shrink:0"></div>
-          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--navy)">Een heel finance-team.</span><br><span style="color:var(--terracotta)">Voor minder dan één controller.</span></div>
+          <div style="width:3px;background:var(--terracotta);border-radius:2px;flex-shrink:0"></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--white)">Een heel finance-team.</span><br><span style="color:var(--terracotta)">Voor minder dan één controller.</span></div>
         </div>
-        <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--body)">Overweeg je een controller aan te nemen? </span><a href="/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Vergelijk de opties &rarr;</a></div>
-        <!-- Hero-foto alleen op desktop (≥1024px). Onder die breedte bewust weggelaten (display:none), niet verkleind: de compositie (vier mensen, twee schermen) wordt op smalle schermen ruis en de hero-tekst krijgt de volle breedte. -->
-        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg met het Finable-team via videobellen, spreadsheet op scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:1px solid var(--line)"></picture></div>
-        <div class="hero-note" style="position:absolute;right:-6px;bottom:-22px;width:150px;text-align:center;pointer-events:none">
+        <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--on-dark-secondary)">Overweeg je een controller aan te nemen? </span><a href="/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Vergelijk de opties &rarr;</a></div>
+        <!-- Beeldslot uit het ontwerp (home-hero-still). Gevuld met de aangeleverde samenwerkingsfoto; alleen op desktop (≥1024px), daaronder bewust weggelaten (display:none), niet verkleind. -->
+        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg met het Finable-team via videobellen, spreadsheet op scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
+        <div class="hero-note" style="position:absolute;right:-6px;bottom:-62px;width:230px;text-align:center;pointer-events:none">
           <div class="cav" style="font-size:22px">alsof we gewoon bij je team horen.</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -45,19 +47,36 @@ import Button from '../components/Button.astro';
     </div>
     <div class="cols4t" style="display:grid;grid-template-columns:repeat(3,1fr)">
       <div>
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg>
         <h3 style="font-size:20px;margin-bottom:10px">Je finance-vacature blijft open.</h3>
         <p style="font-size:15px;color:var(--body)">Goede mensen zijn schaars en duur.</p>
       </div>
       <div>
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg>
         <h3 style="font-size:20px;margin-bottom:10px">Finance hangt aan één persoon.</h3>
         <p style="font-size:15px;color:var(--body)">Te veel risico als iemand uitvalt.</p>
       </div>
       <div>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg>
         <h3 style="font-size:20px;margin-bottom:10px">Je stuurt te veel op gevoel.</h3>
         <p style="font-size:15px;color:var(--body)">Je mist actuele inzichten om te groeien.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERVARING / LOGO PROOF — ervaring van de mensen achter Finable, geen klantenlijst. -->
+  <section style="background:var(--terracotta-tint)">
+    <div class="wrap" style="padding-top:40px;padding-bottom:40px">
+      <div style="margin-bottom:24px;text-align:center">
+        <div class="lbl">Ervaring van het team achter Finable</div>
+      </div>
+      <div class="logo-row" style="display:grid;grid-template-columns:repeat(6,1fr);gap:32px 44px;align-items:center;justify-items:center">
+        <img src="/images/logos/logo-trodat.jpg" alt="Trodat" width="456" height="124" style="max-height:38px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-kidzink.png" alt="Kidzink" width="330" height="83" style="max-height:28px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-talogy.png" alt="Talogy" width="185" height="52" style="max-height:28px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-cavallaro.jpg" alt="Cavallaro Napoli" width="800" height="300" style="max-height:32px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-trunkrs.svg" alt="Trunkrs" width="501" height="72" style="max-height:22px;max-width:120px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
+        <img src="/images/logos/logo-the-good-roll.png" alt="The Good Roll" width="662" height="663" style="max-height:48px;max-width:130px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.55">
       </div>
     </div>
   </section>
@@ -69,12 +88,12 @@ import Button from '../components/Button.astro';
       <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--white);margin-bottom:44px">Finable runt je dagelijkse finance.</h2>
       <div class="flow" style="max-width:1000px;margin:0 auto;text-align:left">
         <div class="fn">Dagelijkse finance</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
         <div class="fn">Maandafsluiting</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
         <div class="fn">Controlling</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div class="fn">Managementrapportage</div>
+        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
+        <div class="fn">Rapportage &amp; inzicht</div>
       </div>
       <div style="height:1px;background:rgba(255,255,255,0.14);max-width:1000px;margin:44px auto 30px"></div>
       <div class="navy-trio" style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
@@ -116,9 +135,9 @@ import Button from '../components/Button.astro';
   <!-- KLANTCASE -->
   <section class="wrap" style="padding-top:8px;padding-bottom:72px">
     <div class="rule" style="margin-bottom:52px"></div>
-    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.9fr);gap:clamp(28px,4vw,56px);align-items:center">
+    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.7fr) clamp(185px,19vw,245px);gap:clamp(24px,3.5vw,48px);align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <img src="/images/the-good-roll.webp" alt="Logo The Good Roll" width="200" height="200" style="width:72px;height:72px;border-radius:999px;display:block">
+        <img src="/images/the-good-roll.png" alt="Logo The Good Roll" width="662" height="663" style="width:72px;height:72px;border-radius:999px;display:block">
         <div>
           <div class="lbl" style="color:var(--body);margin-bottom:6px">Klantcase · The Good Roll</div>
           <div style="font-size:15px;color:var(--body)">Sander de Klerk</div>
@@ -128,12 +147,14 @@ import Button from '../components/Button.astro';
         <p style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);color:var(--navy);line-height:1.2;margin-bottom:22px;text-wrap:balance">Van sceptisch naar <span style="color:var(--terracotta)">&ldquo;ik zou het iedereen aanraden.&rdquo;</span></p>
         <p style="font-size:16px;color:var(--body);max-width:640px;text-wrap:pretty">Sander was eerst huiverig om zijn finance uit handen te geven. Dus begon hij klein: alleen het inboeken. Het vertrouwen groeide en Finable nam steeds meer over. Inmiddels wordt vrijwel zijn hele dagelijkse finance door het team gedaan.</p>
       </div>
+      <div class="case-img" style="aspect-ratio:1200/711;border-radius:12px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk, The Good Roll" width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
     </div>
     <div class="rule" style="margin-top:52px"></div>
   </section>
 
   <!-- ZEKERHEDEN -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
+  <section style="background:var(--terracotta-tint)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:56px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
       <h2 style="font-size:clamp(26px,3.2vw,38px)">Waar je op kunt rekenen</h2>
       <div style="font-size:15px;color:var(--body)">Een samenwerking die met je meegroeit.</div>
@@ -156,36 +177,38 @@ import Button from '../components/Button.astro';
         <p style="font-size:15px;color:var(--body);line-height:1.6">Vooraf duidelijk wat we overnemen en wat het kost.</p>
       </div>
     </div>
+    </div>
   </section>
 
-  <!-- FAQ + TIM -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:80px">
-    <div class="rule" style="margin-bottom:44px"></div>
-    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(40px,5vw,72px);align-items:start">
+  <!-- FAQ + TIM (navy) -->
+  <section class="faq-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:68px;padding-bottom:68px">
+    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
         <div class="lbl" style="margin-bottom:28px">Veelgestelde vragen</div>
         <div style="max-width:900px">
-          <details class="fin-faq"><summary><span class="fin-faq-q">Voor welke bedrijven is Finable bedoeld?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Finable is bedoeld voor groeiende bedrijven die hun finance professioneler willen organiseren zonder direct een volledige interne finance-afdeling op te bouwen. Vaak gaat het om organisaties waar de dagelijkse administratie inmiddels meer vraagt, de afhankelijkheid van één persoon te groot wordt of waar structurele capaciteit ontbreekt voor maandafsluiting, controlling en managementrapportage. We kijken daarbij niet alleen naar de omvang van een organisatie, maar vooral naar de werkzaamheden en complexiteit achter de finance-functie.</p></div></details>
-          <details class="fin-faq"><summary><span class="fin-faq-q">Welke finance-werkzaamheden kan Finable overnemen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Dat verschilt per organisatie. Finable kan werkzaamheden verzorgen van dagelijkse finance en maandafsluiting tot controlling en managementrapportage. We beginnen daarom niet met een standaardpakket, maar met wat er vandaag al staat. Wat goed werkt kan blijven staan; waar capaciteit of expertise ontbreekt, kan Finable overnemen. Dat kan één onderdeel van finance zijn, maar ook vrijwel de volledige dagelijkse finance. De verdeling kan later worden aangepast wanneer de organisatie of behoefte verandert.</p></div></details>
-          <details class="fin-faq"><summary><span class="fin-faq-q">Vervangt Finable onze boekhouder of accountant?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Niet noodzakelijk. We kijken eerst welke onderdelen van de huidige inrichting goed functioneren en hoe Finable daarop kan aansluiten. Een accountant kan bijvoorbeeld betrokken blijven bij de jaarrekening, fiscale werkzaamheden of andere specialistische vraagstukken, terwijl Finable de dagelijkse finance, maandafsluiting, controlling en managementrapportage verzorgt. Voor de start spreken we duidelijk af welke werkzaamheden bij welke partij liggen, zodat verantwoordelijkheden helder zijn en werkzaamheden niet dubbel worden uitgevoerd.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Voor welke bedrijven is Finable bedoeld?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Finable is bedoeld voor groeiende bedrijven die hun finance professioneler willen organiseren zonder direct een volledige interne finance-afdeling op te bouwen. Vaak gaat het om organisaties waar de dagelijkse administratie inmiddels meer vraagt, de afhankelijkheid van één persoon te groot wordt of waar structurele capaciteit ontbreekt voor maandafsluiting, controlling en rapportage. We kijken daarbij niet alleen naar de omvang van een organisatie, maar vooral naar de werkzaamheden en complexiteit achter de finance-functie.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Welke finance-werkzaamheden kan Finable overnemen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Dat verschilt per organisatie. Finable kan werkzaamheden verzorgen van dagelijkse finance en maandafsluiting tot controlling en rapportage voor management en andere stakeholders. We beginnen daarom niet met een standaardpakket, maar met wat er vandaag al staat. Wat goed werkt kan blijven staan; waar capaciteit of expertise ontbreekt, kan Finable overnemen. Dat kan één onderdeel van finance zijn, maar ook vrijwel de volledige dagelijkse finance. De verdeling kan later worden aangepast wanneer de organisatie of behoefte verandert.</p></div></details>
+          <details class="fin-faq"><summary><span class="fin-faq-q">Vervangt Finable onze boekhouder of accountant?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Niet noodzakelijk. We kijken eerst welke onderdelen van de huidige inrichting goed functioneren en hoe Finable daarop kan aansluiten. Een accountant kan bijvoorbeeld betrokken blijven bij de jaarrekening, fiscale werkzaamheden of andere specialistische vraagstukken, terwijl Finable de dagelijkse finance, maandafsluiting, controlling en rapportage verzorgt. Voor de start spreken we duidelijk af welke werkzaamheden bij welke partij liggen, zodat verantwoordelijkheden helder zijn en werkzaamheden niet dubbel worden uitgevoerd.</p></div></details>
           <details class="fin-faq"><summary><span class="fin-faq-q">Hoe wordt de maandprijs bepaald?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>De maandprijs hangt af van het werk dat Finable overneemt en de omvang en complexiteit van de finance-organisatie. Denk bijvoorbeeld aan de werkzaamheden die binnen de samenwerking vallen, het volume dat verwerkt moet worden en de complexiteit rondom afsluiting, controlling en rapportage. Op basis van de huidige situatie en de gewenste verdeling maken we vooraf een passende indicatie.</p></div></details>
         </div>
         <div style="margin-top:26px"><a href="/hoe-het-werkt" style="font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</a></div>
       </div>
-      <div style="border-left:1px solid var(--line);padding-left:clamp(28px,3vw,48px)">
+      <div class="endmod-cta" style="border-left:1px solid var(--on-dark-line);padding-left:clamp(28px,3vw,48px)">
         <div class="lbl" style="margin-bottom:20px">Persoonlijk kennismaken</div>
         <div class="tim-row" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
-          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
           <div>
-            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px">Benieuwd of Finable bij jouw organisatie past?</h2>
-            <p style="font-size:15px;color:var(--body);text-wrap:pretty">Plan 30 minuten met Tim om te bespreken hoe je finance nu is georganiseerd en waar Finable kan overnemen of versterken.</p>
+            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px;color:var(--white)">Benieuwd of Finable bij jouw organisatie past?</h2>
+            <p style="font-size:15px;color:var(--on-dark-secondary);text-wrap:pretty">Plan 30 minuten met Tim om te bespreken hoe je finance nu is georganiseerd en waar Finable kan overnemen of versterken.</p>
           </div>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px">
           <Button href="/gesprek">Plan een gesprek &rarr;</Button>
-          <div style="font-size:14px;color:var(--body);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Tim Samsom</span><br>Oprichter Finable</div>
+          <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Oprichter Finable</div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -197,6 +220,7 @@ import Button from '../components/Button.astro';
 <style is:global>
   a{transition:opacity .15s}
   a:hover{opacity:.72}
+  .on-dark-link:hover{color:var(--terracotta);opacity:1}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.15}
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
   .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
@@ -218,7 +242,6 @@ import Button from '../components/Button.astro';
   details.fin-faq[open] .fin-faq-ic::after{opacity:0}
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
   .fin-faq-a{max-width:720px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
-  .cta-p{display:grid;grid-template-columns:clamp(150px,18vw,220px) minmax(0,1fr) auto;gap:clamp(28px,3.4vw,48px);align-items:center}
   @media (max-width:1023px){
   .hero{grid-template-columns:1fr!important;gap:40px!important}
   .hero-note{display:none!important}
@@ -228,9 +251,10 @@ import Button from '../components/Button.astro';
   .cols4>div,.cols4t>div{padding:22px 0;border-left:none;border-top:1px solid var(--line)}
   .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:none}
   .case{grid-template-columns:1fr!important;gap:28px!important}
-  .cta-p{grid-template-columns:1fr;gap:24px}
+  .case-img{max-width:420px}
+  .logo-row{grid-template-columns:repeat(3,1fr)!important;gap:28px 32px!important}
   .endmod{grid-template-columns:1fr!important;gap:36px!important}
-  .endmod>div:last-child{border-left:none!important;padding-left:0!important}
+  .endmod>div:last-child{border-left:none!important;padding-left:0!important;border-top:1px solid var(--on-dark-line);padding-top:36px!important}
   }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
@@ -241,10 +265,12 @@ import Button from '../components/Button.astro';
   }
   /* Mobiel (≤639): compositie */
   @media (max-width:639px){
+    .hero-em{font-size:clamp(44px,13vw,56px)!important}
     .navy-trio{flex-direction:column;gap:6px!important}
     .navy-trio>span[style]{display:none}
     .flow{gap:12px}
     .cols4>div,.cols4t>div{padding:18px 0!important}
+    .logo-row{grid-template-columns:repeat(2,1fr)!important;gap:24px 28px!important}
   }
   @media (max-width:639px){
     .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}

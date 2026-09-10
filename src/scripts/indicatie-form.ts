@@ -21,8 +21,9 @@ if (form) {
       const active = !done && i === step;
       const dot = document.querySelector<HTMLElement>('[data-stepdot="' + i + '"]');
       const lab = document.querySelector<HTMLElement>('[data-steplabel="' + i + '"]');
-      if (dot) { dot.style.background = active ? 'var(--terracotta)' : 'transparent'; dot.style.borderColor = active ? 'var(--terracotta)' : 'var(--line)'; dot.style.color = active ? 'var(--white)' : 'var(--body)'; }
-      if (lab) lab.style.color = active ? 'var(--terracotta)' : 'var(--body)';
+      // Kleuren via CSS op [data-active] (de stapindicator staat op navy én op wit).
+      if (dot) dot.setAttribute('data-active', active ? '1' : '0');
+      if (lab) lab.setAttribute('data-active', active ? '1' : '0');
     }
   };
   tiles.forEach((t) => {
@@ -54,7 +55,8 @@ if (form) {
       const v = sel[g];
       out[g] = Array.isArray(v) ? v.join(', ') : (v ?? '');
     }
-    Object.assign(out, { naam: val('naam'), email: val('email'), telefoon: val('tel'), website: val('website') });
+    const branche = form.querySelector<HTMLSelectElement>('[data-branche]');
+    Object.assign(out, { branche: branche?.value ?? '', naam: val('naam'), email: val('email'), telefoon: val('tel'), website: val('website') });
     return out;
   };
 

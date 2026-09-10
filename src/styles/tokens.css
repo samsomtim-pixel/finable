@@ -9,4 +9,7 @@
   --terracotta-soft: rgba(196,100,58,0.08);
   --on-dark-secondary: rgba(255,255,255,0.72);
   --on-dark-tertiary: rgba(255,255,255,0.58);
+  --on-dark-line: rgba(255,255,255,0.18);
+  --warm-white: #F4F1EC;          /* H1 op navy-hero's */
+  --terracotta-tint: rgba(196,100,58,0.04); /* zachte secties: ervaringstrip, zekerheden */
 }

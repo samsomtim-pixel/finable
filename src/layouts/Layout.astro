@@ -75,6 +75,15 @@ const ogImage = new URL('/og.png', site).href;
   .ph{width:100%;height:100%;background:var(--section);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
   .ph span{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);padding:0 16px;text-align:center;line-height:1.5}
   button:focus-visible,a:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+  /* Navy hero: H1 warm-wit, nadruk in terracotta (span). */
+  .hero-navy h1{color:var(--warm-white)}
+  .hero-navy h1 .em{color:var(--terracotta)}
+  /* FAQ-module op navy (home, finance-team, finance-hire). */
+  .faq-navy details.fin-faq{border-top-color:rgba(255,255,255,0.16)}
+  .faq-navy details.fin-faq:last-of-type{border-bottom-color:rgba(255,255,255,0.16)}
+  .faq-navy .fin-faq-q{color:var(--white)}
+  .faq-navy details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .faq-navy .fin-faq-a{color:var(--on-dark-secondary)}
   /* Taalwissel NL · EN: klein en secundair aan de hoofdnavigatie. */
   .lang-switch{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--body)}
   .lang-switch a{color:var(--body);padding:4px 2px}
