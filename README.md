@@ -33,7 +33,7 @@ Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal
 | `/gesprek` | `/en/book-a-call` |
 | `/finance-hire` | `/en/finance-hire` |
 
-`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`; alle URL's op `https://www.finable.nl` zonder trailing slash. De head bevat ook een Apple touch icon en een Organization-JSON-LD met alleen geverifieerde gegevens. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
+`Layout.astro` zet per pagina `lang`, canonical en `hreflang` (nl, en, x-default → NL) op basis van `src/lib/i18n.ts`; alle URL's op `https://www.finable.nl` zonder trailing slash. De head bevat ook een Apple touch icon en een Organization-JSON-LD met alleen geverifieerde gegevens. `npm run build` schrijft na de sitemap-integratie ook `dist/sitemap.xml` (`scripts/sitemap-alias.mjs`); robots.txt en `<link rel="sitemap">` verwijzen daarnaar. De sitemap bevat alle NL- en EN-pagina's; `/vacature` staat er niet in. Onbedoelde Engelse varianten met Nederlandse slugs (`/en/aanpak`, `/en/over`, …) redirecten in `vercel.json` permanent naar de Engelse route. Header en footer lezen de taal uit de route; de Engelse footer heeft dezelfde opbouw met Engelse linkgroepen. Brits-Engelse spelling (organisation, personalised).
 
 ## Formulieren en boeking
 
