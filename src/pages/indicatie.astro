@@ -72,6 +72,11 @@ import Base from '../layouts/Base.astro';
 
       <!-- Right form -->
       <div class="ind-card">
+        <!-- Honeypot: hidden anti-spam field, never shown to humans -->
+        <div class="ind-hp" aria-hidden="true">
+          <label for="fin-hp">Laat dit veld leeg</label>
+          <input type="text" id="fin-hp" name="company_website" tabindex="-1" autocomplete="off" />
+        </div>
         <!-- Step 1 -->
         <div data-formstep="1">
           <div class="ind-question">
@@ -234,7 +239,7 @@ import Base from '../layouts/Base.astro';
           <p class="ind-privacy">We gebruiken je gegevens alleen om je indicatie op te stellen en contact op te nemen.</p>
 
           <div class="ind-error" data-formerror hidden>
-            Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl">tim@finable.nl</a> — dan pakken we het op.
+            Er ging iets mis bij het versturen. Probeer het opnieuw.
           </div>
 
           <div class="ind-footer">
@@ -248,21 +253,8 @@ import Base from '../layouts/Base.astro';
 
         <!-- Done -->
         <div data-formstep="done" hidden>
-          <h2>Dank je. Hier kan ik mee aan de slag.</h2>
-          <div class="ind-done-steps">
-            <div class="ind-done-step">
-              <span class="ind-done-num">01</span>
-              <p>Ik bekijk je aanvraag persoonlijk.</p>
-            </div>
-            <div class="ind-done-step">
-              <span class="ind-done-num">02</span>
-              <p>Heb ik nog een vraag, dan bel of mail ik je.</p>
-            </div>
-            <div class="ind-done-step">
-              <span class="ind-done-num">03</span>
-              <p>Binnen twee werkdagen ontvang je een eerste indicatie.</p>
-            </div>
-          </div>
+          <h2>Bedankt. We hebben je antwoorden ontvangen.</h2>
+          <p class="ind-done-lead">Tim bekijkt je situatie en neemt contact met je op met een eerste indicatie.</p>
           <div class="ind-done-footer">
             <span>Liever eerder even sparren?</span>
             <a href="/gesprek" class="text-link">Plan een gesprek →</a>
@@ -489,8 +481,18 @@ import Base from '../layouts/Base.astro';
   }
   .ind-error a { text-decoration: underline; }
 
+  /* Honeypot (visually hidden, not display:none so bots still fill it) */
+  .ind-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   /* Done */
-  [data-formstep="done"] h2 { margin-bottom: 32px; }
+  [data-formstep="done"] h2 { margin-bottom: 16px; }
+  .ind-done-lead { font-size: 1rem; color: var(--body-color); }
   .ind-done-steps { display: flex; flex-direction: column; gap: 20px; }
   .ind-done-step {
     display: flex;
@@ -607,22 +609,57 @@ import Base from '../layouts/Base.astro';
     });
   });
 
+  const locale = (document.documentElement.lang || 'nl').slice(0, 2);
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Fire indication_start once per page session on first meaningful interaction.
+  let startFired = false;
+  function fireStart() {
+    if (startFired) return;
+    startFired = true;
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'indication_start',
+      form_name: 'finable_indication',
+      locale,
+    });
+  }
+  // First tile click or first text-field focus counts as meaningful interaction.
+  document.querySelectorAll<HTMLElement>('[data-tile]').forEach(t => t.addEventListener('click', fireStart, { once: true }));
+  document.querySelectorAll<HTMLElement>('.ind-input').forEach(i => i.addEventListener('focus', fireStart, { once: true }));
+
   const submitBtn = document.querySelector<HTMLElement>('[data-submit]');
   if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
+      const naam = (document.getElementById('fin-naam') as HTMLInputElement)?.value.trim() || '';
+      const email = (document.getElementById('fin-email') as HTMLInputElement)?.value.trim() || '';
+
+      const errEl = document.querySelector<HTMLElement>('[data-formerror]');
+      if (errEl) errEl.hidden = true;
+
+      // Client-side validation for UX (server validates again for security).
+      if (!naam || !EMAIL_RE.test(email)) {
+        if (errEl) errEl.hidden = false;
+        return;
+      }
+
       const data = {
         ...sel,
         website: (document.getElementById('fin-website') as HTMLInputElement)?.value,
         tevredenheid: (document.getElementById('fin-tevreden') as HTMLInputElement)?.value,
         vastloopt: (document.getElementById('fin-vast') as HTMLTextAreaElement)?.value,
-        naam: (document.getElementById('fin-naam') as HTMLInputElement)?.value,
-        email: (document.getElementById('fin-email') as HTMLInputElement)?.value,
+        naam,
+        email,
         telefoon: (document.getElementById('fin-tel') as HTMLInputElement)?.value,
         extra: (document.getElementById('fin-extra') as HTMLTextAreaElement)?.value,
+        hp: (document.getElementById('fin-hp') as HTMLInputElement)?.value,
+        locale,
       };
 
-      const errEl = document.querySelector<HTMLElement>('[data-formerror]');
-      if (errEl) errEl.hidden = true;
+      const btn = submitBtn as HTMLButtonElement;
+      const originalLabel = btn.textContent;
+      btn.setAttribute('disabled', 'true');
+      btn.textContent = 'Bezig…';
 
       try {
         const res = await fetch('/api/indicatie', {
@@ -631,6 +668,13 @@ import Base from '../layouts/Base.astro';
           body: JSON.stringify(data),
         });
         if (res.ok) {
+          // Confirmed successful submission — fire analytics event (no PII).
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: 'indication_submit',
+            form_name: 'finable_indication',
+            locale,
+          });
           step = 4;
           document.querySelectorAll<HTMLElement>('[data-formstep]').forEach(el => {
             el.hidden = el.dataset.formstep !== 'done';
@@ -642,9 +686,13 @@ import Base from '../layouts/Base.astro';
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           if (errEl) errEl.hidden = false;
+          btn.removeAttribute('disabled');
+          btn.textContent = originalLabel;
         }
       } catch {
         if (errEl) errEl.hidden = false;
+        btn.removeAttribute('disabled');
+        btn.textContent = originalLabel;
       }
     });
   }
