@@ -21,9 +21,8 @@ function limited(ip: string, now = Date.now()) {
   return false;
 }
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== 'POST') return json(405, { ok: false, error: 'method_not_allowed' });
-
+// Web-standaard handlers: Vercel herkent benoemde HTTP-exports (POST/GET) als Request→Response-functies.
+export async function POST(request: Request): Promise<Response> {
   // Alleen aanroepen vanaf de eigen site (browsers sturen Origin mee bij cross-site POSTs).
   const origin = request.headers.get('origin');
   const allowLocal = process.env.VERCEL_ENV !== 'production' && origin?.startsWith('http://127.0.0.1');
@@ -64,4 +63,8 @@ export default async function handler(request: Request): Promise<Response> {
     console.error('indicatie: verzenden mislukt', err instanceof Error ? err.message : 'unknown');
     return json(502, { ok: false, error: 'mail_failed' });
   }
+}
+
+export function GET(): Response {
+  return json(405, { ok: false, error: 'method_not_allowed' });
 }
