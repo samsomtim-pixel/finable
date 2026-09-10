@@ -63,7 +63,7 @@ import Footer from '../../components/Footer.astro';
 
         <div style="height:1px;background:var(--line);margin-bottom:8px"></div>
 
-        <div class="calendly-inline-widget" data-calendly data-url="https://calendly.com/tim-finable/30min?hide_gdpr_banner=1&amp;hide_event_type_details=1&amp;background_color=ffffff&amp;text_color=1b3a5c&amp;primary_color=c4643a" style="width:100%;min-width:0;height:700px;overflow:hidden" aria-label="Pick a date and time for your call with Tim"></div>
+        <div class="calendly-inline-widget" data-calendly data-url="https://calendly.com/tim-finable/30min?hide_gdpr_banner=1&amp;hide_event_type_details=1&amp;background_color=ffffff&amp;text_color=1b3a5c&amp;primary_color=c4643a" style="width:100%;min-width:0;overflow:hidden" aria-label="Pick a date and time for your call with Tim"></div>
         <noscript><p style="font-size:15px;color:var(--body)">Book your call via <a href="https://calendly.com/tim-finable/30min" style="font-weight:600">Calendly</a>.</p></noscript>
         <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-top:14px">
           <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="12" height="8" rx="1.5"/><path d="M6 8V6a3 3 0 016 0v2"/></svg>
@@ -92,6 +92,9 @@ import Footer from '../../components/Footer.astro';
   .stepnum{position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px}
   .talk-left .st{font-family:'Playfair Display',serif;font-weight:600;color:var(--white);font-size:19px;margin-bottom:3px}
   .talk-left .sd{font-size:15px;color:var(--on-dark-secondary)}
+  /* Calendly: basis- én minimumhoogte in CSS. De iframe is 100% van deze container; de min-height voorkomt dat een
+     (te) kleine page_height-melding de widget ooit kan laten dichtklappen. Groei komt uit het script hieronder. */
+  .calendly-inline-widget{height:660px;min-height:660px}
   @media (max-width:1023px){
     .layout{grid-template-columns:1fr!important;gap:40px!important}
     .book-split{grid-template-columns:1fr!important}
@@ -99,7 +102,7 @@ import Footer from '../../components/Footer.astro';
   @media (max-width:639px){
     .mail-note{display:none}
     /* Calendly iframe out to the card edge so the calendar is not cramped on narrow screens */
-    .calendly-inline-widget{margin:0 -24px;width:auto!important}
+    .calendly-inline-widget{margin:0 -24px;width:auto!important;height:640px;min-height:640px}
     /* Order: intro → 01–03 → Tim/booking → direct contact */
     .layout{display:flex!important;flex-direction:column;gap:0!important}
     .layout>div:first-child{display:contents}
@@ -126,7 +129,14 @@ import Footer from '../../components/Footer.astro';
       if (e.origin !== 'https://calendly.com') return;
       const d = e.data;
       if (!d || typeof d.event !== 'string') return;
-      if (d.event === 'calendly.page_height' && d.payload?.height) widget.style.height = d.payload.height;
+      if (d.event === 'calendly.page_height') {
+        // Calendly stuurt body.scrollHeight + 2 via een ResizeObserver; de eerste melding komt vóór de inhoud is
+        // gerenderd (dus "2px"). Blind overnemen klapt de iframe dicht en houdt hem dicht. Daarom: alleen groeien
+        // boven de CSS-ondergrens, anders terug naar de basis (geen leeg vlak onder de widget).
+        const h = parseFloat(String(d.payload?.height ?? ''));
+        const min = parseFloat(getComputedStyle(widget).minHeight) || 600;
+        if (Number.isFinite(h) && h > 0 && h < 6000) widget.style.height = h > min ? Math.ceil(h) + 'px' : '';
+      }
       if (d.event === 'calendly.event_scheduled') {
         const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
         w.dataLayer = w.dataLayer || [];
