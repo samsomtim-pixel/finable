@@ -10,6 +10,7 @@ const logos = [
   { src: '/images/logos/logo-trunkrs.svg',         alt: 'Trunkrs',          w: 501, h: 72,  hd: 26, hm: 22 },
   { src: '/images/logos/logo-the-good-roll.webp',   alt: 'The Good Roll',    w: 662, h: 663, hd: 46, hm: 36 },
   { src: '/images/logos/logo-trodat.webp',          alt: 'Trodat',           w: 456, h: 124, hd: 34, hm: 28 },
+  { src: '/images/logos/logo-accelr.svg',          alt: 'Accelr',           w: 800, h: 210, hd: 28, hm: 24 },
   { src: '/images/logos/logo-valuematrix.svg',     alt: 'ValueMatrix',      w: 150, h: 51,  hd: 34, hm: 28 },
   { src: '/images/logos/logo-cavallaro.webp',       alt: 'Cavallaro Napoli', w: 800, h: 300, hd: 36, hm: 30 },
   { src: '/images/logos/logo-kidzink.webp',         alt: 'KidzInk',          w: 330, h: 83,  hd: 30, hm: 26 },
@@ -44,7 +45,7 @@ const logos = [
 <style>
   .marquee{
     --gap:clamp(56px,7vw,104px);
-    --dur:40s;
+    --dur:44s;
     width:100%;
     overflow:hidden;
     -webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);
@@ -81,7 +82,7 @@ const logos = [
     .seq img:hover{opacity:1}
   }
   @media (max-width:639px){
-    .marquee{--dur:34s}
+    .marquee{--dur:37s}
     .seq img{height:var(--hm)}
   }
   @media (prefers-reduced-motion:reduce){
