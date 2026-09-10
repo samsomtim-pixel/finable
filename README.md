@@ -53,7 +53,7 @@ De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2
 
 ## Nog niet ingevuld (vóór livegang)
 
-- `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer (Engels: `[LEGAL ENTITY]` en `[NUMBER]`); Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
+- Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
 - Portretten van Rishabh Goyal en Himanshu Poddar op /over (bewust neutrale plek, `.port-pending`).
 - "20+ finance-specialisten" op /over verifiëren (zie HTML-comment ter plekke).
 - Domein in `astro.config.mjs` (`site`) controleren.
