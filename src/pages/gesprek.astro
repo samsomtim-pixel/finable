@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Button from '../components/Button.astro';
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT_GESPREK ?? '';
 const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? '';
 // TODO: CONNECT REAL BOOKING PROVIDER — zet op true zodra echte beschikbaarheid uit de agenda-provider komt.
@@ -14,37 +13,39 @@ const bookingProviderConnected = false;
 
   <Header />
 
-  <section class="wrap" style="padding-top:44px;padding-bottom:80px">
+  <!-- De hele gesprekspagina staat op navy; de boekingskaart is wit. -->
+  <section class="talk-navy hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
     <div class="layout">
 
       <!-- LEFT -->
-      <div>
+      <div class="talk-left">
         <div class="lbl" style="margin-bottom:20px">Plan een gesprek</div>
-        <h1 style="font-size:clamp(32px,4.4vw,52px);margin-bottom:22px;text-wrap:balance">Laten we kijken hoe je finance er nu voor staat.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--body);max-width:500px;margin-bottom:44px;text-wrap:pretty">In 30 minuten bespreken we hoe je finance nu is georganiseerd, waar het knelt en wat Finable eventueel kan overnemen. Geen uitgebreide intake. Gewoon kijken of het past.</p>
+        <h1 style="font-size:clamp(32px,4.4vw,52px);margin-bottom:22px;text-wrap:balance">Laten we kijken hoe je finance <span class="em">er nu voor staat.</span></h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);max-width:500px;margin-bottom:44px;text-wrap:pretty">In 30 minuten bespreken we hoe je finance nu is georganiseerd, waar het knelt en wat Finable eventueel kan overnemen. Geen uitgebreide intake. Gewoon kijken of het past.</p>
 
         <div style="position:relative">
           <div style="position:absolute;left:9px;top:12px;bottom:60px;width:1px;background:var(--line)"></div>
           <div style="display:flex;flex-direction:column;gap:26px">
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">01</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">Waar je nu staat</div><div style="font-size:15px;color:var(--body)">Hoe finance vandaag is georganiseerd en waar het knelt.</div></div>
+              <span class="stepnum">01</span>
+              <div><div class="st">Waar je nu staat</div><div class="sd">Hoe finance vandaag is georganiseerd en waar het knelt.</div></div>
             </div>
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">02</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">Wat Finable kan overnemen</div><div style="font-size:15px;color:var(--body)">Van één onderdeel tot vrijwel je hele dagelijkse finance.</div></div>
+              <span class="stepnum">02</span>
+              <div><div class="st">Wat Finable kan overnemen</div><div class="sd">Van één onderdeel tot vrijwel je hele dagelijkse finance.</div></div>
             </div>
             <div style="display:flex;gap:20px">
-              <span style="position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px">03</span>
-              <div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:19px;margin-bottom:3px">Of het bij elkaar past</div><div style="font-size:15px;color:var(--body)">Een eerlijk beeld van wat logisch is — ook als Finable dat niet is.</div></div>
+              <span class="stepnum">03</span>
+              <div><div class="st">Of het bij elkaar past</div><div class="sd">Een eerlijk beeld van wat logisch is — ook als Finable dat niet is.</div></div>
             </div>
           </div>
         </div>
 
-        <div style="border-top:1px solid var(--line);margin-top:36px;padding-top:26px;position:relative">
-          <div style="font-size:15px;color:var(--body);margin-bottom:8px">Liever eerst schrijven?</div>
+        <div style="border-top:1px solid var(--on-dark-line);margin-top:36px;padding-top:26px;position:relative">
+          <div style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:8px">Liever eerst schrijven?</div>
           <a href="mailto:tim@finable.nl" style="display:inline-flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:21px;color:var(--terracotta)">
-            <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.6"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M3 6l8 6 8-6"/></svg>
+            <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="18" height="14" rx="2"/><path d="M3 6l8 6 8-6"/></svg>
             tim@finable.nl &rarr;
           </a>
           <div class="mail-note" style="position:absolute;right:0;top:14px;width:130px;text-align:center;pointer-events:none">
@@ -53,11 +54,11 @@ const bookingProviderConnected = false;
         </div>
       </div>
 
-      <!-- RIGHT: BOOKING MODULE -->
+      <!-- RIGHT: BOOKING MODULE (wit op navy) -->
       <!-- TODO: CONNECT REAL BOOKING PROVIDER — data en tijden hieronder zijn illustratief tot de agenda-integratie is gekoppeld. -->
-      <div style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:clamp(24px,3vw,34px)">
+      <div class="book-card" style="background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(24px,3vw,34px)">
         <div data-booked hidden style="padding:8px 0">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><svg width="26" height="26" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.8"><circle cx="11" cy="11" r="9.5"/><path d="M6.5 11l3 3L15 8"/></svg><h2 style="font-size:26px;color:var(--navy)">Afgesproken.</h2></div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><svg width="26" height="26" viewBox="0 0 22 22" fill="none" stroke="#C4643A" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="9.5"/><path d="M6.5 11l3 3L15 8"/></svg><h2 style="font-size:26px;color:var(--navy)">Afgesproken.</h2></div>
             <p style="font-size:16px;color:var(--body);margin-bottom:22px">Je gesprek met Tim staat gepland.</p>
             <div style="border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:22px">
               <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:4px"><span data-booked-date></span></div>
@@ -70,10 +71,10 @@ const bookingProviderConnected = false;
             <div class="book-split" style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:26px">
               <div>
                 <div class="lbl" style="margin-bottom:12px">Je spreekt met Tim</div>
-                <h2 style="font-size:clamp(22px,2.4vw,28px);line-height:1.14;margin-bottom:8px">Kies een moment dat uitkomt.</h2>
+                <h2 style="font-size:clamp(22px,2.4vw,28px);line-height:1.14;margin-bottom:8px;color:var(--navy)">Kies een moment dat uitkomt.</h2>
                 <div style="font-size:15px;color:var(--body)">30 minuten · vrijblijvend</div>
               </div>
-              <div style="width:84px;height:84px;border-radius:12px;overflow:hidden;flex-shrink:0"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div style="width:84px;height:84px;border-radius:14px;overflow:hidden;flex-shrink:0"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
             </div>
 
             <div style="height:1px;background:var(--line);margin-bottom:24px"></div>
@@ -93,7 +94,7 @@ const bookingProviderConnected = false;
             <button type="button" data-confirm disabled style="width:100%;background:var(--terracotta);color:var(--white);font-weight:600;font-size:16px;font-family:inherit;padding:15px;border:none;border-radius:999px;margin-top:4px;cursor:not-allowed;opacity:.45">Bevestig dit moment &rarr;</button>
             <p data-formerror style="display:none;font-size:14px;color:var(--terracotta);background:var(--terracotta-soft);border:1px solid rgba(196,100,58,0.35);border-radius:10px;padding:14px 16px;margin-top:16px">Er ging iets mis bij het versturen. Mail je aanvraag naar <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> — dan pakken we het op.</p>
             <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-top:14px">
-              <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#5F6B76" stroke-width="1.5"><rect x="3" y="8" width="12" height="8" rx="1.5"/><path d="M6 8V6a3 3 0 016 0v2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="12" height="8" rx="1.5"/><path d="M6 8V6a3 3 0 016 0v2"/></svg>
               <span style="font-size:13px;color:var(--body)">Geen verplichtingen. Je ontvangt een bevestiging per e-mail.</span>
             </div>
             </div>
@@ -102,7 +103,8 @@ const bookingProviderConnected = false;
 
     </div>
 
-    <div style="max-width:1240px;margin-top:28px;font-size:15px;color:var(--body)">Liever eerst een prijsindicatie? <a href="/indicatie" style="font-weight:600">Bekijk de indicatie &rarr;</a></div>
+    <div class="talk-foot" style="max-width:1240px;margin-top:28px;font-size:15px;color:var(--on-dark-secondary)">Liever eerst een prijsindicatie? <a href="/indicatie" style="font-weight:600">Bekijk de indicatie &rarr;</a></div>
+    </div>
   </section>
 
   <Footer />
@@ -116,10 +118,10 @@ const bookingProviderConnected = false;
   a:hover{opacity:.72}
   h1,h2,h3{line-height:1.12}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.1}
-  .fin-input{width:100%;padding:12px 14px;background:var(--white);border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy)}
-  .fin-input::placeholder{color:var(--body)}
-  .fin-input:focus{outline:2px solid var(--terracotta);outline-offset:1px;border-color:var(--terracotta)}
   .layout{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);gap:clamp(40px,4.6vw,64px);align-items:start}
+  .stepnum{position:relative;z-index:1;width:20px;height:20px;border-radius:999px;background:rgba(196,100,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:var(--terracotta);margin-top:2px}
+  .talk-left .st{font-family:'Playfair Display',serif;font-weight:600;color:var(--white);font-size:19px;margin-bottom:3px}
+  .talk-left .sd{font-size:15px;color:var(--on-dark-secondary)}
   .cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
   .cal-cell{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;border:1px solid var(--line);border-radius:10px;background:var(--white);cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s}
   .cal-cell:hover{border-color:var(--terracotta)}
@@ -176,7 +178,7 @@ const bookingProviderConnected = false;
       while (out.length < 10) {
         d.setDate(d.getDate() + 1);
         const wd = d.getDay();
-        if (wd >= 1 && wd <= 5) out.push({ dow: DOW[wd], dnum: d.getDate(), date: new Date(d) });
+        if (wd >= 1 && wd <= 5) out.push({ dow: DOW[wd] ?? '', dnum: d.getDate(), date: new Date(d) });
       }
       return out;
     };
@@ -191,9 +193,10 @@ const bookingProviderConnected = false;
     const render = () => {
       const chosen = dateIdx != null ? DAYS[dateIdx] : null;
       const ready = !!(chosen && time);
-      monthEl.textContent = DAYS.length ? (DAYS[0].date.getMonth() === DAYS[DAYS.length - 1].date.getMonth()
-        ? DAYS[0].date.toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })
-        : DAYS[0].date.toLocaleDateString('nl-NL', { month: 'short' }) + ' – ' + DAYS[DAYS.length - 1].date.toLocaleDateString('nl-NL', { month: 'short', year: 'numeric' })) : '';
+      const first = DAYS[0], last = DAYS[DAYS.length - 1];
+      monthEl.textContent = first && last ? (first.date.getMonth() === last.date.getMonth()
+        ? first.date.toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })
+        : first.date.toLocaleDateString('nl-NL', { month: 'short' }) + ' – ' + last.date.toLocaleDateString('nl-NL', { month: 'short', year: 'numeric' })) : '';
       calEl.innerHTML = '';
       DAYS.forEach((day, i) => {
         const b = document.createElement('button');

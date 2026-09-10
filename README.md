@@ -17,7 +17,7 @@ npm run build    # statische output in dist/
 - `src/pages/en/*.astro` — de zeven Engelse pagina's (zie *Engelse site*).
 - `src/lib/i18n.ts` — de NL↔EN paginakoppeling, taal uit de route, canonical/hreflang-helpers.
 - `src/scripts/indicatie-form.ts` — de meerstapslogica van het indicatie-/estimate-formulier, gedeeld door `/indicatie` en `/en/estimate`.
-- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — WebP-afbeeldingen. `public/og.png` — deelafbeelding.
+- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — foto's als WebP (Tim, team, Sander/The Good Roll, Janesh, Shilpa), `public/images/logos/` — de logo's van de ervaringstrip op de home. `public/og.png` — deelafbeelding.
 
 ## Engelse site
 
@@ -47,8 +47,14 @@ PUBLIC_FORM_ACCESS_KEY=            # alleen voor Web3Forms
 
 Zonder endpoint toont het formulier de foutmelding met `tim@finable.nl` als terugvaloptie; een bevestiging verschijnt alleen na een succesvolle response. De boekingsmodule op `/gesprek` heeft geen naam- of e-mailveld; koppel een agenda-provider voordat je `bookingProviderConnected` op true zet.
 
+## Ontwerp (Claude Design, september 2026)
+
+De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2 v2.dc.html`): witte navigatie, navy hero met warm-witte H1 en terracotta nadruk, editoriale witte/zacht-getinte secties, selectieve navy-ankers en een witte footer. De capability-taal is site-breed **Dagelijkse finance → Maandafsluiting → Controlling → Rapportage & inzicht**; "managementrapportage" komt alleen nog voor in de vacaturetekst op /finance-hire (bewust). De Engelse pagina's onder `/en/` volgen nog het eerdere ontwerp.
+
 ## Nog niet ingevuld (vóór livegang)
 
 - `[STATUTAIRE NAAM]` en `[NUMMER]` in de footer (Engels: `[LEGAL ENTITY]` en `[NUMBER]`); Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
-- Beeld: stillevens op home, /aanpak en /hoe-het-werkt, teamportretten en hero-portret op /over (placeholders met `.ph`).
+- Portretten van Rishabh Goyal en Himanshu Poddar op /over (bewust neutrale plek, `.port-pending`).
+- "20+ finance-specialisten" op /over verifiëren (zie HTML-comment ter plekke).
+- De Engelse pagina's (`src/pages/en/`) hebben nog de stillevens/portret-placeholders (`.ph`) van het vorige ontwerp.
 - Domein in `astro.config.mjs` (`site`) controleren.
