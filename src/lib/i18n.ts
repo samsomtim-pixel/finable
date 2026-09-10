@@ -1,9 +1,9 @@
-// Route-based taal: Nederlands op de root, Engels onder /en/ met eigen Engelse slugs.
+// Route-based taal: Nederlands op de root, Engels onder /en met eigen Engelse slugs (URL's zonder trailing slash).
 // Geen automatische redirect op browsertaal of locatie; de bezoeker kiest via NL · EN.
 export type Lang = 'nl' | 'en';
 
 export const PAGE_MAP: { nl: string; en: string }[] = [
-  { nl: '/', en: '/en/' },
+  { nl: '/', en: '/en' },
   { nl: '/aanpak', en: '/en/finance-team' },
   { nl: '/hoe-het-werkt', en: '/en/how-it-works' },
   { nl: '/over', en: '/en/about' },
@@ -27,11 +27,10 @@ export function langOf(path: string): Lang {
 export function alternates(path: string): { nl: string; en: string } {
   const p = normalise(path);
   const entry = PAGE_MAP.find((e) => normalise(e.nl) === p || normalise(e.en) === p);
-  return entry ? { nl: entry.nl, en: entry.en } : { nl: '/', en: '/en/' };
+  return entry ? { nl: entry.nl, en: entry.en } : { nl: '/', en: '/en' };
 }
 
-/** Absolute URL met trailing slash, zoals de gebouwde pagina's (directory-output) worden geserveerd. */
+/** Absolute URL zonder trailing slash (behalve de root), gelijk aan de interne links. */
 export function absolute(path: string, site: URL): string {
-  const p = normalise(path);
-  return new URL(p === '/' ? '/' : p + '/', site).href;
+  return new URL(normalise(path), site).href;
 }

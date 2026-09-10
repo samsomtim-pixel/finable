@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://finable.nl/sitemap-index.xml
+Sitemap: https://www.finable.nl/sitemap-index.xml
