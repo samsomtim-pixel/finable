@@ -2,7 +2,7 @@
 // Ontvangt het indicatie-/estimate-formulier (JSON), valideert serverzijde en mailt alle antwoorden naar
 // tim@finable.nl via Resend. Antwoordt pas met ok:true als Resend de mail heeft geaccepteerd.
 // Logt bewust geen formulierinhoud, alleen statussen.
-import { parseSubmission, sendWithResend } from '../src/lib/indicatie-mail.ts';
+import { parseSubmission, sendWithResend } from './_lib/indicatie-mail';
 
 const json = (status: number, body: Record<string, unknown>) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
