@@ -18,12 +18,12 @@ import Button from '../components/Button.astro';
         <h1 style="font-size:clamp(36px,5vw,60px);margin-bottom:26px;text-wrap:balance">Eén vast aanspreekpunt. <span class="em">Een heel finance-team erachter.</span></h1>
         <p style="font-size:clamp(17px,2vw,21px);color:rgba(255,255,255,.78);max-width:520px;text-wrap:pretty">Geen anoniem administratiekantoor. Je hebt één gezicht dat je kent, met een ervaren team dat het dagelijkse finance-werk uitvoert.</p>
       </div>
-      <div style="position:relative;display:flex;justify-content:flex-end;align-items:center;min-height:320px">
-        <div class="over-photo" style="width:100%;height:clamp(280px,32vw,380px);border-radius:16px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter van Finable" width="800" height="699" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div class="over-note" style="position:absolute;left:-16px;top:8px;max-width:180px">
+      <div class="over-visual">
+        <div class="over-note">
           <div style="font-family:'Caveat',cursive;font-size:24px;line-height:1.25;color:var(--warm-white)">Je weet altijd wie je kunt bellen.</div>
-          <svg width="80" height="52" viewBox="0 0 80 52" fill="none" style="margin-top:2px" aria-hidden="true"><path d="M4 6C18 36 44 44 72 40" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M64 31l9 10-14 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="80" height="52" viewBox="0 0 80 52" fill="none"  aria-hidden="true"><path d="M4 6C18 36 44 44 72 40" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M64 31l9 10-14 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
+        <div class="over-photo" style="width:100%;height:clamp(280px,32vw,380px);border-radius:16px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter van Finable" width="800" height="699" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
     </div>
     </div>
@@ -185,6 +185,11 @@ import Button from '../components/Button.astro';
   .fin-cap{font-size:15px;color:var(--body)}
   .fin-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
   .fin-4port{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  /* Handgeschreven notitie in de navy-zone naast de foto, in de flow (geen absolute coördinaten). */
+  .over-visual{display:grid;grid-template-columns:minmax(130px,170px) minmax(0,1fr);gap:18px;align-items:start}
+  .over-note{padding-top:10px}
+  .over-note svg{display:block;position:relative;left:18px;margin:4px 0 0 24px}
+  @media (max-width:1279px){ .over-note>div{font-size:22px!important} }
   /* Bewust neutrale plek voor een portret dat nog volgt (geen stockfoto, geen gegenereerd gezicht). */
   .port-pending{aspect-ratio:3/4;border-radius:12px;background:#ECEAE6;display:flex;align-items:flex-end;justify-content:center}
   .port-pending span{font-family:monospace;font-size:10px;color:#9A9186;margin-bottom:14px}
@@ -199,7 +204,9 @@ import Button from '../components/Button.astro';
   @media (max-width:1023px){
     .over-hero{grid-template-columns:1fr!important}
     .over-hero>div:last-child{order:-1;min-height:0!important}
-    .over-note{display:none}
+    .over-visual{grid-template-columns:1fr;gap:12px}
+    .over-note{padding-top:0}
+    .over-note svg{left:0;margin-left:16px;height:40px;width:auto}
     .over-team{grid-template-columns:1fr!important;gap:36px!important}
     .over-cta>div:first-child{max-width:150px}
     .fin-3col{gap:10px}

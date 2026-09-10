@@ -23,7 +23,11 @@ import Button from '../components/Button.astro';
         </div>
       </div>
 
-      <div style="position:relative">
+      <div>
+        <div class="hero-note">
+          <div class="cav" style="font-size:22px;color:var(--terracotta)">Wat goed werkt, laten we staan.</div>
+          <svg width="70" height="46" viewBox="0 0 70 46" fill="none"  aria-hidden="true"><path d="M8 6C22 30 44 38 62 30" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M55 22l8 9-13 5" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <div class="hero-right" style="display:grid;grid-template-columns:1fr;gap:26px;align-items:center">
           <div class="tri">
             <div>
@@ -41,10 +45,6 @@ import Button from '../components/Button.astro';
               <div class="tl">Wat neemt<br>Finable over?</div>
             </div>
           </div>
-        </div>
-        <div class="hero-note" style="position:absolute;top:-14px;left:20%;width:170px;text-align:center;pointer-events:none">
-          <div class="cav" style="font-size:22px;color:var(--terracotta)">Wat goed werkt, laten we staan.</div>
-          <svg width="70" height="46" viewBox="0 0 70 46" fill="none" style="margin:2px auto 0" aria-hidden="true"><path d="M8 6C22 30 44 38 62 30" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M55 22l8 9-13 5" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
     </div>
@@ -97,6 +97,10 @@ import Button from '../components/Button.astro';
           <p style="font-size:16px;color:var(--body);text-wrap:pretty">Finable kan een specifiek onderdeel overnemen of vrijwel je hele finance organiseren. Wat past bij jouw situatie.</p>
         </div>
         <div style="position:relative">
+          <div class="scope-note">
+            <div class="cav" style="font-size:20px">Dit hoeft dus niet alles-of-niets te zijn.</div>
+            <svg width="60" height="42" viewBox="0 0 60 42" fill="none"  aria-hidden="true"><path d="M50 6C42 24 26 32 10 30" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M17 22l-7 9 12 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
           <div class="scope-labels" style="display:flex;justify-content:space-between;gap:16px;margin-bottom:2px">
             <span class="lbl" style="letter-spacing:0.14em;color:var(--navy)">Een deel</span>
             <span class="lbl" style="letter-spacing:0.14em;color:var(--navy)">Meer overnemen</span>
@@ -112,10 +116,6 @@ import Button from '../components/Button.astro';
               <div class="lbl" style="margin-bottom:8px">Finable neemt over</div>
               <p style="font-size:15px;color:var(--body);line-height:1.55">De onderdelen waar wij de meeste waarde toevoegen.</p>
             </div>
-          </div>
-          <div class="scope-note" style="position:absolute;top:-58px;right:8%;width:190px;text-align:center;pointer-events:none">
-            <div class="cav" style="font-size:20px">Dit hoeft dus niet alles-of-niets te zijn.</div>
-            <svg width="60" height="42" viewBox="0 0 60 42" fill="none" style="margin:2px auto 0" aria-hidden="true"><path d="M50 6C42 24 26 32 10 30" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M17 22l-7 9 12 3" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
       </div>
@@ -298,14 +298,22 @@ import Button from '../components/Button.astro';
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
   .fin-faq-a{max-width:760px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
   .indic{background:var(--terracotta-soft);border-radius:10px;padding:clamp(28px,3.4vw,44px) clamp(28px,4vw,52px);display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1fr) auto;gap:clamp(24px,3vw,44px);align-items:center}
+  /* Handgeschreven notities staan in de flow: eigen witruimte, geen absolute coördinaten. */
+  .hero-note{width:min(260px,76%);margin:0 0 28px 8%;text-align:left}
+  .hero-note .cav,.scope-note .cav{text-wrap:balance}
+  .hero-note svg{display:block;margin:2px 0 0 36%}
+  .scope-note{display:flex;flex-direction:column;align-items:flex-end;text-align:right;width:min(260px,46%);margin:0 12% 30px auto}
+  .scope-note svg{display:block;margin:2px 0 0;align-self:center}
   .scan-grid{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(28px,3.4vw,52px);align-items:center}
   .work-grid{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1fr);gap:clamp(28px,3.4vw,48px);align-items:start}
   @media (max-width:1023px){
   .hero-right{grid-template-columns:1fr!important}
   .tri{grid-template-columns:1fr;gap:16px}
   .tri .ta{transform:rotate(90deg);justify-self:center;margin:0}
-  .hero-note{display:none!important}
-  .scope-note{display:none!important}
+  .hero-note{width:auto;max-width:300px;margin:0 auto 20px;text-align:center}
+  .hero-note svg{margin:2px auto 0;height:36px;width:auto}
+  .scope-note{align-items:flex-start;text-align:left;width:auto;max-width:300px;margin:0 0 22px}
+  .scope-note svg{align-self:flex-start;transform:scaleX(-1);height:36px;width:auto}
   .scan-grid{grid-template-columns:1fr;gap:32px}
   .scope-flex{grid-template-columns:1fr!important}
   .work-grid{grid-template-columns:1fr;gap:32px}
@@ -321,6 +329,11 @@ import Button from '../components/Button.astro';
     .endmod>div:last-child{border-left:none!important;padding-left:0!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
+  }
+  @media (max-width:639px){
+    .hero-note .cav,.scope-note .cav{font-size:20px!important}
+    .hero-note{margin-bottom:16px}
+    .scope-note{margin-bottom:18px}
   }
   @media (max-width:639px){
     /* Scope-balk wordt een verticale lijn met drie punten */
