@@ -1,8 +1,24 @@
 // Meerstapsflow + verzending van het indicatie-/estimate-formulier (vanilla). Gedeeld door /indicatie en /en/estimate.
-// Teksten voor de laadstatus en het onderwerp komen uit data-attributen, zodat de logica taalneutraal blijft.
-// Bevestiging alleen bij een succesvolle response; bij mislukken de zichtbare foutmelding.
+// Verzending gaat naar de eigen serverroute (/api/indicatie), die valideert en mailt. Bevestiging alleen bij een
+// bevestigde succesvolle response; bij mislukken blijft het formulier staan met een rustige foutmelding.
+// Analytics: 'indication_start' één keer bij de eerste echte interactie, 'indication_submit' alleen na succes.
+// Er gaan nooit persoonsgegevens naar de dataLayer.
+export {};
+
+declare global {
+  interface Window { dataLayer?: Record<string, unknown>[] }
+}
+
 const form = document.querySelector<HTMLFormElement>('[data-indicatie-form]');
 if (form) {
+  const lang = form.dataset.lang || 'nl';
+  const endpoint = form.dataset.endpoint || '/api/indicatie';
+  const track = (data: Record<string, unknown>) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push(data); };
+  let started = false;
+  const start = () => { if (started) return; started = true; track({ event: 'indication_start', form_name: 'finable_indication', locale: lang }); };
+  form.addEventListener('input', start);
+  form.addEventListener('change', start);
+
   const sel: Record<string, string | string[] | null> = {};
   let step = 1;
   let done = false;
@@ -28,6 +44,7 @@ if (form) {
   };
   tiles.forEach((t) => {
     t.addEventListener('click', () => {
+      start();
       const group = t.dataset.group!, val = t.dataset.value!, multi = t.dataset.multi === '1';
       if (multi) {
         const arr = Array.isArray(sel[group]) ? (sel[group] as string[]).slice() : [];
@@ -41,22 +58,36 @@ if (form) {
     });
   });
   const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  form.querySelectorAll('[data-step-next]').forEach((b) => b.addEventListener('click', () => { step = Math.min(3, step + 1); sync(); toTop(); }));
+
+  type Control = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+  const firstInvalid = (scope: ParentNode): Control | null => scope.querySelector<Control>('input:invalid, select:invalid, textarea:invalid');
+  const stepOf = (el: Element) => Number(el.closest<HTMLElement>('[data-formstep]')?.dataset.formstep) || step;
+
+  form.querySelectorAll('[data-step-next]').forEach((b) => b.addEventListener('click', () => {
+    // Verplichte velden van de huidige stap eerst (client-side, voor de UX; de server valideert opnieuw).
+    const cur = form.querySelector<HTMLElement>('[data-formstep="' + step + '"]');
+    const bad = cur ? firstInvalid(cur) : null;
+    if (bad) { bad.reportValidity(); return; }
+    step = Math.min(3, step + 1); sync(); toTop();
+  }));
   form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => { step = Math.max(1, step - 1); sync(); toTop(); }));
 
-  const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value ?? '';
+  const val = (n: string) => (form.elements.namedItem(n) as Control | null)?.value ?? '';
   const collect = () => {
-    const out: Record<string, string> = {
-      formulier: 'indicatie',
-      taal: form.dataset.lang || 'nl',
-      _subject: form.dataset.subject || 'Nieuwe indicatie-aanvraag via finable.nl',
-    };
+    const out: Record<string, string> = { formulier: 'indicatie', taal: lang };
     for (const g of ['grootte', 'entiteiten', 'landen', 'hulp', 'wie', 'facturen', 'pakket', 'start']) {
       const v = sel[g];
       out[g] = Array.isArray(v) ? v.join(', ') : (v ?? '');
     }
-    const branche = form.querySelector<HTMLSelectElement>('[data-branche]');
-    Object.assign(out, { branche: branche?.value ?? '', naam: val('naam'), email: val('email'), telefoon: val('tel'), website: val('website') });
+    Object.assign(out, {
+      industry: val('industry'),
+      company_name: val('company_name'),
+      naam: val('naam'),
+      email: val('email'),
+      telefoon: val('tel'),
+      website: val('website'),
+      _gotcha: val('_gotcha'),
+    });
     return out;
   };
 
@@ -66,19 +97,23 @@ if (form) {
     const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
     if (err) err.style.display = 'none';
     if (val('_gotcha')) return; // honeypot
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const endpoint = form.dataset.endpoint || '';
+    const bad = firstInvalid(form);
+    if (bad) {
+      // Een verplicht veld in een eerdere stap (bijv. branche): terug naar die stap en de melding tonen.
+      const s = stepOf(bad);
+      if (s !== step) { step = s; sync(); toTop(); }
+      requestAnimationFrame(() => bad.reportValidity());
+      return;
+    }
     const label = btn?.textContent ?? '';
     if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = form.dataset.busy || 'Versturen…'; }
     try {
-      if (!endpoint) throw new Error('Geen formulier-endpoint geconfigureerd (PUBLIC_FORM_ENDPOINT_INDICATIE).');
-      const payload: Record<string, string> = collect();
-      if (form.dataset.accessKey) payload.access_key = form.dataset.accessKey;
-      const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
-      if (!res.ok) throw new Error('bad status ' + res.status);
+      const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(collect()) });
+      const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+      if (!res.ok || !data || data.ok !== true) throw new Error('submit failed: ' + res.status);
       done = true; sync(); toTop();
-    } catch (ex) {
-      console.error(ex);
+      track({ event: 'indication_submit', form_name: 'finable_indication', locale: lang });
+    } catch {
       if (err) err.style.display = 'block';
       if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; }
     }

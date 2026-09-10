@@ -2,8 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-// The booking provider is not connected yet (see /gesprek). Until it is, this page renders only the
-// email fallback: no calendar, no illustrative dates or times, no booking script.
+// Booking runs through Calendly (inline embed, loaded on this page only). See the script at the bottom.
 ---
 <Layout title="Book a call · Finable" description="Book 30 minutes with Tim. We'll look at how your finance is organised today, where things get stuck and what Finable could take over.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
@@ -51,7 +50,7 @@ import Footer from '../../components/Footer.astro';
         </div>
       </div>
 
-      <!-- RIGHT: BOOKING MODULE (white on navy; provider disabled → email fallback only) -->
+      <!-- RIGHT: BOOKING (white on navy) — Calendly inline; the script is loaded on this page only -->
       <div class="book-card" style="background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(24px,3vw,34px)">
         <div class="book-split" style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:26px">
           <div>
@@ -62,9 +61,14 @@ import Footer from '../../components/Footer.astro';
           <div style="width:84px;height:84px;border-radius:14px;overflow:hidden;flex-shrink:0"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         </div>
 
-        <div style="height:1px;background:var(--line);margin-bottom:24px"></div>
+        <div style="height:1px;background:var(--line);margin-bottom:8px"></div>
 
-        <p data-booking-notice style="font-size:15px;color:var(--body);text-wrap:pretty">Online booking isn't available yet. Email <a href="mailto:tim@finable.nl" style="font-weight:600">tim@finable.nl</a> directly and we'll find a time that works.</p>
+        <div class="calendly-inline-widget" data-calendly data-url="https://calendly.com/tim-finable/30min?hide_gdpr_banner=1&amp;hide_event_type_details=1&amp;background_color=ffffff&amp;text_color=1b3a5c&amp;primary_color=c4643a" style="width:100%;min-width:0;height:700px;overflow:hidden" aria-label="Pick a date and time for your call with Tim"></div>
+        <noscript><p style="font-size:15px;color:var(--body)">Book your call via <a href="https://calendly.com/tim-finable/30min" style="font-weight:600">Calendly</a>.</p></noscript>
+        <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-top:14px">
+          <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#5F6B76" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="12" height="8" rx="1.5"/><path d="M6 8V6a3 3 0 016 0v2"/></svg>
+          <span style="font-size:13px;color:var(--body)">No obligations. You'll receive a confirmation by email.</span>
+        </div>
       </div>
 
     </div>
@@ -94,6 +98,8 @@ import Footer from '../../components/Footer.astro';
   }
   @media (max-width:639px){
     .mail-note{display:none}
+    /* Calendly iframe out to the card edge so the calendar is not cramped on narrow screens */
+    .calendly-inline-widget{margin:0 -24px;width:auto!important}
     /* Order: intro → 01–03 → Tim/booking → direct contact */
     .layout{display:flex!important;flex-direction:column;gap:0!important}
     .layout>div:first-child{display:contents}
@@ -102,3 +108,30 @@ import Footer from '../../components/Footer.astro';
     .book-split{grid-template-columns:1fr auto!important;gap:16px!important}
   }
 </style>
+
+<script>
+  // Calendly inline embed, alleen op deze pagina. Het externe script wordt één keer toegevoegd (guard op src).
+  // Luistert naar Calendly's postMessage-events: hoogte volgen (geen geneste scrollbalk) en, uitsluitend na een
+  // bevestigde afspraak (calendly.event_scheduled), 'book_call_complete' naar de dataLayer voor GTM/GA4.
+  const widget = document.querySelector<HTMLElement>('[data-calendly]');
+  if (widget) {
+    const SRC = 'https://assets.calendly.com/assets/external/widget.js';
+    if (!document.querySelector('script[src="' + SRC + '"]')) {
+      const s = document.createElement('script');
+      s.src = SRC; s.async = true;
+      document.head.appendChild(s);
+    }
+    type CalendlyMessage = { event?: string; payload?: { height?: string } };
+    window.addEventListener('message', (e: MessageEvent<CalendlyMessage | null>) => {
+      if (e.origin !== 'https://calendly.com') return;
+      const d = e.data;
+      if (!d || typeof d.event !== 'string') return;
+      if (d.event === 'calendly.page_height' && d.payload?.height) widget.style.height = d.payload.height;
+      if (d.event === 'calendly.event_scheduled') {
+        const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ event: 'book_call_complete', booking_provider: 'calendly', booking_type: '30min' });
+      }
+    });
+  }
+</script>
