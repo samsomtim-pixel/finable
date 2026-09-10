@@ -111,6 +111,11 @@ import Base from '../layouts/Base.astro';
           </div>
 
           <div class="ind-question">
+            <label for="fin-branche" class="ind-label">In welke branche is je organisatie actief?</label>
+            <input type="text" class="ind-input" id="fin-branche" name="industry" placeholder="Bijvoorbeeld: SaaS, retail, zorg" required />
+          </div>
+
+          <div class="ind-question">
             <h3>Website van je organisatie</h3>
             <input type="url" class="ind-input" id="fin-website" placeholder="https://" />
           </div>
@@ -214,6 +219,11 @@ import Base from '../layouts/Base.astro';
               <button type="button" class="ind-tile" data-tile data-group="start" data-value="Later dit jaar">Later dit jaar</button>
               <button type="button" class="ind-tile" data-tile data-group="start" data-value="Nog oriënterend">Nog oriënterend</button>
             </div>
+          </div>
+
+          <div class="ind-question">
+            <label for="fin-bedrijf" class="ind-label">Bedrijfsnaam</label>
+            <input type="text" class="ind-input" id="fin-bedrijf" name="company_name" placeholder="Naam van je organisatie" required />
           </div>
 
           <div class="ind-question">
@@ -631,6 +641,8 @@ import Base from '../layouts/Base.astro';
   const submitBtn = document.querySelector<HTMLElement>('[data-submit]');
   if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
+      const companyName = (document.getElementById('fin-bedrijf') as HTMLInputElement)?.value.trim() || '';
+      const industry = (document.getElementById('fin-branche') as HTMLInputElement)?.value.trim() || '';
       const naam = (document.getElementById('fin-naam') as HTMLInputElement)?.value.trim() || '';
       const email = (document.getElementById('fin-email') as HTMLInputElement)?.value.trim() || '';
 
@@ -638,7 +650,7 @@ import Base from '../layouts/Base.astro';
       if (errEl) errEl.hidden = true;
 
       // Client-side validation for UX (server validates again for security).
-      if (!naam || !EMAIL_RE.test(email)) {
+      if (!companyName || !industry || !naam || !EMAIL_RE.test(email)) {
         if (errEl) errEl.hidden = false;
         return;
       }
@@ -648,6 +660,8 @@ import Base from '../layouts/Base.astro';
         website: (document.getElementById('fin-website') as HTMLInputElement)?.value,
         tevredenheid: (document.getElementById('fin-tevreden') as HTMLInputElement)?.value,
         vastloopt: (document.getElementById('fin-vast') as HTMLTextAreaElement)?.value,
+        company_name: companyName,
+        industry,
         naam,
         email,
         telefoon: (document.getElementById('fin-tel') as HTMLInputElement)?.value,

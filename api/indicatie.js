@@ -37,10 +37,12 @@ function isRateLimited(ip) {
 // Human-readable labels for every field the form can submit. Order defines the
 // order in the email so nothing is silently dropped.
 const FIELDS = [
+  ['company_name', 'Bedrijfsnaam'],
   ['naam', 'Naam'],
   ['email', 'E-mailadres'],
   ['telefoon', 'Telefoonnummer'],
   ['website', 'Website'],
+  ['industry', 'Branche'],
   ['grootte', 'Aantal medewerkers'],
   ['entiteiten', 'Aantal entiteiten'],
   ['landen', 'Actief in landen'],
@@ -95,23 +97,20 @@ export default async function handler(req, res) {
   if (asText(body.hp).trim().length > 0) return res.status(200).json({ ok: true });
 
   // Server-side validation — never trust the client alone.
+  const companyName = asText(body.company_name).trim();
+  const industry = asText(body.industry).trim();
   const naam = asText(body.naam).trim();
   const email = asText(body.email).trim();
+  if (!companyName || companyName.length > 200) return res.status(400).json({ ok: false });
+  if (!industry || industry.length > 200) return res.status(400).json({ ok: false });
   if (!naam || naam.length > 200) return res.status(400).json({ ok: false });
   if (!email || email.length > 200 || !EMAIL_RE.test(email)) return res.status(400).json({ ok: false });
 
   const locale = ['nl', 'en'].includes(body.locale) ? body.locale : 'nl';
   const timestamp = new Date().toISOString();
 
-  // Subject requires a company name; this form has no company field, so fall
-  // back to the website host, then the person's name.
-  let bedrijf = asText(body.bedrijf).trim();
-  if (!bedrijf) {
-    const site = asText(body.website).trim();
-    if (site) { try { bedrijf = new URL(site.startsWith('http') ? site : `https://${site}`).hostname.replace(/^www\./, ''); } catch { /* ignore */ } }
-  }
-  if (!bedrijf) bedrijf = naam;
-  const subject = `Nieuwe Finable indicatie-aanvraag — ${bedrijf}`;
+  // Bedrijfsnaam is now a required field, so use it directly in the subject.
+  const subject = `Nieuwe Finable indicatie-aanvraag — ${companyName}`;
 
   // Build the email from every submitted field (present ones only).
   const lines = [];
