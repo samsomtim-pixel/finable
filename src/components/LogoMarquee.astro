@@ -1,0 +1,93 @@
+---
+/**
+ * Ervaringsrail op de home (NL + EN): één doorlopende, langzaam bewegende
+ * logorail van rechts naar links. Sequence B is een exacte kopie van A;
+ * de track schuift precies één sequence-breedte op, dus de loop is naadloos.
+ * Logo's in eigen merkkleuren, optisch genormaliseerd via --h.
+ * Bij prefers-reduced-motion: geen animatie, één statische, wrappende rij.
+ */
+const logos = [
+  { src: '/images/logos/logo-trunkrs.svg',         alt: 'Trunkrs',          w: 501, h: 72,  hd: 26, hm: 22 },
+  { src: '/images/logos/logo-the-good-roll.webp',   alt: 'The Good Roll',    w: 662, h: 663, hd: 46, hm: 36 },
+  { src: '/images/logos/logo-trodat.webp',          alt: 'Trodat',           w: 456, h: 124, hd: 34, hm: 28 },
+  { src: '/images/logos/logo-valuematrix.svg',     alt: 'ValueMatrix',      w: 150, h: 51,  hd: 34, hm: 28 },
+  { src: '/images/logos/logo-cavallaro.webp',       alt: 'Cavallaro Napoli', w: 800, h: 300, hd: 36, hm: 30 },
+  { src: '/images/logos/logo-kidzink.webp',         alt: 'KidzInk',          w: 330, h: 83,  hd: 30, hm: 26 },
+  { src: '/images/logos/logo-iol.svg',             alt: 'iOL',              w: 845, h: 529, hd: 44, hm: 34 },
+  { src: '/images/logos/logo-turns.avif',          alt: 'PayRange Turns',   w: 802, h: 217, hd: 34, hm: 28 },
+  { src: '/images/logos/logo-talogy.webp',          alt: 'Talogy',           w: 185, h: 52,  hd: 28, hm: 24 },
+  { src: '/images/logos/logo-mediavalueworks.webp', alt: 'MediaValueWorks',  w: 280, h: 101, hd: 42, hm: 34 },
+  { src: '/images/logos/logo-newtral.webp',         alt: 'Newtral',          w: 638, h: 248, hd: 42, hm: 34 },
+];
+---
+<div class="marquee">
+  <div class="track">
+    {[0, 1].map((copy) => (
+      <div class="seq" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {logos.map((l) => (
+          <img
+            src={l.src}
+            alt={copy === 0 ? l.alt : ''}
+            width={l.w}
+            height={l.h}
+            loading="eager"
+            fetchpriority="low"
+            decoding="async"
+            style={`--hd:${l.hd}px;--hm:${l.hm}px`}
+          />
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee{
+    --gap:clamp(56px,7vw,104px);
+    --dur:40s;
+    width:100%;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);
+  }
+  .track{
+    display:flex;
+    width:max-content;
+    will-change:transform;
+    animation:marquee var(--dur) linear infinite;
+  }
+  .seq{
+    display:flex;
+    align-items:center;
+    gap:var(--gap);
+    padding-right:var(--gap);
+    flex:0 0 auto;
+  }
+  .seq img{
+    display:block;
+    height:var(--hd);
+    width:auto;
+    max-width:none;
+    object-fit:contain;
+    opacity:.86;
+    transition:opacity .25s ease;
+  }
+  @keyframes marquee{
+    from{transform:translate3d(0,0,0)}
+    to{transform:translate3d(-50%,0,0)}
+  }
+  @media (hover:hover){
+    .marquee:hover .track{animation-play-state:paused}
+    .seq img:hover{opacity:1}
+  }
+  @media (max-width:639px){
+    .marquee{--dur:34s}
+    .seq img{height:var(--hm)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee{-webkit-mask-image:none;mask-image:none}
+    .track{animation:none;width:auto;will-change:auto}
+    .seq{flex-wrap:wrap;justify-content:center;row-gap:28px;column-gap:clamp(32px,4vw,56px);padding-right:0;flex:1 1 auto}
+    .seq[aria-hidden="true"]{display:none}
+  }
+</style>
