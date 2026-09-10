@@ -37,15 +37,15 @@ Route-based, geen Astro-i18n-config en geen automatische redirect op browsertaal
 
 ## Formulieren en boeking
 
-`/indicatie` en `/en/estimate` posten dezelfde JSON (plus `taal`) naar dezelfde formulierdienst (Formspree, Web3Forms of Basin). `/gesprek` heeft een boekingsmodule die uitgeschakeld blijft tot een echte agenda-provider is gekoppeld (`bookingProviderConnected` in `src/pages/gesprek.astro`); tot die tijd toont de kaart de mail-route en rendert `/en/book-a-call` alleen die mail-route (geen kalender, geen boekingsscript). Zet in Vercel de omgevingsvariabelen uit `.env.example`:
+`/indicatie` en `/en/estimate` posten dezelfde JSON (plus `taal`) naar de eigen serverroute `POST /api/indicatie` (`src/pages/api/indicatie.ts`, on-demand via `@astrojs/vercel`; alle pagina's blijven statisch). De route valideert serverzijde (verplicht: naam, bedrijfsnaam `company_name`, e-mail, branche `industry`; lengtes; honeypot `_gotcha`; lichte rate-limiting per IP), bouwt de mail op in `src/lib/indicatie-mail.ts` en verstuurt via de Resend REST API naar `tim@finable.nl` met reply-to op het opgegeven adres. Het formulier toont pas de bevestiging als de server `ok:true` teruggeeft; anders blijft het staan met een foutmelding. Analytics: `indication_start` (één keer, bij eerste interactie) en `indication_submit` (alleen na succes) op de dataLayer, zonder persoonsgegevens. Geen prijsberekening, geen opslag.
 
 ```
-PUBLIC_FORM_ENDPOINT_GESPREK=https://formspree.io/f/<id>
-PUBLIC_FORM_ENDPOINT_INDICATIE=https://formspree.io/f/<id>
-PUBLIC_FORM_ACCESS_KEY=            # alleen voor Web3Forms
+RESEND_API_KEY=re_…                 # verplicht op Vercel (Project → Settings → Environment Variables)
+INDICATIE_FROM=Finable <indicatie@finable.nl>   # na domeinverificatie in Resend; standaard onboarding@resend.dev
+INDICATIE_TO=tim@finable.nl         # standaard
 ```
 
-Zonder endpoint toont het formulier de foutmelding met `tim@finable.nl` als terugvaloptie; een bevestiging verschijnt alleen na een succesvolle response. De boekingsmodule op `/gesprek` heeft geen naam- of e-mailveld; koppel een agenda-provider voordat je `bookingProviderConnected` op true zet.
+`/gesprek` en `/en/book-a-call` embedden Calendly inline (`https://calendly.com/tim-finable/30min`); het Calendly-script wordt alleen op die pagina's geladen. Na een bevestigde afspraak (`calendly.event_scheduled`) gaat `book_call_complete` naar de dataLayer.
 
 ## Ontwerp (Claude Design, september 2026)
 
