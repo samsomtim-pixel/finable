@@ -110,23 +110,15 @@ import Button from '../components/Button.astro';
         <p style="font-size:16px;color:var(--body);margin-bottom:18px">Achter Finable staat een finance-team met ervaring in boekhouding, maandafsluiting, controlling, rapportage en internationale finance.</p>
         <p style="font-size:16px;color:var(--body)">Je werkt met een vaste bezetting die je bedrijf, processen en systemen leert kennen. Binnen het team wordt het werk verdeeld op basis van de expertise die nodig is.</p>
       </div>
-      <!-- right portraits: twee echte portretten, twee bewust neutrale plekken tot de foto's zijn aangeleverd -->
+      <!-- right portraits: één echt portret, één bewust neutrale plek tot de foto is aangeleverd -->
       <div class="fin-4port">
         <div>
           <div style="aspect-ratio:3/4;border-radius:12px;overflow:hidden"><img src="/images/janesh-gupta.webp" alt="Janesh Gupta" width="400" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
           <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Janesh Gupta</div><div style="font-size:13px;color:var(--body)">Chartered Accountant · Jurist</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
         </div>
         <div>
-          <div role="img" aria-label="Portret Rishabh Goyal (volgt)" class="port-pending"><span>portret volgt</span></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Rishabh Goyal</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
-        </div>
-        <div>
           <div role="img" aria-label="Portret Himanshu Poddar (volgt)" class="port-pending"><span>portret volgt</span></div>
           <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Himanshu Poddar</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">Tax &amp; Transfer Pricing</div></div>
-        </div>
-        <div>
-          <div style="aspect-ratio:3/4;border-radius:12px;overflow:hidden"><img src="/images/shilpa-goyal.webp" alt="Shilpa Goyal" width="400" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-          <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Shilpa Goyal</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">US Startup Finance</div></div>
         </div>
       </div>
     </div>
@@ -184,7 +176,9 @@ import Button from '../components/Button.astro';
   .fin-sechead{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);font-size:clamp(26px,3.4vw,38px)}
   .fin-cap{font-size:15px;color:var(--body)}
   .fin-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-  .fin-4port{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  /* Portrettenrij: tweemaal de bestaande kolombreedte, zodat de portretten hun schaal houden nu het team
+     uit twee mensen bestaat. De rest van de kolom blijft witruimte. */
+  .fin-4port{display:grid;grid-template-columns:repeat(2,minmax(0,150px));gap:18px}
   /* Handgeschreven notitie in de navy-zone naast de foto, in de flow (geen absolute coördinaten). */
   .over-visual{display:grid;grid-template-columns:minmax(130px,170px) minmax(0,1fr);gap:18px;align-items:start}
   .over-note{padding-top:10px}
@@ -196,10 +190,10 @@ import Button from '../components/Button.astro';
   @media (max-width:1023px){
   .fin-3col{grid-template-columns:1fr;gap:0}
   .fin-3col .fin-vsep{border-left:none;padding-left:0;padding-right:0}
-  .fin-4port{grid-template-columns:repeat(2,1fr);gap:20px}
+  .fin-4port{grid-template-columns:repeat(2,minmax(0,150px));gap:20px}
   .over-cta{grid-template-columns:1fr!important;gap:24px!important}
   }
-  @media (max-width:639px){ .fin-4port{grid-template-columns:1fr} }
+  @media (max-width:639px){ .fin-4port{grid-template-columns:repeat(2,minmax(0,1fr))} }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
     .over-hero{grid-template-columns:1fr!important}
@@ -223,7 +217,7 @@ import Button from '../components/Button.astro';
     .over-hero{gap:28px!important}
     .over-hero>div:last-child{order:0}
     .over-photo{height:240px!important}
-    .fin-4port{grid-template-columns:repeat(2,1fr)!important;gap:16px!important}
+    .fin-4port{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
     .fin-4port div[style*="margin-top:14px"]{margin-top:10px!important}
   }
 </style>
