@@ -73,6 +73,14 @@ if (form) {
   form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => { step = Math.max(1, step - 1); sync(); toTop(); }));
 
   const val = (n: string) => (form.elements.namedItem(n) as Control | null)?.value ?? '';
+  /** De bezoeker hoeft geen protocol te typen: 'accelr.nl' wordt 'https://accelr.nl'. Wat al met http(s):// begint
+   *  blijft ongewijzigd. De server normaliseert opnieuw; dit is alleen voor de payload, het veld zelf blijft staan. */
+  const normaliseWebsite = (raw: string) => {
+    const v = raw.trim();
+    if (!v) return '';
+    return /^https?:\/\//i.test(v) ? v : 'https://' + v.replace(/^\/+/, '');
+  };
+
   const collect = () => {
     const out: Record<string, string> = { formulier: 'indicatie', taal: lang };
     for (const g of ['grootte', 'entiteiten', 'landen', 'hulp', 'wie', 'facturen', 'pakket', 'start']) {
@@ -85,7 +93,7 @@ if (form) {
       naam: val('naam'),
       email: val('email'),
       telefoon: val('tel'),
-      website: val('website'),
+      website: normaliseWebsite(val('website')),
       _gotcha: val('_gotcha'),
     });
     return out;

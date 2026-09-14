@@ -21,6 +21,24 @@ const MAX_EXTRA_FIELDS = 20;
 const MAX_EXTRA_LENGTH = 500;
 const CONTROL_CHARS = new RegExp("[\\x00-\\x1F\\x7F]", "g");
 const clean = (v, max) => typeof v === "string" ? v.replace(CONTROL_CHARS, "").trim().slice(0, max) : "";
+const HOSTNAME_RE = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/i;
+/**
+ * Het websiteveld is optioneel en de bezoeker hoeft geen protocol te typen: 'accelr.nl' en 'www.accelr.nl'
+ * worden 'https://accelr.nl' en 'https://www.accelr.nl'; wat al met http(s):// begint blijft ongewijzigd.
+ * Invoer die ook mét protocol geen plausibele hostnaam oplevert, laten we staan zoals getypt: een optioneel
+ * veld mag een inzending nooit blokkeren, en Tim ziet dan precies wat de bezoeker invulde.
+ */
+function normaliseWebsite(raw) {
+  const v = typeof raw === "string" ? raw.trim() : "";
+  if (!v) return "";
+  const candidate = /^https?:\/\//i.test(v) ? v : `https://${v.replace(/^\/+/, "")}`;
+  try {
+    if (HOSTNAME_RE.test(new URL(candidate).hostname)) return candidate;
+  } catch {
+    /* geen parsebare URL */
+  }
+  return v;
+}
 function parseSubmission(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return { ok: false, invalid: ["body"] };
   const raw = body;
@@ -33,6 +51,7 @@ function parseSubmission(body) {
     fields[f.key] = v;
   }
   if (fields.email && !EMAIL_RE.test(fields.email)) invalid.push("email");
+  fields.website = normaliseWebsite(fields.website);
   const extra = {};
   for (const [k, v] of Object.entries(raw)) {
     if (FIELDS.some((f) => f.key === k) || IGNORED_KEYS.has(k)) continue;
