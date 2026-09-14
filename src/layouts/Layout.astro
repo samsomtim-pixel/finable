@@ -10,8 +10,10 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  /** Uit voor pagina's zonder tegenhanger in de andere taal (bijv. /privacy): dan is elke hreflang-verwijzing onjuist. */
+  hreflang?: boolean;
 }
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, hreflang = true } = Astro.props;
 const site = Astro.site ?? new URL('https://www.finable.nl');
 const path = Astro.url.pathname;
 const lang = langOf(path);
@@ -50,9 +52,9 @@ const organization = {
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
   <link rel="canonical" href={canonical}>
-  <link rel="alternate" hreflang="nl" href={hrefNl}>
-  <link rel="alternate" hreflang="en" href={hrefEn}>
-  <link rel="alternate" hreflang="x-default" href={hrefNl}>
+  {hreflang && <link rel="alternate" hreflang="nl" href={hrefNl}>}
+  {hreflang && <link rel="alternate" hreflang="en" href={hrefEn}>}
+  {hreflang && <link rel="alternate" hreflang="x-default" href={hrefNl}>}
   <!-- Iconen: het Finable-beeldmerk in terracotta. De ?v-query omzeilt de hardnekkige favicon-cache van browsers
        na een kleurwijziging; verhoog hem als de iconen opnieuw veranderen (zie scripts/build-icons.mjs). -->
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">

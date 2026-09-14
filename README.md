@@ -53,7 +53,7 @@ De zeven Nederlandse pagina's volgen de goedgekeurde referentiepagina's (`*-nav2
 
 ## Nog niet ingevuld (vóór livegang)
 
-- Privacy en Voorwaarden/Terms linken naar `#` — er zijn nog geen NL- of EN-juridische pagina's.
+- Voorwaarden/Terms linkt naar `#` — die pagina moet nog gebouwd en juridisch gecontroleerd worden. `/privacy` (NL) staat er wel; er is geen Engelse vertaling, dus die pagina geeft bewust geen hreflang-verwijzingen (`hreflang={false}` op `Layout`).
 - Portret van Himanshu Poddar op /over (bewust neutrale plek, `.port-pending`).
 - "20+ finance-specialisten" op /over verifiëren (zie HTML-comment ter plekke).
 - Domein in `astro.config.mjs` (`site`) controleren.
