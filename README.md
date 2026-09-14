@@ -17,7 +17,7 @@ npm run build    # statische output in dist/
 - `src/pages/en/*.astro` — de zeven Engelse pagina's (zie *Engelse site*).
 - `src/lib/i18n.ts` — de NL↔EN paginakoppeling, taal uit de route, canonical/hreflang-helpers.
 - `src/scripts/indicatie-form.ts` — de meerstapslogica van het indicatie-/estimate-formulier, gedeeld door `/indicatie` en `/en/estimate`.
-- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — foto's als WebP (Tim, team, Sander/The Good Roll, Janesh), `public/images/logos/` — de twaalf logo's van de bewegende ervaringsrail op de home (`LogoMarquee.astro`), in eigen merkkleuren. `public/og.png` — deelafbeelding.
+- `public/assets/` — logo-SVG's (zonder C2PA-metadata). `public/images/` — foto's als WebP (Tim, team, Sander/The Good Roll, Janesh), `public/images/logos/` — de twaalf logo's van de bewegende ervaringsrail op de home (`LogoMarquee.astro`), in eigen merkkleuren. `public/og.png` — deelafbeelding. De favicons (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`) komen uit het beeldmerk in terracotta `#C4643A` en worden gegenereerd met `node scripts/build-icons.mjs`; `site.webmanifest` koppelt de Android-formaten.
 
 ## Engelse site
 
