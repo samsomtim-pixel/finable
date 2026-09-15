@@ -102,6 +102,11 @@ const breadcrumbList = breadcrumbs?.length
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNR75QQ7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <slot />
+  <script>
+    // Site-brede meetlaag: CTA's, navigatie, taalwissel, scroll_50, case_view en attributie.
+    // Eén import, zodat elke pagina hetzelfde contract met GTM heeft (zie docs/analytics-tracking.md).
+    import '../scripts/site-analytics';
+  </script>
 </body>
 </html>
 
