@@ -10,6 +10,7 @@ export const PAGE_MAP: { nl: string; en: string }[] = [
   { nl: '/indicatie', en: '/en/estimate' },
   { nl: '/gesprek', en: '/en/book-a-call' },
   { nl: '/finance-hire', en: '/en/finance-hire' },
+  { nl: '/cases/the-good-roll', en: '/en/cases/the-good-roll' },
 ];
 
 /** Zonder trailing slash, behalve de root. */

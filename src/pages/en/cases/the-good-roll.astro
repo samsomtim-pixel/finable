@@ -1,74 +1,74 @@
 ---
-// Klantcase The Good Roll. Implementatie van het goedgekeurde prototype
-// (cases-the-good-roll-nav2 v2.dc.html) op de bestaande shell: Layout, Header, Footer, Button, tokens.
+// Engelse versie van de klantcase The Good Roll. Zelfde markup en stijlen als /cases/the-good-roll,
+// alleen de copy verschilt; zo blijven ontwerp en responsive gedrag gegarandeerd gelijk.
 //
 // VERIFY VÓÓR LIVEGANG: publiek akkoord van Sander de Klerk voor naam, logo, foto en beide citaten.
-// De uitgebreide quote en het korte citaat in de proof-strip komen uit het goedgekeurde prototype;
-// tot dat akkoord er is, is deze pagina niet vrijgegeven om te publiceren.
+// Het citaat is oorspronkelijk in het Nederlands gedaan; hier staat een vertaling met een
+// ingetogen 'Translated from Dutch' eronder.
 //
-// Geen cijfers, percentages, doorlooptijden of functietitels: alleen wat in het prototype staat.
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Button from '../../components/Button.astro';
+// Geen cijfers, percentages, doorlooptijden of functietitels.
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Button from '../../../components/Button.astro';
 
 const journey = [
-  { title: 'Daily finance', desc: 'Administratie, AP/AR, betalingen' },
-  { title: 'Close', desc: 'Maand- en jaarafsluiting' },
-  { title: 'Control', desc: 'Processen, compliance, audit' },
-  { title: 'Reporting', desc: 'Managementrapportages' },
-  { title: 'Insight', desc: 'Analyse, duiding en advies' },
+  { title: 'Daily finance', desc: 'Administration, AP/AR, payments' },
+  { title: 'Close', desc: 'Month-end and year-end close' },
+  { title: 'Control', desc: 'Processes, compliance, audit' },
+  { title: 'Reporting', desc: 'Management reporting' },
+  { title: 'Insight', desc: 'Analysis, context and advice' },
 ];
 
 const regelt = [
-  'Dagelijkse administratie (AP/AR, betalingen)',
-  'Maand- en jaarafsluiting',
-  'Managementrapportages en dashboards',
-  'Ondersteuning bij control en compliance',
-  'Actief meedenken over kostenbesparingen en financiële kansen',
-  'Schaalbare capaciteit en extra expertise wanneer nodig',
+  'Day-to-day administration (AP/AR, payments)',
+  'Month-end and year-end close',
+  'Management reporting and dashboards',
+  'Support with control and compliance',
+  'Proactively identifying cost-saving opportunities and financial opportunities',
+  'Scalable capacity and additional expertise when needed',
 ];
-// De vetgezette regel uit het prototype: de enige met extra nadruk.
-const regeltEmphasis = 'Actief meedenken over kostenbesparingen en financiële kansen';
+// De enige regel met extra nadruk, gelijk aan de NL-pagina.
+const regeltEmphasis = 'Proactively identifying cost-saving opportunities and financial opportunities';
 
 const controller = [
-  'Eén persoon',
-  'Eén expertiseprofiel',
-  'Vaste capaciteit',
-  'Operationeel én control op één bord',
-  'Continuïteit afhankelijk van één rol',
-  'Groei kan opnieuw een hire betekenen',
+  'One person',
+  'One expertise profile',
+  'Fixed capacity',
+  'Operations and control on one person’s plate',
+  'Continuity depends on one role',
+  'Further growth may require another hire',
 ];
 
 const finable = [
-  'Eén vast aanspreekpunt',
-  'Team van finance-professionals',
-  'Verschillende expertises',
-  'Capaciteit beweegt mee',
-  'Continuïteit vanuit het team',
-  'Geen finance-team zelf managen',
+  'One dedicated point of contact',
+  'A team of finance professionals',
+  'Different areas of expertise',
+  'Capacity scales with your needs',
+  'Continuity provided by the team',
+  'No finance team to manage yourself',
 ];
 
 const waarom = [
-  { n: '01', title: 'Snel operationeel', desc: 'Geen maanden zoeken, interviewen en onboarden. De benodigde finance-capaciteit kan snel worden georganiseerd.' },
-  { n: '02', title: 'Een heel team. Zonder een hele payroll.', desc: 'Je hoeft niet voor iedere finance-behoefte een aparte medewerker aan te nemen. Je gebruikt de capaciteit en expertise die op dat moment nodig is.' },
-  { n: '03', title: 'Zien waar geld blijft liggen', desc: 'We kijken niet alleen terug naar wat er is uitgegeven, maar signaleren ook waar kosten, marges, cashflow of processen aandacht verdienen.' },
-  { n: '04', title: 'Cijfers mét duiding', desc: 'Geen rapportage zonder context. Je krijgt inzicht in wat er gebeurt, waarom het gebeurt en waar je mogelijk moet bijsturen.' },
-  { n: '05', title: 'Expertise wanneer nodig', desc: 'Daily finance, close, control en reporting vragen niet altijd om hetzelfde profiel. Met Finable heb je toegang tot de expertise van het team.' },
-  { n: '06', title: 'Capaciteit die meegroeit', desc: 'Meer finance nodig? Dan hoeft niet automatisch een nieuwe vacature open. De capaciteit kan meegroeien met de fase van het bedrijf.' },
+  { n: '01', title: 'Up and running quickly', desc: 'No months spent searching, interviewing and onboarding. The finance capacity you need can be organised quickly.' },
+  { n: '02', title: 'A whole team. Without the whole payroll.', desc: 'You don’t need to hire a separate employee for every finance need. You use the capacity and expertise you need at that moment.' },
+  { n: '03', title: 'See where money is being left on the table', desc: 'We don’t just look back at what has been spent. We also flag where costs, margins, cash flow or processes deserve attention.' },
+  { n: '04', title: 'Numbers with context', desc: 'No reporting without context. You get insight into what is happening, why it is happening and where you may need to adjust.' },
+  { n: '05', title: 'Expertise when you need it', desc: 'Daily finance, close, control and reporting don’t always require the same profile. With Finable, you have access to the expertise of the team.' },
+  { n: '06', title: 'Capacity that scales with you', desc: 'Need more finance capacity? That doesn’t automatically mean opening another vacancy. Capacity can scale with the stage of your business.' },
 ];
 
 const resultaat = [
-  { title: 'Minder handwerk', desc: 'Processen slimmer ingericht' },
-  { title: 'Sneller inzicht', desc: 'Managementinformatie wanneer nodig' },
-  { title: 'Betere financiële duiding', desc: 'Zicht op kosten, marges, cashflow en financiële kansen' },
-  { title: 'Schaalbare capaciteit', desc: 'Meegroeien zonder telkens een nieuwe hire' },
+  { title: 'Less manual work', desc: 'Smarter processes' },
+  { title: 'Faster insight', desc: 'Management information when it’s needed' },
+  { title: 'Better financial context', desc: 'Visibility into costs, margins, cash flow and financial opportunities' },
+  { title: 'Scalable capacity', desc: 'Grow without having to make another hire every time' },
 ];
 ---
 <Layout
-  title="The Good Roll × Finable | Finance die meegroeit"
-  description="Bekijk hoe Finable The Good Roll ondersteunt met dagelijkse finance, afsluiting, reporting en toegang tot een schaalbaar finance-team."
-  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'The Good Roll' }]}
+  title="The Good Roll × Finable | Finance that scales with you"
+  description="See how Finable supports The Good Roll with day-to-day finance, closing, reporting and access to a scalable finance team."
+  breadcrumbs={[{ name: 'Finable', path: '/en' }, { name: 'The Good Roll' }]}
 >
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
@@ -79,16 +79,16 @@ const resultaat = [
     <div class="wrap" style="padding-top:52px;padding-bottom:64px">
     <div class="case-hero" style="display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);gap:clamp(36px,4.6vw,68px);align-items:center">
       <div>
-        <div class="lbl" style="margin-bottom:14px">Klantcase</div>
+        <div class="lbl" style="margin-bottom:14px">Customer case</div>
         <div style="font-size:15px;color:var(--on-dark-tertiary);margin-bottom:26px">The Good Roll <span style="color:var(--terracotta)">&times;</span> Finable</div>
-        <h1 style="font-size:clamp(38px,5vw,62px);line-height:1.04;margin-bottom:24px">Finance die meegroeit. <span class="em">Zonder een heel team aan te nemen.</span></h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--on-dark-secondary);max-width:500px;text-wrap:pretty">The Good Roll focust op impact en groei. Finable zorgt dat finance goed geregeld is, met één vast aanspreekpunt en toegang tot een compleet finance-team.</p>
-        <div style="margin-top:32px"><Button href="/gesprek">Plan een gesprek &rarr;</Button></div>
+        <h1 style="font-size:clamp(38px,5vw,62px);line-height:1.04;margin-bottom:24px">Finance that scales with you. <span class="em">Without building an entire team.</span></h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--on-dark-secondary);max-width:500px;text-wrap:pretty">The Good Roll focuses on impact and growth. Finable makes sure finance is taken care of, with one dedicated point of contact and access to a complete finance team.</p>
+        <div style="margin-top:32px"><Button href="/en/book-a-call">Book a call &rarr;</Button></div>
       </div>
       <div style="position:relative">
-        <div style="aspect-ratio:4/3;border-radius:16px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk van The Good Roll" width="1200" height="711" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div style="aspect-ratio:4/3;border-radius:16px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk from The Good Roll" width="1200" height="711" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         <div class="hero-note" style="position:absolute;right:-8px;top:-30px;width:150px;text-align:center;pointer-events:none">
-          <div class="cav" style="font-size:22px">Minder finance-gedoe. Meer ruimte om te groeien.</div>
+          <div class="cav" style="font-size:22px">Less finance hassle. More room to grow.</div>
         </div>
       </div>
     </div>
@@ -98,22 +98,22 @@ const resultaat = [
   <!-- PROOF STRIP -->
   <section class="wrap" style="padding-top:40px;padding-bottom:8px">
     <div class="proof-grid" style="border-bottom:1px solid var(--line);padding-bottom:40px;display:grid;grid-template-columns:auto minmax(0,1.35fr) 1px minmax(0,0.85fr);gap:clamp(18px,3vw,40px);align-items:center">
-      <div style="width:74px;height:74px;border-radius:999px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--white);border:1px solid var(--line)"><img src="/images/the-good-roll.png" alt="Logo The Good Roll" width="662" height="663" style="width:70%;height:70%;object-fit:contain;display:block"></div>
+      <div style="width:74px;height:74px;border-radius:999px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--white);border:1px solid var(--line)"><img src="/images/the-good-roll.png" alt="The Good Roll logo" width="662" height="663" style="width:70%;height:70%;object-fit:contain;display:block"></div>
       <div>
-        <blockquote style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(19px,2vw,25px);color:var(--navy);line-height:1.3;margin:0 0 12px;text-wrap:balance">&ldquo;We begonnen klein. Inmiddels doet Finable vrijwel onze hele dagelijkse finance.&rdquo;</blockquote>
+        <blockquote style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(19px,2vw,25px);color:var(--navy);line-height:1.3;margin:0 0 12px;text-wrap:balance">&ldquo;We started small. Today, Finable handles almost all of our day-to-day finance.&rdquo;</blockquote>
         <div style="font-size:14px;color:var(--body)"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--navy)">Sander de Klerk</span> &middot; The Good Roll</div>
       </div>
       <div class="proof-div" style="background:var(--line);align-self:stretch"></div>
-      <p style="font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty">Zo kan The Good Roll zich focussen op impact en groei, terwijl de dagelijkse finance goed geregeld is.</p>
+      <p style="font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty">This allows The Good Roll to focus on impact and growth, while its day-to-day finance is taken care of.</p>
     </div>
   </section>
 
   <!-- DE UITDAGING -->
   <section class="wrap" style="padding-top:76px;padding-bottom:76px">
     <div style="max-width:760px;margin-bottom:44px">
-      <div class="lbl" style="margin-bottom:18px">De uitdaging</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">Groei maakt finance vanzelf complexer.</h2>
-      <p style="font-size:17px;color:var(--body);line-height:1.7;text-wrap:pretty">Meer omzet betekent meer transacties, meer leveranciers, meer rapportages, meer controles en meer vragen vanuit het management. Op een gegeven moment heb je niet alleen iemand nodig die de administratie doet. Je hebt verschillende soorten finance-expertise nodig.</p>
+      <div class="lbl" style="margin-bottom:18px">The challenge</div>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">Growth naturally makes finance more complex.</h2>
+      <p style="font-size:17px;color:var(--body);line-height:1.7;text-wrap:pretty">More revenue means more transactions, more suppliers, more reporting, more controls and more questions from management. At some point, you need more than someone to manage the books. You need different types of finance expertise.</p>
     </div>
     <div>
       <div class="journey" style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">
@@ -137,7 +137,7 @@ const resultaat = [
         ))}
       </div>
       <div class="case-note" style="text-align:right;margin-top:20px;pointer-events:none">
-        <span class="cav" style="font-size:21px">Van meer transacties naar meer inzicht.</span>
+        <span class="cav" style="font-size:21px">From more transactions to better insight.</span>
       </div>
     </div>
   </section>
@@ -148,9 +148,9 @@ const resultaat = [
     <div class="sol-grid" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(40px,4.4vw,58px);align-items:start">
       <div>
         <div class="sol-navy" style="background:var(--navy);border-radius:20px;padding:clamp(30px,3.4vw,44px)">
-          <div class="lbl" style="margin-bottom:18px">Wat Finable voor The Good Roll regelt</div>
-          <h2 style="font-size:clamp(27px,3.3vw,40px);color:var(--warm-white);margin-bottom:18px;text-wrap:balance">Van inboeken naar een complete finance-functie.</h2>
-          <p style="font-size:16px;color:var(--on-dark-secondary);line-height:1.7;margin-bottom:22px;text-wrap:pretty">We begonnen klein, met de dagelijkse administratie. Inmiddels runt Finable vrijwel de hele dagelijkse finance van The Good Roll, met één vast aanspreekpunt en een team erachter.</p>
+          <div class="lbl" style="margin-bottom:18px">What Finable handles for The Good Roll</div>
+          <h2 style="font-size:clamp(27px,3.3vw,40px);color:var(--warm-white);margin-bottom:18px;text-wrap:balance">From bookkeeping to a complete finance function.</h2>
+          <p style="font-size:16px;color:var(--on-dark-secondary);line-height:1.7;margin-bottom:22px;text-wrap:pretty">We started small, with day-to-day administration. Today, Finable runs almost all of The Good Roll&rsquo;s day-to-day finance, with one dedicated point of contact and a team behind them.</p>
           <div class="sol-list">
             {regelt.map((item) => (
               <div>
@@ -162,8 +162,8 @@ const resultaat = [
         </div>
       </div>
       <div class="sol-right">
-        <h2 style="font-size:clamp(21px,2.3vw,27px);line-height:1.2;margin-bottom:12px;text-wrap:balance">Een extra finance-hire? Of eerst kijken wat je écht nodig hebt?</h2>
-        <p style="font-size:15px;color:var(--body);line-height:1.6;margin-bottom:24px;text-wrap:pretty">Soms is een Financial Controller de juiste keuze. Soms is een team een betere oplossing. Finable kan beide scenario's ondersteunen.</p>
+        <h2 style="font-size:clamp(21px,2.3vw,27px);line-height:1.2;margin-bottom:12px;text-wrap:balance">Another finance hire? Or first look at what you actually need?</h2>
+        <p style="font-size:15px;color:var(--body);line-height:1.6;margin-bottom:24px;text-wrap:pretty">Sometimes a Financial Controller is the right choice. Sometimes a team is the better solution. Finable can support both scenarios.</p>
         <div class="vs-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
           <div class="vs-card vs-hire">
             <div class="vs-head">1 Financial Controller</div>
@@ -184,7 +184,7 @@ const resultaat = [
             ))}
           </div>
         </div>
-        <div class="vs-note" style="text-align:right;margin-top:22px;pointer-events:none"><span class="cav" style="font-size:21px">Laat je controller controller zijn.</span></div>
+        <div class="vs-note" style="text-align:right;margin-top:22px;pointer-events:none"><span class="cav" style="font-size:21px">Let your controller be a controller.</span></div>
       </div>
     </div>
     </div>
@@ -193,9 +193,9 @@ const resultaat = [
   <!-- WAAROM DIT MODEL -->
   <section class="wrap" style="padding-top:76px;padding-bottom:76px">
     <div style="max-width:760px;margin-bottom:44px">
-      <div class="lbl" style="margin-bottom:18px">Waarom dit model</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">Finance die niet alleen klopt, maar je bedrijf vooruithelpt.</h2>
-      <p style="font-size:17px;color:var(--body);line-height:1.7;text-wrap:pretty">Goede finance gaat niet alleen over correcte cijfers. Het gaat erom dat je snel weet waar je staat, begrijpt wat er gebeurt en ziet waar je kunt bijsturen.</p>
+      <div class="lbl" style="margin-bottom:18px">Why this model</div>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">Finance that doesn&rsquo;t just add up, but helps your business move forward.</h2>
+      <p style="font-size:17px;color:var(--body);line-height:1.7;text-wrap:pretty">Good finance isn&rsquo;t just about getting the numbers right. It&rsquo;s about knowing where you stand, understanding what is happening and seeing where you can make better decisions.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
       {waarom.map((w, i) => (
@@ -214,15 +214,15 @@ const resultaat = [
         </div>
       ))}
     </div>
-    <div class="case-note" style="text-align:right;margin-top:24px;pointer-events:none"><span class="cav" style="font-size:21px">Meer inzicht. Minder gedoe. Betere beslissingen.</span></div>
+    <div class="case-note" style="text-align:right;margin-top:24px;pointer-events:none"><span class="cav" style="font-size:21px">More insight. Less hassle. Better decisions.</span></div>
   </section>
 
   <!-- HET RESULTAAT -->
   <section class="wrap" style="padding-top:76px;padding-bottom:76px">
     <div style="max-width:720px;margin-bottom:44px">
-      <div class="lbl" style="margin-bottom:18px">Het resultaat</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">Meer rust. Meer inzicht. Meer ruimte om te groeien.</h2>
-      <p style="font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty">Met Finable heeft The Good Roll een finance-organisatie die meebeweegt met de ambities van het bedrijf. Een schaalbaar team dat zorgt voor structuur, inzicht en continuïteit.</p>
+      <div class="lbl" style="margin-bottom:18px">The result</div>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;text-wrap:balance">More peace of mind. More insight. More room to grow.</h2>
+      <p style="font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty">With Finable, The Good Roll has a finance organisation that can scale with the ambitions of the business. A flexible team providing structure, insight and continuity.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:18px">
       {resultaat.map((r, i) => (
@@ -244,10 +244,12 @@ const resultaat = [
   <section style="background:var(--navy)">
     <div class="wrap" style="padding-top:76px;padding-bottom:76px">
     <div class="quote-grid" style="display:grid;grid-template-columns:clamp(170px,22vw,260px) minmax(0,1fr);gap:clamp(30px,4vw,60px);align-items:center">
-      <div style="aspect-ratio:1/1;border-radius:16px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk van The Good Roll" width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div style="aspect-ratio:1/1;border-radius:16px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt="Sander de Klerk from The Good Roll" width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       <div>
-        <blockquote style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(22px,2.7vw,36px);color:var(--warm-white);line-height:1.28;margin:0 0 24px;text-wrap:balance">&ldquo;Ik was in het begin sceptisch, maar we zijn klein begonnen met alleen het inboeken. Nu doet Finable vrijwel onze hele dagelijkse finance. <span style="color:var(--terracotta)">Ik zou het iedereen aanraden.</span>&rdquo;</blockquote>
+        <blockquote style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(22px,2.7vw,36px);color:var(--warm-white);line-height:1.28;margin:0 0 24px;text-wrap:balance">&ldquo;I was sceptical at first, but we started small with just the bookkeeping. Today, Finable handles almost all of our day-to-day finance. <span style="color:var(--terracotta)">I would recommend them to anyone.</span>&rdquo;</blockquote>
         <div style="font-size:15px;color:var(--on-dark-secondary);line-height:1.5"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Sander de Klerk</span><br>The Good Roll</div>
+        <!-- Het citaat is in het Nederlands gedaan; ingetogen vermeld, niet als visueel element. -->
+        <p style="font-size:13px;color:var(--on-dark-tertiary);margin-top:14px">Translated from Dutch</p>
       </div>
     </div>
     </div>
@@ -258,13 +260,13 @@ const resultaat = [
     <div class="wrap" style="padding-top:76px;padding-bottom:84px">
     <div class="fcta-grid" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,0.7fr);gap:clamp(32px,4vw,56px);align-items:center">
       <div>
-        <div class="lbl" style="margin-bottom:18px">Ook toe aan de volgende stap?</div>
-        <h2 style="font-size:clamp(26px,3.2vw,40px);color:var(--warm-white);margin-bottom:20px;text-wrap:balance">Jouw bedrijf groeit. Je finance-functie hoeft niet in hetzelfde tempo in headcount te groeien.</h2>
-        <p style="font-size:16px;color:var(--on-dark-secondary);max-width:560px;text-wrap:pretty">Overweeg je een Financial Controller, Finance Manager of extra finance-capaciteit? Dan kunnen we beide scenario's eens naast elkaar leggen.</p>
+        <div class="lbl" style="margin-bottom:18px">Ready for the next step?</div>
+        <h2 style="font-size:clamp(26px,3.2vw,40px);color:var(--warm-white);margin-bottom:20px;text-wrap:balance">Your business is growing. Your finance headcount doesn&rsquo;t have to grow at the same pace.</h2>
+        <p style="font-size:16px;color:var(--on-dark-secondary);max-width:560px;text-wrap:pretty">Considering a Financial Controller, Finance Manager or additional finance capacity? Let&rsquo;s compare the options.</p>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;gap:20px">
-        <Button href="/gesprek">Plan een gesprek &rarr;</Button>
-        <span class="cav" style="font-size:22px">Finance geregeld. Door met groeien.</span>
+        <Button href="/en/book-a-call">Book a call &rarr;</Button>
+        <span class="cav" style="font-size:22px">Finance taken care of. Keep growing.</span>
       </div>
     </div>
     </div>
