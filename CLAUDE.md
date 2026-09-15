@@ -134,7 +134,6 @@ Responsive bug verholpen: de benefits-grid overlapte de prijslink tussen 560 en 
 **Blokkerend:**
 - Formulieren op /gesprek en /indicatie naar een werkend endpoint. Bevestiging alleen bij een succesvolle response, zichtbare fout bij mislukken, nooit een succesmelding die altijd verschijnt.
 - Echte foto van Tim, echt The Good Roll-logo, echte KVK en statutaire naam.
-- Publiek akkoord van Sander voor naam en logo van The Good Roll.
 - Privacyverklaring en AVG-review.
 
 **Blokkerend voor sterkere copy, niet voor live:**
