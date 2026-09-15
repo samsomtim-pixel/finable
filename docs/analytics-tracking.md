@@ -42,7 +42,7 @@ traffic source/campaign   → GA4 automatisch + sessionStorage voor de lead
 | `indication_start` | Eerste echte interactie met het formulier (input, change of tegelklik), 1×/pageview | `form_name`, `locale`, `page_path` | ja | **nee** (secundair) | analytics | `indicatie-form.ts` | Startpercentage per bron/campagne | Laad de pagina: niets. Klik een tegel: 1× |
 | `indication_step_complete` | Geldige stap afgerond (`Volgende stap`, en stap 3 bij succesvolle submit) | `step_number`, `step_name`, `locale` | ja | nee | analytics | `indicatie-form.ts` | Waar valt men uit: stap 1, 2 of 3? Bepaalt welke vragen sneuvelen | Vul stap 1 en klik door |
 | `indication_back` | Klik op `Vorige` | `from_step`, `to_step`, `locale` | ja | nee | analytics | `indicatie-form.ts` | Twijfelsignaal: welke stap laat mensen terugbladeren? | Klik `Vorige` op stap 2 |
-| `indication_validation_error` | Verplichte vraag leeg of veld ongeldig | `step_number`, `field`, `error_type` | ja | nee | analytics | `indicatie-form.ts` | Welk veld kost conversie? Bepaalt of een vraag optioneel moet | Klik `Volgende stap` zonder iets in te vullen |
+| `indication_validation_error` | Een verplicht **native** veld is leeg of ongeldig (branche, naam, e-mail, bedrijfsnaam). De tegelvragen zijn niet verplicht en blokkeren niets | `step_number`, `field`, `error_type` | ja | nee | analytics | `indicatie-form.ts` | Welk veld kost conversie? | Klik `Volgende stap` zonder branche te kiezen |
 | `indication_submit` | **Uitsluitend** na `ok:true` van `/api/indicatie`, 1×/pageview | `form_name`, `locale`, `language` | ja | **JA (primair)** | analytics | `indicatie-form.ts` | De lead zelf. Kostprijs per aanvraag, campagne-ROI | Mock een 200-response; bij 500 mag het event niet vuren |
 | `cta_click` | Klik op een commerciële CTA die géén boeking of case is (nu: links naar `/indicatie` en `/en/estimate`, plus elementen met `data-cta`) | `cta_name`, `cta_location`, `page_path`, `destination` | ja | nee | analytics | `site-analytics.ts` | Welke plek op de pagina levert intentie? | Klik een indicatie-link |
 | `book_call_click` | Klik op een link naar `/gesprek` of `/en/book-a-call` | `cta_location`, `page_path`, `language` | ja | **nee** (secundair) | analytics | `site-analytics.ts` | Intentie vóór de kalender. Verschil met `book_call_complete` = uitval in Calendly | Klik de header-CTA |
@@ -60,6 +60,13 @@ traffic source/campaign   → GA4 automatisch + sessionStorage voor de lead
 - **Footerlinks** — geen beslissing die ervan afhangt.
 - **Outbound clicks, file downloads** — Enhanced Measurement dekt dit.
 - **Elke tegelselectie apart** — de antwoorden staan al in de leadmail; als event levert het alleen ruis.
+
+### Tegelvragen zijn niet verplicht
+
+Bewuste keuze: een ontbrekende tegelkeuze blokkeert niemand. Alleen de native velden (branche, naam,
+e-mail, bedrijfsnaam) houden een stap tegen; een overgeslagen tegelvraag gaat als lege waarde mee naar
+de server, precies zoals daarvoor. Wat er wel en niet is aangeklikt zie je terug in de leadmail en in de
+step-completion-events, niet via een blokkade.
 
 ### Regel tegen dubbeltelling
 

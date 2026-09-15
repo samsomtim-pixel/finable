@@ -4,6 +4,8 @@
 //
 // Analytics loopt via scripts/analytics.ts. Er gaan nooit persoonsgegevens of ingevulde antwoorden naar de
 // dataLayer: bij een validatiefout sturen we de veldnaam en het fouttype, nooit de waarde.
+// De tegelvragen zijn niet verplicht. Alleen de native velden (branche, naam, e-mail, bedrijfsnaam)
+// blokkeren een stap; een overgeslagen tegelvraag gaat als lege waarde mee naar de server.
 // 'form_view' wordt door site-analytics.ts gevuurd, zodat er één noemer is onder deze funnel.
 import { trackEvent, trackOnce, getAttribution, hubspotToken, language, pagePath } from './analytics';
 
@@ -16,21 +18,6 @@ if (form) {
 
   // Stapnamen zijn stabiel en taalonafhankelijk, zodat NL en EN in GA4 op één rij vallen.
   const STEP_NAMES: Record<number, string> = { 1: 'organisation', 2: 'finance', 3: 'contact' };
-
-  /** Tegelvragen die beantwoord moeten zijn. Geen enkele staat als "(optioneel)" in de copy, en elke
-   *  groep heeft een uitweg-antwoord ("Weet ik nog niet", "Anders of nog niets"), dus verplicht is eerlijk.
-   *  Wil je er een loslaten: haal hem hier weg, de rest blijft werken. */
-  const REQUIRED_TILES: { group: string; step: number }[] = [
-    { group: 'grootte', step: 1 },
-    { group: 'entiteiten', step: 1 },
-    { group: 'landen', step: 1 },
-    { group: 'hulp', step: 2 },
-    { group: 'wie', step: 2 },
-    { group: 'facturen', step: 2 },
-    { group: 'pakket', step: 2 },
-    { group: 'start', step: 3 },
-  ];
-  const REQUIRED_MESSAGE = lang === 'en' ? 'Please choose an option to continue.' : 'Kies een optie om verder te gaan.';
 
   const start = () => trackOnce('indication_start', 'indication_start', {
     form_name: 'finable_indication', locale: lang, page_path: pagePath(),
@@ -62,31 +49,6 @@ if (form) {
     }
   };
 
-  const isAnswered = (group: string) => {
-    const v = sel[group];
-    return Array.isArray(v) ? v.length > 0 : Boolean(v);
-  };
-
-  /** Melding onder de tegelrij, in dezelfde stijl als de bestaande formulierfout. Geen nieuw ontwerp. */
-  const tileError = (group: string): HTMLElement => {
-    const first = form.querySelector<HTMLElement>('[data-tile][data-group="' + group + '"]');
-    const row = first?.parentElement;
-    let el = form.querySelector<HTMLElement>('[data-tile-error="' + group + '"]');
-    if (!el && row) {
-      el = document.createElement('p');
-      el.setAttribute('data-tile-error', group);
-      el.setAttribute('role', 'alert');
-      el.style.cssText = 'display:none;font-size:14px;color:var(--terracotta);margin-top:10px';
-      el.textContent = REQUIRED_MESSAGE;
-      row.insertAdjacentElement('afterend', el);
-    }
-    return el!;
-  };
-  const clearTileError = (group: string) => {
-    const el = form.querySelector<HTMLElement>('[data-tile-error="' + group + '"]');
-    if (el) el.style.display = 'none';
-  };
-
   tiles.forEach((t) => {
     t.addEventListener('click', () => {
       start();
@@ -99,7 +61,6 @@ if (form) {
       } else {
         sel[group] = sel[group] === val ? null : val;
       }
-      if (isAnswered(group)) clearTileError(group);
       sync();
     });
   });
@@ -113,24 +74,9 @@ if (form) {
     // Alleen veldnaam en fouttype. Nooit wat de bezoeker invulde.
     trackEvent('indication_validation_error', { step_number: stepNumber, field, error_type: errorType, locale: lang });
 
-  /** Eerste onbeantwoorde verplichte tegelvraag van een stap; toont de melding en springt ernaartoe. */
-  const missingTile = (stepNumber: number): string | null => {
-    for (const r of REQUIRED_TILES) {
-      if (r.step !== stepNumber || isAnswered(r.group)) continue;
-      const el = tileError(r.group);
-      if (el) el.style.display = 'block';
-      const firstTile = form.querySelector<HTMLElement>('[data-tile][data-group="' + r.group + '"]');
-      firstTile?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstTile?.focus({ preventScroll: true });
-      return r.group;
-    }
-    return null;
-  };
-
-  /** Valideert één stap: eerst de tegelvragen, daarna de native velden. Retourneert true als de stap klopt. */
+  /** Valideert de native velden van één stap. De tegelvragen zijn bewust niet verplicht: een ontbrekende
+   *  keuze mag niemand blokkeren. Wat wel of niet is aangeklikt zie je in de funnel-events terug. */
   const validateStep = (stepNumber: number): boolean => {
-    const missing = missingTile(stepNumber);
-    if (missing) { validationError(stepNumber, missing, 'required'); return false; }
     const scope = form.querySelector<HTMLElement>('[data-formstep="' + stepNumber + '"]');
     const bad = scope ? firstInvalid(scope) : null;
     if (bad) {
@@ -193,16 +139,6 @@ if (form) {
     const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
     if (err) err.style.display = 'none';
     if (val('_gotcha')) return; // honeypot
-    // Alle stappen opnieuw langs, zodat een overgeslagen tegelvraag uit stap 1 hier alsnog blokkeert.
-    for (const s of [1, 2, 3]) {
-      const missing = missingTile(s);
-      if (missing) {
-        validationError(s, missing, 'required');
-        if (s !== step) { step = s; sync(); }
-        requestAnimationFrame(() => form.querySelector<HTMLElement>('[data-tile][data-group="' + missing + '"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
-        return;
-      }
-    }
     const bad = firstInvalid(form);
     if (bad) {
       // Een verplicht veld in een eerdere stap (bijv. branche): terug naar die stap en de melding tonen.
