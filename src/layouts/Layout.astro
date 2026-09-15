@@ -12,8 +12,10 @@ interface Props {
   noindex?: boolean;
   /** Uit voor pagina's zonder tegenhanger in de andere taal (bijv. /privacy): dan is elke hreflang-verwijzing onjuist. */
   hreflang?: boolean;
+  /** Kruimelpad voor BreadcrumbList-schema. Alleen zetten als elke tussenstap een bestaande URL heeft. */
+  breadcrumbs?: { name: string; path?: string }[];
 }
-const { title, description, noindex = false, hreflang = true } = Astro.props;
+const { title, description, noindex = false, hreflang = true, breadcrumbs } = Astro.props;
 const site = Astro.site ?? new URL('https://www.finable.nl');
 const path = Astro.url.pathname;
 const lang = langOf(path);
@@ -33,6 +35,20 @@ const organization = {
   founder: { '@type': 'Person', name: 'Tim Samsom' },
   identifier: { '@type': 'PropertyValue', propertyID: 'KVK', value: '99623544' },
 };
+// BreadcrumbList alleen wanneer een pagina een kruimelpad meegeeft. De laatste stap is de pagina zelf en
+// heeft geen 'item' nodig; tussenstappen krijgen alleen een URL als die ook echt bestaat.
+const breadcrumbList = breadcrumbs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((b, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: b.name,
+        ...(b.path ? { item: absolute(b.path, site) } : {}),
+      })),
+    }
+  : null;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -50,7 +66,7 @@ const organization = {
   <!-- End Google Tag Manager -->
   <title>{title}</title>
   <meta name="description" content={description}>
-  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"}>
   <link rel="canonical" href={canonical}>
   {hreflang && <link rel="alternate" hreflang="nl" href={hrefNl}>}
   {hreflang && <link rel="alternate" hreflang="en" href={hrefEn}>}
@@ -79,6 +95,7 @@ const organization = {
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="sitemap" href="/sitemap.xml">
   <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+  {breadcrumbList && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbList)} />}
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
