@@ -1,21 +1,40 @@
 // Meerstapsflow + verzending van het indicatie-/estimate-formulier (vanilla). Gedeeld door /indicatie en /en/estimate.
 // Verzending gaat naar de eigen serverroute (/api/indicatie), die valideert en mailt. Bevestiging alleen bij een
 // bevestigde succesvolle response; bij mislukken blijft het formulier staan met een rustige foutmelding.
-// Analytics: 'indication_start' één keer bij de eerste echte interactie, 'indication_submit' alleen na succes.
-// Er gaan nooit persoonsgegevens naar de dataLayer.
-export {};
+//
+// Analytics loopt via scripts/analytics.ts. Er gaan nooit persoonsgegevens of ingevulde antwoorden naar de
+// dataLayer: bij een validatiefout sturen we de veldnaam en het fouttype, nooit de waarde.
+// 'form_view' wordt door site-analytics.ts gevuurd, zodat er één noemer is onder deze funnel.
+import { trackEvent, trackOnce, getAttribution, hubspotToken, language, pagePath } from './analytics';
 
-declare global {
-  interface Window { dataLayer?: Record<string, unknown>[] }
-}
+export {};
 
 const form = document.querySelector<HTMLFormElement>('[data-indicatie-form]');
 if (form) {
   const lang = form.dataset.lang || 'nl';
   const endpoint = form.dataset.endpoint || '/api/indicatie';
-  const track = (data: Record<string, unknown>) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push(data); };
-  let started = false;
-  const start = () => { if (started) return; started = true; track({ event: 'indication_start', form_name: 'finable_indication', locale: lang }); };
+
+  // Stapnamen zijn stabiel en taalonafhankelijk, zodat NL en EN in GA4 op één rij vallen.
+  const STEP_NAMES: Record<number, string> = { 1: 'organisation', 2: 'finance', 3: 'contact' };
+
+  /** Tegelvragen die beantwoord moeten zijn. Geen enkele staat als "(optioneel)" in de copy, en elke
+   *  groep heeft een uitweg-antwoord ("Weet ik nog niet", "Anders of nog niets"), dus verplicht is eerlijk.
+   *  Wil je er een loslaten: haal hem hier weg, de rest blijft werken. */
+  const REQUIRED_TILES: { group: string; step: number }[] = [
+    { group: 'grootte', step: 1 },
+    { group: 'entiteiten', step: 1 },
+    { group: 'landen', step: 1 },
+    { group: 'hulp', step: 2 },
+    { group: 'wie', step: 2 },
+    { group: 'facturen', step: 2 },
+    { group: 'pakket', step: 2 },
+    { group: 'start', step: 3 },
+  ];
+  const REQUIRED_MESSAGE = lang === 'en' ? 'Please choose an option to continue.' : 'Kies een optie om verder te gaan.';
+
+  const start = () => trackOnce('indication_start', 'indication_start', {
+    form_name: 'finable_indication', locale: lang, page_path: pagePath(),
+  });
   form.addEventListener('input', start);
   form.addEventListener('change', start);
 
@@ -42,6 +61,32 @@ if (form) {
       if (lab) lab.setAttribute('data-active', active ? '1' : '0');
     }
   };
+
+  const isAnswered = (group: string) => {
+    const v = sel[group];
+    return Array.isArray(v) ? v.length > 0 : Boolean(v);
+  };
+
+  /** Melding onder de tegelrij, in dezelfde stijl als de bestaande formulierfout. Geen nieuw ontwerp. */
+  const tileError = (group: string): HTMLElement => {
+    const first = form.querySelector<HTMLElement>('[data-tile][data-group="' + group + '"]');
+    const row = first?.parentElement;
+    let el = form.querySelector<HTMLElement>('[data-tile-error="' + group + '"]');
+    if (!el && row) {
+      el = document.createElement('p');
+      el.setAttribute('data-tile-error', group);
+      el.setAttribute('role', 'alert');
+      el.style.cssText = 'display:none;font-size:14px;color:var(--terracotta);margin-top:10px';
+      el.textContent = REQUIRED_MESSAGE;
+      row.insertAdjacentElement('afterend', el);
+    }
+    return el!;
+  };
+  const clearTileError = (group: string) => {
+    const el = form.querySelector<HTMLElement>('[data-tile-error="' + group + '"]');
+    if (el) el.style.display = 'none';
+  };
+
   tiles.forEach((t) => {
     t.addEventListener('click', () => {
       start();
@@ -54,6 +99,7 @@ if (form) {
       } else {
         sel[group] = sel[group] === val ? null : val;
       }
+      if (isAnswered(group)) clearTileError(group);
       sync();
     });
   });
@@ -63,14 +109,50 @@ if (form) {
   const firstInvalid = (scope: ParentNode): Control | null => scope.querySelector<Control>('input:invalid, select:invalid, textarea:invalid');
   const stepOf = (el: Element) => Number(el.closest<HTMLElement>('[data-formstep]')?.dataset.formstep) || step;
 
+  const validationError = (stepNumber: number, field: string, errorType: string) =>
+    // Alleen veldnaam en fouttype. Nooit wat de bezoeker invulde.
+    trackEvent('indication_validation_error', { step_number: stepNumber, field, error_type: errorType, locale: lang });
+
+  /** Eerste onbeantwoorde verplichte tegelvraag van een stap; toont de melding en springt ernaartoe. */
+  const missingTile = (stepNumber: number): string | null => {
+    for (const r of REQUIRED_TILES) {
+      if (r.step !== stepNumber || isAnswered(r.group)) continue;
+      const el = tileError(r.group);
+      if (el) el.style.display = 'block';
+      const firstTile = form.querySelector<HTMLElement>('[data-tile][data-group="' + r.group + '"]');
+      firstTile?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstTile?.focus({ preventScroll: true });
+      return r.group;
+    }
+    return null;
+  };
+
+  /** Valideert één stap: eerst de tegelvragen, daarna de native velden. Retourneert true als de stap klopt. */
+  const validateStep = (stepNumber: number): boolean => {
+    const missing = missingTile(stepNumber);
+    if (missing) { validationError(stepNumber, missing, 'required'); return false; }
+    const scope = form.querySelector<HTMLElement>('[data-formstep="' + stepNumber + '"]');
+    const bad = scope ? firstInvalid(scope) : null;
+    if (bad) {
+      validationError(stepNumber, bad.name || bad.id || 'unknown', bad.validity.valueMissing ? 'required' : 'invalid');
+      bad.reportValidity();
+      return false;
+    }
+    return true;
+  };
+
   form.querySelectorAll('[data-step-next]').forEach((b) => b.addEventListener('click', () => {
-    // Verplichte velden van de huidige stap eerst (client-side, voor de UX; de server valideert opnieuw).
-    const cur = form.querySelector<HTMLElement>('[data-formstep="' + step + '"]');
-    const bad = cur ? firstInvalid(cur) : null;
-    if (bad) { bad.reportValidity(); return; }
+    // Client-side validatie voor de UX; de server valideert opnieuw.
+    if (!validateStep(step)) return;
+    trackEvent('indication_step_complete', { step_number: step, step_name: STEP_NAMES[step] || String(step), locale: lang });
     step = Math.min(3, step + 1); sync(); toTop();
   }));
-  form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => { step = Math.max(1, step - 1); sync(); toTop(); }));
+  form.querySelectorAll('[data-step-prev]').forEach((b) => b.addEventListener('click', () => {
+    const from = step;
+    step = Math.max(1, step - 1);
+    if (step !== from) trackEvent('indication_back', { from_step: from, to_step: step, locale: lang });
+    sync(); toTop();
+  }));
 
   const val = (n: string) => (form.elements.namedItem(n) as Control | null)?.value ?? '';
   /** De bezoeker hoeft geen protocol te typen: 'accelr.nl' wordt 'https://accelr.nl'. Wat al met http(s):// begint
@@ -82,7 +164,7 @@ if (form) {
   };
 
   const collect = () => {
-    const out: Record<string, string> = { formulier: 'indicatie', taal: lang };
+    const out: Record<string, unknown> = { formulier: 'indicatie', taal: lang };
     for (const g of ['grootte', 'entiteiten', 'landen', 'hulp', 'wie', 'facturen', 'pakket', 'start']) {
       const v = sel[g];
       out[g] = Array.isArray(v) ? v.join(', ') : (v ?? '');
@@ -96,6 +178,12 @@ if (form) {
       website: normaliseWebsite(val('website')),
       _gotcha: val('_gotcha'),
     });
+    // Campagne-attributie voor de lead (niet voor GA4, dat doet acquisitie zelf).
+    // Backwards compatible: de server negeert het veld als hij het niet kent.
+    const attribution = getAttribution();
+    const hutk = hubspotToken();
+    if (hutk) (attribution as Record<string, string>).hubspot_utk = hutk;
+    if (Object.keys(attribution).length) out.attribution = attribution;
     return out;
   };
 
@@ -105,10 +193,21 @@ if (form) {
     const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
     if (err) err.style.display = 'none';
     if (val('_gotcha')) return; // honeypot
+    // Alle stappen opnieuw langs, zodat een overgeslagen tegelvraag uit stap 1 hier alsnog blokkeert.
+    for (const s of [1, 2, 3]) {
+      const missing = missingTile(s);
+      if (missing) {
+        validationError(s, missing, 'required');
+        if (s !== step) { step = s; sync(); }
+        requestAnimationFrame(() => form.querySelector<HTMLElement>('[data-tile][data-group="' + missing + '"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+        return;
+      }
+    }
     const bad = firstInvalid(form);
     if (bad) {
       // Een verplicht veld in een eerdere stap (bijv. branche): terug naar die stap en de melding tonen.
       const s = stepOf(bad);
+      validationError(s, bad.name || bad.id || 'unknown', bad.validity.valueMissing ? 'required' : 'invalid');
       if (s !== step) { step = s; sync(); toTop(); }
       requestAnimationFrame(() => bad.reportValidity());
       return;
@@ -119,8 +218,10 @@ if (form) {
       const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(collect()) });
       const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
       if (!res.ok || !data || data.ok !== true) throw new Error('submit failed: ' + res.status);
+      trackEvent('indication_step_complete', { step_number: 3, step_name: STEP_NAMES[3], locale: lang });
       done = true; sync(); toTop();
-      track({ event: 'indication_submit', form_name: 'finable_indication', locale: lang });
+      // Uitsluitend na een bevestigde succesvolle response. Eén keer per pageview.
+      trackOnce('indication_submit', 'indication_submit', { form_name: 'finable_indication', locale: lang, language: language() });
     } catch {
       if (err) err.style.display = 'block';
       if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; }
