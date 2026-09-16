@@ -6,6 +6,7 @@
 //   public/apple-touch-icon.png 180x180 op wit (iOS beginscherm; iOS maakt transparantie zwart)
 //   public/icon-192.png         192x192 op wit (Android/PWA via site.webmanifest)
 //   public/icon-512.png         512x512 op wit (Android/PWA via site.webmanifest)
+//   public/finable-mark.png     88x88, transparant (e-mailhandtekening; served op /finable-mark.png)
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -59,5 +60,8 @@ writeFileSync(out('favicon.ico'), ico(icoImages));
 writeFileSync(out('apple-touch-icon.png'), await render(180, { background: WHITE, padding: 0.18 }));
 writeFileSync(out('icon-192.png'), await render(192, { background: WHITE, padding: 0.14 }));
 writeFileSync(out('icon-512.png'), await render(512, { background: WHITE, padding: 0.14 }));
+// E-mailhandtekening: het kale beeldmerk zonder achtergrond en zonder padding, op de exacte
+// weergavegrootte. Staat in public/ zelf, zodat het op https://www.finable.nl/finable-mark.png staat.
+writeFileSync(out('finable-mark.png'), await render(88, { background: TRANSPARENT }));
 
 console.log(`icons: favicon.ico (${icoSizes.join('/')}), apple-touch-icon.png 180, icon-192.png, icon-512.png`);
