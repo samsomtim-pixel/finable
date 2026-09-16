@@ -7,9 +7,8 @@
 // brondocument. Er is niets herschreven, ingekort, toegevoegd of geïnterpreteerd; de enige bewerking
 // is structureel (koppen, lijsten, anchors).
 //
-// LET OP — twee passages zijn interne redactienotities uit het brondocument en staan hieronder
-// gemarkeerd met `internal: true`. Ze zijn NIET verwijderd omdat dat een inhoudelijke wijziging zou
-// zijn. Beslis vóór publicatie of ze mee mogen; verwijderen is het weghalen van die ene regel.
+// Twee interne redactienotities uit het brondocument (bij artikel 14 en artikel 17) zijn op
+// uitdrukkelijk verzoek verwijderd. Verder is er geen woord van de voorwaarden gewijzigd.
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -33,11 +32,7 @@ type Artikel = {
   titel: string;
   /** Inleidende alinea('s) boven de leden. */
   intro?: string[];
-  /** Interne redactienotitie uit het brondocument, boven de leden. */
-  internalIntro?: string;
   leden?: Lid[];
-  /** Interne redactienotitie uit het brondocument, onder de leden. */
-  internalOutro?: string;
 };
 
 const artikelen: Artikel[] = [
@@ -189,8 +184,6 @@ const artikelen: Artikel[] = [
   },
   {
     nr: 14, id: 'artikel-14', titel: 'Aansprakelijkheid',
-    // INTERNE REDACTIENOTITIE uit het brondocument — niet verwijderd, zie kopcommentaar.
-    internalIntro: 'Dit artikel is voorlopig en wordt vóór definitieve ingebruikname afgestemd op de beroepsaansprakelijkheidsverzekering van Finable.',
     leden: [
       'Finable is uitsluitend aansprakelijk voor directe schade die het rechtstreekse gevolg is van een toerekenbare tekortkoming van Finable in de uitvoering van de Overeenkomst.',
       'Voor zover wettelijk toegestaan is Finable niet aansprakelijk voor indirecte schade, waaronder gevolgschade, gederfde winst, gemiste omzet, gemiste besparingen, verlies van goodwill, bedrijfsstagnatie en schade als gevolg van beslissingen die Opdrachtgever op basis van rapportages, analyses of adviezen heeft genomen.',
@@ -238,8 +231,6 @@ const artikelen: Artikel[] = [
       'Indien Opdrachtgever een Professional rechtstreeks wil overnemen of contracteren, kunnen partijen hierover schriftelijk afspraken maken, waaronder een redelijke overnamevergoeding.',
       'Dit artikel is niet van toepassing wanneer Finable vooraf schriftelijk toestemming heeft gegeven voor de betreffende rechtstreekse samenwerking.',
     ],
-    // INTERNE REDACTIENOTITIE uit het brondocument — niet verwijderd, zie kopcommentaar.
-    internalOutro: 'De duur en overnamebepaling in dit artikel moeten eveneens juridisch worden gecontroleerd voordat de voorwaarden definitief worden gebruikt.',
   },
   {
     nr: 18, id: 'artikel-18', titel: 'Beëindiging en overdracht',
@@ -325,7 +316,6 @@ const artikelen: Artikel[] = [
           <section id={a.id}>
             <h2>Artikel {a.nr} &mdash; {a.titel}</h2>
             {a.intro?.map((p) => <p>{p}</p>)}
-            {a.internalIntro && <p>{a.internalIntro}</p>}
             {a.nr === 1 && (
               <dl class="av-defs">
                 {definities.map((d) => (
@@ -342,7 +332,6 @@ const artikelen: Artikel[] = [
                 ))}
               </ol>
             )}
-            {a.internalOutro && <p class="av-outro">{a.internalOutro}</p>}
           </section>
         ))}
 
@@ -398,7 +387,6 @@ const artikelen: Artikel[] = [
   .av-subleden{list-style:none;counter-reset:sublid;margin-top:10px}
   .av-subleden>li{counter-increment:sublid;position:relative;padding-left:26px;margin-top:8px;line-height:1.6}
   .av-subleden>li::before{content:counter(sublid, lower-alpha) ".";position:absolute;left:0;top:0;font-weight:600;color:var(--terracotta)}
-  .av-outro{margin-top:18px}
   @media (max-width:1023px){
     .priv-grid{grid-template-columns:1fr;gap:0}
     .priv-toc{display:none}
