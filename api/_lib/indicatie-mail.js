@@ -15,7 +15,23 @@ const FIELDS = [
   { key: "pakket", label: "Boekhoudpakket", max: 80 },
   { key: "start", label: "Gewenste start", max: 80 }
 ];
-const IGNORED_KEYS = /* @__PURE__ */ new Set(["_gotcha", "taal", "formulier", "_subject"]);
+const IGNORED_KEYS = /* @__PURE__ */ new Set(["_gotcha", "taal", "formulier", "_subject", "attribution"]);
+// Campagne-attributie: hoe kwam deze lead binnen? Puur marketingmetadata, geen persoonsgegevens.
+// Het veld is optioneel; een inzending zonder attributie (oude client, geblokkeerde sessionStorage)
+// blijft gewoon werken en levert dezelfde mail op als voorheen.
+const ATTRIBUTION_FIELDS = [
+  { key: "utm_source", label: "Bron (utm_source)" },
+  { key: "utm_medium", label: "Medium (utm_medium)" },
+  { key: "utm_campaign", label: "Campagne (utm_campaign)" },
+  { key: "utm_content", label: "Content (utm_content)" },
+  { key: "utm_term", label: "Zoekterm (utm_term)" },
+  { key: "gclid", label: "Google Ads klik-id (gclid)" },
+  { key: "landing_page", label: "Landingspagina" },
+  { key: "referrer", label: "Verwijzende site" },
+  { key: "first_seen", label: "Eerste bezoek in deze sessie" },
+  { key: "hubspot_utk", label: "HubSpot-token (hutk)" }
+];
+const ATTRIBUTION_MAX = 200;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MAX_EXTRA_FIELDS = 20;
 const MAX_EXTRA_LENGTH = 500;
@@ -58,9 +74,17 @@ function parseSubmission(body) {
     if (Object.keys(extra).length >= MAX_EXTRA_FIELDS) break;
     if (typeof v === "string" && v.trim()) extra[k.slice(0, 60)] = clean(v, MAX_EXTRA_LENGTH);
   }
+  const attribution = {};
+  const rawAttr = raw.attribution;
+  if (rawAttr && typeof rawAttr === "object" && !Array.isArray(rawAttr)) {
+    for (const f of ATTRIBUTION_FIELDS) {
+      const v = clean(rawAttr[f.key], ATTRIBUTION_MAX);
+      if (v) attribution[f.key] = v;
+    }
+  }
   if (invalid.length) return { ok: false, invalid: Array.from(new Set(invalid)) };
   const locale = raw.taal === "en" ? "en" : "nl";
-  return { ok: true, data: { locale, fields, extra } };
+  return { ok: true, data: { locale, fields, extra, attribution } };
 }
 const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 function buildMail(sub, now = /* @__PURE__ */ new Date()) {
@@ -68,6 +92,9 @@ function buildMail(sub, now = /* @__PURE__ */ new Date()) {
   const stamp = now.toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam", dateStyle: "full", timeStyle: "short" });
   const rows = FIELDS.map((f) => [f.label, sub.fields[f.key] || "\u2014"]);
   for (const [k, v] of Object.entries(sub.extra)) rows.push([`Overig veld: ${k}`, v]);
+  const attr = sub.attribution || {};
+  const attrRows = ATTRIBUTION_FIELDS.filter((f) => attr[f.key]).map((f) => [f.label, attr[f.key]]);
+  if (attrRows.length) rows.push(["\u2014 Herkomst \u2014", ""], ...attrRows);
   rows.push(["Taal", sub.locale === "en" ? "Engels (/en/estimate)" : "Nederlands (/indicatie)"]);
   rows.push(["Bronpagina", sub.locale === "en" ? "/en/estimate" : "/indicatie"]);
   rows.push(["Ingezonden op", `${stamp} (${now.toISOString()})`]);
@@ -94,6 +121,7 @@ async function sendWithResend(cfg, sub, fetchImpl = fetch) {
   return json?.id ? { ok: true, id: json.id } : { ok: false, status: res.status };
 }
 export {
+  ATTRIBUTION_FIELDS,
   FIELDS,
   buildMail,
   parseSubmission,

@@ -114,16 +114,51 @@ import Footer from '../../components/Footer.astro';
 
 <script>
   // Calendly inline embed, alleen op deze pagina. Het externe script wordt één keer toegevoegd (guard op src).
-  // Luistert naar Calendly's postMessage-events: hoogte volgen (geen geneste scrollbalk) en, uitsluitend na een
-  // bevestigde afspraak (calendly.event_scheduled), 'book_call_complete' naar de dataLayer voor GTM/GA4.
+  //
+  // Consent: de embed-URL had altijd hide_gdpr_banner=1. Dat onderdrukt Calendly's eigen toestemmingsmelding,
+  // terwijl onze CMP die toestemming niet namens Calendly geeft. Daarom nu: alleen verbergen als CookieYes
+  // toestemming voor analytics heeft; anders laten we Calendly zijn eigen melding tonen en zijn eigen
+  // toestemming regelen. De boekingsflow blijft in beide gevallen volledig werkend.
+  //
+  // Attributie: utm_source/medium/campaign/content/term zijn officiële Calendly-embedparameters en komen
+  // mee in de boekingsdata. Geen persoonsgegevens, geen custom hack.
+  //
+  // Meting: uitsluitend na een bevestigde afspraak (calendly.event_scheduled) gaat 'book_call_complete'
+  // naar de dataLayer. Nooit bij page load, script load, widget open of een klik.
+  import { trackEvent, trackOnce, utmParams, hasConsent, onConsentChange, language } from '../../scripts/analytics';
+
   const widget = document.querySelector<HTMLElement>('[data-calendly]');
   if (widget) {
-    const SRC = 'https://assets.calendly.com/assets/external/widget.js';
-    if (!document.querySelector('script[src="' + SRC + '"]')) {
-      const s = document.createElement('script');
-      s.src = SRC; s.async = true;
-      document.head.appendChild(s);
-    }
+    const base = widget.dataset.url || '';
+
+    const buildUrl = () => {
+      const u = new URL(base);
+      // Alleen verbergen wanneer er daadwerkelijk toestemming is; null (nog geen keuze) telt als nee.
+      if (hasConsent('analytics') === true) u.searchParams.set('hide_gdpr_banner', '1');
+      else u.searchParams.delete('hide_gdpr_banner');
+      for (const [k, v] of Object.entries(utmParams())) u.searchParams.set(k, v);
+      return u.toString();
+    };
+
+    let mounted = false;
+    const mount = () => {
+      if (mounted || !base) return;
+      mounted = true;
+      widget.setAttribute('data-url', buildUrl());
+      const SRC = 'https://assets.calendly.com/assets/external/widget.js';
+      if (!document.querySelector('script[src="' + SRC + '"]')) {
+        const s = document.createElement('script');
+        s.src = SRC; s.async = true;
+        document.head.appendChild(s);
+      }
+    };
+
+    // Wachten tot CookieYes een keuze heeft doorgegeven zou de kalender laten hangen bij wie niets kiest.
+    // Daarom laden we direct, met de banner zichtbaar zolang er geen toestemming is.
+    mount();
+    // Komt de toestemming later alsnog binnen vóórdat Calendly is ingeladen, dan pakt buildUrl dat mee.
+    onConsentChange(() => { if (!document.querySelector('[data-calendly] iframe')) { mounted = false; mount(); } });
+
     type CalendlyMessage = { event?: string; payload?: { height?: string } };
     window.addEventListener('message', (e: MessageEvent<CalendlyMessage | null>) => {
       if (e.origin !== 'https://calendly.com') return;
@@ -138,10 +173,12 @@ import Footer from '../../components/Footer.astro';
         if (Number.isFinite(h) && h > 0 && h < 6000) widget.style.height = h > min ? Math.ceil(h) + 'px' : '';
       }
       if (d.event === 'calendly.event_scheduled') {
-        const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
-        w.dataLayer = w.dataLayer || [];
-        w.dataLayer.push({ event: 'book_call_complete', booking_provider: 'calendly', booking_type: '30min' });
+        trackOnce('book_call_complete', 'book_call_complete', {
+          booking_provider: 'calendly', booking_type: '30min', language: language(), page_path: location.pathname,
+        });
       }
     });
+    // Voorkomt dat een onbenutte import wegvalt bij tree-shaking van de pagina-bundel.
+    void trackEvent;
   }
 </script>

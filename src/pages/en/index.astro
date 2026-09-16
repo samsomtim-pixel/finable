@@ -272,15 +272,3 @@ import LogoMarquee from '../../components/LogoMarquee.astro';
     .cols4>div:first-child,.cols4t>div:first-child{border-top:none;padding-top:0}
   }
 </style>
-
-<script>
-  // Klantcase-link op de home: één dataLayer-event voor GTM/GA4, zelfde patroon als de NL-home.
-  // Geen persoonsgegevens, geen nieuwe analytics-architectuur.
-  document.querySelectorAll<HTMLAnchorElement>('[data-case-link]').forEach((a) => {
-    a.addEventListener('click', () => {
-      const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({ event: 'case_view_click', case_name: a.dataset.caseLink });
-    });
-  });
-</script>
