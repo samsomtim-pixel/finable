@@ -17,7 +17,8 @@ const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-t
       <div style="font-size:14px;color:var(--body);margin-top:4px">{lang === 'en' ? 'Finance-as-a-Service for growing companies.' : 'Finance-as-a-Service voor groeiende bedrijven.'}</div>
       <div style="font-size:14px;color:var(--body);margin-top:4px">{lang === 'en' ? 'Finable · Dutch Chamber of Commerce 99623544' : 'Finable · KVK 99623544'}</div>
     </div>
-    <!-- /privacy staat live (NL). De Voorwaarden-pagina moet nog gebouwd en juridisch gecontroleerd worden. -->
+    <!-- /privacy en /algemene-voorwaarden staan live (NL). Er is geen Engelse juridische versie; de
+         Engelse Terms-link blijft daarom bewust naar '#' wijzen tot die pagina er is. -->
     {lang === 'en' ? (
       <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
         <span class="ft-group"><a href="/en/how-it-works" class="ft-link">How Finable works</a><a href="/en/finance-team" class="ft-link">Finance team</a><a href="/en/about" class="ft-link">About</a></span>
@@ -28,7 +29,7 @@ const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-t
     ) : (
       <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
         <a href="/privacy" class="ft-link">Privacy &amp; cookies</a>
-        <a href="#" class="ft-link">Voorwaarden</a>
+        <a href="/algemene-voorwaarden" class="ft-link">Voorwaarden</a>
         <a href="/finance-hire" class="ft-link">Finance-hire of Finable?</a>
         <nav class="lang-switch" aria-label="Taal"><a href={alt.nl} hreflang="nl" lang="nl" class="is-on" aria-current="page">NL</a><span aria-hidden="true">·</span><a href={alt.en} hreflang="en" lang="en">EN</a></nav>
       </div>

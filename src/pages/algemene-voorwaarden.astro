@@ -1,0 +1,414 @@
+---
+// Algemene Voorwaarden, versie 1.0 (september 2026). Informatieve pagina op dezelfde shell en met
+// exact dezelfde typografie en spacing als /privacy: Header, navy hero, editoriale kolom met
+// mini-inhoudsopgave, Footer.
+//
+// De juridische tekst staat hieronder als data en is een letterlijke overname van het aangeleverde
+// brondocument. Er is niets herschreven, ingekort, toegevoegd of geïnterpreteerd; de enige bewerking
+// is structureel (koppen, lijsten, anchors).
+//
+// LET OP — twee passages zijn interne redactienotities uit het brondocument en staan hieronder
+// gemarkeerd met `internal: true`. Ze zijn NIET verwijderd omdat dat een inhoudelijke wijziging zou
+// zijn. Beslis vóór publicatie of ze mee mogen; verwijderen is het weghalen van die ene regel.
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const versie = 'Versie 1.0 · september 2026';
+
+/** Artikel 1 is een definitielijst; de overige artikelen zijn genummerde leden. */
+const definities: { term: string; omschrijving: string }[] = [
+  { term: 'Finable', omschrijving: 'Accelr, handelend onder de handelsnaam Finable.' },
+  { term: 'Opdrachtgever', omschrijving: 'de natuurlijke persoon handelend in de uitoefening van een beroep of bedrijf, rechtspersoon of andere organisatie die met Finable een Overeenkomst aangaat.' },
+  { term: 'Overeenkomst', omschrijving: 'iedere overeenkomst tussen Finable en Opdrachtgever betreffende de levering van Diensten, waaronder een door Opdrachtgever geaccepteerde offerte of opdrachtbevestiging.' },
+  { term: 'Diensten', omschrijving: 'alle door of namens Finable uitgevoerde werkzaamheden op het gebied van finance operations, financiële administratie, boekhouding, factuurverwerking, maand- en jaarafsluiting, controlling, managementrapportage, payrollondersteuning, financiële processen, automatisering en overige schriftelijk overeengekomen werkzaamheden.' },
+  { term: 'Professional', omschrijving: 'iedere medewerker, zelfstandige professional, partner, specialist of andere derde die door Finable wordt ingezet voor de uitvoering van de Diensten.' },
+  { term: 'Schriftelijk', omschrijving: 'communicatie per brief of elektronische communicatie, waaronder e-mail, voor zover de identiteit van de afzender en inhoud voldoende kunnen worden vastgesteld.' },
+];
+
+type Lid = string | { tekst: string; sub: string[] };
+type Artikel = {
+  nr: number;
+  id: string;
+  titel: string;
+  /** Inleidende alinea('s) boven de leden. */
+  intro?: string[];
+  /** Interne redactienotitie uit het brondocument, boven de leden. */
+  internalIntro?: string;
+  leden?: Lid[];
+  /** Interne redactienotitie uit het brondocument, onder de leden. */
+  internalOutro?: string;
+};
+
+const artikelen: Artikel[] = [
+  {
+    nr: 1, id: 'artikel-1', titel: 'Definities',
+    intro: ['In deze algemene voorwaarden wordt verstaan onder:'],
+  },
+  {
+    nr: 2, id: 'artikel-2', titel: 'Toepasselijkheid',
+    leden: [
+      'Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, opdrachtbevestigingen, Overeenkomsten en Diensten van Finable.',
+      'Deze algemene voorwaarden zijn uitsluitend bedoeld voor zakelijke Opdrachtgevers. Finable sluit op basis van deze voorwaarden geen overeenkomsten met consumenten.',
+      'De toepasselijkheid van algemene of inkoopvoorwaarden van Opdrachtgever wordt uitdrukkelijk van de hand gewezen, tenzij Finable schriftelijk anders heeft aanvaard.',
+      'Afwijkingen van deze algemene voorwaarden zijn uitsluitend geldig indien deze schriftelijk zijn overeengekomen.',
+      'Indien bepalingen uit de Overeenkomst afwijken van deze algemene voorwaarden, hebben de bepalingen uit de Overeenkomst voorrang.',
+      'Indien één of meerdere bepalingen uit deze algemene voorwaarden nietig, vernietigbaar of anderszins niet afdwingbaar blijken te zijn, blijven de overige bepalingen volledig van kracht. Partijen zullen de betreffende bepaling waar mogelijk vervangen door een geldige bepaling die het doel en de strekking van de oorspronkelijke bepaling zo dicht mogelijk benadert.',
+    ],
+  },
+  {
+    nr: 3, id: 'artikel-3', titel: 'Totstandkoming, looptijd en verlenging',
+    leden: [
+      'Een Overeenkomst komt tot stand zodra Opdrachtgever een offerte, opdrachtbevestiging of andere overeenkomst van Finable schriftelijk of elektronisch accepteert, of zodra Finable op verzoek van Opdrachtgever met de uitvoering van de overeengekomen werkzaamheden begint.',
+      'De Overeenkomst wordt aangegaan voor de bepaalde duur zoals vermeld in de offerte, opdrachtbevestiging of Overeenkomst.',
+      'Gedurende de overeengekomen contractperiode kan de Overeenkomst niet tussentijds worden opgezegd, tenzij partijen uitdrukkelijk schriftelijk anders zijn overeengekomen.',
+      'Na afloop van de overeengekomen contractperiode wordt de Overeenkomst automatisch verlengd met eenzelfde periode, tenzij één van de partijen de Overeenkomst uiterlijk één kalendermaand vóór het einde van de lopende contractperiode schriftelijk opzegt of in de Overeenkomst een andere verlengings- of opzegtermijn is bepaald.',
+      'De afspraken over dienstverlening, vergoeding en overige voorwaarden blijven gedurende een verlengingsperiode van toepassing, tenzij partijen schriftelijk andere afspraken maken.',
+      'Indien één van de partijen toerekenbaar tekortschiet in de nakoming van een wezenlijke verplichting uit de Overeenkomst, stelt de andere partij haar, waar herstel nog mogelijk is, eerst schriftelijk in gebreke en geeft zij een redelijke termijn om de tekortkoming te herstellen.',
+      'Finable kan de Diensten geheel of gedeeltelijk opschorten of de Overeenkomst beëindigen indien Opdrachtgever failliet wordt verklaard, surseance van betaling aanvraagt, zijn onderneming staakt of wanneer redelijkerwijs aannemelijk is dat Opdrachtgever zijn betalingsverplichtingen niet langer kan nakomen.',
+    ],
+  },
+  {
+    nr: 4, id: 'artikel-4', titel: 'Uitvoering van de Diensten',
+    leden: [
+      'Finable voert de overeengekomen Diensten naar beste inzicht en vermogen en met de zorgvuldigheid die redelijkerwijs van een professionele dienstverlener mag worden verwacht.',
+      'Finable heeft een inspanningsverplichting, tenzij in de Overeenkomst uitdrukkelijk en schriftelijk een concreet resultaat is gegarandeerd.',
+      'De aard, omvang en inhoud van de Diensten worden bepaald door de Overeenkomst.',
+      'Finable bepaalt, binnen de overeengekomen scope, in beginsel zelf op welke wijze de Diensten worden uitgevoerd en welke personen daarbij worden ingezet.',
+      'Finable mag voor de uitvoering van de Diensten gebruikmaken van medewerkers, zelfstandige professionals, gespecialiseerde partners en andere derden.',
+      'Waar overeengekomen werkt Opdrachtgever met een vast aanspreekpunt. Het bestaan van een vast aanspreekpunt betekent niet dat alle werkzaamheden persoonlijk door deze persoon worden uitgevoerd.',
+      'Finable mag de personele bezetting gedurende de Overeenkomst wijzigen, mits de continuïteit en het overeengekomen niveau van dienstverlening redelijkerwijs worden gewaarborgd.',
+      'Finable mag werkzaamheden en processen standaardiseren, digitaliseren of automatiseren wanneer dit naar haar professionele oordeel bijdraagt aan een efficiënte, consistente of kwalitatief betere uitvoering.',
+      'Finable mag gebruikmaken van geschikte software en technologische hulpmiddelen voor zover dit past binnen de Overeenkomst en toepasselijke privacy- en beveiligingsverplichtingen.',
+    ],
+  },
+  {
+    nr: 5, id: 'artikel-5', titel: 'Verplichtingen van Opdrachtgever',
+    leden: [
+      'Opdrachtgever verstrekt Finable tijdig alle informatie, documenten, gegevens, instructies, autorisaties en toegang tot systemen die redelijkerwijs noodzakelijk zijn voor de uitvoering van de Diensten.',
+      'Opdrachtgever staat in voor de juistheid, volledigheid en tijdigheid van de door of namens hem verstrekte informatie.',
+      'Opdrachtgever informeert Finable tijdig over gebeurtenissen, wijzigingen of omstandigheden die relevant kunnen zijn voor de uitvoering van de Diensten.',
+      'Opdrachtgever zorgt ervoor dat Finable en de door Finable ingezette Professionals beschikken over de overeengekomen toegang tot relevante systemen en informatie.',
+      'Opdrachtgever blijft verantwoordelijk voor zijn onderneming, bedrijfsvoering en de door het bestuur of management genomen beslissingen.',
+      'Indien Opdrachtgever niet tijdig de noodzakelijke informatie, toegang of medewerking verstrekt, mag Finable de betreffende werkzaamheden opschorten of aanpassen voor zover dit redelijkerwijs noodzakelijk is.',
+      'Vertraging, extra werkzaamheden of gevolgen die ontstaan doordat Opdrachtgever niet tijdig of niet correct aan zijn verplichtingen voldoet, komen niet voor rekening van Finable.',
+    ],
+  },
+  {
+    nr: 6, id: 'artikel-6', titel: 'Financiële administratie en broninformatie',
+    leden: [
+      'Finable voert uitsluitend werkzaamheden uit die binnen de overeengekomen scope vallen.',
+      'Opdrachtgever blijft verantwoordelijk voor de juistheid en volledigheid van de aan Finable aangeleverde broninformatie, waaronder facturen, overeenkomsten, betaalgegevens, personeelsinformatie en andere administratieve gegevens.',
+      'Finable mag bij de uitvoering van de Diensten vertrouwen op informatie die door of namens Opdrachtgever wordt verstrekt, tenzij Finable weet of redelijkerwijs behoort te begrijpen dat deze informatie evident onjuist of onvolledig is.',
+      'Finable is niet gehouden zelfstandig de authenticiteit van alle aangeleverde documenten en informatie te onderzoeken, tenzij dit uitdrukkelijk onderdeel is van de overeengekomen Diensten.',
+      'Finable mag Opdrachtgever wijzen op opvallende afwijkingen, risico’s, inefficiënties of mogelijke financiële optimalisaties die tijdens de uitvoering van de Diensten worden geconstateerd.',
+      'Het signaleren van een aandachtspunt betekent niet dat Finable een volledige audit, due diligence, fiscale controle, fraudeonderzoek of juridische beoordeling heeft uitgevoerd.',
+      'Het uitblijven van een signalering betekent niet dat een bepaald risico, fout, inefficiëntie of optimalisatiemogelijkheid niet bestaat.',
+    ],
+  },
+  {
+    nr: 7, id: 'artikel-7', titel: 'Betalingen en betaalprocessen',
+    leden: [
+      'Indien Finable werkzaamheden verricht met betrekking tot betaalprocessen, betaalvoorstellen of betaalbestanden, worden de exacte verantwoordelijkheden en autorisaties tussen partijen overeengekomen.',
+      'Tenzij schriftelijk uitdrukkelijk anders overeengekomen, blijft Opdrachtgever eindverantwoordelijk voor het autoriseren van betalingen en voor het beschikbaar stellen van voldoende financiële middelen.',
+      'Finable is niet verantwoordelijk voor betalingen die door Opdrachtgever of een door Opdrachtgever bevoegde persoon zijn goedgekeurd op basis van onjuiste of frauduleuze broninformatie die Finable redelijkerwijs niet als zodanig kon herkennen.',
+      'Opdrachtgever is verantwoordelijk voor het adequaat beveiligen van eigen bankrekeningen, authenticatiemiddelen, gebruikersaccounts en autorisaties.',
+    ],
+  },
+  {
+    nr: 8, id: 'artikel-8', titel: 'Fiscale, juridische en specialistische werkzaamheden',
+    leden: [
+      'Finable kan binnen de overeengekomen dienstverlening werkzaamheden verrichten die raken aan fiscale of financiële verplichtingen, voor zover deze werkzaamheden binnen de expertise en overeengekomen scope van Finable vallen.',
+      'Tenzij uitdrukkelijk schriftelijk anders overeengekomen, verstrekt Finable geen juridisch advies, beleggingsadvies of ander advies waarvoor een specifieke vergunning of specialistische beroepskwalificatie is vereist.',
+      'Finable kan fiscale, juridische, financiële of organisatorische aandachtspunten en mogelijke optimalisaties signaleren.',
+      'Een dergelijke signalering geldt niet automatisch als specialistisch fiscaal of juridisch advies.',
+      'Wanneer naar het oordeel van Finable specialistische expertise wenselijk of noodzakelijk is, kan Finable adviseren een accountant, fiscalist, jurist of andere specialist in te schakelen.',
+      'Finable kan, na overleg met Opdrachtgever, een dergelijke specialist inschakelen of de samenwerking daarmee coördineren.',
+      'Voor werkzaamheden van externe specialisten kunnen aanvullende voorwaarden en kosten gelden.',
+      'Finable garandeert niet dat een gesignaleerde fiscale, juridische of financiële optimalisatie daadwerkelijk tot een bepaalde besparing of ander resultaat leidt.',
+    ],
+  },
+  {
+    nr: 9, id: 'artikel-9', titel: 'Rapportages, analyses en prognoses',
+    leden: [
+      'Rapportages, dashboards, analyses, budgetten, prognoses en andere financiële informatie worden opgesteld op basis van de informatie die op het moment van opstellen beschikbaar is.',
+      'Finable streeft naar correcte en tijdige rapportage binnen de overeengekomen processen en afhankelijkheden.',
+      'Prognoses, scenario’s, budgetten en verwachtingen zijn naar hun aard onzeker. Finable garandeert niet dat voorspelde resultaten daadwerkelijk worden gerealiseerd.',
+      'Opdrachtgever controleert rapportages binnen een redelijke termijn en meldt materiële onjuistheden zo spoedig mogelijk aan Finable.',
+      'Finable krijgt een redelijke mogelijkheid om geconstateerde fouten die aan Finable kunnen worden toegerekend te onderzoeken en waar mogelijk te herstellen.',
+    ],
+  },
+  {
+    nr: 10, id: 'artikel-10', titel: 'Prijzen, facturatie en betaling',
+    leden: [
+      'De vergoeding voor de Diensten wordt vastgelegd in de offerte, opdrachtbevestiging of Overeenkomst.',
+      'Alle door Finable genoemde bedragen zijn exclusief btw en andere toepasselijke heffingen, tenzij uitdrukkelijk anders vermeld.',
+      'Tenzij schriftelijk anders overeengekomen factureert Finable periodieke dienstverlening vooraf.',
+      'Facturen dienen binnen 14 dagen na factuurdatum te worden voldaan, tenzij schriftelijk een andere betalingstermijn is overeengekomen.',
+      'Indien de omvang, aard of complexiteit van de werkzaamheden gedurende de Overeenkomst wezenlijk verandert ten opzichte van de uitgangspunten waarop de prijs is gebaseerd, treden partijen in overleg over aanpassing van scope, capaciteit en/of vergoeding.',
+      'Werkzaamheden buiten de overeengekomen scope kunnen aanvullend worden gefactureerd wanneer daarover afspraken zijn gemaakt of Opdrachtgever redelijkerwijs kon begrijpen dat deze werkzaamheden niet onder de bestaande scope vallen.',
+      'Kosten van externe software, licenties, specialisten of andere derden zijn alleen inbegrepen indien dit uitdrukkelijk is overeengekomen.',
+      'Indien Opdrachtgever een opeisbare factuur niet tijdig betaalt, kan Finable na schriftelijke aanmaning de uitvoering van de Diensten opschorten.',
+      'Opdrachtgever is bij verzuim de toepasselijke wettelijke handelsrente en redelijke buitengerechtelijke incassokosten verschuldigd.',
+      'Een klacht over een onderdeel van de dienstverlening schort de betalingsverplichting voor niet-betwiste bedragen niet op.',
+    ],
+  },
+  {
+    nr: 11, id: 'artikel-11', titel: 'Vertrouwelijkheid',
+    leden: [
+      'Partijen behandelen alle vertrouwelijke informatie die zij in het kader van de Overeenkomst van elkaar verkrijgen als vertrouwelijk.',
+      'Vertrouwelijke informatie wordt uitsluitend gebruikt voor zover dit noodzakelijk is voor de uitvoering van de Overeenkomst.',
+      'Finable zorgt ervoor dat door haar ingezette personen die toegang krijgen tot vertrouwelijke informatie aan passende geheimhoudingsverplichtingen zijn gebonden.',
+      'De geheimhoudingsplicht geldt niet voor informatie die aantoonbaar reeds openbaar was, zonder schending van een verplichting openbaar is geworden, rechtmatig van een derde is verkregen of op grond van wet- of regelgeving of een bevoegd overheidsbevel moet worden verstrekt.',
+      'Indien Finable wettelijk verplicht is vertrouwelijke informatie te verstrekken, informeert Finable Opdrachtgever daarover vooraf indien en voor zover dit wettelijk is toegestaan.',
+      'De verplichtingen uit dit artikel blijven na beëindiging van de Overeenkomst bestaan.',
+    ],
+  },
+  {
+    nr: 12, id: 'artikel-12', titel: 'Persoonsgegevens en beveiliging',
+    leden: [
+      'Partijen leven bij de uitvoering van de Overeenkomst de toepasselijke privacywetgeving, waaronder de Algemene verordening gegevensbescherming, na.',
+      'Voor zover Finable persoonsgegevens namens Opdrachtgever verwerkt en daarbij als verwerker optreedt, sluiten partijen een afzonderlijke verwerkersovereenkomst.',
+      'De verwerkersovereenkomst vormt, indien van toepassing, onderdeel van de contractuele afspraken tussen partijen.',
+      'Finable treft passende technische en organisatorische maatregelen om persoonsgegevens en andere vertrouwelijke gegevens te beschermen, rekening houdend met de aard van de gegevens, de dienstverlening en redelijkerwijs voorzienbare risico’s.',
+      'Finable mag voor de uitvoering van de Diensten gebruikmaken van geschikte softwareleveranciers, hostingproviders en andere subverwerkers, met inachtneming van de toepasselijke privacywetgeving en de verwerkersovereenkomst.',
+      'Opdrachtgever is verantwoordelijk voor het bestaan van een geldige grondslag voor persoonsgegevens die aan Finable ter beschikking worden gesteld.',
+      'Partijen informeren elkaar zonder onredelijke vertraging over relevante beveiligingsincidenten of datalekken voor zover dit noodzakelijk is om aan wettelijke verplichtingen te kunnen voldoen.',
+    ],
+  },
+  {
+    nr: 13, id: 'artikel-13', titel: 'Intellectuele eigendom en gegevens',
+    leden: [
+      'Alle intellectuele eigendomsrechten op door Finable ontwikkelde of gebruikte algemene methodieken, modellen, templates, processen, automatiseringen, software, documentatie, werkwijzen en knowhow blijven bij Finable of haar licentiegevers berusten, tenzij schriftelijk anders overeengekomen.',
+      'Opdrachtgever verkrijgt het recht om specifiek voor Opdrachtgever vervaardigde rapportages, analyses, dashboards en andere resultaten voor de eigen bedrijfsvoering te gebruiken.',
+      'Opdrachtgever mag algemene Finable-methodieken, software, automatiseringen of templates niet zonder voorafgaande schriftelijke toestemming zelfstandig commercieel exploiteren, verkopen of aan derden licentiëren.',
+      'Rechten die reeds vóór de Overeenkomst bij een partij berustten, blijven bij die partij.',
+      'De administratie, bedrijfsgegevens, documenten en andere gegevens van Opdrachtgever blijven eigendom van of onder verantwoordelijkheid van Opdrachtgever.',
+      'Finable verkrijgt geen eigendomsrecht op klantgegevens uitsluitend doordat deze in het kader van de Diensten worden verwerkt.',
+    ],
+  },
+  {
+    nr: 14, id: 'artikel-14', titel: 'Aansprakelijkheid',
+    // INTERNE REDACTIENOTITIE uit het brondocument — niet verwijderd, zie kopcommentaar.
+    internalIntro: 'Dit artikel is voorlopig en wordt vóór definitieve ingebruikname afgestemd op de beroepsaansprakelijkheidsverzekering van Finable.',
+    leden: [
+      'Finable is uitsluitend aansprakelijk voor directe schade die het rechtstreekse gevolg is van een toerekenbare tekortkoming van Finable in de uitvoering van de Overeenkomst.',
+      'Voor zover wettelijk toegestaan is Finable niet aansprakelijk voor indirecte schade, waaronder gevolgschade, gederfde winst, gemiste omzet, gemiste besparingen, verlies van goodwill, bedrijfsstagnatie en schade als gevolg van beslissingen die Opdrachtgever op basis van rapportages, analyses of adviezen heeft genomen.',
+      'De totale aansprakelijkheid van Finable per gebeurtenis of reeks van samenhangende gebeurtenissen is beperkt tot het bedrag dat in het betreffende geval onder de toepasselijke aansprakelijkheidsverzekering van Finable wordt uitgekeerd, vermeerderd met het eventueel toepasselijke eigen risico.',
+      'Indien om welke reden dan ook geen uitkering onder een toepasselijke verzekering plaatsvindt, is de totale aansprakelijkheid van Finable beperkt tot het bedrag dat Opdrachtgever gedurende de zes maanden voorafgaand aan de schadeveroorzakende gebeurtenis voor de dienstverlening waarop de aansprakelijkheid betrekking heeft aan Finable heeft betaald.',
+      {
+        tekst: 'Finable is niet aansprakelijk voor schade die geheel of gedeeltelijk het gevolg is van:',
+        sub: [
+          'onjuiste, onvolledige of niet tijdig verstrekte informatie door of namens Opdrachtgever;',
+          'beslissingen of handelingen van Opdrachtgever of derden die niet onder verantwoordelijkheid van Finable vallen;',
+          'storingen of tekortkomingen van software, banken, overheidsdiensten of andere externe partijen die buiten de redelijke invloedssfeer van Finable liggen; of',
+          'het niet opvolgen van tijdig door Finable gegeven waarschuwingen of verzoeken om informatie.',
+        ],
+      },
+      'De aansprakelijkheidsbeperkingen gelden niet voor zover schade het gevolg is van opzet of bewuste roekeloosheid van Finable of voor zover beperking of uitsluiting wettelijk niet is toegestaan.',
+      'Opdrachtgever meldt een mogelijke schadeclaim zo spoedig mogelijk schriftelijk en verstrekt Finable de informatie die redelijkerwijs nodig is om de claim te onderzoeken en eventuele schade te beperken.',
+    ],
+  },
+  {
+    nr: 15, id: 'artikel-15', titel: 'Overmacht',
+    leden: [
+      'Finable is niet gehouden tot nakoming van een verplichting zolang nakoming wordt verhinderd door een omstandigheid die redelijkerwijs buiten haar invloedssfeer ligt.',
+      'Onder overmacht kunnen, afhankelijk van de omstandigheden, onder meer vallen: langdurige storingen van essentiële infrastructuur of leveranciers, internet- of communicatiestoringen, cyberincidenten buiten de redelijke invloedssfeer van Finable, overheidsmaatregelen, natuurrampen en andere onvoorziene externe omstandigheden waardoor uitvoering tijdelijk of blijvend onmogelijk wordt.',
+      'Finable informeert Opdrachtgever zo spoedig als redelijkerwijs mogelijk over een relevante overmachtsituatie.',
+      'Partijen overleggen waar redelijkerwijs mogelijk over een alternatieve wijze van uitvoering.',
+      'Verplichtingen die vóór het ontstaan van de overmacht reeds opeisbaar waren, blijven bestaan.',
+    ],
+  },
+  {
+    nr: 16, id: 'artikel-16', titel: 'Wijziging van scope en dienstverlening',
+    leden: [
+      'De prijs en capaciteit van Finable zijn gebaseerd op de uitgangspunten en verwachte omvang van de dienstverlening zoals vastgelegd bij aanvang van de Overeenkomst.',
+      'Indien de feitelijke omvang, complexiteit of benodigde capaciteit wezenlijk verandert, kunnen partijen de scope, capaciteit, planning en/of vergoeding aanpassen.',
+      'Een wezenlijke wijziging kan onder meer ontstaan door sterke groei van Opdrachtgever, toevoeging van entiteiten of landen, substantiële toename van transacties, uitbreiding van rapportagevereisten, verandering van systemen of uitbreiding van de overeengekomen verantwoordelijkheden.',
+      'Finable informeert Opdrachtgever wanneer Finable constateert dat de structurele werkzaamheden wezenlijk buiten de overeengekomen uitgangspunten vallen.',
+      'Finable is niet verplicht structureel aanvullende capaciteit of werkzaamheden binnen de oorspronkelijke vergoeding te leveren indien deze redelijkerwijs buiten de overeengekomen scope vallen.',
+    ],
+  },
+  {
+    nr: 17, id: 'artikel-17', titel: 'Inschakeling en overname van Professionals',
+    leden: [
+      'Finable mag voor de uitvoering van de Overeenkomst Professionals inzetten.',
+      'Finable blijft tegenover Opdrachtgever verantwoordelijk voor de uitvoering van de aan Finable opgedragen Diensten, behoudens werkzaamheden die Opdrachtgever rechtstreeks met een externe specialist overeenkomt.',
+      'Opdrachtgever zal gedurende de Overeenkomst en gedurende twaalf maanden na beëindiging daarvan niet zonder voorafgaande schriftelijke toestemming van Finable rechtstreeks een door Finable voor Opdrachtgever ingezette Professional in dienst nemen, contracteren of anderszins buiten Finable om werkzaamheden laten verrichten.',
+      'Indien Opdrachtgever een Professional rechtstreeks wil overnemen of contracteren, kunnen partijen hierover schriftelijk afspraken maken, waaronder een redelijke overnamevergoeding.',
+      'Dit artikel is niet van toepassing wanneer Finable vooraf schriftelijk toestemming heeft gegeven voor de betreffende rechtstreekse samenwerking.',
+    ],
+    // INTERNE REDACTIENOTITIE uit het brondocument — niet verwijderd, zie kopcommentaar.
+    internalOutro: 'De duur en overnamebepaling in dit artikel moeten eveneens juridisch worden gecontroleerd voordat de voorwaarden definitief worden gebruikt.',
+  },
+  {
+    nr: 18, id: 'artikel-18', titel: 'Beëindiging en overdracht',
+    leden: [
+      'Bij het einde van de Overeenkomst werken partijen redelijkerwijs mee aan een ordelijke overdracht van de dienstverlening.',
+      'Finable stelt de gegevens en documenten van Opdrachtgever die Finable onder zich heeft en die redelijkerwijs voor overdracht in aanmerking komen beschikbaar aan Opdrachtgever.',
+      'Indien een overdracht, migratie, dossieropbouw, export of begeleiding van een opvolgende dienstverlener aanvullende werkzaamheden vereist, mag Finable deze werkzaamheden aanvullend factureren.',
+      'Opdrachtgever verleent tijdig medewerking aan de overdracht en zorgt voor geschikte ontvangst- en toegangsmogelijkheden.',
+      'Finable is na beëindiging niet verplicht systemen, licenties of andere voorzieningen voor Opdrachtgever beschikbaar te houden voor zover deze specifiek door Finable worden bekostigd, tenzij schriftelijk anders overeengekomen.',
+      'Openstaande betalingsverplichtingen blijven na beëindiging bestaan.',
+      'Persoonsgegevens worden na beëindiging behandeld overeenkomstig de toepasselijke privacywetgeving en, indien van toepassing, de verwerkersovereenkomst.',
+      'Bepalingen die naar hun aard bedoeld zijn om na beëindiging voort te duren, waaronder bepalingen over vertrouwelijkheid, aansprakelijkheid, intellectuele eigendom en betaling, blijven van kracht.',
+    ],
+  },
+  {
+    nr: 19, id: 'artikel-19', titel: 'Klachten',
+    leden: [
+      'Opdrachtgever meldt klachten over de Diensten zo spoedig mogelijk nadat de aanleiding voor de klacht is ontdekt of redelijkerwijs had kunnen worden ontdekt.',
+      'Een klacht wordt voldoende duidelijk omschreven zodat Finable deze kan onderzoeken.',
+      'Finable krijgt een redelijke termijn om de klacht te onderzoeken en, waar passend, een oplossing of herstel voor te stellen.',
+      'Partijen streven ernaar klachten eerst in onderling overleg op te lossen.',
+      'Een klacht schort de betalingsverplichting voor niet-betwiste bedragen niet op.',
+    ],
+  },
+  {
+    nr: 20, id: 'artikel-20', titel: 'Wijziging van de algemene voorwaarden',
+    leden: [
+      'Finable kan deze algemene voorwaarden van tijd tot tijd wijzigen, bijvoorbeeld als gevolg van veranderingen in de dienstverlening, wetgeving of bedrijfsvoering.',
+      'Voor lopende Overeenkomsten worden materiële wijzigingen vooraf aan Opdrachtgever bekendgemaakt.',
+      'Een wijziging van deze algemene voorwaarden wijzigt niet zonder afzonderlijke afspraak de overeengekomen contractduur, prijs of wezenlijke scope van een lopende Overeenkomst.',
+      'Wijzigingen worden niet met terugwerkende kracht toegepast ten nadele van Opdrachtgever, tenzij dit noodzakelijk is vanwege toepasselijke wet- of regelgeving.',
+    ],
+  },
+  {
+    nr: 21, id: 'artikel-21', titel: 'Toepasselijk recht en geschillen',
+    leden: [
+      'Op iedere rechtsverhouding tussen Finable en Opdrachtgever is uitsluitend Nederlands recht van toepassing.',
+      'Partijen zullen bij een geschil eerst proberen in onderling overleg tot een oplossing te komen.',
+      'Indien partijen niet tot een oplossing komen, wordt het geschil voorgelegd aan de volgens de Nederlandse wet bevoegde rechter, tenzij partijen schriftelijk een andere bevoegde rechter zijn overeengekomen.',
+    ],
+  },
+];
+---
+<Layout
+  title="Algemene voorwaarden | Finable"
+  description="Lees de algemene voorwaarden van Finable, handelsnaam van Accelr, voor zakelijke financiële dienstverlening."
+  hreflang={false}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:48px;padding-bottom:56px">
+      <div style="max-width:760px">
+        <div class="lbl" style="margin-bottom:20px">Juridisch</div>
+        <h1 style="font-size:clamp(30px,4.2vw,46px);margin-bottom:22px;text-wrap:balance">Algemene voorwaarden</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Finable is een handelsnaam van Accelr, een eenmanszaak gevestigd te Haarlem en ingeschreven in het Handelsregister van de Kamer van Koophandel onder nummer 99623544.</p>
+        <p style="margin-top:14px;font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Deze algemene voorwaarden zijn uitsluitend van toepassing op dienstverlening aan ondernemingen en andere zakelijke opdrachtgevers.</p>
+        <p style="margin-top:26px;font-size:14px;color:var(--on-dark-tertiary)">{versie}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INHOUD -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <div class="priv-grid">
+
+      <!-- Mini-inhoudsopgave; alleen op desktop, de tekst leest verder gewoon lineair. -->
+      <nav class="priv-toc" aria-label="Op deze pagina">
+        <div class="lbl" style="color:var(--body);margin-bottom:16px">Op deze pagina</div>
+        <ul>
+          {artikelen.map((a) => (
+            <li><a href={`#${a.id}`}>{a.nr}. {a.titel}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="priv-body">
+
+        {artikelen.map((a) => (
+          <section id={a.id}>
+            <h2>Artikel {a.nr} &mdash; {a.titel}</h2>
+            {a.intro?.map((p) => <p>{p}</p>)}
+            {a.internalIntro && <p>{a.internalIntro}</p>}
+            {a.nr === 1 && (
+              <dl class="av-defs">
+                {definities.map((d) => (
+                  <div><dt>{d.term}:</dt> <dd>{d.omschrijving}</dd></div>
+                ))}
+              </dl>
+            )}
+            {a.leden && (
+              <ol class="av-leden">
+                {a.leden.map((lid) => (
+                  typeof lid === 'string'
+                    ? <li>{lid}</li>
+                    : <li>{lid.tekst}<ol class="av-subleden">{lid.sub.map((s) => <li>{s}</li>)}</ol></li>
+                ))}
+              </ol>
+            )}
+            {a.internalOutro && <p class="av-outro">{a.internalOutro}</p>}
+          </section>
+        ))}
+
+        <section id="colofon">
+          <h2>Versie</h2>
+          <p>Versie 1.0 &mdash; september 2026</p>
+          <dl class="priv-meta">
+            <div><dt>Organisatie</dt><dd>Finable</dd></div>
+            <div><dt>Handelsnaam van</dt><dd>Accelr</dd></div>
+            <div><dt>Rechtsvorm</dt><dd>Eenmanszaak</dd></div>
+            <div><dt>Vestigingsplaats</dt><dd>Haarlem</dd></div>
+            <div><dt>KvK</dt><dd>99623544</dd></div>
+          </dl>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  /* Zelfde leesopmaak als /privacy: dezelfde klassenamen, dezelfde waarden. Astro laadt een
+     is:global-blok alleen op de pagina die het bevat, dus de twee pagina's zitten elkaar niet in de weg. */
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+  .priv-grid{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start}
+  .priv-toc{position:sticky;top:32px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:8px}
+  .priv-toc ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .priv-toc a{display:block;font-size:13.5px;line-height:1.45;color:var(--body);padding:5px 0;text-wrap:pretty}
+  .priv-toc a:hover{color:var(--terracotta);opacity:1}
+  .priv-body{max-width:760px}
+  .priv-body>section+section{margin-top:40px;padding-top:40px;border-top:1px solid var(--line)}
+  .priv-body h2{font-size:clamp(22px,2.4vw,28px);margin-bottom:18px;text-wrap:balance}
+  .priv-body p{font-size:16px;color:var(--body);text-wrap:pretty}
+  .priv-body p+p{margin-top:14px}
+  .priv-meta{margin-top:22px;border-top:1px solid var(--line)}
+  .priv-meta>div{display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr);gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .priv-meta dt{font-size:13px;font-weight:600;color:var(--navy)}
+  .priv-meta dd{font-size:15px;color:var(--body)}
+  /* Definities (artikel 1): term vet inline, zoals in het brondocument. */
+  .av-defs{margin-top:16px}
+  .av-defs>div{margin-top:12px}
+  .av-defs dt{display:inline;font-weight:600;color:var(--navy);font-size:16px}
+  .av-defs dd{display:inline;font-size:16px;color:var(--body);margin-left:4px}
+  /* Genummerde leden: het nummer telt juridisch mee, dus zichtbaar en uitgelijnd in de marge. */
+  .av-leden{list-style:none;counter-reset:lid;margin-top:16px}
+  .av-leden>li{counter-increment:lid;position:relative;padding-left:34px;font-size:16px;color:var(--body);line-height:1.65;margin-top:12px;text-wrap:pretty}
+  .av-leden>li::before{content:counter(lid) ".";position:absolute;left:0;top:0;width:26px;font-size:15px;font-weight:600;color:var(--navy);font-variant-numeric:tabular-nums}
+  .av-subleden{list-style:none;counter-reset:sublid;margin-top:10px}
+  .av-subleden>li{counter-increment:sublid;position:relative;padding-left:26px;margin-top:8px;line-height:1.6}
+  .av-subleden>li::before{content:counter(sublid, lower-alpha) ".";position:absolute;left:0;top:0;font-weight:600;color:var(--terracotta)}
+  .av-outro{margin-top:18px}
+  @media (max-width:1023px){
+    .priv-grid{grid-template-columns:1fr;gap:0}
+    .priv-toc{display:none}
+    .priv-body{max-width:none}
+    .priv-body>section+section{margin-top:34px;padding-top:34px}
+  }
+  @media (max-width:479px){
+    /* Smalle schermen: iets minder inspringing, zodat de tekstkolom niet knel komt te zitten. */
+    .av-leden>li{padding-left:28px}
+    .av-leden>li::before{width:22px}
+    .priv-meta>div{grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:12px}
+  }
+</style>
