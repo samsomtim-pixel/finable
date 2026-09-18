@@ -11,8 +11,8 @@
 //                                    inclusief de mobiele variant per onderwerp
 //   .cyc / .cn / .cd / .ca         — compacte processtrip van /hoe-het-werkt
 //
-// Capabilities: alleen werkzaamheden die de bestaande site al benoemt. Wat daar niet staat, is niet
-// toegevoegd; zie het eindrapport onder "inhoudelijk te valideren".
+// Capabilities: geformuleerd in het werk van een boekhoudkantoor, maar alleen werkzaamheden die de
+// bestaande site al benoemt. Wat daar niet staat is niet toegevoegd; zie de noot bij de array.
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -35,14 +35,18 @@ const herkenning = [
   { n: '06', t: 'Je wilt doorgroeien', d: 'Meer werk aankunnen zonder iedere groei direct met een nieuwe hire op te lossen.' },
 ];
 
-/** De zes capabilities. De werkzaamheden per capability komen uit bestaande Finable-content. */
+/** De zes capabilities, geformuleerd in het dagelijkse werk van een boekhoudkantoor: welk werk kun je
+ *  hier concreet neerleggen? Alleen werkzaamheden die de bestaande Finable-content al ondersteunt.
+ *  Bewust niet opgenomen: crediteuren (nergens anders op de site onderbouwd) en alles rond jaarwerk,
+ *  jaarrekening en fiscale aangiften (eerst valideren). 'Voorbereiding' waar Finable het werk klaarzet
+ *  maar het kantoor of de klant verantwoordelijk blijft. */
 const capabilities = [
-  { t: 'Administratie', items: ['Facturen', 'Bankverwerking', 'Debiteuren'] },
-  { t: 'Maandafsluiting', items: ['Aansluitingen', 'Btw', 'Maanddossier'] },
-  { t: 'Managementrapportages', items: ['Periodieke rapportages', 'Duiding bij de cijfers', 'Managementinformatie'] },
-  { t: 'Control & analyse', items: ['Controles in het proces', 'Afwijkingsanalyses', 'Marge en cashflow'] },
-  { t: 'Procesverbetering & automatisering', items: ['Financeprocessen structureren', 'Werk standaardiseren', 'Automatisering waar passend'] },
-  { t: 'Debiteuren & crediteuren', items: ['Openstaande posten', 'Betalingen', 'Aansluitingen'] },
+  { t: 'Boekhouding & verwerking', items: ['Facturen verwerken', 'Bank verwerken', 'Administratie bijwerken'] },
+  { t: 'Maand- & kwartaalafsluiting', items: ['Aansluitingen', 'Controles', 'Btw-voorbereiding', 'Dossier op orde'] },
+  { t: 'Rapportage', items: ['Periodieke rapportages', 'Cijfers voorbereiden', 'Managementinformatie'] },
+  { t: 'Controle & uitzoekwerk', items: ['Aansluitverschillen', 'Uitzoekwerk', 'Controles', 'Correcties voorbereiden'] },
+  { t: 'Inrichting & automatisering', items: ['Terugkerend handwerk verminderen', 'Werkprocessen slimmer inrichten', 'Automatisering waar passend'] },
+  { t: 'Openstaande posten', items: ['Debiteuren', 'Betalingen voorbereiden', 'Aansluitingen'] },
 ];
 
 const vergelijking = [
@@ -144,9 +148,9 @@ const arrow = 'M0 9h24M18 2l8 7-8 7';
       <div class="vb-caphead">
         <div>
           <div class="lbl" style="margin-bottom:18px">Wat wij kunnen betekenen</div>
-          <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--warm-white);text-wrap:balance">Hier kan Finable je team ondersteunen.</h2>
+          <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--warm-white);text-wrap:balance">Dit werk kun je bij Finable neerleggen.</h2>
         </div>
-        <p style="font-size:16px;color:var(--on-dark-secondary);line-height:1.7;text-wrap:pretty">We ondersteunen boekhouders en administratiekantoren met financewerk dat zich leent voor een flexibele opzet: van dagelijks terugkerend werk tot rapportage en analyse.</p>
+        <p style="font-size:16px;color:var(--on-dark-secondary);line-height:1.7;text-wrap:pretty">Van terugkerende verwerking tot afsluiting en rapportage. We spreken af welk werk Finable overneemt en wat bij jouw kantoor blijft.</p>
       </div>
       <!-- Haarlijnraster: één pixel scheiding, geen kaarten met randen en schaduw. -->
       <div class="vb-caps">
