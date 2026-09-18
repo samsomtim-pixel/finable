@@ -37,16 +37,21 @@ const herkenning = [
 
 /** De zes capabilities, geformuleerd in het dagelijkse werk van een boekhoudkantoor: welk werk kun je
  *  hier concreet neerleggen? Alleen werkzaamheden die de bestaande Finable-content al ondersteunt.
- *  Bewust niet opgenomen: crediteuren (nergens anders op de site onderbouwd) en alles rond jaarwerk,
- *  jaarrekening en fiscale aangiften (eerst valideren). 'Voorbereiding' waar Finable het werk klaarzet
- *  maar het kantoor of de klant verantwoordelijk blijft. */
+ *
+ *  Jaarafsluiting versus jaarrekening. 'Maand- en jaarafsluiting' staat al als dienst op de site
+ *  (/cases/the-good-roll en de algemene voorwaarden). Het ondertekenen van een jaarrekening en
+ *  specialistisch fiscaal advies vallen daar volgens de FAQ op /aanpak uitdrukkelijk buiten, en op de
+ *  home staat dat de accountant betrokken kan blijven bij de jaarrekening en fiscale werkzaamheden.
+ *  Deze tegel gaat dus over het voorbereidende werk: het woord 'voorbereiden' draagt dat onderscheid.
+ *  Niet opnemen: jaarrekening opstellen of indienen, fiscale aangifte, fiscaal advies,
+ *  accountantscontrole of formele verantwoordelijkheid voor de jaarrekening. */
 const capabilities = [
   { t: 'Boekhouding & verwerking', items: ['Facturen verwerken', 'Bank verwerken', 'Administratie bijwerken'] },
-  { t: 'Maand- & kwartaalafsluiting', items: ['Aansluitingen', 'Controles', 'Btw-voorbereiding', 'Dossier op orde'] },
+  { t: 'Maand-, kwartaal- & jaarafsluiting', items: ['Aansluitingen', 'Controles', 'Verschillen uitzoeken', 'Dossier op orde', 'Afsluiting voorbereiden'] },
   { t: 'Rapportage', items: ['Periodieke rapportages', 'Cijfers voorbereiden', 'Managementinformatie'] },
   { t: 'Controle & uitzoekwerk', items: ['Aansluitverschillen', 'Uitzoekwerk', 'Controles', 'Correcties voorbereiden'] },
   { t: 'Inrichting & automatisering', items: ['Terugkerend handwerk verminderen', 'Werkprocessen slimmer inrichten', 'Automatisering waar passend'] },
-  { t: 'Openstaande posten', items: ['Debiteuren', 'Betalingen voorbereiden', 'Aansluitingen'] },
+  { t: 'Openstaande posten', items: ['Debiteuren', 'Crediteuren', 'Betalingen voorbereiden', 'Aansluitingen'] },
 ];
 
 const vergelijking = [
