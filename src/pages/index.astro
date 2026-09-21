@@ -5,17 +5,21 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
 
-/** Corporate namen als context, niet als klantenlijst: alleen typografisch, geen logo's of badges. */
-const proof = ['HEINEKEN', 'Unilever', 'EY', 'KPMG', 'PwC', 'Deloitte'];
+/** Corporate namen als context, niet als klantenlijst: alleen typografisch, geen logo's of badges.
+ *  Zes organisaties die hun eigen finance- en businessserviceswerk bundelen. Eerder stonden hier ook
+ *  EY, KPMG, PwC en Deloitte; die zetten hun deliverycapaciteit mede in voor klantwerk en zijn dus
+ *  een ander bewijstype. Zie /kennis/hoe-grote-organisaties-finance-organiseren. */
+const proof = ['HEINEKEN', 'Philips', 'Ahold Delhaize', 'Shell', 'AkzoNobel', 'Bosch'];
 
-/** Primaire bronnen bij de corporate proof. Native <details>, geen JavaScript. */
+/** Primaire bronnen bij de corporate proof, identiek aan de bronnenlijst van het kennisartikel.
+ *  Native <details>, geen JavaScript. */
 const bronnen = [
   { label: 'HEINEKEN \u2014 Business Services & Finance Operations', url: 'https://www.theheinekencompany.com/newsroom/heineken-strengthens-global-capability-footprint-with-official-opening-of-business-services-centre-in-india/' },
-  { label: 'Unilever \u2014 Global Business Services', url: 'https://careers.unilever.com/en/gbs' },
-  { label: 'EY \u2014 Global Delivery Services', url: 'https://www.ey.com/en_gl/careers/global-delivery-services' },
-  { label: 'KPMG \u2014 Delivery Network', url: 'https://kpmg.com/xx/en/what-we-do/services/tax/kpmg-delivery-network.html' },
-  { label: 'PwC \u2014 Acceleration Centers', url: 'https://www.pwc.com/us/en/about-us/newsroom/press-releases/acceleration-centers-new-office-in-hyderaba.html' },
-  { label: 'Deloitte \u2014 Delivery Centers', url: 'https://www.deloitte.com/ro/en/service-centers/technology-delivery-center/who-we-are.html' },
+  { label: 'Philips \u2014 Global Business Services', url: 'https://www.careers.philips.com/global/en/gbs-global-business-services' },
+  { label: 'Ahold Delhaize \u2014 European Business Services', url: 'https://careers.aholddelhaize.com/option/brand/european-business-services' },
+  { label: 'Shell \u2014 Business Operations Krak\u00f3w (PAIH)', url: 'https://www.paih.gov.pl/en/news/20210504-shell_investment_krakow/' },
+  { label: 'AkzoNobel \u2014 Global Business Services', url: 'https://careers.akzonobel.com/go/Finance/3998601/' },
+  { label: 'Bosch \u2014 Global Business Services', url: 'https://www.bosch.us/careers/bosch-global-business-services/' },
 ];
 ---
 <Layout title="Finable | Finance-as-a-Service voor groeiende bedrijven" description="Finable is je externe finance-team voor dagelijkse finance, maandafsluiting, controlling en rapportage. Een vast team voor één vaste maandprijs.">
@@ -125,7 +129,7 @@ const bronnen = [
           <h2 style="font-size:clamp(26px,3.2vw,38px);text-wrap:balance">Grote organisaties organiseren werk allang zo.</h2>
         </div>
         <div>
-          <p class="fv-body">Grote organisaties verdelen werk al jaren over lokale teams, internationale specialisten en gespecialiseerde service- en deliverycenters.</p>
+          <p class="fv-body">Grote organisaties verdelen werk al jaren over lokale teams, internationale specialisten en eigen gespecialiseerde servicecenters.</p>
           <p class="fv-concl">Finable maakt die manier van werken toegankelijk voor groeiende bedrijven.</p>
           <p class="fv-proof">{proof.join(' \u00b7 ')}</p>
           <details class="fv-src">
@@ -136,6 +140,11 @@ const bronnen = [
               ))}
             </ul>
           </details>
+          <div class="fv-read">
+            <p class="fv-read-q">Hoe organiseren grote bedrijven hun finance eigenlijk?</p>
+            <p class="fv-read-d">Bekijk hoe HEINEKEN, Philips en andere organisaties financewerk verdelen, en wat groeiende bedrijven daarvan kunnen leren.</p>
+            <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fv-read-a">Lees het artikel &rarr;</a>
+          </div>
         </div>
       </div>
     </div>
@@ -333,6 +342,11 @@ const bronnen = [
   .fv-src li{margin-bottom:2px}
   .fv-src a{display:inline-block;font-size:14px;color:var(--body);line-height:1.5;padding:7px 0}
   .fv-src a:hover{color:var(--terracotta);opacity:1}
+  /* Doorverwijzing naar het kennisartikel: redactioneel, geen tweede CTA. */
+  .fv-read{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .fv-read-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(17px,1.7vw,20px);line-height:1.35;color:var(--navy);text-wrap:balance}
+  .fv-read-d{margin-top:8px;font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fv-read-a{display:inline-block;margin-top:12px;font-size:15px;font-weight:600;color:var(--terracotta)}
   @media (max-width:1023px){
     .fv{grid-template-columns:1fr;gap:26px}
   }
