@@ -1,0 +1,647 @@
+---
+// Kennisartikel #1. Long-form redactionele pagina op de bestaande shell: Header, navy hero,
+// smalle leeskolom met meeschuivende inhoudsopgave (patroon van /privacy), Footer.
+//
+// Redactionele kern: grote organisaties hebben finance niet uitbesteed, ze hebben hem gesplitst.
+// Uitvoering naar gespecialiseerde teams, oordeel dicht bij de business. Het principe is overdraagbaar,
+// de schaal niet. Nergens wordt gesuggereerd dat genoemde bedrijven klant van Finable zijn.
+//
+// Feitencontrole: elke cijfermatige claim staat in een primaire bron die onderaan de pagina is gelinkt
+// en inline bij de claim zelf. Claims die de bron niet droeg, staan bewust niet in de tekst.
+//
+// De vier lagen hieronder ('verwerken → controleren → analyseren → beslissen') zijn de algemene keten
+// uit de literatuur, NIET het lagenmodel van /aanpak (Verwerken → Controleren → Begrijpen → Sturen).
+// Die twee sets worden hier bewust niet gemengd; de Finable-sectie verwijst door naar /aanpak.
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+
+const published = '21 september 2026';
+const publishedISO = '2026-09-21';
+
+const toc = [
+  { id: 'splitsen', label: 'Niet uitbesteden, maar splitsen' },
+  { id: 'onderscheid', label: 'Locatie is niet hetzelfde als outsourcing' },
+  { id: 'heineken', label: 'HEINEKEN: finance zit niet op één plek' },
+  { id: 'philips', label: 'Philips: er is niet één juist model' },
+  { id: 'breder', label: 'Het gebeurt veel breder' },
+  { id: 'lagen', label: 'Wat kun je verplaatsen, en wat niet?' },
+  { id: 'waarom', label: 'Waarom doen grote organisaties dit?' },
+  { id: 'proces', label: 'Het werkt alleen met goede processen' },
+  { id: 'risico', label: 'Centraliseren creëert nieuwe risico’s' },
+  { id: 'ai', label: 'En nu komt AI erbovenop' },
+  { id: 'vijftig', label: 'Wat heeft een bedrijf van vijftig mensen hieraan?' },
+  { id: 'boekhouding', label: 'Boekhouding is niet je finance-functie' },
+  { id: 'verantwoordelijkheid', label: 'Uitvoering delegeren, verantwoordelijkheid niet' },
+  { id: 'schaal', label: 'Het principe is hetzelfde. De schaal niet.' },
+  { id: 'finable', label: 'Hoe Finable dit principe toepast' },
+  { id: 'faq', label: 'Veelgestelde vragen' },
+  { id: 'bronnen', label: 'Bronnen' },
+];
+
+/** De vier lagen van financewerk, van standaardiseerbaar naar oordeelsafhankelijk. */
+const lagen = [
+  {
+    t: 'Transactioneel',
+    d: 'Factuurverwerking, crediteuren, debiteuren, bank, cash application, declaraties en grootboekmutaties.',
+    v: 'Goed te standaardiseren en te bundelen.',
+  },
+  {
+    t: 'Processen & afsluiting',
+    d: 'Reconciliaties, record-to-report, intercompany, maandafsluiting en periodieke rapportage.',
+    v: 'Bundelbaar, mits het proces en de controles vastliggen.',
+  },
+  {
+    t: 'Controlling & analyse',
+    d: 'Financial controlling, variance-analyse, cashflow, forecasting en FP&A.',
+    v: 'Deels bundelbaar. Vraagt kennis van de business.',
+  },
+  {
+    t: 'Business partnering & besluitvorming',
+    d: 'Managementbeslissingen, stakeholdermanagement en strategie.',
+    v: 'Blijft bij de organisatie zelf.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Wat is het verschil tussen boekhouding en een finance-functie?',
+    a: 'Boekhouding is het vastleggen en verwerken van wat er financieel gebeurt. De finance-functie is het geheel: verwerken, afsluiten, controleren, rapporteren en bespreken, plus de verantwoordelijkheid voor de juistheid daarvan. Boekhouding is dus een onderdeel van de finance-functie, niet het geheel.',
+  },
+  {
+    q: 'Wat is het verschil tussen een boekhouder en een controller?',
+    a: 'Een boekhouder legt vast wat er is gebeurd en zorgt dat de administratie klopt. Een controller kijkt naar wat de cijfers betekenen: aansluitingen, afwijkingen, marges, budget versus realisatie en de vraag of de rapportage een betrouwbaar beeld geeft. In de praktijk lopen die rollen bij kleinere bedrijven vaak door elkaar.',
+  },
+  {
+    q: 'Wat is het verschil tussen een controller en een CFO?',
+    a: 'Een controller werkt vooral aan de kwaliteit en de duiding van de cijfers. Een CFO is eindverantwoordelijk voor finance als geheel en is betrokken bij beslissingen over financiering, investeringen, risico en strategie. Veel groeiende bedrijven hebben de controllingtaken wel nodig, maar nog geen volledige CFO-rol.',
+  },
+  {
+    q: 'Wat is een shared service center?',
+    a: 'Een shared service center is een eigen organisatieonderdeel dat gestandaardiseerd werk uitvoert voor meerdere onderdelen van dezelfde organisatie. De medewerkers zijn in dienst van het bedrijf zelf; alleen de plek waar het werk gebeurt, is gebundeld.',
+  },
+  {
+    q: 'Is shared services hetzelfde als outsourcing?',
+    a: 'Nee. Bij shared services blijft het werk binnen de eigen organisatie, alleen anders georganiseerd. Bij outsourcing voert een externe leverancier het werk uit. Een centrum in een ander land is dus niet automatisch outsourcing: dat gaat over locatie, niet over wie het werk doet.',
+  },
+  {
+    q: 'Wat is Global Business Services?',
+    a: 'Global Business Services, meestal afgekort tot GBS, is de doorontwikkeling van shared services waarbij meerdere functies, zoals finance, HR, inkoop en IT, in één aangestuurd model worden geleverd. Het gaat daarbij om gestandaardiseerde processen met vaste afspraken over kwaliteit en verantwoordelijkheid.',
+  },
+  {
+    q: 'Wanneer moet een groeiend bedrijf zijn finance anders organiseren?',
+    a: 'Meestal niet op een vast aantal medewerkers, maar op het moment dat het werk niet meer bij één rol past: de afsluiting loopt uit, er is geen tijd voor controle, rapportages komen te laat of het bedrijf is te afhankelijk van één persoon. Dat zijn signalen dat de verdeling van het werk aandacht nodig heeft.',
+  },
+  {
+    q: 'Kan een klein bedrijf hetzelfde model gebruiken als HEINEKEN of Philips?',
+    a: 'Niet letterlijk. De schaalvoordelen van een wereldwijd servicecentrum zijn niet overdraagbaar naar een bedrijf van vijftig mensen. Het onderliggende principe wel: scheid uitvoering van controle en oordeel, leg het proces vast en houd de beslissingen bij de organisatie zelf.',
+  },
+  {
+    q: 'Neemt AI dit financewerk straks over?',
+    a: 'Software neemt steeds meer handmatig werk over: facturen uitlezen, transacties matchen, reconciliaties voorbereiden en afwijkingen signaleren. Dat verschuift het zwaartepunt van invoeren naar uitzonderingen, controle, analyse en besluitvorming. Minder handmatig werk betekent dus niet dat er geen finance-functie meer nodig is.',
+  },
+  {
+    q: 'Blijf ik verantwoordelijk als ik mijn administratie uitbesteed?',
+    a: 'Ja. De administratie- en bewaarplicht liggen bij de onderneming en haar bestuur, ook wanneer het werk door een externe partij wordt uitgevoerd. Je kunt de uitvoering beleggen bij iemand anders; de eindverantwoordelijkheid blijft bij jou. Dit is algemene informatie en geen juridisch advies.',
+  },
+];
+
+const bronnen = [
+  { g: 'HEINEKEN', items: [
+    { l: 'HEINEKEN — opening Business Services Centre in Hyderabad (29 april 2026)', u: 'https://www.theheinekencompany.com/newsroom/heineken-strengthens-global-capability-footprint-with-official-opening-of-business-services-centre-in-india/' },
+    { l: 'HEINEKEN Global Shared Services Kraków — careers', u: 'https://careers.theheinekencompany.com/PolandHGSS/' },
+  ]},
+  { g: 'Philips', items: [
+    { l: 'SEC, Form 6-K exhibit — Infosys en Royal Philips Electronics, 25 juli 2007', u: 'https://www.sec.gov/Archives/edgar/data/1067491/000106749107000026/exv99w01.htm' },
+    { l: 'Philips — Global Business Services / Philips Capability Centers', u: 'https://www.careers.philips.com/global/en/gbs-global-business-services' },
+  ]},
+  { g: 'Andere organisaties', items: [
+    { l: 'Ahold Delhaize — European Business Services', u: 'https://careers.aholddelhaize.com/option/brand/european-business-services' },
+    { l: 'AkzoNobel — Global Business Services, finance', u: 'https://careers.akzonobel.com/go/Finance/3998601/' },
+    { l: 'PAIH — Shell breidt zijn investeringen in Kraków uit (2021)', u: 'https://www.paih.gov.pl/en/news/20210504-shell_investment_krakow/' },
+    { l: 'Bosch — Global Business Services', u: 'https://www.bosch.us/careers/bosch-global-business-services/' },
+  ]},
+  { g: 'Professional services (ander bewijstype)', items: [
+    { l: 'EY — Global Delivery Services', u: 'https://www.ey.com/en_gl/careers/global-delivery-services' },
+    { l: 'PwC — Acceleration Centers', u: 'https://www.pwc.com/us/en/about-us/newsroom/press-releases/acceleration-centers-new-office-in-hyderaba.html' },
+    { l: 'Deloitte — Delivery Centers', u: 'https://www.deloitte.com/ro/en/service-centers/technology-delivery-center/who-we-are.html' },
+  ]},
+  { g: 'Onderzoek', items: [
+    { l: 'Richter & Brühl (2017), Shared service center research: a review of the past, present, and future, European Management Journal 35(1)', u: 'https://doi.org/10.1016/j.emj.2016.08.004' },
+    { l: 'Herbert & Seal (2012), Shared services as a new organisational form, The British Accounting Review 44(2)', u: 'https://doi.org/10.1016/j.bar.2012.03.006' },
+    { l: 'Deloitte — Global Shared Services and Outsourcing Survey 2023', u: 'https://www.deloitte.com/global/en/services/consulting/analysis/gx-shared-services-survey.html' },
+    { l: 'SSON Research & Analytics — State of the Shared Services & Outsourcing Industry, Global Market Report 2025', u: 'https://www.prweb.com/releases/sson-research--analytics-launches-state-of-the-shared-services--outsourcing-industry-global-market-report-2025-302346908.html' },
+    { l: 'The Hackett Group — 2026 Finance Key Issues Study (19 maart 2026)', u: 'https://www.thehackettgroup.com/the-hackett-group-study-shows-ai-adoption-rapidly-accelerating-across-core-finance-processes/' },
+  ]},
+  { g: 'Wet- en regelgeving en toezicht', items: [
+    { l: 'Artikel 2:10 BW — administratieplicht', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10' },
+    { l: 'Artikel 2:394 BW — openbaarmaking van de jaarrekening', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=1&artikel=394' },
+    { l: 'Artikel 52 AWR — administratie- en bewaarplicht', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0002320&hoofdstuk=VIII&afdeling=2&artikel=52' },
+    { l: 'Autoriteit Persoonsgegevens — verwerker en verwerkingsverantwoordelijke', u: 'https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/algemene-informatie-avg/verantwoordelijke-en-verwerker' },
+    { l: 'ICO — Capita fined £14m for data breach affecting over 6m people (15 oktober 2025)', u: 'https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/2025/10/capita-fined-14m-for-data-breach-affecting-over-6m-people/' },
+  ]},
+];
+---
+<Layout
+  title="Hoe grote bedrijven hun financefunctie organiseren | Finable"
+  description="Grote organisaties verdelen financewerk al jaren over lokale teams en gespecialiseerde delivery centers. Wat kan een groeiend bedrijf daarvan leren?"
+  hreflang={false}
+  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'Hoe grote organisaties hun finance organiseren' }]}
+  article={{
+    headline: 'Hoe grote organisaties hun finance organiseren',
+    author: 'Tim Samsom',
+    datePublished: publishedISO,
+  }}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:48px;padding-bottom:56px">
+      <div style="max-width:820px">
+        <div class="lbl" style="margin-bottom:20px">Kennis &middot; Finance organiseren</div>
+        <h1 style="font-size:clamp(30px,4vw,46px);margin-bottom:24px;text-wrap:balance">Hoe grote organisaties hun finance organiseren — en wat groeiende bedrijven daarvan kunnen leren</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Grote organisaties hebben hun finance-functie niet simpelweg uitbesteed. Ze hebben hem gesplitst. De uitvoering ging naar gespecialiseerde teams. Het oordeel bleef dicht bij de business. Dat onderscheid is bruikbaar, ook als je geen wereldwijd concern bent.</p>
+        <div class="art-meta">
+          <span><strong>Tim Samsom</strong> &middot; Oprichter Finable</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Gepubliceerd <time datetime={publishedISO}>{published}</time></span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Leestijd ongeveer 12 minuten</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <div class="art-grid">
+
+      <!-- Meeschuivende inhoudsopgave; alleen op desktop, de tekst leest verder gewoon lineair. -->
+      <nav class="art-toc" aria-label="Op deze pagina">
+        <div class="lbl" style="color:var(--body);margin-bottom:16px">Op deze pagina</div>
+        <ul>
+          {toc.map((t) => (<li><a href={`#${t.id}`}>{t.label}</a></li>))}
+        </ul>
+      </nav>
+
+      <article class="art-body">
+
+        <div class="art-lead">
+          <p>Finance voelt als iets dat dichtbij hoort te zitten. Iemand op kantoor die de cijfers kent, die je even kunt aanspreken en die weet hoe het bedrijf in elkaar zit.</p>
+          <p>Grote organisaties hebben dat idee jaren geleden losgelaten. Niet omdat finance minder belangrijk werd, maar omdat het te veel verschillende soorten werk werd om bij dezelfde mensen op dezelfde plek te laten liggen.</p>
+          <p>Wat ze deden, wordt vaak samengevat als uitbesteden. Dat klopt zelden. Ze hebben hun finance-functie vooral gesplitst.</p>
+          <blockquote class="art-quote">Wat goed te standaardiseren is, kun je bundelen. Wat context, oordeel en verantwoordelijkheid vraagt, houd je dicht bij de business.</blockquote>
+        </div>
+
+        <section id="splitsen">
+          <h2>Niet uitbesteden, maar splitsen</h2>
+          <p>Bij tien medewerkers is finance meestal één persoon die alles doet. Bij honderd medewerkers is het geen functie meer, maar een verzameling rollen: iemand die verwerkt, iemand die controleert, iemand die rapporteert en iemand die met de cijfers het gesprek voert.</p>
+          <p>Bij duizenden medewerkers en tientallen landen wordt dat een organisatievraagstuk. Dezelfde factuur moet in twintig landen op dezelfde manier worden verwerkt, terwijl de btw-regels, de systemen en de taal verschillen.</p>
+          <p>Het antwoord daarop heet shared services: één eigen organisatieonderdeel dat gestandaardiseerd werk uitvoert voor meerdere onderdelen van hetzelfde bedrijf. De doorontwikkeling daarvan heet Global Business Services, waarbij ook HR, inkoop en IT in hetzelfde model worden geleverd.</p>
+          <p>Onderzoekers beschrijven dit al ruim een decennium niet als een kostentruc, maar als een nieuwe organisatievorm met eigen sturings- en verantwoordingsvragen (<a href="https://doi.org/10.1016/j.bar.2012.03.006" target="_blank" rel="noopener noreferrer">Herbert &amp; Seal, 2012</a>; <a href="https://doi.org/10.1016/j.emj.2016.08.004" target="_blank" rel="noopener noreferrer">Richter &amp; Brühl, 2017</a>).</p>
+          <blockquote class="art-quote">De productie van finance kan worden gebundeld. Het oordeel veel minder makkelijk.</blockquote>
+        </section>
+
+        <section id="onderscheid">
+          <h2>Eerst een belangrijk onderscheid: locatie is niet hetzelfde als outsourcing</h2>
+          <p>In gesprekken lopen vier dingen voortdurend door elkaar. Het helpt om ze uit elkaar te halen.</p>
+          <dl class="art-defs">
+            <div><dt>Shared service center (SSC)</dt> <dd>Een eigen organisatieonderdeel dat gestandaardiseerd werk doet voor meerdere onderdelen van dezelfde organisatie. Eigen medewerkers.</dd></div>
+            <div><dt>Global Business Services (GBS)</dt> <dd>Hetzelfde idee, maar breder: meerdere functies in één aangestuurd model, met vaste afspraken over scope, kwaliteit en verantwoordelijkheid.</dd></div>
+            <div><dt>Global capability center (GCC)</dt> <dd>Een eigen vestiging in een ander land, met eigen medewerkers in dienst van het bedrijf zelf.</dd></div>
+            <div><dt>Outsourcing</dt> <dd>Een externe leverancier voert het werk uit, op basis van een contract. De medewerkers zijn in dienst van die leverancier.</dd></div>
+          </dl>
+          <p>Die vier laten zich langs twee assen ordenen: wie voert het werk uit, en waar gebeurt het?</p>
+          <div class="art-table-wrap">
+            <table class="art-table">
+              <caption class="art-cap">Wie voert het werk uit, en waar gebeurt het?</caption>
+              <thead>
+                <tr><th scope="col"><span class="art-sr">Locatie</span></th><th scope="col">Eigen medewerkers</th><th scope="col">Externe leverancier</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Eigen land</th><td data-col="Eigen medewerkers">Intern finance-team</td><td data-col="Externe leverancier">Lokale financepartner</td></tr>
+                <tr><th scope="row">Ander land</th><td data-col="Eigen medewerkers">Eigen service- of capabilitycenter</td><td data-col="Externe leverancier">Internationale outsourcing of BPO</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <blockquote class="art-quote">Offshoring gaat over waar het werk gebeurt. Outsourcing gaat over wie het werk uitvoert.</blockquote>
+          <p>Dat onderscheid is niet academisch. Het bepaalt wie je aanspreekt als er iets misgaat, wie toegang heeft tot je gegevens en bij wie de verantwoordelijkheid ligt.</p>
+        </section>
+
+        <section id="heineken">
+          <h2>HEINEKEN: finance zit al lang niet meer op één plek</h2>
+          <p>HEINEKEN heeft een eigen netwerk van business-servicescentra. Het grootste staat in Kraków. Op de eigen careersite noemt HEINEKEN daar ongeveer 2.000 medewerkers, die processen voor de Europese organisatie uitvoeren.</p>
+          <p>De omschrijving van het werk is concreet. Het centrum <a href="https://careers.theheinekencompany.com/PolandHGSS/" target="_blank" rel="noopener noreferrer">dekt</a> de administratie van ingekochte goederen en diensten, ondersteunt klanten van order tot betaling, en verzorgt financial accounting en reporting, managerial accounting, planning, financial controlling en kostenallocatie.</p>
+          <p>In april 2026 opende HEINEKEN daar een centrum in Hyderabad bij. Volgens het <a href="https://www.theheinekencompany.com/newsroom/heineken-strengthens-global-capability-footprint-with-official-opening-of-business-services-centre-in-india/" target="_blank" rel="noopener noreferrer">persbericht</a> hoort India daarmee bij een groeiend netwerk van multifunctionele hubs, naast Polen, Mexico en Brazilië. Het nieuwe centrum ondersteunt finance operations, digital en technology, data en analytics en de transformatie van bedrijfsprocessen. HEINEKEN verwacht dat het netwerk doorgroeit naar ongeveer 3.000 rollen wereldwijd over alle locaties in 2030.</p>
+          <p>Twee dingen zijn hier belangrijker dan de aantallen.</p>
+          <p>Ten eerste: dit zijn eigen medewerkers in eigen centra. HEINEKEN heeft zijn finance niet uitbesteed. Het heeft de uitvoering gebundeld en in eigen huis gehouden.</p>
+          <p>Ten tweede: het doel dat HEINEKEN zelf noemt, is dat de lokale werkmaatschappijen zich kunnen richten op uitvoering in hun eigen markt. De gebundelde uitvoering bestaat dus om ruimte te maken voor het werk dat wél lokaal moet blijven, niet om dat te vervangen.</p>
+          <p class="art-note">Dit is één operating model, van één bedrijf. Het is geen blauwdruk en zeker geen norm voor andere organisaties.</p>
+        </section>
+
+        <section id="philips">
+          <h2>Philips laat zien dat er niet één juist model bestaat</h2>
+          <p>Philips is interessant omdat het bedrijf meerdere keren van richting is veranderd.</p>
+          <p>Eerst was finance decentraal georganiseerd, per land en per divisie. Daarna kwamen er eigen shared service centers. Vervolgens ging een deel daarvan naar buiten.</p>
+          <p>Op 25 juli 2007 werd bekend dat Philips een meerjarig contract sloot met Infosys BPO voor finance- en accountingdiensten en de verwerking van inkooporders. Infosys nam daarbij drie shared service centers over, in India, Polen en Thailand. Volgens het <a href="https://www.sec.gov/Archives/edgar/data/1067491/000106749107000026/exv99w01.htm" target="_blank" rel="noopener noreferrer">persbericht in de SEC-registratie</a> gingen daarmee ongeveer 1.400 Philips-medewerkers mee over.</p>
+          <p>Vandaag heeft Philips opnieuw een eigen interne organisatie voor dit werk, onder de naam <a href="https://www.careers.philips.com/global/en/gbs-global-business-services" target="_blank" rel="noopener noreferrer">Global Business Services en Philips Capability Centers</a>, met onder meer finance, HR, inkoop en supply chain.</p>
+          <p>Decentraal, eigen shared services, outsourcing, eigen capability centers. Vier antwoorden op dezelfde vraag, in hetzelfde bedrijf, in twee decennia.</p>
+          <blockquote class="art-quote">Wat willen we zelf beheersen, welke uitvoering kunnen anderen beter organiseren, en waar moet de verantwoordelijkheid liggen?</blockquote>
+          <p>Dat is de vraag die telkens opnieuw wordt beantwoord. Niet: wie is de goedkoopste.</p>
+        </section>
+
+        <section id="breder">
+          <h2>Het gebeurt veel breder</h2>
+          <p>Het patroon is niet voorbehouden aan bierbrouwers en medische technologie.</p>
+          <ul>
+            <li><strong>Ahold Delhaize</strong> heeft <a href="https://careers.aholddelhaize.com/option/brand/european-business-services" target="_blank" rel="noopener noreferrer">European Business Services</a>, een gedeelde organisatie voor de Europese merken in onder meer Nederland, België, Luxemburg, Servië, Griekenland, Tsjechië en Roemenië, met finance naast HR en sourcing.</li>
+            <li><strong>AkzoNobel</strong> brengt functionele ondersteuning samen in <a href="https://careers.akzonobel.com/go/Finance/3998601/" target="_blank" rel="noopener noreferrer">Global Business Services</a>, met als doel processen in één wereldwijd operating model te standaardiseren.</li>
+            <li><strong>Shell</strong> heeft in Kraków een eigen businesscentrum dat sinds 2006 actief is en waar volgens de <a href="https://www.paih.gov.pl/en/news/20210504-shell_investment_krakow/" target="_blank" rel="noopener noreferrer">Poolse investeringsagentschap PAIH</a> ruim vierduizend mensen werken, onder meer aan finance.</li>
+            <li><strong>Bosch</strong> levert accounting en controlling vanuit <a href="https://www.bosch.us/careers/bosch-global-business-services/" target="_blank" rel="noopener noreferrer">Global Business Services</a>, van grootboek en bankverwerking tot rapportage volgens IFRS en lokale standaarden.</li>
+          </ul>
+          <p>De lijst is langer, maar de vorm verschilt per bedrijf. Sommige organisaties bundelen alleen transactioneel werk, andere ook controlling. Sommige doen het volledig in eigen huis, andere met een leverancier erbij. Er is geen standaardmodel.</p>
+
+          <h3>En EY, PwC en Deloitte dan?</h3>
+          <p>Die namen duiken bij dit onderwerp altijd op, en ze horen in een andere categorie.</p>
+          <p><a href="https://www.ey.com/en_gl/careers/global-delivery-services" target="_blank" rel="noopener noreferrer">EY Global Delivery Services</a>, <a href="https://www.pwc.com/us/en/about-us/newsroom/press-releases/acceleration-centers-new-office-in-hyderaba.html" target="_blank" rel="noopener noreferrer">PwC Acceleration Centers</a> en de <a href="https://www.deloitte.com/ro/en/service-centers/technology-delivery-center/who-we-are.html" target="_blank" rel="noopener noreferrer">delivery centers van Deloitte</a> zijn grote, gespecialiseerde organisaties. Maar die capaciteit wordt mede ingezet voor werk dat zij voor hun klanten doen.</p>
+          <p>Dat is dus een ander soort bewijs. Het laat zien dat gespecialiseerd, gestandaardiseerd uitvoerend werk op schaal kan worden georganiseerd. Het zegt niets over hoe deze firma's hun eigen crediteurenadministratie inrichten. Wie die twee door elkaar haalt, bewijst iets anders dan hij denkt.</p>
+        </section>
+
+        <section id="lagen">
+          <h2>Wat kun je verplaatsen, en wat niet?</h2>
+          <p>Het onderscheid dat in al deze modellen terugkomt, gaat niet over afdelingen. Het gaat over de aard van het werk.</p>
+          <ol class="art-layers">
+            {lagen.map((l, i) => (
+              <li class="art-layer">
+                <span class="art-layer-n">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{l.t}</h3>
+                  <p>{l.d}</p>
+                  <p class="art-layer-v">{l.v}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div class="art-flow" role="group" aria-label="De keten van financewerk">
+            <span>verwerken</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span>controleren</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span>analyseren</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span class="is-last">beslissen</span>
+          </div>
+          <p>Hoe verder je in die keten komt, hoe belangrijker context, verantwoordelijkheid en menselijk oordeel worden. En hoe minder het zich leent voor bundelen op afstand.</p>
+        </section>
+
+        <section id="waarom">
+          <h2>Waarom doen grote organisaties dit?</h2>
+          <p>Het makkelijke antwoord is kosten. Dat antwoord is niet onjuist, maar wel onvolledig.</p>
+          <p>In de <a href="https://www.deloitte.com/global/en/services/consulting/analysis/gx-shared-services-survey.html" target="_blank" rel="noopener noreferrer">Global Shared Services and Outsourcing Survey 2023</a> van Deloitte, met ongeveer vijfhonderd respondenten uit zes sectoren, staat kostenreductie nog steeds als belangrijkste doelstelling bovenaan. Diezelfde enquête laat zien dat volwassen GBS-organisaties meestal onder een eigen GBS-leider vallen, en dat de CFO daarbij de meest voorkomende bestuurder is.</p>
+          <p>Tegelijk verschuift het zwaartepunt. In de <a href="https://www.prweb.com/releases/sson-research--analytics-launches-state-of-the-shared-services--outsourcing-industry-global-market-report-2025-302346908.html" target="_blank" rel="noopener noreferrer">Global Market Report 2025</a> van SSON Research &amp; Analytics, gebaseerd op ruim 350 executives, werkt 69 procent van de organisaties al met een GBS-model of is bezig met de overstap, en overweegt nog eens 16 procent dat binnen vijf jaar. Generatieve AI staat daar als belangrijkste investeringsprioriteit genoemd.</p>
+          <p>De volgorde van motieven ziet er bij elkaar ongeveer zo uit:</p>
+          <ul>
+            <li><strong>Kosten.</strong> Het oorspronkelijke argument, en nog steeds aanwezig.</li>
+            <li><strong>Standaardisatie.</strong> Eén manier van werken is beter te controleren dan twintig varianten.</li>
+            <li><strong>Schaal.</strong> Gespecialiseerde rollen zijn pas rendabel boven een bepaald volume.</li>
+            <li><strong>Talent.</strong> Specialisten zijn makkelijker te vinden en te houden in een omgeving waar hun vak het hoofdproces is.</li>
+            <li><strong>Technologie en data.</strong> Automatisering en analyse renderen alleen op processen die overal hetzelfde lopen.</li>
+          </ul>
+          <p>Dat laatste is de stille reden waarom dit onderwerp weer actueel is. Je kunt pas automatiseren wat je eerst hebt gestandaardiseerd.</p>
+        </section>
+
+        <section id="proces">
+          <h2>Het werkt alleen als je processen goed organiseert</h2>
+          <p>Werk verplaatsen zonder het proces te regelen, maakt het probleem groter in plaats van kleiner. Wat het verschil maakt, is telkens hetzelfde rijtje.</p>
+          <ul>
+            <li><strong>Standaardisatie.</strong> Eén werkwijze, vastgelegd, in plaats van gewoontes per persoon.</li>
+            <li><strong>Governance.</strong> Afspraken over wat er wordt geleverd, wanneer, en met welke kwaliteit.</li>
+            <li><strong>Verantwoordelijkheid.</strong> Per stap duidelijk wie eigenaar is.</li>
+            <li><strong>Systemen.</strong> Eén bron voor de administratie, geen losse bestanden naast het pakket.</li>
+            <li><strong>Vaste aanspreekpunten.</strong> Mensen die de organisatie kennen, geen wisselend loket.</li>
+            <li><strong>Escalatie.</strong> Een afgesproken route voor wat niet in het standaardproces past.</li>
+          </ul>
+          <div class="art-flow art-flow-wide" role="group" aria-label="Van invoer naar eigenaarschap">
+            <span>input</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span>verwerking</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span>controle</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span>uitzondering</span><span class="art-arrow" aria-hidden="true">&rarr;</span>
+            <span class="is-last">eigenaar</span>
+          </div>
+          <p>De laatste twee stappen worden het vaakst overgeslagen. Uitzonderingen bestaan altijd, en zonder eigenaar blijven ze liggen tot ze een probleem zijn.</p>
+        </section>
+
+        <section id="risico">
+          <h2>Centraliseren creëert ook nieuwe risico's</h2>
+          <p>Wie uitvoering bundelt, bundelt ook toegang tot gegevens. Dat brengt risico's mee die bij een verspreide organisatie minder zichtbaar zijn.</p>
+          <ul>
+            <li><strong>Security.</strong> Eén omgeving die verkeerd wordt beveiligd, raakt alles wat erin zit.</li>
+            <li><strong>Toegangsbeheer.</strong> Wie mag wat zien, en wordt dat afgesloten als iemand vertrekt?</li>
+            <li><strong>Privacy.</strong> Persoonsgegevens van medewerkers en klanten lopen mee in financewerk.</li>
+            <li><strong>Concentratierisico.</strong> Eén partij of één centrum dat uitvalt, raakt meerdere processen tegelijk.</li>
+            <li><strong>Contextverlies.</strong> Wie het bedrijf niet kent, herkent een afwijking minder snel als afwijking.</li>
+          </ul>
+          <p>Het meest recente voorbeeld in Europa is Capita. Op 15 oktober 2025 legde de Britse privacytoezichthouder ICO het bedrijf een boete op van in totaal 14 miljoen pond: 8 miljoen voor Capita plc en 6 miljoen voor Capita Pension Solutions. Volgens de <a href="https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/2025/10/capita-fined-14m-for-data-breach-affecting-over-6m-people/" target="_blank" rel="noopener noreferrer">beslissing van de ICO</a> werden bij de aanval in maart 2023 de persoonsgegevens van 6,6 miljoen mensen buitgemaakt, van pensioengegevens tot personeelsdossiers en klantgegevens van organisaties die Capita bedient.</p>
+          <p>Twee details maken het verhaal scherp. Er ging een hoge prioriteitsmelding af binnen tien minuten, maar het besmette apparaat werd pas na 58 uur in quarantaine gezet. En Capita Pension Solutions verwerkt gegevens voor meer dan zeshonderd organisaties met pensioenregelingen; 325 daarvan werden door het datalek geraakt.</p>
+          <p>Eén uitvoerder, honderden getroffen opdrachtgevers. Dat is precies wat concentratierisico betekent.</p>
+        </section>
+
+        <section id="ai">
+          <h2>En nu komt AI erbovenop</h2>
+          <p>Er verandert iets in de onderste laag van dit verhaal, en het gaat sneller dan de meeste organisaties hun processen aanpassen.</p>
+          <p>Software kan inmiddels facturen uitlezen, transacties matchen, reconciliaties voorbereiden, afwijkingen signaleren, rapportages klaarzetten en een eerste analyse maken. Niet foutloos, en niet zonder toezicht, maar wel goed genoeg om het handmatige deel van financewerk serieus te verkleinen.</p>
+          <p>The Hackett Group schetst in de <a href="https://www.thehackettgroup.com/the-hackett-group-study-shows-ai-adoption-rapidly-accelerating-across-core-finance-processes/" target="_blank" rel="noopener noreferrer">2026 Finance Key Issues Study</a> van 19 maart 2026 hoe die druk eruitziet. De hoeveelheid werk binnen finance stijgt dit jaar met 3,2 procent, terwijl de bezetting met 2,1 procent daalt en de budgetten met 1,7 procent krimpen: samen een productiviteitsgat van 5,3 procent. De uitgaven aan technologie stijgen met 5,6 procent, en AI-implementatie staat nu op de vierde plaats van de financeprioriteiten, tegen de zestiende een jaar eerder. Crediteuren loopt daarbij voorop: een derde van de organisaties schaalt daar al AI-oplossingen op.</p>
+          <blockquote class="art-quote">Minder handmatig werk betekent niet automatisch dat er geen finance-functie meer nodig is.</blockquote>
+          <p>Wat verandert, is het zwaartepunt.</p>
+          <div class="art-shift">
+            <div>
+              <div class="art-shift-k">wordt kleiner</div>
+              <div class="art-shift-v">invoeren &middot; verwerken &middot; zoeken</div>
+            </div>
+            <div class="art-shift-ar" aria-hidden="true">&darr;</div>
+            <div>
+              <div class="art-shift-k">wordt groter</div>
+              <div class="art-shift-v">uitzonderingen &middot; controle &middot; analyse &middot; governance &middot; besluitvorming</div>
+            </div>
+          </div>
+          <p>Dat is geen kleiner vak. Het is een ander vak, met meer nadruk op beoordelen dan op invoeren. En het vraagt dat iemand de uitkomsten van die software controleert en er verantwoordelijkheid voor neemt.</p>
+        </section>
+
+        <section id="vijftig">
+          <h2>Wat heeft een bedrijf van vijftig mensen hieraan?</h2>
+          <p>Laten we hier duidelijk in zijn: een bedrijf van vijftig mensen moet geen Global Business Services bouwen. De schaalvoordelen van HEINEKEN of Philips zijn niet overdraagbaar. Een centrum in Kraków vraagt een volume dat een mkb-bedrijf simpelweg niet heeft.</p>
+          <p>De principes eronder zijn dat deels wel.</p>
+          <ol class="art-principles">
+            <li>
+              <h3>Niet alles hoeft door dezelfde persoon</h3>
+              <p>Verwerken, controleren en duiden zijn verschillend werk met verschillende eisen. Ze bij één persoon leggen is geen efficiëntie, maar een risico: wie zijn eigen werk controleert, controleert niets.</p>
+            </li>
+            <li>
+              <h3>Organiseer eerst het proces</h3>
+              <p>De vraag is niet wie je aanneemt, maar welk werk er maandelijks moet gebeuren, in welke volgorde, en wie het afmaakt. Zonder dat antwoord neem je iemand aan voor een functie die je zelf nog niet hebt gedefinieerd.</p>
+            </li>
+            <li>
+              <h3>Houd oordeel dichtbij</h3>
+              <p>Uitvoering kun je beleggen. Het gesprek over de cijfers niet. Wie beslist over prijzen, investeringen en personeel heeft iemand nodig die het bedrijf kent, niet alleen de boekingen.</p>
+            </li>
+            <li>
+              <h3>Begin klein</h3>
+              <p>Je hoeft niet alles tegelijk anders te doen. Eén laag goed beleggen, meestal de verwerking, maakt meteen ruimte voor de laag erboven.</p>
+            </li>
+          </ol>
+          <p>Wat je dan bouwt, is geen kopie van een concern. Het is een verdeling van werk over meerdere mensen, met afspraken over wie wat doet en wie het controleert.</p>
+          <blockquote class="art-quote">Dat is eigenlijk geen functie. Dat is een klein finance-team.</blockquote>
+        </section>
+
+        <section id="boekhouding">
+          <h2>Boekhouding uitbesteden is iets anders dan je finance-functie organiseren</h2>
+          <p>Veel bedrijven hebben hun boekhouding al uitbesteed en denken daarmee dat finance geregeld is. Dat is begrijpelijk, en het klopt niet helemaal.</p>
+          <dl class="art-defs">
+            <div><dt>De boekhouder</dt> <dd>Legt vast wat er is gebeurd en zorgt dat de administratie klopt en op tijd wordt ingediend.</dd></div>
+            <div><dt>De controller</dt> <dd>Kijkt of de cijfers een betrouwbaar beeld geven, zoekt verschillen uit, bewaakt aansluitingen en vertaalt de cijfers naar wat ze betekenen.</dd></div>
+            <div><dt>De CFO</dt> <dd>Is eindverantwoordelijk voor finance en is betrokken bij beslissingen over financiering, investeringen, risico en strategie.</dd></div>
+          </dl>
+          <p>Een uitbestede boekhouding dekt de eerste rol. De tweede en derde blijven dan bij de ondernemer of de directie liggen, vaak zonder dat dat een bewuste keuze was.</p>
+          <p>De vraag is dus niet alleen:</p>
+          <p class="art-q-bad">&ldquo;Wie doet onze boekhouding?&rdquo;</p>
+          <p>maar:</p>
+          <p class="art-q-good">&ldquo;Hoe organiseren we onze finance-functie?&rdquo;</p>
+        </section>
+
+        <section id="verantwoordelijkheid">
+          <h2>Je kunt uitvoering delegeren. Niet je verantwoordelijkheid.</h2>
+          <p>Wie werk bij een andere partij belegt, verplaatst de handelingen. De verplichtingen blijven staan.</p>
+          <ul>
+            <li>De administratieplicht van het bestuur volgt uit <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10" target="_blank" rel="noopener noreferrer">artikel 2:10 BW</a>: de rechten en verplichtingen van de rechtspersoon moeten te allen tijde kenbaar zijn uit de administratie.</li>
+            <li>De openbaarmaking van de jaarrekening is geregeld in <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=1&artikel=394" target="_blank" rel="noopener noreferrer">artikel 2:394 BW</a>.</li>
+            <li>De fiscale administratie- en bewaarplicht staat in <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0002320&hoofdstuk=VIII&afdeling=2&artikel=52" target="_blank" rel="noopener noreferrer">artikel 52 AWR</a>.</li>
+            <li>Onder de AVG blijft de organisatie die het doel en de middelen bepaalt verwerkingsverantwoordelijke, ook als een externe partij als <a href="https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/algemene-informatie-avg/verantwoordelijke-en-verwerker" target="_blank" rel="noopener noreferrer">verwerker</a> het werk uitvoert.</li>
+          </ul>
+          <blockquote class="art-quote">Je kunt de uitvoering delegeren. Je kunt de eindverantwoordelijkheid niet simpelweg wegcontracteren.</blockquote>
+          <p>Dat maakt vijf vragen relevant, ongeacht hoe je het organiseert.</p>
+          <ol class="art-questions">
+            <li>Wie verwerkt?</li>
+            <li>Wie controleert?</li>
+            <li>Wie behandelt uitzonderingen?</li>
+            <li>Wie bespreekt de cijfers?</li>
+            <li>Wie is uiteindelijk verantwoordelijk?</li>
+          </ol>
+          <p class="art-note">Dit artikel geeft algemene informatie over hoe organisaties hun finance inrichten. Het is geen juridisch of fiscaal advies. Voor je eigen situatie is een adviseur de aangewezen bron.</p>
+        </section>
+
+        <section id="schaal">
+          <h2>Het principe is hetzelfde. De schaal niet.</h2>
+          <p>De conclusie is niet dat je moet doen wat HEINEKEN doet. Dat kun je niet, en het zou ook niets oplossen.</p>
+          <p>De conclusie is dat grote organisaties al decennia dezelfde vraag beantwoorden: welk werk is herhaalbaar genoeg om te bundelen, en welk werk vraagt om iemand die het bedrijf kent en verantwoordelijkheid draagt?</p>
+          <p>Dat is geen vraag over omvang. Het is een vraag over de aard van het werk, en die stelt zich bij vijftig medewerkers net zo goed als bij vijftigduizend.</p>
+          <blockquote class="art-quote">Kijk naar welk werk je organiseert, in plaats van automatisch naar welke persoon je moet aannemen.</blockquote>
+        </section>
+
+        <section id="finable">
+          <h2>Hoe Finable dit principe toepast</h2>
+          <p>Finable is ontstaan uit precies dit onderscheid. Groeiende bedrijven hebben meestal geen volledige finance-afdeling nodig, maar wel meer dan één persoon die alles doet.</p>
+          <p>In plaats van één aanname lever je het werk uit aan een vast team: verwerken, afsluiten, controleren, rapporteren en bespreken, met één Nederlands aanspreekpunt en een vaste maandprijs. De verdeling tussen wat Finable overneemt en wat bij jou blijft, spreek je vooraf af. Op <a href="/aanpak">de pagina over het finance-team</a> staat hoe dat model is opgebouwd, en op <a href="/hoe-het-werkt">zo werkt Finable</a> wat er gebeurt nadat je ja zegt.</p>
+          <p class="art-note">De organisaties in dit artikel zijn geen klant of partner van Finable en onderschrijven Finable niet. Alle voorbeelden komen uit openbare bronnen, die onderaan deze pagina staan. Hun operating modellen verschillen onderling, en geen van die modellen is gelijk aan dat van Finable. De vertaalslag naar groeiende bedrijven is die van Finable.</p>
+          <div class="art-cta" data-cta-location="article_close">
+            <p class="art-cta-q">Wil je zien hoe zo'n finance-functie er voor jouw organisatie uit kan zien?</p>
+            <div class="art-cta-row">
+              <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+              <a href="/indicatie" class="art-cta-alt">Of vraag eerst een indicatie aan</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq">
+          <h2>Veelgestelde vragen</h2>
+          <div class="art-faq">
+            {faq.map((f) => (
+              <details class="fin-faq">
+                <summary><span class="fin-faq-q">{f.q}</span><span class="fin-faq-ic"></span></summary>
+                <div class="fin-faq-a"><p>{f.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section id="bronnen">
+          <h2>Bronnen</h2>
+          <p>Alle claims in dit artikel zijn terug te voeren op de bronnen hieronder. Waar een bron een cijfer niet ondersteunde, staat dat cijfer niet in de tekst.</p>
+          {bronnen.map((g) => (
+            <div class="art-srcgroup">
+              <h3>{g.g}</h3>
+              <ul class="art-src">
+                {g.items.map((s) => (
+                  <li><a href={s.u} target="_blank" rel="noopener noreferrer">{s.l}</a></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+      </article>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+
+  /* Byline onder de H1 op navy. */
+  .art-meta{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--on-dark-tertiary)}
+  .art-meta strong{color:var(--on-dark-secondary);font-weight:600}
+
+  /* Leesraster: meeschuivende inhoudsopgave links, smalle leeskolom rechts. Patroon van /privacy. */
+  .art-grid{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(40px,5vw,76px);align-items:start}
+  .art-toc{position:sticky;top:32px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:8px}
+  .art-toc ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .art-toc a{display:block;font-size:13.5px;line-height:1.45;color:var(--body);padding:5px 0;text-wrap:pretty}
+  .art-toc a:hover{color:var(--terracotta);opacity:1}
+
+  /* min-width:0 — een grid-item houdt standaard zijn min-content-breedte vast. Zonder deze regel
+     duwt de breedste tabel de hele leeskolom voorbij de viewport op smalle schermen. */
+  .art-grid>*{min-width:0}
+  .art-body{max-width:720px;min-width:0}
+  .art-body>section+section,.art-lead+section{margin-top:44px;padding-top:44px;border-top:1px solid var(--line)}
+  .art-body h2{font-size:clamp(23px,2.5vw,30px);margin-bottom:20px;text-wrap:balance}
+  .art-body h3{font-size:19px;margin:32px 0 10px;text-wrap:balance}
+  .art-body p{font-size:17px;color:var(--body);text-wrap:pretty}
+  .art-body p+p{margin-top:16px}
+  .art-body ul,.art-body ol{list-style:none;margin:20px 0 0}
+  .art-body>section>ul>li,.art-body>section>p+ul>li{position:relative;font-size:17px;color:var(--body);padding-left:22px;margin-bottom:12px}
+  .art-body>section>ul>li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+  .art-body li strong,.art-body p strong{color:var(--navy);font-weight:600}
+  .art-body ul+p,.art-body ol+p{margin-top:22px}
+
+  /* Intro: iets groter, zonder kop. */
+  .art-lead p{font-size:18px}
+  .art-lead p:first-child{font-size:19px;color:var(--navy)}
+
+  /* Pull quote: terracotta streep, Playfair — hetzelfde patroon als de conclusie op de homepage. */
+  .art-quote{margin:30px 0 0;padding-left:20px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.34;color:var(--navy);text-wrap:balance}
+  .art-quote+p{margin-top:26px}
+
+  /* Rustige kanttekening: geen kaart, alleen een lichte achtergrond en kleinere tekst. */
+  .art-note{margin-top:26px;padding:16px 18px;background:var(--section);font-size:15px;color:var(--body);border-left:2px solid var(--line)}
+
+  /* Definities: term en uitleg op één regel, zoals op /algemene-voorwaarden. */
+  .art-defs{margin:22px 0 0;border-top:1px solid var(--line)}
+  .art-defs>div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .art-defs dt{display:inline;font-size:16px;font-weight:600;color:var(--navy)}
+  .art-defs dd{display:inline;font-size:16px;color:var(--body)}
+
+  /* 2x2-tabel. Scrolt horizontaal als hij echt niet past, maar is zo opgemaakt dat dat zelden hoeft. */
+  .art-table-wrap{margin-top:24px;overflow-x:auto}
+  .art-table{width:100%;border-collapse:collapse;font-size:15px}
+  .art-cap{text-align:left;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--body);padding-bottom:12px}
+  .art-table th,.art-table td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  .art-table thead th{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terracotta);border-bottom:1px solid var(--line)}
+  .art-table tbody th{font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;background:var(--section)}
+  .art-table td{color:var(--body)}
+  .art-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* Vier lagen: genummerde rijen met dunne lijnen, geen tegels. */
+  .art-layers{margin-top:26px!important;border-top:1px solid var(--line)}
+  .art-layer{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .art-layer-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta);line-height:1.2}
+  .art-layer h3{margin:0 0 6px;font-size:18px}
+  .art-layer p{font-size:15.5px}
+  .art-layer-v{margin-top:6px!important;color:var(--navy)!important;font-weight:500}
+
+  /* Processtrip. Wrapt netjes op smalle schermen in plaats van te scrollen. */
+  .art-flow{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:18px 20px;background:var(--section);font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--navy)}
+  .art-flow .art-arrow{color:var(--terracotta);font-weight:400}
+  .art-flow .is-last{color:var(--terracotta)}
+  .art-flow+p{margin-top:22px}
+
+  /* Verschuiving door AI: twee blokken met een pijl ertussen. */
+  .art-shift{margin-top:26px;display:grid;gap:12px;padding:22px;background:var(--section)}
+  .art-shift-k{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px}
+  .art-shift-v{font-size:16px;font-weight:600;color:var(--navy);line-height:1.5;text-wrap:pretty}
+  .art-shift>div:last-of-type .art-shift-v{color:var(--terracotta)}
+  .art-shift-ar{font-size:18px;color:var(--terracotta);line-height:1}
+
+  /* De twee vragen tegenover elkaar. */
+  .art-q-bad,.art-q-good{margin-top:12px!important;font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,22px);line-height:1.34;color:var(--body)!important}
+  .art-q-good{color:var(--navy)!important}
+  .art-q-bad+p,.art-q-good+p{margin-top:16px}
+
+  /* Vier principes: genummerd, met ruimte. */
+  .art-principles{margin-top:26px!important;counter-reset:pr}
+  .art-principles>li{position:relative;padding-left:44px;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line);counter-increment:pr}
+  .art-principles>li:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+  .art-principles>li::before{content:counter(pr);position:absolute;left:0;top:2px;font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta)}
+  .art-principles h3{margin:0 0 8px;font-size:18px}
+  .art-principles p{font-size:16px}
+
+  /* Vijf vragen: kort, in kolom. */
+  .art-questions{margin-top:22px!important;border-top:1px solid var(--line)}
+  .art-questions>li{padding:13px 0;border-bottom:1px solid var(--line);font-size:17px;font-weight:500;color:var(--navy)}
+
+  /* Slot-CTA: navy vlak, één dominante knop. */
+  .art-cta{margin-top:32px;padding:30px;background:var(--navy)}
+  .art-cta-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.32;color:var(--warm-white)!important;margin-bottom:22px;text-wrap:balance}
+  .art-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+  .art-cta-alt{font-size:15px;color:var(--on-dark-secondary)}
+  .art-cta-alt:hover{color:var(--terracotta);opacity:1}
+
+  /* FAQ: het bestaande accordeonpatroon van de site. */
+  .art-faq{margin-top:22px}
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:22px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(17px,1.7vw,19px);color:var(--navy);line-height:1.35;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:17px;height:17px;flex-shrink:0;margin-top:6px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:7.5px;width:17px;height:2px}
+  .fin-faq-ic::after{left:7.5px;top:0;width:2px;height:17px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:660px;padding:0 0 26px;font-size:15.5px;color:var(--body);line-height:1.72}
+
+  /* Bronnen: gegroepeerd, klein, geen opsommingsbolletjes. */
+  .art-srcgroup{margin-top:26px}
+  .art-srcgroup h3{margin:0 0 10px;font-size:13px;font-family:'Inter',system-ui,sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta)}
+  .art-src{margin:0!important;border-top:1px solid var(--line)}
+  .art-src>li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;color:var(--body);text-wrap:pretty}
+
+  @media (max-width:1023px){
+    /* Eén kolom; de inhoudsopgave is een desktop-hulpmiddel en verdwijnt. */
+    .art-grid{grid-template-columns:1fr;gap:0}
+    .art-toc{display:none}
+    .art-body{max-width:none}
+    .art-body>section+section,.art-lead+section{margin-top:36px;padding-top:36px}
+    /* Tikdoelen volgen de site-brede regel (Layout.astro): tekstlinks krijgen extra klikhoogte
+       zonder dat de regelhoogte verandert, omdat verticale padding op inline elementen het
+       regelvak niet oprekt. */
+    .art-cta-alt{min-height:44px;display:inline-flex;align-items:center}
+  }
+  @media (max-width:639px){
+    .art-body p,.art-lead p,.art-body>section>ul>li{font-size:16px}
+    .art-lead p:first-child{font-size:17px}
+    .art-body h3{margin-top:26px}
+    /* De 2x2-tabel wordt op telefoonbreedte een reeks blokken. Horizontaal scrollen in een tabel
+       van drie kolommen leest slecht; de kolomkop komt hier als label boven de waarde te staan.
+       De tabelsemantiek blijft intact voor schermlezers via scope en de zichtbare labels. */
+    /* Het bijschrift stond als gespatieerde kapitalen één woord per regel op 320px. */
+    /* display:block — een table-caption in een tabel die zelf block is, krimpt anders tot min-content
+       en zet elk woord op een eigen regel. */
+    .art-cap{display:block;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--body)}
+    .art-table,.art-table thead,.art-table tbody,.art-table tr,.art-table th,.art-table td{display:block}
+    .art-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    .art-table tr{margin-bottom:18px}
+    .art-table tr:last-child{margin-bottom:0}
+    .art-table tbody th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);background:none;padding:0 0 8px;border-bottom:1px solid var(--line);white-space:normal}
+    .art-table td{padding:10px 0 0;border-bottom:none;font-size:15px}
+    .art-table td::before{content:attr(data-col);display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:2px}
+    .art-layer{grid-template-columns:34px minmax(0,1fr);gap:12px}
+    .art-cta{padding:24px 20px}
+    .art-shift{padding:18px}
+  }
+</style>
