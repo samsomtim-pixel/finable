@@ -1,0 +1,640 @@
+---
+// Commerciële pillar voor de zoekintentie "finance uitbesteden". Geen artikel: scanbaar, met een
+// duidelijke conversiehiërarchie naar /gesprek en /indicatie.
+//
+// Alle inhoudelijke claims komen uit bestaande productiecopy:
+//   - de vier lagen en hun voorbeelden: de flow op /aanpak en /hoe-het-werkt
+//   - het maandritme: /hoe-het-werkt
+//   - de vier stappen: de genummerde stappen op /hoe-het-werkt
+//   - de prijsfactoren: de FAQ "Waarop is de maandprijs gebaseerd?" op /indicatie
+//   - de case: de bestaande The Good Roll-sectie op de homepage
+// Geen nieuwe diensten, prijzen, garanties, doorlooptijden of besparingen.
+//
+// Hergebruikte patronen: .hero-navy / .lbl / .em (alle navy hero's), .disc / .disc-row / .dn / .dd
+// (disciplinelijst uit de hero van /aanpak), .flow (navy processtrip van /aanpak),
+// .fin-faq (accordeon van /aanpak, /hoe-het-werkt en de homepage).
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+/** Signalen die bedrijven meestal eerder herkennen dan de term 'uitbesteden'. */
+const signalen = [
+  { t: 'De vacature staat al maanden open', d: 'Je zoekt een allrounder die administratie, afsluiting, controlling én rapportage aankan. Dat profiel is lastig te vinden.' },
+  { t: 'Finance hangt aan één persoon', d: 'Eén iemand kent de administratie, de afspraken en de uitzonderingen. Bij vakantie of vertrek staat het stil.' },
+  { t: 'De administratie loopt, controlling ontbreekt', d: 'De boekingen zijn bij, maar niemand komt toe aan aansluitingen, marges en afwijkingen.' },
+  { t: 'Rapportages komen te laat', d: 'De cijfers zijn er pas halverwege de volgende maand. Sturen doe je dan op gevoel.' },
+  { t: 'Je hebt meer nodig, maar nog geen afdeling', d: 'Meer capaciteit en meer expertise dan nu, zonder meteen een compleet intern finance-team op te bouwen.' },
+];
+
+/** De vier lagen. Voorbeelden komen één op één uit de bestaande flow op /aanpak en /hoe-het-werkt. */
+const lagen = [
+  {
+    n: '01', t: 'Dagelijkse finance',
+    d: 'Het werk dat elke week doorgaat en dat vastloopt zodra er één persoon uitvalt.',
+    items: ['Facturen verwerken', 'Bank verwerken', 'Debiteuren en betalingen', 'Payroll'],
+  },
+  {
+    n: '02', t: 'Maandafsluiting',
+    d: 'De stap die het vaakst blijft liggen als de dagelijkse finance al alle tijd opeet.',
+    items: ['Aansluitingen', 'Btw', 'Maanddossier', 'Controles'],
+  },
+  {
+    n: '03', t: 'Controlling',
+    d: 'Niet alleen kloppende cijfers, maar de vraag wat ze betekenen.',
+    items: ['Marge', 'Cash en werkkapitaal', 'Afwijkingen verklaren', 'Budget versus realisatie'],
+  },
+  {
+    n: '04', t: 'Rapportage & inzicht',
+    d: 'De cijfers op tijd, met duiding, klaar voor het gesprek met directie of stakeholders.',
+    items: ['Managementrapportage', 'Duiding bij de cijfers', 'Stakeholders', 'Periodiek bespreken'],
+  },
+];
+
+/** De drie niveaus die het trust-onderscheid dragen. */
+const niveaus = [
+  {
+    k: 'Uitvoering',
+    t: 'Kan Finable organiseren',
+    d: 'Verwerken, afsluiten, controleren en rapporteren. Welk deel dat precies is, spreken we vooraf af.',
+  },
+  {
+    k: 'Controle & interpretatie',
+    t: 'Richten we samen in',
+    d: 'Wat er in de cijfers opvalt, bespreken we periodiek. Hoe diep dat gaat, hangt af van de afgesproken scope.',
+  },
+  {
+    k: 'Besluitvorming & formele verantwoordelijkheid',
+    t: 'Blijft bij jou',
+    d: 'Beslissingen over prijzen, investeringen en personeel blijven bij het management, net als de verantwoordelijkheden die bij het bestuur horen.',
+  },
+];
+
+/** Eerlijke vergelijking: welk model is waarvoor bedoeld. Geen vinkjesmatrix. */
+const modellen = [
+  {
+    t: 'Boekhouder of administratiekantoor',
+    voor: 'Administratie en compliance',
+    d: 'Verwerkt de administratie en zorgt dat aangiften en jaarwerk op orde komen.',
+    wanneer: 'Als je vooral vastlegging en compliance nodig hebt en controlling intern is belegd.',
+  },
+  {
+    t: 'Controller in loondienst',
+    voor: 'Controle en analyse, intern',
+    d: 'Eén interne rol die de cijfers controleert, duidt en dicht bij de business staat.',
+    wanneer: 'Als er structureel genoeg werk is voor een afgebakende rol die je intern wilt opbouwen.',
+  },
+  {
+    t: 'Interim-controller',
+    voor: 'Tijdelijke capaciteit of expertise',
+    d: 'Vangt een piek op, overbrugt een vacature of pakt een afgebakend vraagstuk.',
+    wanneer: 'Bij een tijdelijke behoefte, niet als structurele inrichting.',
+  },
+  {
+    t: 'Fractional CFO',
+    voor: 'Strategisch financieel advies',
+    d: 'Denkt mee over financiering, investeringen en sturing, meestal zonder de dagelijkse uitvoering.',
+    wanneer: 'Als de uitvoering al staat en je vooral advies op directieniveau zoekt.',
+  },
+  {
+    t: 'Finable',
+    voor: 'De operationele finance-functie',
+    d: 'Een vast team dat dagelijkse finance, afsluiting, controlling en rapportage uitvoert, met één aanspreekpunt en een vaste maandprijs.',
+    wanneer: 'Als je een breder deel van finance structureel wilt laten uitvoeren dan één rol aankan.',
+    fin: true,
+  },
+];
+
+/** De vier stappen van /hoe-het-werkt, hier commercieel samengevat. Geen nieuw onboardingproces. */
+const stappen = [
+  { n: '1', t: 'We beginnen met een scan', d: 'We brengen in kaart wat er al staat: welk werk wordt gedaan, wie waarvoor verantwoordelijk is en waar capaciteit of expertise ontbreekt.' },
+  { n: '2', t: 'Samen bepalen we de scope', d: 'Wat goed werkt, laten we staan. We spreken af welke werkzaamheden Finable overneemt en welke bij jou blijven.' },
+  { n: '3', t: 'We richten de samenwerking in', d: 'Werkafspraken, toegang en systemen worden geregeld en het afgesproken werk wordt gecontroleerd overgedragen.' },
+  { n: '4', t: 'Daarna elke maand', d: 'Uitvoeren, afsluiten, controleren, rapporteren en bespreken. Een vaste cyclus in plaats van losse werkzaamheden.' },
+];
+
+/** Wat de maandprijs bepaalt. Exact de factoren uit de indicatie-FAQ; geen bedragen. */
+const prijsfactoren = [
+  { t: 'Scope', d: 'Welke werkzaamheden Finable overneemt en welke bij jou blijven.' },
+  { t: 'Volume', d: 'Hoeveel er verwerkt moet worden, bijvoorbeeld aan facturen en mutaties.' },
+  { t: 'Complexiteit', d: 'Meerdere entiteiten, landen of administraties maken het werk zwaarder.' },
+  { t: 'Huidige inrichting', d: 'Wat er al staat aan systemen, processen en vastlegging.' },
+  { t: 'Controlling en rapportage', d: 'Hoe uitgebreid de afsluiting, controlling en managementinformatie moeten zijn.' },
+];
+
+const faq = [
+  {
+    q: 'Wat betekent finance uitbesteden?',
+    a: 'Dat je financewerk structureel door een externe partij laat uitvoeren in plaats van door eigen medewerkers. Dat kan alleen de administratie zijn, maar ook een breder deel van de finance-functie: dagelijkse finance, maandafsluiting, controlling en rapportage. Wat je uitbesteedt, bepaal je zelf.',
+  },
+  {
+    q: 'Welke financewerkzaamheden kan ik uitbesteden?',
+    a: 'Finable kan een breed deel van de operationele finance-functie verzorgen: van dagelijkse finance en maandafsluiting tot controlling en rapportage en inzicht. Welke werkzaamheden daadwerkelijk worden overgenomen, bepalen we per organisatie, op basis van wat er al goed loopt en waar capaciteit of expertise ontbreekt.',
+  },
+  {
+    q: 'Is finance uitbesteden hetzelfde als boekhouding uitbesteden?',
+    a: 'Nee. Boekhouding uitbesteden dekt het vastleggen en verwerken. De finance-functie is breder: daar horen ook de afsluiting, de controle op de cijfers, de rapportage en het gesprek daarover bij. Veel bedrijven hebben het eerste al geregeld en merken dat het tweede blijft liggen.',
+  },
+  {
+    q: 'Vervangt Finable mijn boekhouder of accountant?',
+    a: 'Niet noodzakelijk. Werkzaamheden waarvoor een specifieke externe bevoegdheid of specialistische expertise nodig is, zoals het ondertekenen van een jaarrekening of specialistisch fiscaal advies, vallen niet onder de kern van Finable. Waar nodig sluit Finable aan op de accountant of fiscalist die daarvoor verantwoordelijk is. Voor de start spreken we af wie welk werk doet.',
+  },
+  {
+    q: 'Kan ik maar een deel van finance uitbesteden?',
+    a: 'Ja. Een samenwerking hoeft niet te beginnen met de volledige finance-functie. We kunnen starten met de werkzaamheden waar op dat moment capaciteit of expertise ontbreekt en andere onderdelen laten staan. Als de organisatie of de behoefte verandert, kan de verdeling opnieuw worden bekeken.',
+  },
+  {
+    q: 'Wat blijft mijn eigen verantwoordelijkheid?',
+    a: 'De uitvoering kan bij Finable liggen, maar beslissingen over je bedrijf blijven bij jou. Dat geldt ook voor de verantwoordelijkheden die bij het management en het bestuur horen. Voor de start leggen we vast welke werkzaamheden bij jullie blijven, welke Finable overneemt en wie waarvoor verantwoordelijk is.',
+  },
+  {
+    q: 'Wat kost finance uitbesteden?',
+    a: 'De maandprijs wordt bepaald door het werk dat Finable overneemt en de omvang en complexiteit daarvan: de werkzaamheden binnen de samenwerking, het volume dat verwerkt moet worden en de complexiteit rondom afsluiting, controlling en rapportage. Omzet gebruiken we niet als maatstaf. Eerst bepalen we de scope, daarna volgt een vaste maandprijs.',
+  },
+  {
+    q: 'Wanneer is uitbesteden interessanter dan een controller aannemen?',
+    a: 'Iemand in dienst is logisch wanneer er voldoende structureel werk is voor een duidelijk afgebakende rol die je bewust intern wilt opbouwen. Uitbesteden wordt interessant wanneer het werk breder is dan één rol aankan, wanneer de vacature niet ingevuld raakt of wanneer je de afhankelijkheid van één persoon wilt verkleinen. De opties sluiten elkaar niet uit.',
+  },
+  {
+    q: 'Kan Finable met onze bestaande financiële software werken?',
+    a: 'Waar mogelijk sluiten we aan op de systemen en processen die al goed functioneren. Het uitgangspunt is niet om je financiële omgeving opnieuw op te bouwen omdat Finable erbij komt. Tijdens de start bepalen we welke systemen nodig zijn om het afgesproken werk uit te voeren.',
+  },
+  {
+    q: 'Hoe houd ik controle als finance extern wordt uitgevoerd?',
+    a: 'Doordat het ritme vastligt en er één aanspreekpunt is. Elke maand wordt het werk uitgevoerd, afgesloten, gecontroleerd en gerapporteerd, en bespreken we wat opvalt. Voor de start leggen we vast wie waarvoor verantwoordelijk is en welke toegang nodig is. In de praktijk krijgen veel bedrijven de cijfers juist eerder en completer dan daarvoor.',
+  },
+];
+---
+<Layout
+  title="Finance uitbesteden | Compleet finance-team | Finable"
+  description="Finance uitbesteden zonder losse freelancers of meerdere leveranciers. Finable runt je dagelijkse finance, maandafsluiting, controlling en rapportage."
+  hreflang={false}
+  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'Finance uitbesteden' }]}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
+      <div class="fu-hero">
+        <div>
+          <div class="lbl" style="margin-bottom:26px">Finance uitbesteden</div>
+          <h1 style="font-size:clamp(34px,4.6vw,58px);line-height:1.06;margin-bottom:26px">Je finance uitbesteden <span class="em">zonder de controle uit handen te geven.</span></h1>
+          <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:520px;text-wrap:pretty">Finable runt je dagelijkse finance, maandafsluiting, controlling en rapportage. Eén vast team, één aanspreekpunt en één vaste maandprijs.</p>
+          <div class="fu-cta" data-cta-location="hero">
+            <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+            <a href="/indicatie" class="on-dark-link fu-cta-alt">Vraag je indicatie aan &rarr;</a>
+          </div>
+        </div>
+        <div class="fu-hero-right">
+          <div class="disc">
+            <div class="disc-row">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg>
+              <div><div class="dn">Dagelijkse finance</div><div class="dd">Facturen, bank, debiteuren</div></div>
+            </div>
+            <div class="disc-row">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4M8 14h4"/></svg>
+              <div><div class="dn">Maandafsluiting</div><div class="dd">Aansluitingen, btw, maanddossier</div></div>
+            </div>
+            <div class="disc-row">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+              <div><div class="dn">Controlling</div><div class="dd">Marge, cash, afwijkingen</div></div>
+            </div>
+            <div class="disc-row">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="flex-shrink:0" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg>
+              <div><div class="dn">Rapportage &amp; inzicht</div><div class="dd">Rapportage, duiding, gesprek</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WANNEER INTERESSANT -->
+  <section class="wrap" style="padding-top:76px;padding-bottom:72px">
+    <div class="fu-head">
+      <div>
+        <div class="lbl" style="margin-bottom:18px">Herken je dit?</div>
+        <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Wanneer wordt finance uitbesteden interessant?</h2>
+      </div>
+      <p class="fu-head-p">Bijna niemand begint met zoeken naar &ldquo;finance uitbesteden&rdquo;. Het begint met een van deze vijf situaties.</p>
+    </div>
+    <ol class="fu-sig">
+      {signalen.map((s, i) => (
+        <li>
+          <span class="fu-sig-n">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- WAT KUN JE UITBESTEDEN (navy anker) -->
+  <section style="background:var(--navy)">
+    <div class="wrap" style="padding-top:80px;padding-bottom:80px">
+      <div style="max-width:660px;margin-bottom:48px">
+        <div class="lbl" style="margin-bottom:18px">Wat kun je uitbesteden?</div>
+        <h2 class="fu-h2" style="font-size:clamp(26px,3.4vw,42px);color:var(--white);line-height:1.1;margin-bottom:18px">Welke financewerkzaamheden kun je uitbesteden?</h2>
+        <p style="font-size:clamp(16px,1.35vw,18px);color:var(--on-dark-secondary);text-wrap:pretty">Finance uitbesteden is veel breder dan boekhouding uitbesteden. Het gaat om vier lagen, en je kiest zelf welke je bij Finable neerlegt.</p>
+      </div>
+      <div class="fu-lagen">
+        {lagen.map((l) => (
+          <div class="fu-laag">
+            <div class="fu-laag-n">{l.n}</div>
+            <h3>{l.t}</h3>
+            <p>{l.d}</p>
+            <ul>{l.items.map((i) => <li>{i}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <div class="fu-chain">
+        <span>Dagelijkse finance</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span>Maandafsluiting</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span>Controlling</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span class="is-last">Rapportage &amp; inzicht</span>
+      </div>
+      <p class="fu-chain-p">Eén team voor de hele keten, in plaats van een losse partij per onderdeel. <a href="/aanpak">Bekijk hoe het finance-team is opgebouwd &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- WAT BLIJFT BIJ DE KLANT -->
+  <section class="wrap" style="padding-top:76px;padding-bottom:72px">
+    <div class="fu-head">
+      <div>
+        <div class="lbl" style="margin-bottom:18px">Controle</div>
+        <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Uitbesteden betekent niet dat je afstand neemt van je cijfers.</h2>
+      </div>
+      <p class="fu-head-p">De grootste zorg bij uitbesteden is controleverlies. Daarom scheiden we drie dingen die vaak op één hoop gaan.</p>
+    </div>
+    <div class="fu-niv">
+      {niveaus.map((n) => (
+        <div class="fu-niv-col">
+          <div class="fu-niv-k">{n.k}</div>
+          <div class="fu-niv-t">{n.t}</div>
+          <p>{n.d}</p>
+        </div>
+      ))}
+    </div>
+    <blockquote class="fu-quote">De uitvoering kan buiten je organisatie plaatsvinden. Het financiële inzicht moet juist dichter bij je komen.</blockquote>
+  </section>
+
+  <!-- VERGELIJKING -->
+  <section style="background:var(--section)">
+    <div class="wrap" style="padding-top:76px;padding-bottom:76px">
+      <div class="fu-head">
+        <div>
+          <div class="lbl" style="margin-bottom:18px">De afweging</div>
+          <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Finance uitbesteden of iemand aannemen?</h2>
+        </div>
+        <p class="fu-head-p">Deze modellen zijn niet beter of slechter dan elkaar. Ze zijn voor verschillende dingen bedoeld.</p>
+      </div>
+      <div class="fu-cmp">
+        <div class="fu-cmp-head" aria-hidden="true">
+          <div>Model</div><div>Waarvoor bedoeld</div><div>Wat het doet</div><div>Wanneer het past</div>
+        </div>
+        {modellen.map((m) => (
+          <div class:list={['fu-cmp-row', { 'is-fin': m.fin }]}>
+            <div class="fu-cmp-t">{m.t}</div>
+            <div class="fu-cmp-v"><span class="fu-cmp-k">Waarvoor bedoeld</span>{m.voor}</div>
+            <div class="fu-cmp-v"><span class="fu-cmp-k">Wat het doet</span>{m.d}</div>
+            <div class="fu-cmp-v"><span class="fu-cmp-k">Wanneer het past</span>{m.wanneer}</div>
+          </div>
+        ))}
+      </div>
+      <p class="fu-cmp-p">Welke keuze past, hangt af van hoeveel financewerk er achter je organisatie zit en wat je intern wilt houden. Overweeg je iemand aan te nemen? <a href="/finance-hire">Vergelijk één finance-hire met een Finable-team &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ZO WERKT HET -->
+  <section class="wrap" style="padding-top:76px;padding-bottom:72px">
+    <div class="fu-head">
+      <div>
+        <div class="lbl" style="margin-bottom:18px">Zo werkt het</div>
+        <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Zo werkt finance uitbesteden met Finable</h2>
+      </div>
+      <p class="fu-head-p">Geen standaardpakket. We beginnen bij de finance-organisatie die er al staat.</p>
+    </div>
+    <ol class="fu-stap">
+      {stappen.map((s) => (
+        <li>
+          <span class="fu-stap-n">{s.n}</span>
+          <div><h3>{s.t}</h3><p>{s.d}</p></div>
+        </li>
+      ))}
+    </ol>
+    <div class="fu-ritme">
+      <div class="lbl" style="color:var(--body);margin-bottom:12px">Het maandritme</div>
+      <div class="fu-ritme-row">
+        <span>Uitvoeren</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span>Afsluiten</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span>Controleren</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span>Rapporteren</span><span class="fu-ar" aria-hidden="true">&rarr;</span>
+        <span class="is-last">Bespreken</span>
+      </div>
+      <p>Wat er precies gebeurt nadat je ja zegt, staat stap voor stap op <a href="/hoe-het-werkt">zo werkt Finable</a>.</p>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIE -->
+  <section style="background:var(--section)">
+    <div class="wrap" style="padding-top:64px;padding-bottom:64px">
+      <div class="fu-tech">
+        <div>
+          <div class="lbl" style="margin-bottom:18px">Mensen en techniek</div>
+          <h2 class="fu-h2" style="font-size:clamp(24px,2.8vw,34px);text-wrap:balance">Mensen waar oordeel nodig is. Technologie waar het slimmer kan.</h2>
+        </div>
+        <div>
+          <p>Finable standaardiseert processen, werkt met financiële software en automatiseert waar dat passend is. Dat verkleint het handmatige deel van het werk.</p>
+          <p>Wat overblijft is juist het werk waar mensen nodig zijn: uitzonderingen, controle, interpretatie en het gesprek over wat de cijfers betekenen.</p>
+          <blockquote class="fu-quote fu-quote-sm">Technologie moet finance minder handmatig maken. Niet minder betrouwbaar.</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section class="wrap" style="padding-top:72px;padding-bottom:64px">
+    <div class="rule" style="margin-bottom:52px"></div>
+    <div class="fu-case">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <img src="/images/the-good-roll.png" alt="Logo The Good Roll" width="662" height="663" style="width:72px;height:72px;border-radius:999px;display:block">
+        <div>
+          <div class="lbl" style="color:var(--body);margin-bottom:6px">Klantcase &middot; The Good Roll</div>
+          <div style="font-size:15px;color:var(--body)">Sander de Klerk</div>
+        </div>
+      </div>
+      <div>
+        <p class="fu-case-q">Van sceptisch naar <span style="color:var(--terracotta)">&ldquo;ik zou het iedereen aanraden.&rdquo;</span></p>
+        <p style="font-size:16px;color:var(--body);max-width:640px;text-wrap:pretty">Sander was eerst huiverig om zijn finance uit handen te geven. Dus begon hij klein: alleen het inboeken. Het vertrouwen groeide en Finable nam steeds meer over. Inmiddels wordt vrijwel zijn hele dagelijkse finance door het team gedaan.</p>
+        <a href="/cases/the-good-roll" data-case-link="the_good_roll" style="display:inline-block;margin-top:18px;font-size:15px;font-weight:600">Bekijk de case &rarr;</a>
+      </div>
+    </div>
+    <div class="rule" style="margin-top:52px"></div>
+  </section>
+
+  <!-- VOOR WIE -->
+  <section class="wrap" style="padding-top:8px;padding-bottom:72px">
+    <div class="fu-head">
+      <div>
+        <div class="lbl" style="margin-bottom:18px">Voor wie</div>
+        <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Voor welke bedrijven is finance uitbesteden interessant?</h2>
+      </div>
+      <p class="fu-head-p">Niet de omvang van je organisatie bepaalt dit, maar de hoeveelheid en complexiteit van het financewerk erachter.</p>
+    </div>
+    <ul class="fu-wie">
+      <li>Bedrijven die meer nodig hebben dan alleen boekhouding.</li>
+      <li>Bedrijven zonder compleet intern finance-team, maar met het werk dat erbij hoort.</li>
+      <li>Bedrijven die finance willen professionaliseren nu ze groeien.</li>
+      <li>Bedrijven die te afhankelijk zijn van één persoon.</li>
+      <li>Bedrijven die moeite hebben om financecapaciteit te vinden of vast te houden.</li>
+      <li>Bedrijven die betere controlling en rapportage nodig hebben dan er nu is.</li>
+    </ul>
+  </section>
+
+  <!-- PRIJS -->
+  <section style="background:var(--section)">
+    <div class="wrap" style="padding-top:72px;padding-bottom:72px">
+      <div class="fu-head">
+        <div>
+          <div class="lbl" style="margin-bottom:18px">Prijs</div>
+          <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Wat kost finance uitbesteden?</h2>
+        </div>
+        <p class="fu-head-p">Er is geen standaardpakket en geen prijs op basis van omzet. Eerst bepalen we de scope, daarna volgt een vaste maandprijs.</p>
+      </div>
+      <div class="fu-prijs">
+        {prijsfactoren.map((p) => (
+          <div><div class="fu-prijs-t">{p.t}</div><p>{p.d}</p></div>
+        ))}
+      </div>
+      <div class="fu-prijs-cta" data-cta-location="pricing">
+        <p class="fu-prijs-anchor">Een heel finance-team. Voor minder dan één controller.</p>
+        <Button href="/indicatie">Vraag je indicatie aan &rarr;</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDIEPING -->
+  <section class="wrap" style="padding-top:72px;padding-bottom:64px">
+    <div class="fu-verd">
+      <div>
+        <div class="lbl" style="margin-bottom:18px">Verdieping</div>
+        <h2 class="fu-h2" style="font-size:clamp(24px,2.8vw,34px);text-wrap:balance">Finance anders organiseren is niet nieuw.</h2>
+      </div>
+      <div>
+        <p>Grote organisaties verdelen financewerk al jaren over lokale teams en gespecialiseerde serviceorganisaties. Niet omdat alles kan worden uitbesteed, maar omdat niet ieder type financewerk door dezelfde persoon of op dezelfde plek hoeft te gebeuren.</p>
+        <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fu-verd-a">Lees hoe grote organisaties hun finance organiseren &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ + SLOT-CTA (navy) -->
+  <section class="faq-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:68px;padding-bottom:64px">
+      <div class="fu-end">
+        <div>
+          <div class="lbl" style="margin-bottom:28px">Veelgestelde vragen</div>
+          {faq.map((f) => (
+            <details class="fin-faq">
+              <summary><span class="fin-faq-q">{f.q}</span><span class="fin-faq-ic"></span></summary>
+              <div class="fin-faq-a"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+        <div class="fu-end-cta" data-cta-location="closing">
+          <div class="lbl" style="margin-bottom:20px">Persoonlijk kennismaken</div>
+          <div class="fu-tim">
+            <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter van Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <div>
+              <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px;color:var(--white)">Benieuwd hoe jouw finance-functie eruit kan zien?</h2>
+              <p style="font-size:15px;color:var(--on-dark-secondary);text-wrap:pretty">We kijken naar wat je vandaag hebt, waar het vastloopt en welke onderdelen je intern wilt houden of extern kunt organiseren.</p>
+            </div>
+          </div>
+          <div class="fu-end-row">
+            <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+            <a href="/indicatie" class="fu-cta-alt">Vraag je indicatie aan &rarr;</a>
+          </div>
+          <div class="fu-end-tim"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Oprichter Finable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+
+  /* HERO — 55/45, disciplinelijst rechts (patroon van /aanpak). */
+  .fu-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,0.92fr);gap:clamp(36px,4.6vw,72px);align-items:center}
+  .disc{border-left:1px solid rgba(255,255,255,0.22);padding-left:clamp(20px,2.4vw,36px);display:flex;flex-direction:column;gap:clamp(18px,2vw,26px)}
+  .disc-row{display:flex;gap:16px;align-items:flex-start}
+  .disc .dn{font-family:'Playfair Display',serif;font-weight:600;font-size:17px;color:var(--white)}
+  .disc .dd{font-size:14px;color:var(--on-dark-secondary)}
+  .fu-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px}
+  .fu-cta-alt{font-weight:600;font-size:16px;color:var(--white)}
+  .fu-cta-alt:hover{color:var(--terracotta);opacity:1}
+
+  /* Sectiekop: titel links, één kaderende regel rechts. */
+  .fu-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(24px,3.4vw,56px);align-items:end;margin-bottom:44px}
+  .fu-head-p{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
+
+  /* Vijf signalen: genummerde rijen, dunne lijnen, geen tegels. */
+  .fu-sig{list-style:none;border-top:1px solid var(--line)}
+  .fu-sig>li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(12px,1.6vw,24px);padding:22px 0;border-bottom:1px solid var(--line)}
+  .fu-sig-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta);line-height:1.3}
+  .fu-sig h3{font-size:19px;margin-bottom:6px}
+  .fu-sig p{font-size:16px;color:var(--body);line-height:1.65;max-width:720px;text-wrap:pretty}
+
+  /* Vier lagen op navy. */
+  .fu-lagen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.4vw,36px)}
+  .fu-laag{border-top:1px solid var(--on-dark-line);padding-top:20px}
+  .fu-laag-n{font-family:'Playfair Display',Georgia,serif;font-size:15px;color:var(--terracotta);margin-bottom:10px;letter-spacing:.04em}
+  .fu-laag h3{font-size:clamp(18px,1.7vw,21px);color:var(--white);margin-bottom:10px}
+  .fu-laag p{font-size:14.5px;color:var(--on-dark-secondary);line-height:1.6;text-wrap:pretty}
+  .fu-laag ul{list-style:none;margin-top:14px}
+  .fu-laag li{position:relative;padding-left:16px;font-size:14px;color:var(--white);line-height:1.5;margin-bottom:6px}
+  .fu-laag li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+
+  /* Ketenstrip. */
+  .fu-chain{margin-top:clamp(36px,4vw,52px);padding-top:28px;border-top:1px solid var(--on-dark-line);display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;font-family:'Playfair Display',Georgia,serif;font-size:clamp(16px,1.6vw,20px);color:var(--white)}
+  .fu-chain .is-last{color:var(--terracotta)}
+  .fu-ar{color:var(--terracotta);font-family:'Inter',system-ui,sans-serif}
+  .fu-chain-p{margin-top:18px;font-size:15px;color:var(--on-dark-secondary);text-wrap:pretty}
+  .fu-chain-p a{font-weight:600}
+
+  /* Drie niveaus van verantwoordelijkheid. */
+  .fu-niv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px)}
+  .fu-niv-col{border-top:2px solid var(--line);padding-top:18px}
+  .fu-niv-col:last-child{border-top-color:var(--terracotta)}
+  .fu-niv-k{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:10px}
+  .fu-niv-t{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,1.9vw,23px);color:var(--navy);margin-bottom:10px;line-height:1.25}
+  .fu-niv-col:last-child .fu-niv-t{color:var(--terracotta)}
+  .fu-niv p{font-size:15.5px;color:var(--body);line-height:1.65;text-wrap:pretty}
+
+  .fu-quote{margin-top:clamp(36px,4vw,48px);padding-left:20px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,2.2vw,27px);line-height:1.32;color:var(--navy);max-width:820px;text-wrap:balance}
+  .fu-quote-sm{margin-top:24px;font-size:clamp(18px,1.8vw,21px)}
+
+  /* Vergelijking: rij per model, vier kolommen. Geen vinkjesmatrix. */
+  /* De container bleedt 18px de marge in, niet de rijen zelf. Met negatieve marges op de
+     Finable-rij liep .fu-cmp buiten zijn eigen box, wat op elke breedte als clipping meet. */
+  .fu-cmp{border-top:1px solid var(--line);margin:0 -18px;padding:0 18px}
+  .fu-cmp-head,.fu-cmp-row{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,0.75fr) minmax(0,1.35fr) minmax(0,1.2fr);gap:clamp(16px,2vw,28px)}
+  .fu-cmp-head{padding:12px 0;border-bottom:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--body)}
+  .fu-cmp-row{padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
+  .fu-cmp-row.is-fin{background:var(--terracotta-soft);margin:0 -18px;padding:20px 18px;border-bottom-color:var(--terracotta-soft)}
+  .fu-cmp-t{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--navy);line-height:1.25}
+  .fu-cmp-row.is-fin .fu-cmp-t{color:var(--terracotta)}
+  .fu-cmp-v{font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fu-cmp-k{display:none}
+  .fu-cmp-p{margin-top:26px;font-size:15.5px;color:var(--body);text-wrap:pretty}
+  .fu-cmp-p a{font-weight:600}
+
+  /* Vier stappen. */
+  .fu-stap{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.6vw,36px)}
+  .fu-stap>li{border-top:1px solid var(--line);padding-top:18px}
+  .fu-stap-n{display:block;font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--terracotta);margin-bottom:10px}
+  .fu-stap h3{font-size:18px;margin-bottom:8px}
+  .fu-stap p{font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty}
+
+  .fu-ritme{margin-top:clamp(36px,4vw,52px);padding:24px 26px;background:var(--section)}
+  .fu-ritme-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:15px;font-weight:600;color:var(--navy)}
+  .fu-ritme-row .is-last{color:var(--terracotta)}
+  .fu-ritme>p{margin-top:14px;font-size:15px;color:var(--body)}
+  .fu-ritme>p a{font-weight:600}
+
+  /* Technologie: twee kolommen, compact. */
+  .fu-tech{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:start}
+  .fu-tech p{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
+  .fu-tech p+p{margin-top:14px}
+
+  /* Case: hetzelfde ritme als op de homepage, zonder de foto rechts. */
+  .fu-case{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3.5vw,48px);align-items:center}
+  .fu-case-q{font-family:'Playfair Display',serif;font-size:clamp(23px,2.8vw,34px);color:var(--navy);line-height:1.2;margin-bottom:20px;text-wrap:balance}
+
+  /* Voor wie: twee kolommen met terracotta bullets. */
+  .fu-wie{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px clamp(24px,3vw,48px)}
+  .fu-wie>li{position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--line);font-size:16px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fu-wie>li::before{content:"";position:absolute;left:2px;top:20px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+
+  /* Prijsfactoren. */
+  .fu-prijs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(18px,2.2vw,32px)}
+  .fu-prijs>div{border-top:2px solid var(--terracotta);padding-top:16px}
+  .fu-prijs-t{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:8px}
+  .fu-prijs p{font-size:14.5px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fu-prijs-cta{margin-top:clamp(36px,4vw,48px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding-top:28px;border-top:1px solid var(--line)}
+  .fu-prijs-anchor{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,25px);color:var(--navy);line-height:1.28;text-wrap:balance}
+
+  /* Verdieping: redactioneel, geen tweede CTA. */
+  .fu-verd{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(24px,3.4vw,56px);align-items:start;padding-top:32px;border-top:1px solid var(--line)}
+  .fu-verd p{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
+  .fu-verd-a{display:inline-block;margin-top:14px;font-size:15px;font-weight:600;color:var(--terracotta)}
+
+  /* FAQ + slot-CTA. */
+  .fu-end{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(40px,5vw,64px);align-items:start}
+  .fu-end-cta{border-left:1px solid var(--on-dark-line);padding-left:clamp(28px,3vw,48px)}
+  .fu-tim{display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px}
+  .fu-end-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+  .fu-end-tim{margin-top:20px;font-size:14px;color:var(--on-dark-secondary);line-height:1.45}
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:22px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(17px,1.7vw,20px);color:var(--navy);line-height:1.35;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:17px;height:17px;flex-shrink:0;margin-top:6px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:7.5px;width:17px;height:2px}
+  .fin-faq-ic::after{left:7.5px;top:0;width:2px;height:17px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:760px;padding:0 0 26px;font-size:15.5px;color:var(--body);line-height:1.72}
+
+  @media (max-width:1023px){
+    .fu-hero{grid-template-columns:1fr;gap:32px}
+    .disc{border-left:none;padding-left:0}
+    .fu-head{grid-template-columns:1fr;gap:16px;align-items:start;margin-bottom:32px}
+    .fu-lagen{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+    .fu-niv{grid-template-columns:1fr;gap:26px}
+    .fu-stap{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+    .fu-tech{grid-template-columns:1fr;gap:20px}
+    .fu-prijs{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .fu-verd{grid-template-columns:1fr;gap:18px}
+    .fu-end{grid-template-columns:1fr;gap:44px}
+    .fu-end-cta{border-left:none;padding-left:0;border-top:1px solid var(--on-dark-line);padding-top:36px}
+    /* Vergelijking: vier kolommen passen vanaf 1024px. Daaronder een blok per model,
+       met de kolomkop als label boven de waarde. Op 768px was de modelkolom 144px breed,
+       te smal voor "administratiekantoor". */
+    .fu-cmp-head{display:none}
+    .fu-cmp-row{grid-template-columns:1fr;gap:10px;padding:20px 0}
+    .fu-cmp-k{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:2px}
+    .fu-cmp-row.is-fin .fu-cmp-k{color:var(--terracotta)}
+    /* Tikdoelen: de globale mobiele regel geeft tekstlinks extra hoogte; in lopende tekst niet nodig. */
+    .fu-chain-p a,.fu-cmp-p a,.fu-ritme>p a{display:inline-block}
+  }
+  @media (max-width:639px){
+    .fu-lagen{grid-template-columns:1fr;gap:24px}
+    .fu-stap{grid-template-columns:1fr;gap:22px}
+    .fu-prijs{grid-template-columns:1fr;gap:20px}
+    .fu-wie{grid-template-columns:1fr}
+    .fu-sig>li{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:18px 0}
+    .fu-sig h3{font-size:17px}
+    .fu-sig p,.fu-wie>li,.fu-tech p,.fu-verd p,.fu-head-p{font-size:15.5px}
+    /* mobile.css dwingt h2's met clamp(26px…) en clamp(24px…) naar een vaste maat. Voor
+       "financewerkzaamheden" is dat op 320px 5px te breed; deze pagina gaat een stap lager. */
+    h2.fu-h2{font-size:24px!important}
+    .fu-cmp{margin:0 -16px;padding:0 16px}
+    .fu-cmp-row.is-fin{margin:0 -16px;padding:20px 16px}
+    .fu-case{grid-template-columns:1fr;gap:20px}
+    .fu-ritme{padding:20px}
+    .fu-prijs-cta{flex-direction:column;align-items:stretch}
+    .fu-tim{grid-template-columns:96px minmax(0,1fr);gap:16px}
+  }
+</style>
