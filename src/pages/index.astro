@@ -4,8 +4,21 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
+
+/** Corporate namen als context, niet als klantenlijst: alleen typografisch, geen logo's of badges. */
+const proof = ['HEINEKEN', 'Unilever', 'EY', 'KPMG', 'PwC', 'Deloitte'];
+
+/** Primaire bronnen bij de corporate proof. Native <details>, geen JavaScript. */
+const bronnen = [
+  { label: 'HEINEKEN \u2014 Business Services & Finance Operations', url: 'https://www.theheinekencompany.com/newsroom/heineken-strengthens-global-capability-footprint-with-official-opening-of-business-services-centre-in-india/' },
+  { label: 'Unilever \u2014 Global Business Services', url: 'https://careers.unilever.com/en/gbs' },
+  { label: 'EY \u2014 Global Delivery Services', url: 'https://www.ey.com/en_gl/careers/global-delivery-services' },
+  { label: 'KPMG \u2014 Delivery Network', url: 'https://kpmg.com/xx/en/what-we-do/services/tax/kpmg-delivery-network.html' },
+  { label: 'PwC \u2014 Acceleration Centers', url: 'https://www.pwc.com/us/en/about-us/newsroom/press-releases/acceleration-centers-new-office-in-hyderaba.html' },
+  { label: 'Deloitte \u2014 Delivery Centers', url: 'https://www.deloitte.com/ro/en/service-centers/technology-delivery-center/who-we-are.html' },
+];
 ---
-<Layout title="Finable | Een heel finance-team voor je groeiende bedrijf" description="Finable runt je dagelijkse finance met een vast team voor één vaste maandprijs. Van boekhouding en maandafsluiting tot controlling, rapportage en inzicht.">
+<Layout title="Finable | Finance-as-a-Service voor groeiende bedrijven" description="Finable is je externe finance-team voor dagelijkse finance, maandafsluiting, controlling en rapportage. Een vast team voor één vaste maandprijs.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
@@ -98,6 +111,32 @@ import LogoMarquee from '../components/LogoMarquee.astro';
         <span>Eén aanspreekpunt.</span>
         <span style="color:var(--on-dark-tertiary)">·</span>
         <span>Eén vaste maandprijs.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCE VERANDERT — context, geen klantenlijst. De corporate namen zijn uitsluitend
+       typografisch: het zijn geen klanten, partners of endorsements van Finable. -->
+  <section style="background:var(--section)">
+    <div class="wrap" style="padding-top:76px;padding-bottom:76px">
+      <div class="fv">
+        <div>
+          <div class="lbl" style="margin-bottom:18px">Finance verandert</div>
+          <h2 style="font-size:clamp(26px,3.2vw,38px);text-wrap:balance">Grote organisaties organiseren werk allang zo.</h2>
+        </div>
+        <div>
+          <p class="fv-body">Grote organisaties verdelen werk al jaren over lokale teams, internationale specialisten en gespecialiseerde service- en deliverycenters.</p>
+          <p class="fv-concl">Finable maakt die manier van werken toegankelijk voor groeiende bedrijven.</p>
+          <p class="fv-proof">{proof.join(' \u00b7 ')}</p>
+          <details class="fv-src">
+            <summary><span>Bronnen bekijken</span><span class="fv-ic" aria-hidden="true"></span></summary>
+            <ul>
+              {bronnen.map((b) => (
+                <li><a href={b.url} target="_blank" rel="noopener noreferrer">{b.label} &rarr;</a></li>
+              ))}
+            </ul>
+          </details>
+        </div>
       </div>
     </div>
   </section>
@@ -272,5 +311,29 @@ import LogoMarquee from '../components/LogoMarquee.astro';
     .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}
     .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:1px solid var(--line)}
     .cols4>div:first-child,.cols4t>div:first-child{border-top:none;padding-top:0}
+  }
+
+  /* FINANCE VERANDERT — twee kolommen op desktop, gestapeld op mobiel. */
+  .fv{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(32px,4.4vw,72px);align-items:start}
+  .fv-body{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
+  /* De Finable-conclusie is visueel het belangrijkste rechts: terracotta accentlijn. */
+  .fv-concl{margin-top:22px;padding-left:18px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,23px);line-height:1.35;color:var(--navy);text-wrap:balance}
+  /* Corporate namen: context, geen logo's, geen badges. Bewust kleiner dan de conclusie. */
+  .fv-proof{margin-top:26px;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9;text-wrap:pretty}
+  .fv-src{margin-top:18px}
+  .fv-src>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--terracotta);min-height:44px}
+  .fv-src>summary::-webkit-details-marker{display:none}
+  .fv-src>summary:hover{opacity:.72}
+  .fv-ic{position:relative;width:11px;height:11px;flex-shrink:0}
+  .fv-ic::before,.fv-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fv-ic::before{left:0;top:4.5px;width:11px;height:2px}
+  .fv-ic::after{left:4.5px;top:0;width:2px;height:11px}
+  .fv-src[open] .fv-ic::after{opacity:0}
+  .fv-src ul{list-style:none;margin:10px 0 0;padding:0}
+  .fv-src li{margin-bottom:2px}
+  .fv-src a{display:inline-block;font-size:14px;color:var(--body);line-height:1.5;padding:7px 0}
+  .fv-src a:hover{color:var(--terracotta);opacity:1}
+  @media (max-width:1023px){
+    .fv{grid-template-columns:1fr;gap:26px}
   }
 </style>
