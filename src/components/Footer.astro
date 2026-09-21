@@ -18,7 +18,9 @@ const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-t
       <div style="font-size:14px;color:var(--body);margin-top:4px">{lang === 'en' ? 'Finable · Dutch Chamber of Commerce 99623544' : 'Finable · KVK 99623544'}</div>
     </div>
     <!-- /privacy en /algemene-voorwaarden staan live (NL). Er is geen Engelse juridische versie; de
-         Engelse Terms-link blijft daarom bewust naar '#' wijzen tot die pagina er is. -->
+         Engelse Terms-link blijft daarom bewust naar '#' wijzen tot die pagina er is.
+         "Kennis" wijst nu rechtstreeks naar het enige kennisartikel. Er is bewust geen /kennis-index
+         gebouwd voor één artikel; zodra er een tweede bij komt, wordt dit de link naar die index. -->
     {lang === 'en' ? (
       <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
         <span class="ft-group"><a href="/en/how-it-works" class="ft-link">How Finable works</a><a href="/en/finance-team" class="ft-link">Finance team</a><a href="/en/about" class="ft-link">About</a></span>
@@ -28,6 +30,7 @@ const footerStyle = 'border-top:1px solid var(--line)' + (marginTop ? `;margin-t
       </div>
     ) : (
       <div class="ft-links" style="display:flex;align-items:center;gap:26px;font-size:15px;color:var(--body)">
+        <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="ft-link">Kennis</a>
         <a href="/privacy" class="ft-link">Privacy &amp; cookies</a>
         <a href="/algemene-voorwaarden" class="ft-link">Voorwaarden</a>
         <a href="/finance-hire" class="ft-link">Finance-hire of Finable?</a>
