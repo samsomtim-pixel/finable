@@ -131,7 +131,7 @@ const bronnen = [
         <div>
           <p class="fv-body">Grote organisaties verdelen werk al jaren over lokale teams, internationale specialisten en eigen gespecialiseerde servicecenters.</p>
           <p class="fv-concl">Finable maakt die manier van werken toegankelijk voor groeiende bedrijven.</p>
-          <p class="fv-proof">{proof.join(' \u00b7 ')}</p>
+          <ul class="fv-proof">{proof.map((n) => <li>{n}</li>)}</ul>
           <details class="fv-src">
             <summary><span>Bronnen bekijken</span><span class="fv-ic" aria-hidden="true"></span></summary>
             <ul>
@@ -141,9 +141,8 @@ const bronnen = [
             </ul>
           </details>
           <div class="fv-read">
-            <p class="fv-read-q">Hoe organiseren grote bedrijven hun finance eigenlijk?</p>
-            <p class="fv-read-d">Bekijk hoe HEINEKEN, Philips en andere organisaties financewerk verdelen, en wat groeiende bedrijven daarvan kunnen leren.</p>
-            <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fv-read-a">Lees het artikel &rarr;</a>
+            <p class="fv-read-q">Grote organisaties verdelen financewerk al jaren over gespecialiseerde teams.</p>
+            <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fv-read-a">Lees hoe zij hun finance organiseren &rarr;</a>
           </div>
         </div>
       </div>
@@ -327,8 +326,12 @@ const bronnen = [
   .fv-body{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
   /* De Finable-conclusie is visueel het belangrijkste rechts: terracotta accentlijn. */
   .fv-concl{margin-top:22px;padding-left:18px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,23px);line-height:1.35;color:var(--navy);text-wrap:balance}
-  /* Corporate namen: context, geen logo's, geen badges. Bewust kleiner dan de conclusie. */
-  .fv-proof{margin-top:26px;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9;text-wrap:pretty}
+  /* Corporate namen: context, geen logo's, geen badges. Bewust kleiner dan de conclusie.
+     Een lijst met flex-wrap in plaats van losse tekst met ' · ' ertussen: zo kan een regel niet
+     meer eindigen of beginnen met een zwevende separator. Boven 767px past de reeks op een regel en
+     staan de middots ertussen; daaronder wordt er gewrapt en scheidt alleen de ruimte de namen. */
+  .fv-proof{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:0;list-style:none;margin-top:26px;padding:0;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9}
+  .fv-proof li+li::before{content:"·";margin-right:5px}
   .fv-src{margin-top:18px}
   .fv-src>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--terracotta);min-height:44px}
   .fv-src>summary::-webkit-details-marker{display:none}
@@ -345,9 +348,12 @@ const bronnen = [
   /* Doorverwijzing naar het kennisartikel: redactioneel, geen tweede CTA. */
   .fv-read{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
   .fv-read-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(17px,1.7vw,20px);line-height:1.35;color:var(--navy);text-wrap:balance}
-  .fv-read-d{margin-top:8px;font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty}
   .fv-read-a{display:inline-block;margin-top:12px;font-size:15px;font-weight:600;color:var(--terracotta)}
   @media (max-width:1023px){
     .fv{grid-template-columns:1fr;gap:26px}
+  }
+  @media (max-width:767px){
+    .fv-proof{column-gap:16px}
+    .fv-proof li+li::before{display:none}
   }
 </style>
