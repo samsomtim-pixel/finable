@@ -57,7 +57,11 @@ const t = lang === 'en'
 </header>
 
 <style is:global>
-  .nav-toggle{display:none;width:44px;height:44px;margin:-4px -8px -4px 0;padding:0;border:none;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+  /* Het tikdoel is 44px breed, de streepjes zijn 22px. Met align-items:center bleef er 11px dode
+     ruimte rechts, die eerder met margin-right:-8px werd weggetrokken; daardoor liep de knop 8px
+     buiten de flexcontainer. Nu staan de streepjes rechts in het tikdoel met 3px optische inspring,
+     zodat ze op exact dezelfde plek eindigen zonder dat de knop buiten zijn box valt. */
+  .nav-toggle{display:none;width:44px;height:44px;margin:-4px 0;padding:0 3px 0 0;border:none;background:none;cursor:pointer;flex-direction:column;align-items:flex-end;justify-content:center;gap:5px}
   .nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);transition:transform .2s,opacity .2s}
   .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
