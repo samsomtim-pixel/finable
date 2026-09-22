@@ -27,7 +27,7 @@ const toc = [
   { id: 'fasen', label: 'Vier fasen: van vastleggen naar sturen' },
   { id: 'signalen', label: 'De signalen dat je in fase drie zit' },
   { id: 'nog-niet', label: 'Wanneer je nog geen controller nodig hebt' },
-  { id: 'wet', label: 'De enige grens die wel in de wet staat' },
+  { id: 'wet', label: 'Wat de wet hier wel en niet over zegt' },
   { id: 'wachten', label: 'Wat er gebeurt als je wacht' },
   { id: 'vormen', label: 'Controlling nodig is niet hetzelfde als iemand aannemen' },
   { id: 'test', label: 'Waar staat jouw organisatie nu?' },
@@ -76,7 +76,7 @@ const signalen = [
 const faq = [
   {
     q: 'Vanaf welke omzet heb je een controller nodig?',
-    a: 'Er bestaat geen omzetgrens. In Nederlandse artikelen circuleren drempels die ongeveer een factor tien uit elkaar liggen, en geen enkele daarvan is wettelijk of door onderzoek onderbouwd. Wat wel voorspelt of controlling nodig is: het aantal entiteiten, het aantal opbrengststromen, de mate waarin kosten aan opbrengsten moeten worden toegerekend en of er externe partijen zijn die periodiek cijfers willen zien. Een bedrijf met één dienst en één bv heeft bij vijf miljoen omzet minder controlling nodig dan een bedrijf met drie entiteiten en projectadministratie bij anderhalf miljoen.',
+    a: 'Er bestaat geen omzetgrens. De drempels die in Nederlandse artikelen worden genoemd lopen sterk uiteen, en geen enkele daarvan is wettelijk of door onderzoek onderbouwd. Wat wel voorspelt of controlling nodig is: het aantal entiteiten, het aantal opbrengststromen, de mate waarin kosten aan opbrengsten moeten worden toegerekend en of er externe partijen zijn die periodiek cijfers willen zien. Twee bedrijven met dezelfde omzet kunnen daarom een heel verschillende behoefte hebben.',
   },
   {
     q: 'Is een business controller hetzelfde als een financial controller?',
@@ -84,11 +84,11 @@ const faq = [
   },
   {
     q: 'Kan mijn accountant de controlling doen?',
-    a: 'Gedeeltelijk, en meestal niet op het ritme dat je nodig hebt. Een accountantskantoor is ingericht op jaarwerk, fiscaliteit en verantwoording achteraf. Controlling draait om maandelijkse duiding, dicht op de business. Veel kantoren bieden tegenwoordig wel advies of rapportage aan, maar het blijft een andere frequentie en een andere rol. De twee sluiten elkaar niet uit: de accountant doet het jaarwerk, controlling gebeurt maandelijks.',
+    a: 'Ja. Sommige accountants- en administratiekantoren bieden naast jaarwerk en fiscaliteit ook maandrapportage, controlling of CFO-diensten aan. De relevante vraag is daarom niet alleen of je accountant het kán, maar of het onderdeel is van jullie samenwerking: op het ritme dat je nodig hebt, met iemand die verantwoordelijk is voor de afsluiting, de analyse en de opvolging. Staat dat nergens afgesproken, dan gebeurt het in de praktijk zelden vanzelf.',
   },
   {
     q: 'Heb ik meteen een fulltime controller nodig?',
-    a: 'Zelden. Bij de meeste bedrijven die net in fase drie komen, is het controllingwerk enkele dagen per maand. Dat is te weinig voor een volwaardige functie en te veel om erbij te doen. Het is precies de reden dat veel eerste controllervacatures blijven staan of worden ingevuld door iemand die het werk niet aankan of zich verveelt.',
+    a: 'Vaak niet meteen. Bij de bedrijven die wij spreken is de eerste controllingbehoefte terugkerend werk, maar nog geen volledige week. Dat is te weinig voor een fulltime functie en te veel om er even bij te doen, en het is een van de redenen dat een eerste controllerrol lastig in te vullen is.',
   },
   {
     q: 'Wat kost controlling?',
@@ -96,13 +96,12 @@ const faq = [
   },
 ];
 
+/** Alleen bronnen die een claim in de tekst daadwerkelijk dragen. De grensbedragen, de
+ *  middelgroot-criteria en de administratieplicht stonden in de ingekorte juridische sectie en
+ *  worden nergens meer geclaimd; die bronnen zijn daarom verwijderd. */
 const bronnen = [
   { l: 'Artikel 2:396 BW — criteria voor een kleine rechtspersoon', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396' },
-  { l: 'Artikel 2:397 BW — criteria voor een middelgrote rechtspersoon', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=397' },
   { l: 'Artikel 2:393 BW — opdracht tot onderzoek van de jaarrekening', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393' },
-  { l: 'Artikel 2:10 BW — administratieplicht van het bestuur', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10' },
-  { l: 'NBA — Verhoging financiële groottecriteria met 25%', u: 'https://www.nba.nl/tools-en-ondersteuning/faqs-en-helpdesk/faqs-verhoging-financiele-groottecriteria-met-25/' },
-  { l: 'Staatsblad 2024, 52 — Implementatiebesluit richtlijn verhoging grensbedragen', u: 'https://zoek.officielebekendmakingen.nl/stb-2024-52.html' },
 ];
 ---
 <Layout
@@ -158,9 +157,9 @@ const bronnen = [
 
         <section id="kort">
           <h2>Het korte antwoord</h2>
-          <p>Je hebt controlling nodig op het moment dat een kloppende administratie niet langer genoeg is om een beslissing te nemen. Dat moment komt bij het ene bedrijf bij twintig medewerkers en bij het andere pas bij tachtig, en het heeft weinig te maken met omzet.</p>
-          <p>Dat laatste is lastig te geloven, want er circuleren wel degelijk omzetgrenzen. Alleen liggen die in Nederlandse artikelen ongeveer een factor tien uit elkaar, van rond een miljoen tot rond tien miljoen euro. Geen van die grenzen is wettelijk vastgelegd of door onderzoek onderbouwd. Ze zijn vuistregels van de partij die ze opschrijft.</p>
-          <p>Wat wél voorspelt of je controlling nodig hebt, is hoeveel er te verklaren valt. Een bedrijf met één dienst, één bv en voorspelbare kosten kan tot ver in de miljoenen toe met een goede boekhouder. Een bedrijf met drie entiteiten, projectadministratie en wisselende marges heeft die behoefte veel eerder.</p>
+          <p>Je hebt controlling nodig op het moment dat een kloppende administratie niet langer genoeg is om een beslissing te nemen. Dat moment hangt nauwelijks samen met je omzet of je personeelsbestand, en veel meer met hoe ingewikkeld je bedrijf in elkaar zit.</p>
+          <p>Dat laatste is lastig te geloven, want er circuleren wel degelijk omzetgrenzen. De drempels die in Nederlandse artikelen worden genoemd lopen alleen sterk uiteen, en geen van die grenzen is wettelijk vastgelegd of door onderzoek onderbouwd. Het zijn vuistregels van de partij die ze opschrijft.</p>
+          <p>Wat wél voorspelt of je controlling nodig hebt, is hoeveel er te verklaren valt. Een bedrijf met één dienst, één bv en voorspelbare kosten kan veel langer toe met een goede boekhouder dan een bedrijf met meerdere entiteiten, projectadministratie en sterk wisselende marges.</p>
           <blockquote class="art-quote">Een kloppende administratie is geen grip. Het is de voorwaarde ervoor.</blockquote>
         </section>
 
@@ -186,9 +185,9 @@ const bronnen = [
 
         <section id="signalen">
           <h2>De signalen dat je in fase drie zit</h2>
-          <p>De meeste bedrijven merken de overgang niet aan de cijfers, maar aan de gesprekken eromheen. Deze zes komen het vaakst terug:</p>
+          <p>De overgang is in de cijfers zelf niet te zien. Hij wordt zichtbaar in de gesprekken eromheen. Dit zijn de signalen die wij het vaakst terugzien:</p>
           <ul>{signalen.map((s) => <li>{s}</li>)}</ul>
-          <p>Eén signaal is nog geen conclusie. Drie of meer tegelijk, en het werk dat je mist is bijna altijd controlling.</p>
+          <p>Eén signaal is nog geen conclusie. Herken je er meerdere tegelijk, dan ontbreekt meestal niet nóg een rapportage, maar iemand die de cijfers controleert, verklaart en vertaalt naar beslissingen.</p>
         </section>
 
         <section id="nog-niet">
@@ -199,23 +198,21 @@ const bronnen = [
         </section>
 
         <section id="wet">
-          <h2>De enige grens die wel in de wet staat</h2>
-          <p>Nederland kent precies één objectief vastgelegde omvangsgrens voor de financiële functie, en die gaat niet over controlling.</p>
-          <p>Een rechtspersoon geldt volgens <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396" target="_blank" rel="noopener noreferrer">artikel 2:396 BW</a> als klein wanneer hij op twee opeenvolgende balansdata aan ten minste twee van drie criteria voldoet. Sinds boekjaren die op of na 1 januari 2024 beginnen, zijn die grensbedragen met 25 procent verhoogd: een balanstotaal tot 7,5 miljoen euro, een netto-omzet tot 15 miljoen euro en minder dan vijftig werknemers (<a href="https://www.nba.nl/tools-en-ondersteuning/faqs-en-helpdesk/faqs-verhoging-financiele-groottecriteria-met-25/" target="_blank" rel="noopener noreferrer">NBA</a>, op basis van <a href="https://zoek.officielebekendmakingen.nl/stb-2024-52.html" target="_blank" rel="noopener noreferrer">Staatsblad 2024, 52</a>). Wie daar structureel boven zit, is middelgroot volgens <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=397" target="_blank" rel="noopener noreferrer">artikel 2:397 BW</a> en moet de jaarrekening laten controleren door een accountant (<a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393" target="_blank" rel="noopener noreferrer">artikel 2:393 BW</a>).</p>
-          <p>Die grens gaat over verantwoording achteraf aan de buitenwereld. Niet over of je binnen je eigen bedrijf kunt sturen. De administratieplicht van <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10" target="_blank" rel="noopener noreferrer">artikel 2:10 BW</a> geldt bovendien vanaf dag één en zegt alleen dat rechten en verplichtingen te allen tijde kenbaar moeten zijn.</p>
-          <blockquote class="art-quote">Wie wacht tot de wet iets vraagt, is jaren te laat met sturen.</blockquote>
+          <h2>Wat de wet hier wel en niet over zegt</h2>
+          <p>Er bestaat geen wettelijke omzet- of personeelsgrens vanaf wanneer een bedrijf een controller moet hebben. De wet kent wél omvangscriteria: een rechtspersoon die structureel boven de grenzen van <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396" target="_blank" rel="noopener noreferrer">artikel 2:396 BW</a> uitkomt, geldt niet langer als klein en moet de jaarrekening laten controleren door een accountant (<a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393" target="_blank" rel="noopener noreferrer">artikel 2:393 BW</a>).</p>
+          <p>Die criteria gaan over verantwoording achteraf aan de buitenwereld, niet over de vraag of je binnen je eigen bedrijf kunt sturen. Wat de behoefte aan controlling wél bepaalt, is de complexiteit van je organisatie en de vragen die je met financiële informatie wilt beantwoorden.</p>
         </section>
 
         <section id="wachten">
           <h2>Wat er gebeurt als je wacht</h2>
           <p>Uitstel is comfortabel, want er gaat niets zichtbaar kapot. De schade is traag en meestal pas achteraf zichtbaar.</p>
           <p>Wat we in de praktijk zien: prijzen worden te laat aangepast omdat niemand ziet dat de marge al twee kwartalen zakt. Een verlieslatende klant of productlijn blijft draaien omdat de kosten nooit zijn toegerekend. Een financieringsaanvraag loopt vertraging op omdat de cijfers er wel zijn maar niet uit te leggen. En de ondernemer gaat zelf in de administratie zitten, meestal in de avonduren, waardoor precies dat werk blijft liggen waarvoor hij is aangenomen.</p>
-          <p>Geen van die vier is een ramp op zichzelf. Bij elkaar kosten ze meestal meer dan de controlling die ze had kunnen voorkomen.</p>
+          <p>Los van elkaar lijken dit kleine problemen. Samen zijn het signalen dat het ontbreken van financiële duiding inmiddels operationele gevolgen krijgt.</p>
         </section>
 
         <section id="vormen">
           <h2>Controlling nodig is niet hetzelfde als iemand aannemen</h2>
-          <p>Bij de meeste bedrijven die net in fase drie komen, is het controllingwerk enkele dagen per maand. Dat is te weinig voor een volwaardige functie en te veel om erbij te doen. Daar loopt de eerste controllervacature meestal op stuk: het profiel dat je zoekt, verveelt zich, en het profiel dat past, kan het werk niet aan.</p>
+          <p>Bij de bedrijven die wij spreken vult de eerste structurele controllingbehoefte vaak nog geen fulltime functie. Er is terugkerend werk, maar niet noodzakelijk voor vijf dagen per week. Dat maakt een eerste controllerhire lastig: er is al behoefte aan controle en analyse, maar nog niet altijd genoeg gespecialiseerd werk om een volledige rol logisch te vullen.</p>
           <p>De opties op hoofdlijnen: iemand in dienst nemen, tijdelijk inhuren, of het werk laten uitvoeren door een partij die het als vast onderdeel oppakt. Welke vorm past, hangt af van hoeveel werk er structureel is en hoe dicht het op je business moet zitten. Overweeg je een vacature, dan zet <a href="/finance-hire">de vergelijking tussen één finance-hire en een team</a> de afweging naast elkaar. Overweeg je het uit te besteden, dan staat op <a href="/finance-uitbesteden">de pagina over finance uitbesteden</a> wat dat in de praktijk betekent.</p>
           <p>Wat je ook kiest: het principe dat grote organisaties hierbij hanteren, is dat uitvoering en oordeel niet bij dezelfde persoon hoeven te liggen. Hoe zij financewerk verdelen, staat in <a href="/kennis/hoe-grote-organisaties-finance-organiseren">het artikel over grote organisaties</a>.</p>
         </section>
@@ -227,8 +224,8 @@ const bronnen = [
             <li><strong>Hoeveel werkdagen na het einde van de maand ligt er een rapportage waarin de afwijkingen zijn verklaard?</strong></li>
             <li><strong>Wie heeft die verklaring geschreven?</strong></li>
           </ol>
-          <p>Is het antwoord op de tweede vraag &ldquo;niemand&rdquo;, of &ldquo;ik, in het weekend&rdquo;, dan zit je in fase drie en mist je organisatie controlling. Duurt het antwoord op de eerste vraag langer dan tien werkdagen, dan is de afsluiting zelf ook nog niet af.</p>
-          <p class="art-note">Dit is een vuistregel uit onze eigen praktijk, geen norm. Er bestaat geen wettelijke of algemeen aanvaarde termijn waarbinnen een maandrapportage klaar moet zijn.</p>
+          <p>Is het antwoord op de tweede vraag &ldquo;niemand&rdquo;, of &ldquo;ik, in het weekend&rdquo;, dan zit je in fase drie en mist je organisatie controlling. Duurt het structureel langer dan ongeveer tien werkdagen voordat die rapportage er ligt, dan zouden wij eerst naar het afsluitproces kijken voordat we meer analyse toevoegen.</p>
+          <p class="art-note">Die tien werkdagen zijn een vuistregel uit onze eigen praktijk, geen norm. Er bestaat geen wettelijke of algemeen aanvaarde termijn waarbinnen een maandrapportage klaar moet zijn.</p>
           <div class="ctr-cta" data-cta-location="article_close">
             <p class="ctr-cta-q">Benieuwd wat controlling voor jouw organisatie zou kosten?</p>
             <div class="ctr-cta-row">
@@ -251,7 +248,7 @@ const bronnen = [
 
         <section id="bronnen">
           <h2>Bronnen</h2>
-          <p>De cijfermatige claims in dit artikel gaan uitsluitend over de wettelijke groottecriteria en de controle- en administratieplicht. Er bestaat geen bron voor een omzetgrens waarboven een controller nodig is, en die staat er daarom ook niet in.</p>
+          <p>Dit artikel doet één feitelijke claim die onderbouwing nodig heeft: dat de wet omvangscriteria kent, maar geen grens vanaf wanneer een controller verplicht is. De rest is een Finable-model of een observatie uit onze eigen praktijk, en staat in de tekst ook als zodanig benoemd.</p>
           <ul class="ctr-src">
             {bronnen.map((b) => (<li><a href={b.u} target="_blank" rel="noopener noreferrer">{b.l}</a></li>))}
           </ul>
