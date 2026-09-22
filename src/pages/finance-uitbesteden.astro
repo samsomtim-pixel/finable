@@ -19,8 +19,8 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 
 /** Signalen die bedrijven meestal eerder herkennen dan de term 'uitbesteden'. */
-const signalen = [
-  { t: 'De vacature staat al maanden open', d: 'Je zoekt een allrounder die administratie, afsluiting, controlling én rapportage aankan. Dat profiel is lastig te vinden.' },
+const signalen: { t: string; d: string; hire?: boolean }[] = [
+  { t: 'De vacature staat al maanden open', d: 'Je zoekt een allrounder die administratie, afsluiting, controlling én rapportage aankan. Dat profiel is lastig te vinden.', hire: true },
   { t: 'Finance hangt aan één persoon', d: 'Eén iemand kent de administratie, de afspraken en de uitzonderingen. Bij vakantie of vertrek staat het stil.' },
   { t: 'De administratie loopt, controlling ontbreekt', d: 'De boekingen zijn bij, maar niemand komt toe aan aansluitingen, marges en afwijkingen.' },
   { t: 'Rapportages komen te laat', d: 'De cijfers zijn er pas halverwege de volgende maand. Sturen doe je dan op gevoel.' },
@@ -81,8 +81,8 @@ const modellen = [
   {
     t: 'Controller in loondienst',
     voor: 'Controle en analyse, intern',
-    d: 'Eén interne rol die de cijfers controleert, duidt en dicht bij de business staat.',
-    wanneer: 'Als er structureel genoeg werk is voor een afgebakende rol die je intern wilt opbouwen.',
+    d: 'Eén interne rol die de cijfers controleert en duidt.',
+    wanneer: 'Als er structureel genoeg werk is voor één afgebakende rol.',
   },
   {
     t: 'Interim-controller',
@@ -227,7 +227,7 @@ const faq = [
           <span class="fu-sig-n">{String(i + 1).padStart(2, '0')}</span>
           <div>
             <h3>{s.t}</h3>
-            <p>{s.d}</p>
+            <p>{s.d}{s.hire && <> Sta je op het punt iemand aan te nemen? <a href="/finance-hire">Vergelijk één finance-hire met een finance-team &rarr;</a></>}</p>
           </div>
         </li>
       ))}
@@ -288,8 +288,8 @@ const faq = [
     <div class="wrap" style="padding-top:76px;padding-bottom:76px">
       <div class="fu-head">
         <div>
-          <div class="lbl" style="margin-bottom:18px">De afweging</div>
-          <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Finance uitbesteden of iemand aannemen?</h2>
+          <div class="lbl" style="margin-bottom:18px">De vormen</div>
+          <h2 class="fu-h2" style="font-size:clamp(26px,3.2vw,40px);text-wrap:balance">Welke vormen zijn er om finance te organiseren?</h2>
         </div>
         <p class="fu-head-p">Deze modellen zijn niet beter of slechter dan elkaar. Ze zijn voor verschillende dingen bedoeld.</p>
       </div>
@@ -306,7 +306,7 @@ const faq = [
           </div>
         ))}
       </div>
-      <p class="fu-cmp-p">Welke keuze past, hangt af van hoeveel financewerk er achter je organisatie zit en wat je intern wilt houden. Overweeg je iemand aan te nemen? <a href="/finance-hire">Vergelijk één finance-hire met een Finable-team &rarr;</a></p>
+      <p class="fu-cmp-p">Welke vorm past, hangt af van hoeveel financewerk er achter je organisatie zit en wat je intern wilt houden. Twijfel je tussen iemand in dienst en een team? <a href="/finance-hire">Eén finance-hire versus een finance-team &rarr;</a></p>
     </div>
   </section>
 
