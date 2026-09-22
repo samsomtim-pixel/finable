@@ -59,29 +59,6 @@ import Button from '../components/Button.astro';
         <h2 style="font-size:clamp(28px,3.4vw,42px);margin-bottom:20px">Eén persoon hoeft niet alles te kunnen.</h2>
         <p style="font-size:16px;color:var(--body);text-wrap:pretty">Finance vraagt om verschillende disciplines. Toch komen die in groeiende bedrijven vaak samen in één functieprofiel. Vaak begint dat met de vraag <a href="/kennis/wanneer-controller-nodig">wanneer je een controller nodig hebt</a>.</p>
       </div>
-      <!-- Mobiel (≤639): dezelfde vergelijking per onderwerp onder elkaar. -->
-      <div class="cmp-m">
-        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén functieprofiel</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Verschillende expertises</span></div></div>
-        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Capaciteit van één persoon</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Capaciteit van een team</span></div></div>
-        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Kennis bij één persoon</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Kennis verdeeld in het team</span></div></div>
-        <div class="cmp-m-pair"><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén beschikbaarheid</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable-team</span><span class="cmp-m-v">Continuïteit binnen het team</span></div></div>
-      </div>
-      <div class="why-cmp">
-        <div class="cmp-col">
-          <div class="ch" style="color:var(--body)">Eén finance-hire</div>
-          <div class="cr" style="color:var(--body)">Eén functieprofiel</div>
-          <div class="cr" style="color:var(--body)">Capaciteit van één persoon</div>
-          <div class="cr" style="color:var(--body)">Kennis bij één persoon</div>
-          <div class="cr" style="color:var(--body)">Eén beschikbaarheid</div>
-        </div>
-        <div class="cmp-col">
-          <div class="ch" style="color:var(--terracotta)">Finable-team</div>
-          <div class="cr" style="color:var(--navy)">Verschillende expertises</div>
-          <div class="cr" style="color:var(--navy)">Capaciteit van een team</div>
-          <div class="cr" style="color:var(--navy)">Kennis verdeeld in het team</div>
-          <div class="cr" style="color:var(--navy)">Continuïteit binnen het team</div>
-        </div>
-      </div>
       <div style="background:rgba(196,100,58,0.10);border-radius:0 40px 40px 40px;padding:clamp(28px,2.6vw,36px) clamp(26px,2.4vw,34px)">
         <p style="font-family:'Playfair Display',serif;font-size:clamp(19px,1.9vw,25px);color:var(--navy);line-height:1.3">Finance organiseren rond het werk dat nodig is. Niet rond één functieprofiel.</p>
         <span style="display:block;width:44px;height:3px;background:var(--terracotta);margin-top:22px;border-radius:2px"></span>
@@ -225,10 +202,7 @@ import Button from '../components/Button.astro';
   .disc .dn{font-family:'Playfair Display',serif;font-weight:600;font-size:17px;color:var(--white)}
   .disc .dd{font-size:14px;color:var(--white)}
   .hero-note{position:absolute;top:6px;left:52%;width:158px;text-align:center;pointer-events:none}
-  .why{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.2fr) minmax(0,0.82fr);gap:clamp(28px,3.4vw,52px);align-items:start}
-  .why-cmp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px)}
-  .cmp-col .ch{font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px}
-  .cmp-col .cr{padding:14px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.45}
+  .why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.86fr);gap:clamp(32px,4vw,64px);align-items:start}
   .navy{background:var(--navy)}
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:20px;align-items:start}
   .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,20px);color:var(--white);margin-bottom:8px}
@@ -262,20 +236,16 @@ import Button from '../components/Button.astro';
   .ft-end{grid-template-columns:1fr!important;gap:36px!important}
   .ft-end>div:last-child{border-left:none!important;padding-left:0!important;border-top:1px solid var(--on-dark-line);padding-top:36px}
   }
-  @media (min-width:640px){.cmp-m{display:none}}
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
     .hero{grid-template-columns:1fr!important;gap:40px!important}
     .disc{display:grid;grid-template-columns:1fr 1fr;gap:22px 24px}
-    .why-cmp{gap:24px}
     .navy-end{grid-template-columns:1fr!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
   }
   @media (max-width:639px){
     .disc{grid-template-columns:1fr}
-    /* Vergelijking per onderwerp in plaats van twee lange lijsten */
-    .why-cmp{display:none}
     /* Navy-anker stopt na het mechanisme; vervolgtekst op wit eronder */
     .navy .wrap>div[style*="height:1px;background:rgba(255,255,255,0.14)"]{display:none}
     .navy-end{background:var(--white);margin:44px -24px -56px;padding:44px 24px 48px}
@@ -287,7 +257,6 @@ import Button from '../components/Button.astro';
     .hero-right{gap:28px}
     .disc{gap:18px}
     .flow{gap:12px}
-    .why-cmp{gap:28px}
     .princ{gap:22px;margin-top:32px}
     .team-note{text-align:left}
   }
