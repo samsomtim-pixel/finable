@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-/** Routes met <meta name="robots" content="noindex"> in Layout.astro. */
-const NOINDEX = ['/voor-boekhouders'];
+/** Routes met <meta name="robots" content="noindex"> in Layout.astro. Nu leeg: /voor-boekhouders is
+ *  bij de SEO-launch vrijgegeven. De filter blijft staan voor een volgende noindex-route. */
+const NOINDEX = [];
 
 export default defineConfig({
   site: 'https://www.finable.nl',
