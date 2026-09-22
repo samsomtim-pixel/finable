@@ -106,7 +106,7 @@ const functies = [
 
 /** Wat de finance-architectuur functioneel moet kunnen. Geen merknamen, geen toollijst. */
 const functioneel = [
-  { t: 'Grootboek', d: 'De enige bron van waarheid. Alles wat daarbuiten in een spreadsheet leeft, is een risico.' },
+  { t: 'Grootboek', d: 'De centrale financiële administratie. Aansluitingen met systemen en spreadsheets daarbuiten moeten reproduceerbaar en controleerbaar zijn.' },
   { t: 'Factuurverwerking', d: 'Inkoopfacturen binnenhalen, coderen en langs een goedkeuring leiden.' },
   { t: 'Bank', d: 'Mutaties ophalen en afletteren, betalingen klaarzetten met een goedkeuringsstap.' },
   { t: 'Payroll-invoer', d: 'Salarisgegevens die op tijd en in de juiste periode in het grootboek belanden.' },
@@ -175,7 +175,7 @@ const functioneel = [
 
         <section id="werk">
           <h2>Begin bij het werk, niet bij het organogram</h2>
-          <p>Vrijwel alles wat er in het Nederlands over dit onderwerp is geschreven, begint bij de rolverdeling: welke functies heeft een financiële afdeling, hoeveel fte hoort daarbij, wanneer komt de controller en wanneer de CFO. Dat is een logische vraag om te stellen, maar een slechte om mee te beginnen.</p>
+          <p>Veel artikelen over het inrichten van een financiële afdeling beginnen bij de rolverdeling: welke functies heeft een financiële afdeling, hoeveel fte hoort daarbij, wanneer komt de controller en wanneer de CFO. Dat is een logische vraag om te stellen, maar een slechte om mee te beginnen.</p>
           <p>Het probleem is dat functietitels per bedrijf iets anders betekenen. Wat bij de één een financial controller doet, doet bij de ander een administrateur met vijftien jaar ervaring. Een organogram dat je van een ander bedrijf overneemt, beschrijft hun werk, niet dat van jou.</p>
           <p>Het werk zelf is wél vergelijkbaar. Facturen moeten worden verwerkt, de bank moet worden afgeletterd, de maand moet dicht, iemand moet verklaren waarom de marge daalde. Die handelingen zijn bij elk bedrijf ongeveer hetzelfde; alleen het volume en de complexiteit verschillen.</p>
           <p>Daarom werkt de inventarisatie beter dan het organogram. Je krijgt een lijst met werk, en pas daarna de vraag hoeveel mensen daarvoor nodig zijn en welke combinaties logisch zijn.</p>
@@ -227,7 +227,7 @@ const functioneel = [
           <p>Bij het invullen van de eigenaarskolom gaan twee dingen standaard mis.</p>
           <p>Het eerste is dat er een afdeling wordt ingevuld in plaats van een persoon. &ldquo;Finance&rdquo; of &ldquo;de administratie&rdquo; klinkt als een antwoord, maar is het niet: een afdeling kan niets vergeten en niets afmaken, want een afdeling doet niets. Alleen mensen doen iets.</p>
           <p>Het tweede is dat dezelfde naam bij vrijwel elke regel staat. Dat is op zichzelf geen fout — in een klein bedrijf is dat de realiteit — maar het maakt wel meteen zichtbaar hoe groot de afhankelijkheid is. Als die persoon drie weken weg is, weet je nu precies welke regels stilvallen.</p>
-          <p>Een bruikbare test: neem de lijst, kies de persoon die het meest voorkomt en streep al zijn regels door. Wat overblijft, is wat er tijdens zijn vakantie gebeurt. Bij de meeste groeiende bedrijven is dat een korte lijst.</p>
+          <p>Een bruikbare test: neem de lijst, kies de persoon die het meest voorkomt en streep al zijn regels door. Wat overblijft, is wat er tijdens zijn vakantie gebeurt. Hoe korter die lijst, hoe groter de afhankelijkheid van die persoon.</p>
         </section>
 
         <section id="controle">
@@ -245,7 +245,7 @@ const functioneel = [
             <li>Wie de bank aflettert, is niet als enige degene die de afsluiting controleert.</li>
             <li>Toegangsrechten worden minstens één keer per jaar nagelopen, en direct aangepast als iemand vertrekt.</li>
           </ul>
-          <p>Dat is geen bureaucratie. Het is de goedkoopste verzekering die er is, en het is ook wat je later moet kunnen uitleggen aan een accountant, een financier of een koper.</p>
+          <p>Dat is geen bureaucratie om de bureaucratie. Het verkleint de afhankelijkheid van één persoon en maakt zichtbaar wie een betaling kan initiëren, uitvoeren en controleren. Het is ook wat je later moet kunnen uitleggen aan een accountant, een financier of een koper.</p>
         </section>
 
         <section id="systemen">
@@ -261,7 +261,7 @@ const functioneel = [
         <section id="complexer">
           <h2>Wat er verandert als je complexer wordt</h2>
           <p>Finance groeit niet mee met het aantal medewerkers, maar met het aantal dingen dat uit elkaar gehouden moet worden. Een tweede bv, een buitenlandse klant, projecten met onderhanden werk, een voorraad, een tweede verdienmodel: elk daarvan voegt regels toe aan de lijst en maakt de bestaande regels zwaarder.</p>
-          <p>Wat dan als eerste breekt, is zelden de verwerking. Het is de aansluiting. Twee entiteiten betekent intercompany-posten die moeten kloppen; onderhanden werk betekent dat omzet en kosten in dezelfde periode moeten vallen; voorraad betekent dat de telling en het grootboek op elkaar moeten aansluiten.</p>
+          <p>Wat wij daarbij vaak als eerste zien breken, is niet de verwerking maar de aansluiting. Twee entiteiten betekent intercompany-posten die moeten kloppen; onderhanden werk betekent dat omzet en kosten in dezelfde periode moeten vallen; voorraad betekent dat de telling en het grootboek op elkaar moeten aansluiten.</p>
           <p>Vandaar dat omzet een slechte maatstaf is voor de omvang van je finance-functie, en het aantal entiteiten, opbrengststromen en administraties een veel betere. Twee bedrijven met dezelfde omzet kunnen een totaal verschillende lijst hebben.</p>
           <p>Hoe grotere organisaties dit oplossen, is een apart verhaal: zij splitsen het werk en leggen uitvoering elders neer dan het oordeel. Dat staat in <a href="/kennis/hoe-grote-organisaties-finance-organiseren">hoe grote organisaties hun finance organiseren</a>.</p>
         </section>
@@ -275,7 +275,7 @@ const functioneel = [
 
         <section id="invullen">
           <h2>De invuloefening</h2>
-          <p>Wie dit vandaag wil doen: open een spreadsheet, zet de vijf kolommen bovenaan en neem de lijst uit dit artikel als beginregels. Bij de bedrijven die wij hierin begeleiden kost dat doorgaans een dagdeel, en het levert vrijwel altijd een paar ongemakkelijke uitkomsten op.</p>
+          <p>Wie dit vandaag wil doen: open een spreadsheet, zet de vijf kolommen bovenaan en neem de lijst uit dit artikel als beginregels. De eerste inventarisatie hoeft geen groot project te zijn. Begin met de huidige werkzaamheden en markeer vervolgens waar een eigenaar, controle of duidelijk ritme ontbreekt.</p>
           <p>Waar je naar kijkt als de lijst er staat:</p>
           <ul>
             <li>Regels zonder naam in de eigenaarskolom. Die gebeuren nu niet, of toevallig.</li>
