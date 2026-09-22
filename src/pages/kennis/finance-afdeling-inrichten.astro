@@ -1,0 +1,389 @@
+---
+// Pillar binnen LEARN. Zoekvraag: hoe richt een groeiend bedrijf zijn finance-functie praktisch in?
+//
+// Cannibalisatiecontract:
+//   BEZIT      welk financewerk er is, wie het bezit, op welk ritme, in welk systeem, met welke controle.
+//   BEZIT NIET shared services/GBS/GCC en corporate voorbeelden (/kennis/hoe-grote-organisaties-...),
+//              de signalen en fasen rond controlling (/kennis/wanneer-controller-nodig), het
+//              Finable-proces (/hoe-het-werkt), de commerciële intern-versus-extern-afweging
+//              (/finance-uitbesteden) en de vergelijking aannemen versus team (/finance-hire).
+//              Daar staat telkens een link naar de pagina die de intentie wel bezit.
+//
+// Het framework is bewust géén derde volwassenheidsladder. /kennis/wanneer-controller-nodig heeft een
+// fasemodel over tijd, /kennis/hoe-grote-organisaties-... een lagenmodel naar aard van het werk. Dit is
+// een inventarisatie per stuk werk: vijf kolommen die je invult, geen fase waarin je zit.
+//
+// Feitelijke claims: alleen de administratie- en bewaarplicht en de vijf controletechnische functies
+// uit de Nederlandse AO-leer. Geen omzet-, medewerkers- of factuurgrenzen.
+//
+// Hergebruikt: Layout, Header, Footer, Button en het artikelpatroon (.crumb, .art-*, .fin-faq-loos)
+// van /kennis/wanneer-controller-nodig.
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+
+const published = '22 september 2026';
+const publishedISO = '2026-09-22';
+
+const toc = [
+  { id: 'kort', label: 'Het korte antwoord' },
+  { id: 'werk', label: 'Begin bij het werk, niet bij het organogram' },
+  { id: 'vijf', label: 'Vijf vragen per stuk financewerk' },
+  { id: 'inventaris', label: 'Welk werk er sowieso in staat' },
+  { id: 'afgesloten', label: 'Wanneer is de maand echt afgesloten?' },
+  { id: 'eigenaar', label: 'Eigenaarschap: één naam per regel' },
+  { id: 'controle', label: 'Wat je niet bij dezelfde persoon legt' },
+  { id: 'systemen', label: 'Systemen volgen het proces' },
+  { id: 'complexer', label: 'Wat er verandert als je complexer wordt' },
+  { id: 'intern-extern', label: 'Wat intern moet blijven' },
+  { id: 'invullen', label: 'De invuloefening' },
+  { id: 'bronnen', label: 'Bronnen' },
+];
+
+/** Het framework. Vijf kolommen per regel werk, geen fasemodel. */
+const kolommen = [
+  { n: '01', t: 'Werk', v: 'Welke handeling precies?', d: 'Niet “debiteurenbeheer”, maar: openstaande posten doorlopen, herinneringen versturen, betalingsafspraken vastleggen. Werk dat je niet kunt benoemen, kun je niet beleggen.' },
+  { n: '02', t: 'Eigenaar', v: 'Welke persoon?', d: 'Eén naam, geen afdeling en geen “finance”. Werk zonder naam blijft liggen tot iemand er toevallig over struikelt.' },
+  { n: '03', t: 'Ritme', v: 'Hoe vaak, en wanneer af?', d: 'Dagelijks, wekelijks, maandelijks, per kwartaal of jaarlijks — en met een afgesproken moment waarop het klaar is. Zonder deadline schuift het naar de drukste week.' },
+  { n: '04', t: 'Systeem', v: 'Waar gebeurt het?', d: 'In welk pakket, en waar komt de invoer vandaan. Elke overdracht die handmatig gaat, is een plek waar het stilvalt als die ene persoon er niet is.' },
+  { n: '05', t: 'Controle', v: 'Wie kijkt ernaar?', d: 'Wie ziet of het gebeurd is en of het klopt. Dit is de kolom die in de praktijk het vaakst leeg blijft.' },
+];
+
+/** De inventaris. Ritmes zijn gangbare praktijk, geen norm; dat staat ook in de tekst. */
+const ritme = [
+  {
+    t: 'Dagelijks tot wekelijks',
+    items: [
+      'Inkoopfacturen ontvangen, coderen en klaarzetten',
+      'Bankmutaties verwerken en afletteren',
+      'Verkoopfacturen versturen',
+      'Openstaande posten doorlopen en herinneren',
+      'Betalingen klaarzetten en laten goedkeuren',
+      'Cashpositie bijhouden',
+    ],
+  },
+  {
+    t: 'Maandelijks',
+    items: [
+      'Periode dichtzetten in het pakket',
+      'Balansrekeningen aansluiten',
+      'Kosten en opbrengsten in de juiste periode zetten',
+      'Btw-aangifte voorbereiden en indienen',
+      'Rapportage opstellen',
+      'Afwijkingen verklaren',
+      'Forecast bijwerken',
+    ],
+  },
+  {
+    t: 'Per kwartaal',
+    items: [
+      'Cijfers bespreken met directie of aandeelhouders',
+      'Forecast voor de resterende periode herzien',
+      'Openstaande posten en voorzieningen kritisch nalopen',
+      'Afspraken met bank of financier nakomen',
+    ],
+  },
+  {
+    t: 'Jaarlijks',
+    items: [
+      'Jaarwerk voorbereiden en aanleveren',
+      'Budget of plan voor het komende jaar opstellen',
+      'Toegangsrechten en autorisaties nalopen',
+      'Tarieven, contracten en abonnementen herijken',
+    ],
+  },
+];
+
+/** De vijf controletechnische functies uit de Nederlandse AO-leer. */
+const functies = [
+  { t: 'Beschikken', d: 'Mag besluiten waar geld naartoe gaat: een inkoop goedkeuren, een betaling vrijgeven, een korting toezeggen.' },
+  { t: 'Bewaren', d: 'Heeft feitelijk toegang tot wat waarde heeft: de bankrekening, de voorraad, de sleutels van het pakket.' },
+  { t: 'Registreren', d: 'Legt vast wat er is gebeurd. Boekt de factuur, verwerkt de mutatie.' },
+  { t: 'Uitvoeren', d: 'Doet het werk zelf: bestelt, levert, verstuurt.' },
+  { t: 'Controleren', d: 'Kijkt of het gebeurd is zoals afgesproken en of het klopt.' },
+];
+
+/** Wat de finance-architectuur functioneel moet kunnen. Geen merknamen, geen toollijst. */
+const functioneel = [
+  { t: 'Grootboek', d: 'De enige bron van waarheid. Alles wat daarbuiten in een spreadsheet leeft, is een risico.' },
+  { t: 'Factuurverwerking', d: 'Inkoopfacturen binnenhalen, coderen en langs een goedkeuring leiden.' },
+  { t: 'Bank', d: 'Mutaties ophalen en afletteren, betalingen klaarzetten met een goedkeuringsstap.' },
+  { t: 'Payroll-invoer', d: 'Salarisgegevens die op tijd en in de juiste periode in het grootboek belanden.' },
+  { t: 'Declaraties', d: 'Uitgaven van medewerkers met bon, codering en akkoord.' },
+  { t: 'Rapportage', d: 'Cijfers zonder handmatig knip- en plakwerk uit het grootboek halen.' },
+  { t: 'Forecast', d: 'Een plek waar de verwachting staat, naast wat er werkelijk is gebeurd.' },
+];
+---
+<Layout
+  title="Finance afdeling inrichten: werk, eigenaar, ritme en controle | Finable"
+  description="Hoe richt je de finance-functie van een groeiend bedrijf in? Begin bij het werk in plaats van bij het organogram: wie bezit welke taak, op welk ritme, in welk systeem en wie controleert."
+  hreflang={false}
+  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'Kennis', path: '/kennis' }, { name: 'Finance afdeling inrichten' }]}
+  article={{
+    headline: 'Finance afdeling inrichten: begin bij het werk, niet bij het organogram',
+    author: 'Tim Samsom',
+    datePublished: publishedISO,
+  }}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:44px;padding-bottom:56px">
+      <nav class="crumb" aria-label="Kruimelpad">
+        <a href="/">Finable</a>
+        <span aria-hidden="true">/</span>
+        <a href="/kennis">Kennis</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Finance afdeling inrichten</span>
+      </nav>
+      <div style="max-width:820px">
+        <div class="lbl" style="margin-bottom:20px">Kennis &middot; Finance organiseren</div>
+        <h1 style="font-size:clamp(28px,3.8vw,44px);margin-bottom:24px;text-wrap:balance">Finance afdeling inrichten: begin bij het werk, niet bij het organogram</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Een finance-functie inrichten is geen kwestie van functies verzinnen en die invullen. Het is het financewerk benoemen en er per taak vier dingen bij zetten: wie het doet, wanneer het af is, waar het gebeurt en wie ernaar kijkt.</p>
+        <div class="art-meta">
+          <span><strong>Tim Samsom</strong> &middot; Oprichter Finable</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Gepubliceerd <time datetime={publishedISO}>{published}</time></span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Leestijd ongeveer 11 minuten</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <div class="art-grid">
+
+      <nav class="art-toc" aria-label="Op deze pagina">
+        <div class="lbl" style="color:var(--body);margin-bottom:16px">Op deze pagina</div>
+        <ul>{toc.map((t) => (<li><a href={`#${t.id}`}>{t.label}</a></li>))}</ul>
+      </nav>
+
+      <article class="art-body">
+
+        <section id="kort">
+          <h2>Het korte antwoord</h2>
+          <p>Je richt een finance-functie in door het werk te inventariseren en er per taak een eigenaar, een ritme, een systeem en een controle bij te zetten. Pas als die lijst er ligt, weet je of je iemand nodig hebt, wie dat zou moeten zijn en welk deel je eventueel elders belegt.</p>
+          <p>De omgekeerde volgorde is gebruikelijker: eerst een functie bedenken, dan een vacature schrijven, dan hopen dat de nieuwe persoon zelf uitzoekt wat er moet gebeuren. Dat werkt zolang het bedrijf klein genoeg is dat één iemand alles overziet. Daarna niet meer.</p>
+          <blockquote class="art-quote">Een finance-functie die alleen in hoofden bestaat, is geen functie. Het is een gewoonte die toevallig nog goed gaat.</blockquote>
+        </section>
+
+        <section id="werk">
+          <h2>Begin bij het werk, niet bij het organogram</h2>
+          <p>Vrijwel alles wat er in het Nederlands over dit onderwerp is geschreven, begint bij de rolverdeling: welke functies heeft een financiële afdeling, hoeveel fte hoort daarbij, wanneer komt de controller en wanneer de CFO. Dat is een logische vraag om te stellen, maar een slechte om mee te beginnen.</p>
+          <p>Het probleem is dat functietitels per bedrijf iets anders betekenen. Wat bij de één een financial controller doet, doet bij de ander een administrateur met vijftien jaar ervaring. Een organogram dat je van een ander bedrijf overneemt, beschrijft hun werk, niet dat van jou.</p>
+          <p>Het werk zelf is wél vergelijkbaar. Facturen moeten worden verwerkt, de bank moet worden afgeletterd, de maand moet dicht, iemand moet verklaren waarom de marge daalde. Die handelingen zijn bij elk bedrijf ongeveer hetzelfde; alleen het volume en de complexiteit verschillen.</p>
+          <p>Daarom werkt de inventarisatie beter dan het organogram. Je krijgt een lijst met werk, en pas daarna de vraag hoeveel mensen daarvoor nodig zijn en welke combinaties logisch zijn.</p>
+        </section>
+
+        <section id="vijf">
+          <h2>Vijf vragen per stuk financewerk</h2>
+          <p>Voor elke regel op die lijst beantwoord je vijf vragen. Wie ze alle vijf kan invullen, heeft een ingerichte finance-functie. Wie er structureel één leeg laat, weet meteen waar het misgaat.</p>
+          <ol class="fai-kol">
+            {kolommen.map((k) => (
+              <li class:list={['fai-k', { 'is-fin': k.n === '05' }]}>
+                <span class="fai-n">{k.n}</span>
+                <div>
+                  <h3>{k.t}</h3>
+                  <p class="fai-vraag">{k.v}</p>
+                  <p>{k.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="art-note">Dit is een Finable-model, geen standaard uit de literatuur. Het is bedoeld als invuloefening: vijf kolommen naast elkaar, één regel per stuk werk. Wat het niet is, is een volwassenheidsladder. Waar je organisatie staat en wanneer controlling nodig wordt, is een andere vraag; die staat in <a href="/kennis/wanneer-controller-nodig">wanneer heb je een controller nodig</a>.</p>
+          <p>In de praktijk is de vijfde kolom de interessantste. Bij de bedrijven die wij spreken staan werk, eigenaar en systeem meestal wel ergens beschreven. Het ritme is vager. En wie controleert of het daadwerkelijk is gebeurd, blijkt vaak niemand te zijn, of dezelfde persoon die het werk zelf deed.</p>
+        </section>
+
+        <section id="inventaris">
+          <h2>Welk werk er sowieso in staat</h2>
+          <p>De lijst verschilt per bedrijf, maar dit komt vrijwel overal terug. Gebruik hem als vertrekpunt en schrap wat niet van toepassing is.</p>
+          {ritme.map((r) => (
+            <div class="fai-blok">
+              <h3>{r.t}</h3>
+              <ul class="fai-lijst">{r.items.map((i) => <li>{i}</li>)}</ul>
+            </div>
+          ))}
+          <p>Twee dingen vallen op als je deze lijst naast een bestaande organisatie legt. Het eerste blok loopt meestal wel, want het valt direct op als het stilvalt: een onbetaalde factuur meldt zich vanzelf. Het tweede blok is waar het schuurt, omdat niemand belt als de balansrekeningen niet zijn aangesloten. Het derde en vierde blok komen er vaak alleen doorheen omdat een externe partij een deadline stelt.</p>
+          <p class="art-note">De indeling naar dagelijks, maandelijks, per kwartaal en jaarlijks is gangbare praktijk, geen voorschrift. Er bestaat geen wettelijke of algemeen aanvaarde regel die bepaalt op welk ritme dit werk moet gebeuren; alleen voor de btw-aangifte en het jaarwerk liggen de termijnen extern vast.</p>
+        </section>
+
+        <section id="afgesloten">
+          <h2>Wanneer is de maand echt afgesloten?</h2>
+          <p>&ldquo;De maand is dicht&rdquo; betekent in de praktijk drie verschillende dingen, en dat verschil veroorzaakt meer ruis dan welk ander misverstand ook.</p>
+          <p>Bij de ene organisatie betekent het dat de periode in het pakket op slot staat. Bij de tweede dat alle facturen erin zitten. Bij de derde dat iemand de balans heeft nagelopen en kan uitleggen wat erop staat. Alleen die derde variant levert cijfers op waarop je kunt sturen.</p>
+          <p>Een werkbare definitie van klaar heeft vier elementen: de periode is geblokkeerd zodat er niet meer in wordt geboekt, alle balansrekeningen zijn aangesloten met een onderbouwing die je kunt tonen, de kosten en opbrengsten staan in de juiste periode, en iemand heeft de cijfers bekeken en de afwijkingen benoemd.</p>
+          <p>Leg die definitie één keer vast en spreek af wanneer hij bereikt moet zijn. Zonder blokkade blijven er weken later nog boekingen binnendruppelen die je rapportage met terugwerkende kracht veranderen, en dan is de vraag of de maand klaar was niet meer te beantwoorden.</p>
+          <p class="art-note">Dit is hoe wij een afsluiting afbakenen, geen voorgeschreven definitie. Er bestaat voor niet-controleplichtige ondernemingen geen wettelijke norm voor wat een afgesloten periode is; wel legt de administratieplicht vast dat de rechten en verplichtingen te allen tijde kenbaar moeten zijn.</p>
+        </section>
+
+        <section id="eigenaar">
+          <h2>Eigenaarschap: één naam per regel</h2>
+          <p>Bij het invullen van de eigenaarskolom gaan twee dingen standaard mis.</p>
+          <p>Het eerste is dat er een afdeling wordt ingevuld in plaats van een persoon. &ldquo;Finance&rdquo; of &ldquo;de administratie&rdquo; klinkt als een antwoord, maar is het niet: een afdeling kan niets vergeten en niets afmaken, want een afdeling doet niets. Alleen mensen doen iets.</p>
+          <p>Het tweede is dat dezelfde naam bij vrijwel elke regel staat. Dat is op zichzelf geen fout — in een klein bedrijf is dat de realiteit — maar het maakt wel meteen zichtbaar hoe groot de afhankelijkheid is. Als die persoon drie weken weg is, weet je nu precies welke regels stilvallen.</p>
+          <p>Een bruikbare test: neem de lijst, kies de persoon die het meest voorkomt en streep al zijn regels door. Wat overblijft, is wat er tijdens zijn vakantie gebeurt. Bij de meeste groeiende bedrijven is dat een korte lijst.</p>
+        </section>
+
+        <section id="controle">
+          <h2>Wat je niet bij dezelfde persoon legt</h2>
+          <p>De vijfde kolom is de plek waar de Nederlandse AO-leer binnenkomt, en dat is nuttiger dan het klinkt. Die leer onderscheidt vijf soorten functies die je in beginsel gescheiden houdt, omdat ze elkaars tegenwicht vormen (<a href="https://www.aobiv.nl/raamwerk/functiescheiding/" target="_blank" rel="noopener noreferrer">AO/BIV</a>):</p>
+          <dl class="art-defs">
+            {functies.map((f) => (<div><dt>{f.t}:</dt> <dd>{f.d}</dd></div>))}
+          </dl>
+          <p>In een organisatie van dertig mensen kun je die vijf niet volledig scheiden. Dat is ook niet het doel. Het doel is dat je bewust kiest welke combinaties je wél en niet toestaat, in plaats van dat het toevallig zo is gegroeid.</p>
+          <p>De combinatie die in de praktijk het meeste risico geeft, is beschikken en bewaren bij dezelfde persoon: iemand die zowel mag besluiten dat er betaald wordt als feitelijk de betaling kan uitvoeren. Daar tussenin hoort een tweede paar ogen, ook als dat de directeur zelf is die de betaalbatch vrijgeeft.</p>
+          <p>Praktisch vertaald naar een groeiend bedrijf komt het meestal neer op vier afspraken:</p>
+          <ul>
+            <li>Wie een betaling klaarzet, geeft hem niet zelf vrij.</li>
+            <li>Wie een leverancier kan aanmaken, keurt niet diezelfde factuur goed.</li>
+            <li>Wie de bank aflettert, is niet als enige degene die de afsluiting controleert.</li>
+            <li>Toegangsrechten worden minstens één keer per jaar nagelopen, en direct aangepast als iemand vertrekt.</li>
+          </ul>
+          <p>Dat is geen bureaucratie. Het is de goedkoopste verzekering die er is, en het is ook wat je later moet kunnen uitleggen aan een accountant, een financier of een koper.</p>
+        </section>
+
+        <section id="systemen">
+          <h2>Systemen volgen het proces</h2>
+          <p>De vraag &ldquo;welk pakket moeten we hebben&rdquo; komt bijna altijd te vroeg. Zolang je niet hebt vastgelegd welk werk er is en wie het doet, koop je een oplossing voor een proces dat je nog niet hebt beschreven.</p>
+          <p>Nuttiger is om per functie te bepalen wat je architectuur moet kunnen. Welk merk dat invult, is secundair en verandert toch elke paar jaar.</p>
+          <dl class="art-defs">
+            {functioneel.map((f) => (<div><dt>{f.t}:</dt> <dd>{f.d}</dd></div>))}
+          </dl>
+          <p>De belangrijkste vraag bij tooling is niet wat een pakket kan, maar waar de overdrachten zitten. Elke plek waar iemand data uit het ene systeem haalt en in het andere zet, is een plek waar fouten ontstaan en waar het werk stilvalt als die persoon er niet is. Die overdrachten zijn zichtbaar zodra je de systeemkolom hebt ingevuld.</p>
+        </section>
+
+        <section id="complexer">
+          <h2>Wat er verandert als je complexer wordt</h2>
+          <p>Finance groeit niet mee met het aantal medewerkers, maar met het aantal dingen dat uit elkaar gehouden moet worden. Een tweede bv, een buitenlandse klant, projecten met onderhanden werk, een voorraad, een tweede verdienmodel: elk daarvan voegt regels toe aan de lijst en maakt de bestaande regels zwaarder.</p>
+          <p>Wat dan als eerste breekt, is zelden de verwerking. Het is de aansluiting. Twee entiteiten betekent intercompany-posten die moeten kloppen; onderhanden werk betekent dat omzet en kosten in dezelfde periode moeten vallen; voorraad betekent dat de telling en het grootboek op elkaar moeten aansluiten.</p>
+          <p>Vandaar dat omzet een slechte maatstaf is voor de omvang van je finance-functie, en het aantal entiteiten, opbrengststromen en administraties een veel betere. Twee bedrijven met dezelfde omzet kunnen een totaal verschillende lijst hebben.</p>
+          <p>Hoe grotere organisaties dit oplossen, is een apart verhaal: zij splitsen het werk en leggen uitvoering elders neer dan het oordeel. Dat staat in <a href="/kennis/hoe-grote-organisaties-finance-organiseren">hoe grote organisaties hun finance organiseren</a>.</p>
+        </section>
+
+        <section id="intern-extern">
+          <h2>Wat intern moet blijven</h2>
+          <p>Zodra de lijst er ligt, wordt zichtbaar dat niet elke regel hetzelfde soort werk is. Een deel is uitvoering: het gebeurt volgens een afgesproken werkwijze en het resultaat is controleerbaar. Een ander deel vraagt oordeel en kennis van je bedrijf.</p>
+          <p>Uitvoering kun je in principe elders beleggen, intern of extern. Wat niet weg kan, is de beslissing: of je die prijs verhoogt, of die klant blijft, of je investeert. Ook de eindverantwoordelijkheid blijft waar hij hoort — de administratieplicht van <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10" target="_blank" rel="noopener noreferrer">artikel 2:10 BW</a> ligt bij het bestuur, en de fiscale bewaarplicht van zeven jaar geldt voor de onderneming zelf, ongeacht wie het werk uitvoert (<a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/ondernemen/onderneming_starten/houd-een-goede-administratie-bij/" target="_blank" rel="noopener noreferrer">Belastingdienst</a>, <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0002320&hoofdstuk=VIII&afdeling=2&artikel=52" target="_blank" rel="noopener noreferrer">artikel 52 AWR</a>).</p>
+          <p>De afweging of je delen van de uitvoering extern organiseert, en wat dat in de praktijk betekent, staat op <a href="/finance-uitbesteden">finance uitbesteden</a>.</p>
+        </section>
+
+        <section id="invullen">
+          <h2>De invuloefening</h2>
+          <p>Wie dit vandaag wil doen: open een spreadsheet, zet de vijf kolommen bovenaan en neem de lijst uit dit artikel als beginregels. Bij de bedrijven die wij hierin begeleiden kost dat doorgaans een dagdeel, en het levert vrijwel altijd een paar ongemakkelijke uitkomsten op.</p>
+          <p>Waar je naar kijkt als de lijst er staat:</p>
+          <ul>
+            <li>Regels zonder naam in de eigenaarskolom. Die gebeuren nu niet, of toevallig.</li>
+            <li>Regels waar in de controlekolom dezelfde naam staat als in de eigenaarskolom.</li>
+            <li>De persoon die bij de meeste regels staat, en wat er van de lijst overblijft zonder hem.</li>
+            <li>Elke handmatige overdracht tussen twee systemen.</li>
+            <li>Regels zonder afgesproken moment waarop ze af zijn.</li>
+          </ul>
+          <p>Die vijf uitkomsten vertellen je meer over je finance-functie dan welk organogram ook. En ze zeggen tegelijk wat je eerste stap is: dat is bijna nooit iemand aannemen, maar één kolom invullen die nu leeg is.</p>
+          <div class="fai-cta" data-cta-location="article_close">
+            <p class="fai-cta-q">Benieuwd hoe zo&rsquo;n lijst er voor jouw organisatie uitziet?</p>
+            <div class="fai-cta-row">
+              <Button href="/gesprek">Plan een gesprek &rarr;</Button>
+            </div>
+          </div>
+        </section>
+
+        <section id="bronnen">
+          <h2>Bronnen</h2>
+          <p>Dit artikel steunt op twee soorten onderbouwing: de Nederlandse AO-leer voor de functiescheiding, en wet- en regelgeving voor de administratie- en bewaarplicht. De inventarisatie met vijf kolommen, de ritme-indeling en de observaties over wat er in de praktijk misgaat zijn van Finable zelf en staan in de tekst ook als zodanig benoemd.</p>
+          <ul class="fai-src">
+            <li><a href="https://www.aobiv.nl/raamwerk/functiescheiding/" target="_blank" rel="noopener noreferrer">AO/BIV &mdash; Functiescheiding en de vijf controletechnische functies</a></li>
+            <li><a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10" target="_blank" rel="noopener noreferrer">Artikel 2:10 BW &mdash; administratieplicht van het bestuur</a></li>
+            <li><a href="https://wetten.overheid.nl/jci1.3:c:BWBR0002320&hoofdstuk=VIII&afdeling=2&artikel=52" target="_blank" rel="noopener noreferrer">Artikel 52 AWR &mdash; administratie- en bewaarplicht</a></li>
+            <li><a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/ondernemen/onderneming_starten/houd-een-goede-administratie-bij/" target="_blank" rel="noopener noreferrer">Belastingdienst &mdash; Houd een goede administratie bij</a></li>
+          </ul>
+        </section>
+
+      </article>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+
+  .crumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:22px;font-size:13px;color:var(--on-dark-tertiary)}
+  .crumb a{color:var(--on-dark-secondary)}
+  .crumb a:hover{color:var(--terracotta);opacity:1}
+  .crumb span[aria-current]{color:var(--on-dark-tertiary)}
+
+  .art-meta{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--on-dark-tertiary)}
+  .art-meta strong{color:var(--on-dark-secondary);font-weight:600}
+
+  .art-grid{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(40px,5vw,76px);align-items:start}
+  .art-toc{position:sticky;top:32px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:8px}
+  .art-toc ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .art-toc a{display:block;font-size:13.5px;line-height:1.45;color:var(--body);padding:5px 0;text-wrap:pretty}
+  .art-toc a:hover{color:var(--terracotta);opacity:1}
+  .art-grid>*{min-width:0}
+  .art-body{max-width:720px;min-width:0}
+  .art-body>section+section{margin-top:44px;padding-top:44px;border-top:1px solid var(--line)}
+  .art-body h2{font-size:clamp(23px,2.5vw,30px);margin-bottom:20px;text-wrap:balance}
+  .art-body h3{font-size:19px;margin:0 0 6px;text-wrap:balance}
+  .art-body p{font-size:17px;color:var(--body);text-wrap:pretty}
+  .art-body p+p{margin-top:16px}
+  .art-body ul,.art-body ol{list-style:none;margin:20px 0 0}
+  .art-body>section>ul>li{position:relative;font-size:17px;color:var(--body);padding-left:22px;margin-bottom:12px}
+  .art-body>section>ul>li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+  .art-body li strong,.art-body p strong{color:var(--navy);font-weight:600}
+  .art-body ul+p,.art-body ol+p{margin-top:22px}
+
+  .art-quote{margin:30px 0 0;padding-left:20px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.34;color:var(--navy);text-wrap:balance}
+  .art-quote+p{margin-top:26px}
+  .art-note{margin-top:26px;padding:16px 18px;background:var(--section);font-size:15px;color:var(--body);border-left:2px solid var(--line)}
+
+  .art-defs{margin:22px 0 0;border-top:1px solid var(--line)}
+  .art-defs>div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .art-defs dt{display:inline;font-size:16px;font-weight:600;color:var(--navy)}
+  .art-defs dd{display:inline;font-size:16px;color:var(--body)}
+
+  /* De vijf kolommen. Geen negatieve marges: .art-body heeft max-width en geen padding. */
+  .fai-kol{margin-top:26px!important;border-top:1px solid var(--line)}
+  .fai-k{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .fai-k.is-fin{background:var(--terracotta-soft);padding:22px 18px;border-bottom-color:var(--terracotta-soft);border-left:3px solid var(--terracotta)}
+  .fai-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta);line-height:1.3}
+  .fai-vraag{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--navy)!important;margin-bottom:8px}
+  .fai-k p{font-size:15.5px}
+
+  /* Werkinventaris per ritme. */
+  .fai-blok{margin-top:26px}
+  .fai-blok h3{font-size:12px!important;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);font-family:'Inter',system-ui,sans-serif;margin-bottom:12px!important}
+  .fai-lijst{list-style:none;margin:0!important;border-top:1px solid var(--line)}
+  .fai-lijst>li{padding:10px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--body);line-height:1.5;text-wrap:pretty}
+
+  .fai-cta{margin-top:32px;padding:28px;background:var(--navy)}
+  .fai-cta-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.32;color:var(--warm-white)!important;margin-bottom:20px;text-wrap:balance}
+  .fai-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+
+  .fai-src{margin:20px 0 0!important;border-top:1px solid var(--line)}
+  .fai-src>li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;color:var(--body);text-wrap:pretty}
+
+  @media (max-width:1023px){
+    .art-grid{grid-template-columns:1fr;gap:0}
+    .art-toc{display:none}
+    .art-body{max-width:none}
+    .art-body>section+section{margin-top:36px;padding-top:36px}
+  }
+  @media (max-width:639px){
+    .art-body p,.art-body>section>ul>li{font-size:16px}
+    .fai-k{grid-template-columns:34px minmax(0,1fr);gap:12px}
+    .fai-k.is-fin{padding:22px 14px}
+    .fai-lijst>li{font-size:15.5px}
+    .fai-cta{padding:24px 20px}
+  }
+</style>
