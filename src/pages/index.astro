@@ -121,8 +121,8 @@ const bronnen = [
 
   <!-- FINANCE VERANDERT — context, geen klantenlijst. De corporate namen zijn uitsluitend
        typografisch: het zijn geen klanten, partners of endorsements van Finable. -->
-  <section style="background:var(--section)">
-    <div class="wrap" style="padding-top:76px;padding-bottom:76px">
+  <section class="fv-sec" style="background:var(--section)">
+    <div class="wrap">
       <div class="fv">
         <div>
           <div class="lbl" style="margin-bottom:18px">Finance verandert</div>
@@ -141,8 +141,7 @@ const bronnen = [
             </ul>
           </details>
           <div class="fv-read">
-            <p class="fv-read-q">Grote organisaties verdelen financewerk al jaren over gespecialiseerde teams.</p>
-            <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fv-read-a">Lees hoe zij hun finance organiseren &rarr;</a>
+            <a href="/kennis/hoe-grote-organisaties-finance-organiseren" class="fv-read-a">Lees hoe grote organisaties hun finance organiseren &rarr;</a>
           </div>
         </div>
       </div>
@@ -326,15 +325,20 @@ const bronnen = [
   .fv{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(32px,4.4vw,72px);align-items:start}
   .fv-body{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
   /* De Finable-conclusie is visueel het belangrijkste rechts: terracotta accentlijn. */
-  .fv-concl{margin-top:22px;padding-left:18px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,23px);line-height:1.35;color:var(--navy);text-wrap:balance}
+  .fv-concl{margin-top:20px;padding-left:18px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,23px);line-height:1.35;color:var(--navy);text-wrap:balance}
   /* Corporate namen: context, geen logo's, geen badges. Bewust kleiner dan de conclusie.
      Een lijst met flex-wrap in plaats van losse tekst met ' · ' ertussen: zo kan een regel niet
      meer eindigen of beginnen met een zwevende separator. Boven 767px past de reeks op een regel en
      staan de middots ertussen; daaronder wordt er gewrapt en scheidt alleen de ruimte de namen. */
-  .fv-proof{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:0;list-style:none;margin-top:26px;padding:0;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9}
+  .fv-proof{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:0;list-style:none;margin-top:22px;padding:0;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9}
   .fv-proof li+li::before{content:"·";margin-right:5px}
-  .fv-src{margin-top:18px}
-  .fv-src>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--terracotta);min-height:44px}
+  /* Eigen sectiepadding in plaats van inline: mobile.css vertaalt inline .wrap-paddings via
+     attribuutselectors, en die vertaling gold hier niet meer nadat desktop compacter werd. */
+  .fv-sec>.wrap{padding-top:52px;padding-bottom:52px}
+  .fv-src{margin-top:22px}
+  /* Het tikdoel van 44px is een mobiele eis. Op desktop maakte het de bronnenregel 23px hoger
+     dan de tekst zelf, precies in het midden van deze sectie. */
+  .fv-src>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--terracotta)}
   .fv-src>summary::-webkit-details-marker{display:none}
   .fv-src>summary:hover{opacity:.72}
   .fv-ic{position:relative;width:11px;height:11px;flex-shrink:0}
@@ -347,14 +351,20 @@ const bronnen = [
   .fv-src a{display:inline-block;font-size:14px;color:var(--body);line-height:1.5;padding:7px 0}
   .fv-src a:hover{color:var(--terracotta);opacity:1}
   /* Doorverwijzing naar het kennisartikel: redactioneel, geen tweede CTA. */
-  .fv-read{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
-  .fv-read-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(17px,1.7vw,20px);line-height:1.35;color:var(--navy);text-wrap:balance}
-  .fv-read-a{display:inline-block;margin-top:12px;font-size:15px;font-weight:600;color:var(--terracotta)}
+  .fv-read{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+  .fv-read-a{display:inline-block;font-size:15px;font-weight:600;color:var(--terracotta)}
   @media (max-width:1023px){
     .fv{grid-template-columns:1fr;gap:26px}
+    /* Gestapeld leest de sectie langer; daar blijft het tikdoel van 44px staan. */
+    .fv-src>summary{min-height:44px}
+    .fv-src{margin-top:18px}
   }
   @media (max-width:767px){
     .fv-proof{column-gap:16px}
     .fv-proof li+li::before{display:none}
+  }
+  @media (max-width:639px){
+    /* Mobiel hield al 56px; die ruimte blijft zoals hij was. */
+    .fv-sec>.wrap{padding-top:56px;padding-bottom:56px}
   }
 </style>
