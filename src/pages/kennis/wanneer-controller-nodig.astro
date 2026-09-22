@@ -1,0 +1,362 @@
+---
+// Kennisartikel 2. Zoekvraag: "wanneer heb je een controller nodig?"
+//
+// Cannibalisatiecontract:
+//   BEZIT     wanneer bij een groeiend bedrijf de behoefte aan controlling ontstaat.
+//   BEZIT NIET de volledige rolvergelijking boekhouder/controller/CFO, salaris- en kostenanalyse,
+//              de uitgewerkte afweging aannemen versus uitbesteden, Finance-as-a-Service, het
+//              Finable-proces, shared services/GBS/GCC. Daarvoor staat een link naar de pagina
+//              die die intentie wel bezit.
+//
+// Feitelijke claims: alleen de groottecriteria en de controle- en administratieplicht, allemaal
+// uit wetten.overheid.nl en de NBA. Geen omzetdrempel voor "wanneer een controller nodig is",
+// want die bestaat niet. Waar iets een vuistregel of Finable-analyse is, staat dat er.
+//
+// Hergebruikt: Layout, Header, Footer, .hero-navy / .lbl, en het artikelpatroon (.art-*, .fin-faq)
+// van /kennis/hoe-grote-organisaties-finance-organiseren.
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+
+const published = '22 september 2026';
+const publishedISO = '2026-09-22';
+
+const toc = [
+  { id: 'kort', label: 'Het korte antwoord' },
+  { id: 'fasen', label: 'Vier fasen: van vastleggen naar sturen' },
+  { id: 'signalen', label: 'De signalen dat je in fase drie zit' },
+  { id: 'nog-niet', label: 'Wanneer je nog geen controller nodig hebt' },
+  { id: 'wet', label: 'De enige grens die wel in de wet staat' },
+  { id: 'wachten', label: 'Wat er gebeurt als je wacht' },
+  { id: 'vormen', label: 'Controlling nodig is niet hetzelfde als iemand aannemen' },
+  { id: 'test', label: 'Waar staat jouw organisatie nu?' },
+  { id: 'faq', label: 'Veelgestelde vragen' },
+  { id: 'bronnen', label: 'Bronnen' },
+];
+
+/** Het framework. Controlling begint bij fase 3, niet bij een omzetniveau. */
+const fasen = [
+  {
+    n: '01', t: 'Vastleggen',
+    vraag: 'Wat is er gebeurd?',
+    werk: 'Facturen, bank, btw, een administratie die klopt en op tijd is.',
+    wie: 'Boekhouder of administratiekantoor',
+  },
+  {
+    n: '02', t: 'Afsluiten',
+    vraag: 'Klopt het ook echt?',
+    werk: 'Aansluitingen, voorzieningen, onderhanden werk, een maand die dicht kan.',
+    wie: 'Boekhouder, vaak met hulp',
+  },
+  {
+    n: '03', t: 'Verklaren',
+    vraag: 'Waarom is het zo?',
+    werk: 'Marge per product of klant, afwijkingen ten opzichte van vorige maand en budget, cashontwikkeling.',
+    wie: 'Hier begint controlling',
+    fin: true,
+  },
+  {
+    n: '04', t: 'Vooruitkijken',
+    vraag: 'Wat gaan we doen?',
+    werk: 'Forecast, scenario’s, investerings- en prijsbeslissingen onderbouwen.',
+    wie: 'Controller of CFO',
+  },
+];
+
+const signalen = [
+  'De maandcijfers zijn er, maar niemand kan uitleggen waarom de marge twee procentpunt lager ligt dan vorig kwartaal.',
+  'Je boekhouder zegt steeds vaker: dat weet ik niet, dat is een vraag voor de directie.',
+  'Elke vraag van je bank, investeerder of aandeelhouder wordt een Excel-project van een halve week.',
+  'Beslissingen over prijzen of aannames worden genomen op gevoel, terwijl de cijfers er wel zijn.',
+  'De afsluiting loopt elke maand uit en niemand voelt zich er eigenaar van.',
+  'Je kijkt zelf in de administratie omdat je het antwoord anders niet krijgt.',
+];
+
+const faq = [
+  {
+    q: 'Vanaf welke omzet heb je een controller nodig?',
+    a: 'Er bestaat geen omzetgrens. In Nederlandse artikelen circuleren drempels die ongeveer een factor tien uit elkaar liggen, en geen enkele daarvan is wettelijk of door onderzoek onderbouwd. Wat wel voorspelt of controlling nodig is: het aantal entiteiten, het aantal opbrengststromen, de mate waarin kosten aan opbrengsten moeten worden toegerekend en of er externe partijen zijn die periodiek cijfers willen zien. Een bedrijf met één dienst en één bv heeft bij vijf miljoen omzet minder controlling nodig dan een bedrijf met drie entiteiten en projectadministratie bij anderhalf miljoen.',
+  },
+  {
+    q: 'Is een business controller hetzelfde als een financial controller?',
+    a: 'Nee, al lopen de titels in het mkb door elkaar. Een financial controller bewaakt of de cijfers kloppen: aansluitingen, afsluiting, rapportage. Een business controller werkt vanuit diezelfde cijfers naar de business toe: marges, investeringen, prijsstelling, scenario’s. Groeiende bedrijven hebben meestal eerst het eerste nodig en pas later het tweede. Een vacature die beide vraagt, vraagt in de praktijk om twee profielen.',
+  },
+  {
+    q: 'Kan mijn accountant de controlling doen?',
+    a: 'Gedeeltelijk, en meestal niet op het ritme dat je nodig hebt. Een accountantskantoor is ingericht op jaarwerk, fiscaliteit en verantwoording achteraf. Controlling draait om maandelijkse duiding, dicht op de business. Veel kantoren bieden tegenwoordig wel advies of rapportage aan, maar het blijft een andere frequentie en een andere rol. De twee sluiten elkaar niet uit: de accountant doet het jaarwerk, controlling gebeurt maandelijks.',
+  },
+  {
+    q: 'Heb ik meteen een fulltime controller nodig?',
+    a: 'Zelden. Bij de meeste bedrijven die net in fase drie komen, is het controllingwerk enkele dagen per maand. Dat is te weinig voor een volwaardige functie en te veel om erbij te doen. Het is precies de reden dat veel eerste controllervacatures blijven staan of worden ingevuld door iemand die het werk niet aankan of zich verveelt.',
+  },
+  {
+    q: 'Wat kost controlling?',
+    a: 'Dat hangt af van de vorm die je kiest: iemand in dienst nemen, inhuren of het werk uitbesteden. Bij een dienstverband komen naast salaris ook werkgeverslasten, werving en het risico van vertrek. Bij uitbesteden betaal je voor het werk dat wordt overgenomen. Dit artikel doet daar bewust geen bedragen over; voor een indicatie voor je eigen situatie kun je een aanvraag doen.',
+  },
+];
+
+const bronnen = [
+  { l: 'Artikel 2:396 BW — criteria voor een kleine rechtspersoon', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396' },
+  { l: 'Artikel 2:397 BW — criteria voor een middelgrote rechtspersoon', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=397' },
+  { l: 'Artikel 2:393 BW — opdracht tot onderzoek van de jaarrekening', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393' },
+  { l: 'Artikel 2:10 BW — administratieplicht van het bestuur', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10' },
+  { l: 'NBA — Verhoging financiële groottecriteria met 25%', u: 'https://www.nba.nl/tools-en-ondersteuning/faqs-en-helpdesk/faqs-verhoging-financiele-groottecriteria-met-25/' },
+  { l: 'Staatsblad 2024, 52 — Implementatiebesluit richtlijn verhoging grensbedragen', u: 'https://zoek.officielebekendmakingen.nl/stb-2024-52.html' },
+];
+---
+<Layout
+  title="Wanneer heb je een controller nodig? | Finable"
+  description="Niet je omzet bepaalt wanneer je een controller nodig hebt, maar de vraag die je over je cijfers stelt. Vier fasen van vastleggen naar sturen, met de signalen per fase."
+  hreflang={false}
+  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'Kennis', path: '/kennis' }, { name: 'Wanneer heb je een controller nodig?' }]}
+  article={{
+    headline: 'Wanneer heb je een controller nodig?',
+    author: 'Tim Samsom',
+    datePublished: publishedISO,
+  }}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:44px;padding-bottom:56px">
+      <nav class="crumb" aria-label="Kruimelpad">
+        <a href="/">Finable</a>
+        <span aria-hidden="true">/</span>
+        <a href="/kennis">Kennis</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Wanneer heb je een controller nodig?</span>
+      </nav>
+      <div style="max-width:820px">
+        <div class="lbl" style="margin-bottom:20px">Kennis &middot; Finance organiseren</div>
+        <h1 style="font-size:clamp(30px,4vw,46px);margin-bottom:24px;text-wrap:balance">Wanneer heb je een controller nodig?</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Zodra de vraag over je cijfers verandert van &ldquo;wat is er gebeurd&rdquo; naar &ldquo;waarom is het gebeurd, en wat betekent dat voor volgende maand&rdquo;. Niet op een bepaalde omzet en niet bij een bepaald aantal medewerkers.</p>
+        <div class="art-meta">
+          <span><strong>Tim Samsom</strong> &middot; Oprichter Finable</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Gepubliceerd <time datetime={publishedISO}>{published}</time></span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Leestijd ongeveer 7 minuten</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <div class="art-grid">
+
+      <nav class="art-toc" aria-label="Op deze pagina">
+        <div class="lbl" style="color:var(--body);margin-bottom:16px">Op deze pagina</div>
+        <ul>{toc.map((t) => (<li><a href={`#${t.id}`}>{t.label}</a></li>))}</ul>
+      </nav>
+
+      <article class="art-body">
+
+        <section id="kort">
+          <h2>Het korte antwoord</h2>
+          <p>Je hebt controlling nodig op het moment dat een kloppende administratie niet langer genoeg is om een beslissing te nemen. Dat moment komt bij het ene bedrijf bij twintig medewerkers en bij het andere pas bij tachtig, en het heeft weinig te maken met omzet.</p>
+          <p>Dat laatste is lastig te geloven, want er circuleren wel degelijk omzetgrenzen. Alleen liggen die in Nederlandse artikelen ongeveer een factor tien uit elkaar, van rond een miljoen tot rond tien miljoen euro. Geen van die grenzen is wettelijk vastgelegd of door onderzoek onderbouwd. Ze zijn vuistregels van de partij die ze opschrijft.</p>
+          <p>Wat wél voorspelt of je controlling nodig hebt, is hoeveel er te verklaren valt. Een bedrijf met één dienst, één bv en voorspelbare kosten kan tot ver in de miljoenen toe met een goede boekhouder. Een bedrijf met drie entiteiten, projectadministratie en wisselende marges heeft die behoefte veel eerder.</p>
+          <blockquote class="art-quote">Een kloppende administratie is geen grip. Het is de voorwaarde ervoor.</blockquote>
+        </section>
+
+        <section id="fasen">
+          <h2>Vier fasen: van vastleggen naar sturen</h2>
+          <p>Financewerk groeit niet gelijkmatig mee met een bedrijf. Het verandert in stappen, en bij elke stap verandert de vraag die iemand moet kunnen beantwoorden. Dit is de indeling die wij bij Finable gebruiken om te bepalen waar een organisatie staat.</p>
+          <ol class="ctr-fasen">
+            {fasen.map((f) => (
+              <li class:list={['ctr-fase', { 'is-fin': f.fin }]}>
+                <span class="ctr-n">{f.n}</span>
+                <div>
+                  <h3>{f.t}</h3>
+                  <p class="ctr-vraag">&ldquo;{f.vraag}&rdquo;</p>
+                  <p>{f.werk}</p>
+                  <p class="ctr-wie">{f.wie}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p>De overgang die ertoe doet, zit tussen twee en drie. In fase twee is het antwoord op elke vraag terug te vinden in de administratie. In fase drie niet meer: daar moet iemand cijfers naast elkaar leggen, een verschil verklaren en er een oordeel over geven. Dat is ander werk, en het vraagt andere ervaring.</p>
+          <p class="art-note">Deze indeling is een Finable-model, geen standaard uit de literatuur. Hij is bedoeld om een gesprek te structureren, niet om een organisatie in een hokje te plaatsen. In de praktijk zitten bedrijven vaak tegelijk in twee fasen: de ene entiteit loopt voor, de andere achter.</p>
+        </section>
+
+        <section id="signalen">
+          <h2>De signalen dat je in fase drie zit</h2>
+          <p>De meeste bedrijven merken de overgang niet aan de cijfers, maar aan de gesprekken eromheen. Deze zes komen het vaakst terug:</p>
+          <ul>{signalen.map((s) => <li>{s}</li>)}</ul>
+          <p>Eén signaal is nog geen conclusie. Drie of meer tegelijk, en het werk dat je mist is bijna altijd controlling.</p>
+        </section>
+
+        <section id="nog-niet">
+          <h2>Wanneer je nog geen controller nodig hebt</h2>
+          <p>Er wordt zelden opgeschreven wanneer het antwoord gewoon nee is. Toch is dat voor een deel van de lezers de juiste uitkomst.</p>
+          <p>Je hebt waarschijnlijk nog geen controller nodig als je bedrijf één opbrengststroom heeft, in één entiteit zit, en je de belangrijkste beslissingen kunt nemen op basis van je orderboek en je banksaldo. Ook niet als er geen externe partij is die periodiek cijfers wil zien, en je marges stabiel genoeg zijn dat een afwijking meteen verklaarbaar is.</p>
+          <p>En er is een geval waarin een controller aannemen ronduit de verkeerde volgorde is: wanneer je administratie nog niet op orde is. Een controller die eerst maanden moet opruimen voordat hij kan verklaren, is een dure boekhouder. Fase drie heeft fase één en twee nodig als fundament.</p>
+        </section>
+
+        <section id="wet">
+          <h2>De enige grens die wel in de wet staat</h2>
+          <p>Nederland kent precies één objectief vastgelegde omvangsgrens voor de financiële functie, en die gaat niet over controlling.</p>
+          <p>Een rechtspersoon geldt volgens <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396" target="_blank" rel="noopener noreferrer">artikel 2:396 BW</a> als klein wanneer hij op twee opeenvolgende balansdata aan ten minste twee van drie criteria voldoet. Sinds boekjaren die op of na 1 januari 2024 beginnen, zijn die grensbedragen met 25 procent verhoogd: een balanstotaal tot 7,5 miljoen euro, een netto-omzet tot 15 miljoen euro en minder dan vijftig werknemers (<a href="https://www.nba.nl/tools-en-ondersteuning/faqs-en-helpdesk/faqs-verhoging-financiele-groottecriteria-met-25/" target="_blank" rel="noopener noreferrer">NBA</a>, op basis van <a href="https://zoek.officielebekendmakingen.nl/stb-2024-52.html" target="_blank" rel="noopener noreferrer">Staatsblad 2024, 52</a>). Wie daar structureel boven zit, is middelgroot volgens <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=397" target="_blank" rel="noopener noreferrer">artikel 2:397 BW</a> en moet de jaarrekening laten controleren door een accountant (<a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393" target="_blank" rel="noopener noreferrer">artikel 2:393 BW</a>).</p>
+          <p>Die grens gaat over verantwoording achteraf aan de buitenwereld. Niet over of je binnen je eigen bedrijf kunt sturen. De administratieplicht van <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=1&artikel=10" target="_blank" rel="noopener noreferrer">artikel 2:10 BW</a> geldt bovendien vanaf dag één en zegt alleen dat rechten en verplichtingen te allen tijde kenbaar moeten zijn.</p>
+          <blockquote class="art-quote">Wie wacht tot de wet iets vraagt, is jaren te laat met sturen.</blockquote>
+        </section>
+
+        <section id="wachten">
+          <h2>Wat er gebeurt als je wacht</h2>
+          <p>Uitstel is comfortabel, want er gaat niets zichtbaar kapot. De schade is traag en meestal pas achteraf zichtbaar.</p>
+          <p>Wat we in de praktijk zien: prijzen worden te laat aangepast omdat niemand ziet dat de marge al twee kwartalen zakt. Een verlieslatende klant of productlijn blijft draaien omdat de kosten nooit zijn toegerekend. Een financieringsaanvraag loopt vertraging op omdat de cijfers er wel zijn maar niet uit te leggen. En de ondernemer gaat zelf in de administratie zitten, meestal in de avonduren, waardoor precies dat werk blijft liggen waarvoor hij is aangenomen.</p>
+          <p>Geen van die vier is een ramp op zichzelf. Bij elkaar kosten ze meestal meer dan de controlling die ze had kunnen voorkomen.</p>
+        </section>
+
+        <section id="vormen">
+          <h2>Controlling nodig is niet hetzelfde als iemand aannemen</h2>
+          <p>Bij de meeste bedrijven die net in fase drie komen, is het controllingwerk enkele dagen per maand. Dat is te weinig voor een volwaardige functie en te veel om erbij te doen. Daar loopt de eerste controllervacature meestal op stuk: het profiel dat je zoekt, verveelt zich, en het profiel dat past, kan het werk niet aan.</p>
+          <p>De opties op hoofdlijnen: iemand in dienst nemen, tijdelijk inhuren, of het werk laten uitvoeren door een partij die het als vast onderdeel oppakt. Welke vorm past, hangt af van hoeveel werk er structureel is en hoe dicht het op je business moet zitten. Overweeg je een vacature, dan zet <a href="/finance-hire">de vergelijking tussen één finance-hire en een team</a> de afweging naast elkaar. Overweeg je het uit te besteden, dan staat op <a href="/finance-uitbesteden">de pagina over finance uitbesteden</a> wat dat in de praktijk betekent.</p>
+          <p>Wat je ook kiest: het principe dat grote organisaties hierbij hanteren, is dat uitvoering en oordeel niet bij dezelfde persoon hoeven te liggen. Hoe zij financewerk verdelen, staat in <a href="/kennis/hoe-grote-organisaties-finance-organiseren">het artikel over grote organisaties</a>.</p>
+        </section>
+
+        <section id="test">
+          <h2>Waar staat jouw organisatie nu?</h2>
+          <p>Twee vragen zijn genoeg om je fase te bepalen.</p>
+          <ol class="ctr-test">
+            <li><strong>Hoeveel werkdagen na het einde van de maand ligt er een rapportage waarin de afwijkingen zijn verklaard?</strong></li>
+            <li><strong>Wie heeft die verklaring geschreven?</strong></li>
+          </ol>
+          <p>Is het antwoord op de tweede vraag &ldquo;niemand&rdquo;, of &ldquo;ik, in het weekend&rdquo;, dan zit je in fase drie en mist je organisatie controlling. Duurt het antwoord op de eerste vraag langer dan tien werkdagen, dan is de afsluiting zelf ook nog niet af.</p>
+          <p class="art-note">Dit is een vuistregel uit onze eigen praktijk, geen norm. Er bestaat geen wettelijke of algemeen aanvaarde termijn waarbinnen een maandrapportage klaar moet zijn.</p>
+          <div class="ctr-cta" data-cta-location="article_close">
+            <p class="ctr-cta-q">Benieuwd wat controlling voor jouw organisatie zou kosten?</p>
+            <div class="ctr-cta-row">
+              <Button href="/indicatie">Vraag een indicatie aan &rarr;</Button>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq">
+          <h2>Veelgestelde vragen</h2>
+          <div class="ctr-faq">
+            {faq.map((f) => (
+              <details class="fin-faq">
+                <summary><span class="fin-faq-q">{f.q}</span><span class="fin-faq-ic"></span></summary>
+                <div class="fin-faq-a"><p>{f.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section id="bronnen">
+          <h2>Bronnen</h2>
+          <p>De cijfermatige claims in dit artikel gaan uitsluitend over de wettelijke groottecriteria en de controle- en administratieplicht. Er bestaat geen bron voor een omzetgrens waarboven een controller nodig is, en die staat er daarom ook niet in.</p>
+          <ul class="ctr-src">
+            {bronnen.map((b) => (<li><a href={b.u} target="_blank" rel="noopener noreferrer">{b.l}</a></li>))}
+          </ul>
+        </section>
+
+      </article>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+
+  /* Kruimelpad op navy, gelijk aan /kennis. */
+  .crumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:22px;font-size:13px;color:var(--on-dark-tertiary)}
+  .crumb a{color:var(--on-dark-secondary)}
+  .crumb a:hover{color:var(--terracotta);opacity:1}
+  .crumb span[aria-current]{color:var(--on-dark-tertiary)}
+
+  .art-meta{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--on-dark-tertiary)}
+  .art-meta strong{color:var(--on-dark-secondary);font-weight:600}
+
+  /* Leesraster: meeschuivende inhoudsopgave links, smalle leeskolom rechts. */
+  .art-grid{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(40px,5vw,76px);align-items:start}
+  .art-toc{position:sticky;top:32px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:8px}
+  .art-toc ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .art-toc a{display:block;font-size:13.5px;line-height:1.45;color:var(--body);padding:5px 0;text-wrap:pretty}
+  .art-toc a:hover{color:var(--terracotta);opacity:1}
+  .art-grid>*{min-width:0}
+  .art-body{max-width:720px;min-width:0}
+  .art-body>section+section{margin-top:44px;padding-top:44px;border-top:1px solid var(--line)}
+  .art-body h2{font-size:clamp(23px,2.5vw,30px);margin-bottom:20px;text-wrap:balance}
+  .art-body h3{font-size:19px;margin:0 0 6px;text-wrap:balance}
+  .art-body p{font-size:17px;color:var(--body);text-wrap:pretty}
+  .art-body p+p{margin-top:16px}
+  .art-body ul,.art-body ol{list-style:none;margin:20px 0 0}
+  .art-body>section>ul>li{position:relative;font-size:17px;color:var(--body);padding-left:22px;margin-bottom:12px}
+  .art-body>section>ul>li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+  .art-body li strong,.art-body p strong{color:var(--navy);font-weight:600}
+  .art-body ul+p,.art-body ol+p{margin-top:22px}
+
+  .art-quote{margin:30px 0 0;padding-left:20px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.34;color:var(--navy);text-wrap:balance}
+  .art-quote+p{margin-top:26px}
+  .art-note{margin-top:26px;padding:16px 18px;background:var(--section);font-size:15px;color:var(--body);border-left:2px solid var(--line)}
+
+  /* Vier fasen: genummerde rijen, fase 3 met terracotta accent. Geen tegels. */
+  /* Geen negatieve marges hier. .art-body heeft max-width en geen padding, dus alles wat buiten
+     de tekstbreedte bleedt, loopt meteen buiten .art-body en .art-grid. De terracotta fase krijgt
+     daarom binnenpadding en een accentlijn in plaats van een blok dat de marge in loopt. */
+  .ctr-fasen{margin-top:26px!important;border-top:1px solid var(--line)}
+  .ctr-fase{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .ctr-fase.is-fin{background:var(--terracotta-soft);padding:22px 18px;border-bottom-color:var(--terracotta-soft);border-left:3px solid var(--terracotta)}
+  .ctr-fase.is-fin .ctr-n{margin-left:-3px}
+  .ctr-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta);line-height:1.3}
+  .ctr-vraag{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--navy)!important;margin-bottom:8px}
+  .ctr-fase p{font-size:15.5px}
+  .ctr-wie{margin-top:8px!important;font-size:12px!important;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--body)!important}
+  .ctr-fase.is-fin .ctr-wie{color:var(--terracotta)!important}
+
+  /* Twee testvragen: genummerd, groter. */
+  .ctr-test{margin-top:22px!important;counter-reset:ct}
+  .ctr-test>li{position:relative;padding:0 0 0 40px;margin-bottom:16px;counter-increment:ct;font-size:17px;color:var(--body);line-height:1.6}
+  .ctr-test>li::before{content:counter(ct);position:absolute;left:0;top:0;font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--terracotta)}
+
+  /* Slot-CTA: navy vlak, één knop. */
+  .ctr-cta{margin-top:32px;padding:28px}
+  .ctr-cta{background:var(--navy)}
+  .ctr-cta-q{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2vw,24px);line-height:1.32;color:var(--warm-white)!important;margin-bottom:20px;text-wrap:balance}
+  .ctr-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+
+  /* FAQ: het bestaande accordeonpatroon. */
+  .ctr-faq{margin-top:22px}
+  details.fin-faq{border-top:1px solid var(--line)}
+  details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:22px 0}
+  details.fin-faq>summary::-webkit-details-marker{display:none}
+  .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(17px,1.7vw,19px);color:var(--navy);line-height:1.35;letter-spacing:-0.01em}
+  .fin-faq-ic{position:relative;width:17px;height:17px;flex-shrink:0;margin-top:6px}
+  .fin-faq-ic::before,.fin-faq-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
+  .fin-faq-ic::before{left:0;top:7.5px;width:17px;height:2px}
+  .fin-faq-ic::after{left:7.5px;top:0;width:2px;height:17px}
+  details.fin-faq[open] .fin-faq-ic::after{opacity:0}
+  details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
+  .fin-faq-a{max-width:660px;padding:0 0 26px;font-size:15.5px;color:var(--body);line-height:1.72}
+
+  /* Bronnen. */
+  .ctr-src{margin:20px 0 0!important;border-top:1px solid var(--line)}
+  .ctr-src>li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;color:var(--body);text-wrap:pretty}
+
+  @media (max-width:1023px){
+    .art-grid{grid-template-columns:1fr;gap:0}
+    .art-toc{display:none}
+    .art-body{max-width:none}
+    .art-body>section+section{margin-top:36px;padding-top:36px}
+    .art-src a{display:inline-block}
+  }
+  @media (max-width:639px){
+    .art-body p,.art-body>section>ul>li,.ctr-test>li{font-size:16px}
+    .ctr-fase{grid-template-columns:34px minmax(0,1fr);gap:12px}
+    .ctr-fase.is-fin{padding:22px 14px}
+    .ctr-cta{padding:24px 20px}
+  }
+</style>
