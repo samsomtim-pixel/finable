@@ -1,0 +1,104 @@
+---
+// Kennisindex. Bewust compact: met twee artikelen is een categoriestructuur nog betekenisloos.
+// Zodra er per onderwerp meerdere artikelen staan, kunnen hier categorieën bij.
+//
+// Hergebruikt: .hero-navy / .lbl (alle navy hero's), .crumb (kruimelpad van de artikelen),
+// dunne lijnen in plaats van kaarten, conform het ontwerpsysteem.
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+/** Nieuwste eerst. Datum in ISO voor <time>, los van de leesbare weergave. */
+const artikelen = [
+  {
+    href: '/kennis/wanneer-controller-nodig',
+    titel: 'Wanneer heb je een controller nodig?',
+    intro: 'Niet je omzet bepaalt het moment, maar de vraag die je over je cijfers stelt. Vier fasen van vastleggen naar sturen, met de signalen per fase.',
+    iso: '2026-09-22',
+    datum: '22 september 2026',
+    leestijd: '7 minuten',
+  },
+  {
+    href: '/kennis/hoe-grote-organisaties-finance-organiseren',
+    titel: 'Hoe organiseer je een finance functie? Lessen van grote organisaties',
+    intro: 'Grote organisaties hebben hun finance niet uitbesteed maar gesplitst: uitvoering naar gespecialiseerde teams, oordeel dicht bij de business. Met bronnen van HEINEKEN tot de ICO.',
+    iso: '2026-09-21',
+    datum: '21 september 2026',
+    leestijd: '12 minuten',
+  },
+];
+---
+<Layout
+  title="Kennis: finance organiseren voor groeiende bedrijven | Finable"
+  description="Artikelen over het organiseren van de finance-functie van een groeiend bedrijf: wanneer controlling nodig wordt en hoe grote organisaties financewerk verdelen."
+  hreflang={false}
+  breadcrumbs={[{ name: 'Finable', path: '/' }, { name: 'Kennis' }]}
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:44px;padding-bottom:52px">
+      <nav class="crumb" aria-label="Kruimelpad">
+        <a href="/">Finable</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Kennis</span>
+      </nav>
+      <div style="max-width:760px">
+        <div class="lbl" style="margin-bottom:18px">Kennis</div>
+        <h1 style="font-size:clamp(30px,4vw,46px);margin-bottom:22px;text-wrap:balance">Finance organiseren als je bedrijf groeit</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Wat je hier leest gaat over het organiseren van de finance-functie: welk werk er bij groei bij komt, wanneer welke rol nodig wordt en hoe andere organisaties dat hebben opgelost. Geen productuitleg.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIKELEN -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <ol class="kn-list">
+      {artikelen.map((a) => (
+        <li class="kn-item">
+          <div class="kn-meta">
+            <time datetime={a.iso}>{a.datum}</time>
+            <span aria-hidden="true">&middot;</span>
+            <span>{a.leestijd} lezen</span>
+          </div>
+          <h2><a href={a.href}>{a.titel}</a></h2>
+          <p>{a.intro}</p>
+          <a href={a.href} class="kn-read">Lees het artikel &rarr;</a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+
+  /* Kruimelpad op navy. Zelfde markup als op de artikelen, zodat de weergave overal gelijk is. */
+  .crumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:22px;font-size:13px;color:var(--on-dark-tertiary)}
+  .crumb a{color:var(--on-dark-secondary)}
+  .crumb a:hover{color:var(--terracotta);opacity:1}
+  .crumb span[aria-current]{color:var(--on-dark-tertiary)}
+
+  /* Artikellijst: dunne lijnen en witruimte, geen kaarten. */
+  .kn-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-width:760px}
+  .kn-item{padding:30px 0;border-bottom:1px solid var(--line)}
+  .kn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:13px;color:var(--body);margin-bottom:12px}
+  .kn-item h2{font-size:clamp(21px,2.4vw,28px);line-height:1.22;margin-bottom:12px;text-wrap:balance}
+  .kn-item h2 a{color:var(--navy)}
+  .kn-item h2 a:hover{color:var(--terracotta);opacity:1}
+  .kn-item p{font-size:16px;color:var(--body);line-height:1.65;text-wrap:pretty}
+  .kn-read{display:inline-block;margin-top:14px;font-size:15px;font-weight:600;color:var(--terracotta)}
+
+  @media (max-width:639px){
+    .kn-item{padding:24px 0}
+    .kn-item p{font-size:15.5px}
+  }
+</style>
