@@ -1,6 +1,7 @@
 ---
-// Kennisindex. Bewust compact: met twee artikelen is een categoriestructuur nog betekenisloos.
-// Zodra er per onderwerp meerdere artikelen staan, kunnen hier categorieën bij.
+// Kennisindex. Bewust compact: één lijst, geen categorieën of filters. De kennisbank bedient twee
+// doelgroepen: groeiende bedrijven en administratiekantoren. Dat verschil draagt de intro plus een
+// doelgroeplabel in de bestaande metaregel; pas bij meerdere kantorenartikelen is meer nodig.
 //
 // Hergebruikt: .hero-navy / .lbl (alle navy hero's), .crumb (kruimelpad van de artikelen),
 // dunne lijnen in plaats van kaarten, conform het ontwerpsysteem.
@@ -10,6 +11,15 @@ import Footer from '../../components/Footer.astro';
 
 /** Nieuwste eerst. Datum in ISO voor <time>, los van de leesbare weergave. */
 const artikelen = [
+  {
+    href: '/kennis/automatiseren-of-uitbesteden-administratiekantoor',
+    titel: 'Automatiseren of uitbesteden als administratiekantoor: wat lost welk probleem op?',
+    intro: 'Automatisering verlaagt het volume maar concentreert de uitzonderingen. Wat kantoren volgens NOAB daadwerkelijk uitbesteden, en een afweging per soort werk.',
+    iso: '2026-09-22',
+    datum: '22 september 2026',
+    leestijd: '8 minuten',
+    voor: 'Voor administratiekantoren',
+  },
   {
     href: '/kennis/finance-afdeling-inrichten',
     titel: 'Finance afdeling inrichten: begin bij het werk, niet bij het organogram',
@@ -57,7 +67,7 @@ const artikelen = [
       <div style="max-width:760px">
         <div class="lbl" style="margin-bottom:18px">Kennis</div>
         <h1 style="font-size:clamp(30px,4vw,46px);margin-bottom:22px;text-wrap:balance">Finance organiseren als je bedrijf groeit</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Wat je hier leest gaat over het organiseren van de finance-functie: welk werk er bij groei bij komt, wanneer welke rol nodig wordt en hoe andere organisaties dat hebben opgelost. Geen productuitleg.</p>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">Wat je hier leest gaat over het organiseren van de finance-functie: welk werk er bij groei bij komt, wanneer welke rol nodig wordt en hoe andere organisaties dat hebben opgelost. Het meeste is geschreven voor groeiende bedrijven; richt een artikel zich op administratiekantoren, dan staat dat erbij. Geen productuitleg.</p>
       </div>
     </div>
   </section>
@@ -71,6 +81,7 @@ const artikelen = [
             <time datetime={a.iso}>{a.datum}</time>
             <span aria-hidden="true">&middot;</span>
             <span>{a.leestijd} lezen</span>
+            {a.voor && <><span aria-hidden="true">&middot;</span><span class="kn-voor">{a.voor}</span></>}
           </div>
           <h2><a href={a.href}>{a.titel}</a></h2>
           <p>{a.intro}</p>
@@ -99,6 +110,8 @@ const artikelen = [
   .kn-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-width:760px}
   .kn-item{padding:30px 0;border-bottom:1px solid var(--line)}
   .kn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:13px;color:var(--body);margin-bottom:12px}
+  /* Doelgroeplabel: alleen op artikelen die niet voor de eindklant zijn. Geen nieuwe kaartstructuur. */
+  .kn-voor{color:var(--terracotta);font-weight:600}
   .kn-item h2{font-size:clamp(21px,2.4vw,28px);line-height:1.22;margin-bottom:12px;text-wrap:balance}
   .kn-item h2 a{color:var(--navy)}
   .kn-item h2 a:hover{color:var(--terracotta);opacity:1}
