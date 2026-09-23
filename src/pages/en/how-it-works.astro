@@ -233,7 +233,7 @@ import Button from '../../components/Button.astro';
           <details class="fin-faq"><summary><span class="fin-faq-q">How quickly can Finable get started?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>That depends on the current setup and the scope being transferred. A relatively straightforward finance operation can naturally be handed over more easily than a complex setup involving several entities, systems or existing partners. We determine the approach after the initial scan.</p></div></details>
         </div>
         <div data-faq-morewrap style="margin-top:26px">
-          <a href="#" data-faq-more style="font-weight:600;font-size:15px;color:var(--terracotta)">See all frequently asked questions &rarr;</a>
+          <button type="button" data-faq-more aria-expanded="false" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px;color:var(--terracotta)">See all frequently asked questions &rarr;</button>
         </div>
       </div>
 
@@ -358,10 +358,10 @@ import Button from '../../components/Button.astro';
 
 <script>
   // "See all frequently asked questions": reveals the hidden questions.
-  const btn = document.querySelector<HTMLAnchorElement>('[data-faq-more]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-faq-more]');
   const hidden = document.querySelector<HTMLElement>('[data-faq-hidden]');
   const wrap = document.querySelector<HTMLElement>('[data-faq-morewrap]');
   if (btn && hidden) {
-    btn.addEventListener('click', (e) => { e.preventDefault(); hidden.style.display = 'block'; if (wrap) wrap.style.display = 'none'; });
+    btn.addEventListener('click', () => { hidden.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); if (wrap) wrap.style.display = 'none'; });
   }
 </script>

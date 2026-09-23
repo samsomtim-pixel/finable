@@ -144,11 +144,7 @@ import Button from '../../components/Button.astro';
         </div>
       </div>
       <div style="position:relative">
-        <div style="aspect-ratio:3/2;border-radius:14px;overflow:hidden"><img src="/images/finable-team.webp" alt="The finance team behind Finable" width="1536" height="1024" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div class="team-note" style="margin-top:12px;text-align:right;pointer-events:none">
-          <svg width="60" height="32" viewBox="0 0 66 40" fill="none" style="display:inline-block" aria-hidden="true"><path d="M8 32C20 14 40 8 58 12" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M50 6l9 6-7 8" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="cav" style="font-size:22px">The people behind Finable.</div>
-        </div>
+        <div style="aspect-ratio:3/2;border-radius:14px;overflow:hidden"><img src="/images/finable-team.webp" alt="Colleagues talking at a work table" width="1536" height="1024" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
     </div>
     <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.6vw,46px);color:var(--navy);line-height:1.12;margin-top:clamp(48px,5vw,72px);max-width:920px;text-wrap:balance">The scale of a team. The attention of a dedicated finance partner.</h3>
@@ -184,7 +180,7 @@ import Button from '../../components/Button.astro';
             <details class="fin-faq"><summary><span class="fin-faq-q">How much does a Finable team cost?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>There is no standard package. The monthly fee depends on the scope, workload and complexity of your finance operation. After learning how your finance is currently organised, Finable can provide an initial indication for a fixed monthly fee.</p></div></details>
           </div>
           <div data-faq-morewrap style="margin-top:26px">
-            <a href="#" data-faq-more style="font-weight:600;font-size:15px;color:var(--terracotta)">See all frequently asked questions &rarr;</a>
+            <button type="button" data-faq-more aria-expanded="false" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px;color:var(--terracotta)">See all frequently asked questions &rarr;</button>
           </div>
         </div>
       </div>
@@ -283,16 +279,15 @@ import Button from '../../components/Button.astro';
     .flow{gap:12px}
     .why-cmp{gap:28px}
     .princ{gap:22px;margin-top:32px}
-    .team-note{text-align:left}
   }
 </style>
 
 <script>
   // "See all frequently asked questions": reveals the hidden questions.
-  const btn = document.querySelector<HTMLAnchorElement>('[data-faq-more]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-faq-more]');
   const hidden = document.querySelector<HTMLElement>('[data-faq-hidden]');
   const wrap = document.querySelector<HTMLElement>('[data-faq-morewrap]');
   if (btn && hidden) {
-    btn.addEventListener('click', (e) => { e.preventDefault(); hidden.style.display = 'block'; if (wrap) wrap.style.display = 'none'; });
+    btn.addEventListener('click', () => { hidden.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); if (wrap) wrap.style.display = 'none'; });
   }
 </script>
