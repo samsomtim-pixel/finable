@@ -124,11 +124,7 @@ import Button from '../components/Button.astro';
         </div>
       </div>
       <div style="position:relative">
-        <div style="aspect-ratio:3/2;border-radius:14px;overflow:hidden"><img src="/images/finable-team.webp" alt="Het finance-team achter Finable" width="1536" height="1024" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div class="team-note" style="margin-top:12px;text-align:right;pointer-events:none">
-          <svg width="60" height="32" viewBox="0 0 66 40" fill="none" style="display:inline-block" aria-hidden="true"><path d="M8 32C20 14 40 8 58 12" stroke="#C4643A" stroke-width="2" stroke-linecap="round"/><path d="M50 6l9 6-7 8" stroke="#C4643A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="cav" style="font-size:22px">Het team achter Finable.</div>
-        </div>
+        <div style="aspect-ratio:3/2;border-radius:14px;overflow:hidden"><img src="/images/finable-team.webp" alt="Collega's in overleg aan een werktafel" width="1536" height="1024" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
     </div>
     <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.6vw,46px);color:var(--navy);line-height:1.12;margin-top:clamp(48px,5vw,72px);max-width:920px;text-wrap:balance">De schaal van een team. De aandacht van een vaste finance-partner.</h3>
@@ -165,7 +161,7 @@ import Button from '../components/Button.astro';
             <details class="fin-faq"><summary><span class="fin-faq-q">Kan Finable later meer of minder werkzaamheden overnemen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Ja. De verdeling waarmee we beginnen hoeft niet permanent te zijn. Wanneer je organisatie groeit, werkzaamheden complexer worden of intern juist nieuwe finance-capaciteit wordt opgebouwd, kunnen we opnieuw kijken naar de verdeling. Finable kan dan meer werkzaamheden overnemen, maar ook werkzaamheden terug overdragen wanneer dat beter past bij de nieuwe situatie. Het uitgangspunt is dat de inrichting blijft aansluiten op wat de organisatie daadwerkelijk nodig heeft.</p></div></details>
           </div>
           <div data-faq-morewrap style="margin-top:26px">
-            <a href="#" data-faq-more style="font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</a>
+            <button type="button" data-faq-more aria-expanded="false" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</button>
           </div>
         </div>
       </div>
@@ -258,16 +254,15 @@ import Button from '../components/Button.astro';
     .disc{gap:18px}
     .flow{gap:12px}
     .princ{gap:22px;margin-top:32px}
-    .team-note{text-align:left}
   }
 </style>
 
 <script>
   // "Bekijk alle veelgestelde vragen": toont de verborgen vragen.
-  const btn = document.querySelector<HTMLAnchorElement>('[data-faq-more]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-faq-more]');
   const hidden = document.querySelector<HTMLElement>('[data-faq-hidden]');
   const wrap = document.querySelector<HTMLElement>('[data-faq-morewrap]');
   if (btn && hidden) {
-    btn.addEventListener('click', (e) => { e.preventDefault(); hidden.style.display = 'block'; if (wrap) wrap.style.display = 'none'; });
+    btn.addEventListener('click', () => { hidden.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); if (wrap) wrap.style.display = 'none'; });
   }
 </script>

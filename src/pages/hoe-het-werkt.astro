@@ -236,7 +236,7 @@ import Button from '../components/Button.astro';
           <details class="fin-faq"><summary><span class="fin-faq-q">Wat gebeurt er als we finance later weer intern willen organiseren?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Ook daar maken we vooraf afspraken over. We leggen vast waar de administratie en relevante documentatie staan, welke exports beschikbaar zijn, hoe een overdracht wordt uitgevoerd en welke opzegafspraken gelden. Wanneer je later besluit finance geheel of gedeeltelijk intern te organiseren, moet de opgebouwde financiële informatie overdraagbaar blijven. Je weet daardoor niet alleen hoe de samenwerking met Finable begint, maar ook hoe je later weer zelfstandig verder kunt.</p></div></details>
         </div>
         <div data-faq-morewrap style="margin-top:26px">
-          <a href="#" data-faq-more style="font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</a>
+          <button type="button" data-faq-more aria-expanded="false" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px;color:var(--terracotta)">Bekijk alle veelgestelde vragen &rarr;</button>
         </div>
       </div>
 
@@ -365,10 +365,10 @@ import Button from '../components/Button.astro';
 
 <script>
   // "Bekijk alle veelgestelde vragen": toont de verborgen vragen.
-  const btn = document.querySelector<HTMLAnchorElement>('[data-faq-more]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-faq-more]');
   const hidden = document.querySelector<HTMLElement>('[data-faq-hidden]');
   const wrap = document.querySelector<HTMLElement>('[data-faq-morewrap]');
   if (btn && hidden) {
-    btn.addEventListener('click', (e) => { e.preventDefault(); hidden.style.display = 'block'; if (wrap) wrap.style.display = 'none'; });
+    btn.addEventListener('click', () => { hidden.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); if (wrap) wrap.style.display = 'none'; });
   }
 </script>
