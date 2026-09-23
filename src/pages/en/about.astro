@@ -111,14 +111,13 @@ import Button from '../../components/Button.astro';
         <p style="font-size:16px;color:var(--body);margin-bottom:18px">Behind Finable is a finance team with experience in bookkeeping, month-end close, controlling, reporting and international finance.</p>
         <p style="font-size:16px;color:var(--body)">You work with a fixed team that gets to know your company, processes and systems. Within the team, the work is divided based on the expertise it requires.</p>
       </div>
-      <!-- One real portrait, one intentionally neutral slot until the photo is supplied -->
+      <!-- One real portrait; for Himanshu only name and role until his photo is supplied -->
       <div class="fin-4port">
         <div>
           <div style="aspect-ratio:3/4;border-radius:12px;overflow:hidden"><img src="/images/janesh-gupta.webp" alt="Janesh Gupta" width="400" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
           <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Janesh Gupta</div><div style="font-size:13px;color:var(--body)">Chartered Accountant · Lawyer</div><div style="font-size:13px;color:var(--terracotta)">EY alumnus</div></div>
         </div>
         <div>
-          <div role="img" aria-label="Portrait of Himanshu Poddar (to follow)" class="port-pending"><span>portrait to follow</span></div>
           <div style="margin-top:14px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Himanshu Poddar</div><div style="font-size:13px;color:var(--body)">Chartered Accountant</div><div style="font-size:13px;color:var(--terracotta)">Tax &amp; Transfer Pricing</div></div>
         </div>
       </div>
@@ -139,7 +138,7 @@ import Button from '../../components/Button.astro';
           <div style="padding-right:16px"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Talogy Group</div><div style="font-size:12px;color:var(--body)">Global HR</div></div>
           <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Trodat</div><div style="font-size:12px;color:var(--body)">Austria</div></div>
           <div style="padding:0 16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">KidzInk</div><div style="font-size:12px;color:var(--body)">Dubai</div></div>
-          <div style="padding-left:16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Occassion</div><div style="font-size:12px;color:var(--body)">United States</div></div>
+          <div style="padding-left:16px;border-left:1px solid var(--line)"><div style="font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--navy)">Occasion</div><div style="font-size:12px;color:var(--body)">United States</div></div>
         </div>
         <p style="font-size:13px;color:var(--body)">Experience with international organisations, multiple entities, currencies and jurisdictions. That experience sits in the same fixed team behind Finable.</p>
       </div>
@@ -178,14 +177,12 @@ import Button from '../../components/Button.astro';
   .fin-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
   /* Portrettenrij: tweemaal de bestaande kolombreedte, zodat de portretten hun schaal houden nu het team
      uit twee mensen bestaat. De rest van de kolom blijft witruimte. */
-  .fin-4port{display:grid;grid-template-columns:repeat(2,minmax(0,150px));gap:18px}
+  .fin-4port{display:grid;grid-template-columns:repeat(2,minmax(0,150px));gap:18px;align-items:end}
   /* Handwritten note in the navy zone next to the photo, in normal flow (no absolute coordinates). */
   .over-visual{display:grid;grid-template-columns:minmax(130px,170px) minmax(0,1fr);gap:18px;align-items:start}
   .over-note{padding-top:10px}
   .over-note svg{display:block;position:relative;left:18px;margin:4px 0 0 24px}
   @media (max-width:1279px){ .over-note>div{font-size:22px!important} }
-  .port-pending{aspect-ratio:3/4;border-radius:12px;background:#ECEAE6;display:flex;align-items:flex-end;justify-content:center}
-  .port-pending span{font-family:monospace;font-size:10px;color:#9A9186;margin-bottom:14px}
   @media (max-width:1023px){
   .fin-3col{grid-template-columns:1fr;gap:0}
   .fin-3col .fin-vsep{border-left:none;padding-left:0;padding-right:0}
