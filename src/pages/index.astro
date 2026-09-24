@@ -30,27 +30,19 @@ const bronnen = [
   <!-- HERO (navy) -->
   <section class="hero-navy" style="background:var(--navy)">
     <div class="wrap" style="padding-top:64px;padding-bottom:80px">
-    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(36px,4.6vw,72px);align-items:center">
+    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(36px,4.6vw,72px);align-items:center">
       <div>
-        <div class="lbl" style="margin-bottom:26px">Finance-as-a-service</div>
-        <h1 style="font-size:clamp(38px,5vw,60px);line-height:1.06;margin-bottom:26px">Outsourced that<br>feels like<br><span class="em hero-em" style="font-size:clamp(52px,7vw,88px);line-height:1;display:inline-block;margin-top:10px">in-house.</span></h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:500px;text-wrap:pretty">Finable runt je dagelijkse finance voor één vaste maandprijs. Van boekhouding en maandafsluiting tot controlling en rapportage.</p>
+        <div class="hero-brand" style="margin-bottom:26px">Outsourced that feels like <span>in-house.</span></div>
+        <h1 style="font-size:clamp(38px,4.6vw,56px);line-height:1.05;margin-bottom:26px">Wij runnen je finance. <span class="hero-h1-b">Elke maand.</span></h1>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:560px;text-wrap:pretty">Van financiële administratie en maandafsluiting tot controlling en managementrapportage. Één team met verschillende expertises, zonder dat je al die rollen zelf hoeft op te bouwen.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
           <Button href="/gesprek">Plan een gesprek &rarr;</Button>
           <a href="/hoe-het-werkt" class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">Bekijk hoe Finable werkt &rarr;</a>
         </div>
       </div>
-      <div style="position:relative">
-        <div style="display:flex;align-items:stretch;gap:22px;margin-bottom:26px">
-          <div style="width:3px;background:var(--terracotta);border-radius:2px;flex-shrink:0"></div>
-          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.12"><span style="color:var(--white)">Een heel finance-team.</span><br><span style="color:var(--terracotta)">Voor minder dan één controller.</span></div>
-        </div>
-        <div style="margin-bottom:26px"><span style="font-size:14px;color:var(--on-dark-secondary)">Overweeg je een controller aan te nemen? </span><a href="/finance-hire" style="font-weight:600;font-size:14px;color:var(--terracotta)">Vergelijk de opties &rarr;</a></div>
+      <div>
         <!-- Beeldslot uit het ontwerp (home-hero-still). Gevuld met de aangeleverde samenwerkingsfoto; alleen op desktop (≥1024px), daaronder bewust weggelaten (display:none), niet verkleind. -->
-        <div class="hero-img" style="height:clamp(200px,22vw,260px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg via videobellen, met een spreadsheet op het scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
-        <div class="hero-note" style="position:absolute;right:-6px;bottom:-62px;width:230px;text-align:center;pointer-events:none">
-          <div class="cav" style="font-size:22px">alsof we gewoon bij je team horen.</div>
-        </div>
+        <div class="hero-img" style="height:clamp(260px,26vw,352px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg via videobellen, met een spreadsheet op het scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
       </div>
     </div>
     </div>
@@ -262,10 +254,14 @@ const bronnen = [
 </Layout>
 
 <style is:global>
+  /* Hero-brandline (A2): klein en uppercase boven de H1; alleen 'in-house.' krijgt het terracotta-accent. */
+  .hero-brand{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--on-dark-secondary)}
+  .hero-brand span{color:var(--terracotta)}
+  /* Op mobiel breekt de H1 anders midden in "Wij runnen je finance."; deze regel houdt de twee zinnen heel. */
+  @media (max-width:639px){ .hero-h1-b{display:block} }
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .on-dark-link:hover{color:var(--terracotta);opacity:1}
-  .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.15}
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
   .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
   .flow .fa{align-self:center;color:var(--terracotta)}
@@ -288,7 +284,6 @@ const bronnen = [
   .fin-faq-a{max-width:720px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
   @media (max-width:1023px){
   .hero{grid-template-columns:1fr!important;gap:40px!important}
-  .hero-note{display:none!important}
   .flow{grid-template-columns:1fr;gap:16px}
   .flow .fa{transform:rotate(90deg);justify-self:start}
   .cols4,.cols4t{grid-template-columns:1fr 1fr;gap:26px 0}
@@ -308,7 +303,6 @@ const bronnen = [
   }
   /* Mobiel (≤639): compositie */
   @media (max-width:639px){
-    .hero-em{font-size:clamp(44px,13vw,56px)!important}
     .navy-trio{flex-direction:column;gap:6px!important}
     .navy-trio>span[style]{display:none}
     .flow{gap:12px}
