@@ -29,6 +29,7 @@ const toc = [
   { id: 'nog-niet', label: 'Wanneer je nog geen controller nodig hebt' },
   { id: 'wet', label: 'Wat de wet hier wel en niet over zegt' },
   { id: 'wachten', label: 'Wat er gebeurt als je wacht' },
+  { id: 'rollen', label: 'Wie doet wat: boekhouder, controller, team' },
   { id: 'vormen', label: 'Controlling nodig is niet hetzelfde als iemand aannemen' },
   { id: 'test', label: 'Waar staat jouw organisatie nu?' },
   { id: 'faq', label: 'Veelgestelde vragen' },
@@ -73,10 +74,36 @@ const signalen = [
   'Je kijkt zelf in de administratie omdat je het antwoord anders niet krijgt.',
 ];
 
+/** Rolvergelijking. Geen nieuw model: de nadruk per rol verwijst terug naar de vier fasen
+ *  hierboven. Geen winnaar, geen drempels, geen bedragen. Beschrijft zwaartepunten, geen
+ *  bevoegdheden. De inkoopvormen (in dienst, inhuren, uitbesteden) staan bewust niet hier
+ *  maar in de sectie erna en op /finance-uitbesteden. */
+const rollen = [
+  {
+    t: 'Boekhouder of administratiekantoor',
+    nadruk: 'Op vastleggen en afsluiten: de administratie bijhouden, aangiften verzorgen en de maand kloppend krijgen. Veel kantoren doen daarnaast meer, van rapportage tot advies; hoe ver dat gaat verschilt per kantoor en per opdracht.',
+    wanneer: 'Als de belangrijkste vraag is of de cijfers kloppen en op tijd zijn, en het verklaren en vooruitkijken elders belegd is of nog beperkt nodig.',
+  },
+  {
+    t: 'Controller',
+    nadruk: 'Op verklaren en vooruitkijken: afwijkingen duiden, kosten en marges toerekenen, en rapportage maken waar een beslissing op kan rusten. In kleinere organisaties zit er in de praktijk vaak ook uitvoerend werk bij.',
+    wanneer: 'Als er structureel genoeg te verklaren en te onderbouwen valt om er een afgebakende rol voor in te richten, en de administratie eronder al staat.',
+  },
+  {
+    t: 'Een finance-team',
+    nadruk: 'Op meerdere fasen tegelijk, verdeeld over meer dan \u00e9\u00e9n persoon: uitvoering, afsluiting en analyse liggen dan niet bij dezelfde iemand. Wat het team oppakt, hangt af van wat je erbij neerlegt.',
+    wanneer: 'Als het werk over meerdere fasen verspreid ligt, maar per fase te weinig is om een eigen functie te vullen. Het is geen zwaardere versie van de andere twee, maar een andere verdeling van hetzelfde werk.',
+  },
+];
+
 const faq = [
   {
     q: 'Vanaf welke omzet heb je een controller nodig?',
     a: 'Er bestaat geen omzetgrens. De drempels die in Nederlandse artikelen worden genoemd lopen sterk uiteen, en geen enkele daarvan is wettelijk of door onderzoek onderbouwd. Wat wel voorspelt of controlling nodig is: het aantal entiteiten, het aantal opbrengststromen, de mate waarin kosten aan opbrengsten moeten worden toegerekend en of er externe partijen zijn die periodiek cijfers willen zien. Twee bedrijven met dezelfde omzet kunnen daarom een heel verschillende behoefte hebben.',
+  },
+  {
+    q: 'Wat is het verschil tussen een boekhouder, accountant en controller?',
+    a: 'Van deze drie is accountant een beschermde titel: alleen wie aan de wettelijke voorwaarden voldoet en in het accountantsregister staat ingeschreven, mag die titel voeren. Boekhouder en controller zijn dat niet. Een functienaam vertelt daarom niet precies welk werk iemand doet. Op hoofdlijnen: bij een boekhouder of administratiekantoor ligt het zwaartepunt meestal op de administratie, de aangiften en het opleveren van de cijfers. Een accountantskantoor kan, afhankelijk van de opdracht en de bevoegdheden, onder meer administratie-, samenstel-, advies- en controlewerk uitvoeren. Bij een controller ligt het zwaartepunt doorgaans op controle, analyse, managementinformatie en het verklaren van de resultaten. De grenzen lopen in de praktijk in elkaar over. Kijk daarom niet alleen naar de functietitel, maar vooral naar welk werk je nodig hebt en wie daarvoor verantwoordelijk is.',
   },
   {
     q: 'Is een business controller hetzelfde als een financial controller?',
@@ -102,6 +129,7 @@ const faq = [
 const bronnen = [
   { l: 'Artikel 2:396 BW — criteria voor een kleine rechtspersoon', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=11&artikel=396' },
   { l: 'Artikel 2:393 BW — opdracht tot onderzoek van de jaarrekening', u: 'https://wetten.overheid.nl/jci1.3:c:BWBR0003045&boek=2&titeldeel=9&afdeling=9&artikel=393' },
+  { l: 'Artikel 41 Wet op het accountantsberoep — bescherming van de titel accountant', u: 'https://wetten.overheid.nl/BWBR0032573/#Hoofdstuk8_Artikel41' },
 ];
 ---
 <Layout
@@ -210,6 +238,23 @@ const bronnen = [
           <p>Los van elkaar lijken dit kleine problemen. Samen zijn het signalen dat het ontbreken van financiële duiding inmiddels operationele gevolgen krijgt.</p>
         </section>
 
+        <section id="rollen">
+          <h2>Boekhouder, controller of een team: wie doet wat?</h2>
+          <p>De woorden boekhouder, controller en finance-team beschrijven geen scherp afgebakende takenpakketten. Ze beschrijven waar het zwaartepunt van het werk ligt. Wat er in de praktijk onder valt, verschilt per kantoor, per bedrijf en per afspraak.</p>
+          <ul class="ctr-rol-list">
+            {rollen.map((r) => (
+              <li class="ctr-rol">
+                <h3>{r.t}</h3>
+                <div class="ctr-rol-grid">
+                  <div><span class="ctr-rol-k">Waar ligt de nadruk?</span><span class="ctr-rol-v">{r.nadruk}</span></div>
+                  <div><span class="ctr-rol-k">Wanneer past dit?</span><span class="ctr-rol-v">{r.wanneer}</span></div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p>Deze drie sluiten elkaar niet uit. Veel bedrijven houden hun boekhouder en voegen alleen het verklaren toe; andere brengen een breder deel onder bij &eacute;&eacute;n partij. Welke vorm daar praktisch bij past &mdash; iemand aannemen, tijdelijk inhuren of het werk laten uitvoeren &mdash; is een aparte vraag. Die komt hierna aan bod.</p>
+        </section>
+
         <section id="vormen">
           <h2>Controlling nodig is niet hetzelfde als iemand aannemen</h2>
           <p>Bij de bedrijven die wij spreken vult de eerste structurele controllingbehoefte vaak nog geen fulltime functie. Er is terugkerend werk, maar niet noodzakelijk voor vijf dagen per week. Dat maakt een eerste controllerhire lastig: er is al behoefte aan controle en analyse, maar nog niet altijd genoeg gespecialiseerd werk om een volledige rol logisch te vullen.</p>
@@ -248,7 +293,7 @@ const bronnen = [
 
         <section id="bronnen">
           <h2>Bronnen</h2>
-          <p>Dit artikel doet één feitelijke claim die onderbouwing nodig heeft: dat de wet omvangscriteria kent, maar geen grens vanaf wanneer een controller verplicht is. De rest is een Finable-model of een observatie uit onze eigen praktijk, en staat in de tekst ook als zodanig benoemd.</p>
+          <p>Dit artikel doet twee feitelijke claims die onderbouwing nodig hebben: dat de wet omvangscriteria kent maar geen grens vanaf wanneer een controller verplicht is, en dat accountant een beschermde titel is terwijl boekhouder en controller dat niet zijn. De rest is een Finable-model of een observatie uit onze eigen praktijk, en staat in de tekst ook als zodanig benoemd.</p>
           <ul class="ctr-src">
             {bronnen.map((b) => (<li><a href={b.u} target="_blank" rel="noopener noreferrer">{b.l}</a></li>))}
           </ul>
@@ -313,6 +358,18 @@ const bronnen = [
   .ctr-wie{margin-top:8px!important;font-size:12px!important;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--body)!important}
   .ctr-fase.is-fin .ctr-wie{color:var(--terracotta)!important}
 
+  /* Rolvergelijking: gestapelde rijen, geen tabel en geen tegels. Bewust geen accentrij:
+     er is hier geen winnaar. Twee kolommen op desktop, gestapeld onder 640px. Eén DOM,
+     dus geen dubbele content voor screenreaders. */
+  .ctr-rol-list{margin-top:26px!important;border-top:1px solid var(--line)}
+  .art-body>section>ul.ctr-rol-list>li{padding:24px 0;margin-bottom:0;padding-left:0;border-bottom:1px solid var(--line)}
+  .art-body>section>ul.ctr-rol-list>li::before{display:none}
+  .ctr-rol h3{margin:0 0 16px}
+  .ctr-rol-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+  .ctr-rol-grid>div{min-width:0}
+  .ctr-rol-k{display:block;margin-bottom:7px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--terracotta)}
+  .ctr-rol-v{display:block;font-size:15.5px;line-height:1.6;color:var(--body);text-wrap:pretty}
+
   /* Twee testvragen: genummerd, groter. */
   .ctr-test{margin-top:22px!important;counter-reset:ct}
   .ctr-test>li{position:relative;padding:0 0 0 40px;margin-bottom:16px;counter-increment:ct;font-size:17px;color:var(--body);line-height:1.6}
@@ -354,6 +411,8 @@ const bronnen = [
     .art-body p,.art-body>section>ul>li,.ctr-test>li{font-size:16px}
     .ctr-fase{grid-template-columns:34px minmax(0,1fr);gap:12px}
     .ctr-fase.is-fin{padding:22px 14px}
+    .ctr-rol-grid{grid-template-columns:1fr;gap:16px}
+    .ctr-rol-v{font-size:16px}
     .ctr-cta{padding:24px 20px}
   }
 </style>
