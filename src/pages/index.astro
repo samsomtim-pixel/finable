@@ -40,7 +40,7 @@ const bronnen = [
           <a href="/hoe-het-werkt" class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">Bekijk hoe Finable werkt &rarr;</a>
         </div>
       </div>
-      <div>
+      <div class="hero-media">
         <!-- Beeldslot uit het ontwerp (home-hero-still). Gevuld met de aangeleverde samenwerkingsfoto; alleen op desktop (≥1024px), daaronder bewust weggelaten (display:none), niet verkleind. -->
         <div class="hero-img" style="height:clamp(260px,26vw,352px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overleg via videobellen, met een spreadsheet op het scherm" width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
       </div>
@@ -257,8 +257,9 @@ const bronnen = [
   /* Hero-brandline (A2): klein en uppercase boven de H1; alleen 'in-house.' krijgt het terracotta-accent. */
   .hero-brand{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--on-dark-secondary)}
   .hero-brand span{color:var(--terracotta)}
-  /* Op mobiel breekt de H1 anders midden in "Wij runnen je finance."; deze regel houdt de twee zinnen heel. */
-  @media (max-width:639px){ .hero-h1-b{display:block} }
+  /* Zodra de hero éénkolommig wordt, krijgt "Elke maand." een eigen regel: hetzelfde ritme als op desktop,
+     en op mobiel voorkomt het dat de balanced wrap midden in "Wij runnen je finance." breekt. */
+  @media (max-width:1023px){ .hero-h1-b{display:block} }
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .on-dark-link:hover{color:var(--terracotta);opacity:1}
@@ -296,7 +297,7 @@ const bronnen = [
   }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
   @media (max-width:1023px){
-    .hero-img{display:none}
+    .hero-media{display:none}
     .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
     .tim-row{grid-template-columns:1fr!important}
     .tim-row>div:first-child{max-width:150px}
