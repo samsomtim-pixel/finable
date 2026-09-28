@@ -1,0 +1,53 @@
+{
+  "versie": "1.0-kandidaat",
+  "datum": "2026-09-25",
+  "toelichting": "Regels voor titelclassificatie, Monitor v1.0. Volgorde is bindend: exclude wint van family, en de eerste match binnen een blok wint. Alles wat niet matcht valt uit op excluded_non_finance.",
+
+  "normalisatie": {
+    "verwijder_haakjes": true,
+    "knip_na_scheidingsteken": ["|", " - ", " – ", " — ", " / "],
+    "knip_na_scheidingsteken_uitzondering": ["ap/ar", "p&c", "planning & control", "finance & control", "administratie/boekhouding"],
+    "verwijder_tokens": ["m/v", "v/m", "m/v/x", "mvx", "fulltime", "parttime", "vacature", "gezocht", "wij zoeken", "a.i.", "ai", "zzp", "freelance", "interim"]
+  },
+
+  "exclude": [
+    {"id": "X01", "patroon": "\\bdocument\\s*controller\\b|\\bdocumentbeheerder\\b", "reden": "document controller is documentbeheer, geen finance"},
+    {"id": "X02", "patroon": "\\bquality\\s*controller\\b|\\bkwaliteits(controleur|controller)\\b|\\bqa\\s*controller\\b|\\bqc\\s*controller\\b", "reden": "kwaliteitscontrole, geen finance"},
+    {"id": "X03", "patroon": "\\binventory\\s*controller\\b|\\bstock\\s*controller\\b|\\bvoorraad(controller|beheerder)\\b", "reden": "voorraadbeheer, geen finance"},
+    {"id": "X04", "patroon": "\\bwarranty\\s*controller\\b|\\bgarantie(controller|behandelaar)\\b", "reden": "garantieafhandeling, geen finance"},
+    {"id": "X05", "patroon": "\\bproduction\\s*controller\\b|\\bproductie(controller|planner)\\b", "reden": "productieplanning, geen finance"},
+    {"id": "X06", "patroon": "\\b(air\\s*)?traffic\\s*controller\\b|\\bverkeersleider\\b", "reden": "verkeersleiding, geen finance"},
+    {"id": "X07", "patroon": "\\b(cost|planning|technical|engineering)\\s*(engineer|controller)\\b|\\bwerkvoorbereider\\b|\\bplanner\\b", "reden": "technisch of planningsvak, geen finance"},
+    {"id": "X08", "patroon": "\\bit[- ]?controller\\b|\\bnetwerk\\s*controller\\b|\\bpid\\s*controller\\b|\\bmotor\\s*controller\\b", "reden": "technische of IT-component, geen financiele functie"},
+    {"id": "X09", "patroon": "\\bhr[- ]?(controller|manager|adviseur)\\b|\\bpersoneels(functionaris|adviseur)\\b", "reden": "HR-functie, geen finance"},
+    {"id": "X10", "patroon": "\\bsales\\s*(manager|medewerker)\\b|\\baccountmanager\\b|\\brecruiter\\b|\\bconsultant\\s+werving\\b", "reden": "commercieel of werving, geen finance"}
+  ],
+
+  "families": [
+    {"id": "F01", "familie": "cfo", "patroon": "\\bcfo\\b|\\bchief\\s+financial\\s+officer\\b|\\bfinancieel\\s+directeur\\b|\\bfinancial\\s+director\\b", "confidence": "high"},
+    {"id": "F02", "familie": "finance_leadership", "patroon": "\\bhead\\s+of\\s+finance\\b|\\bhoofd\\s+finance\\b|\\bdirector\\s+of\\s+finance\\b|\\bfinance\\s+director\\b|\\bgroup\\s+finance\\s+director\\b", "confidence": "high"},
+    {"id": "F03", "familie": "treasury", "patroon": "\\btreasur(y|er)\\b|\\bcash\\s*manager\\b|\\bcashmanagement\\b", "confidence": "high"},
+    {"id": "F04", "familie": "fp_and_a", "patroon": "\\bfp\\s*&?\\s*a\\b|\\bfinancial\\s+planning\\s*(and|&)\\s*analysis\\b|\\bfinanci(eel|al)\\s+analist\\b|\\bfinancial\\s+analyst\\b", "confidence": "high"},
+    {"id": "F05", "familie": "project_control", "patroon": "\\bproject\\s*controller\\b|\\bprojectcontroller\\b|\\bproject\\s*control(ling)?\\b", "confidence": "low", "review": "project control is buiten finance ook een planningsvak; zonder volledige tekst niet met zekerheid finance"},
+    {"id": "F06", "familie": "ap_ar_credit", "patroon": "\\bcredit\\s*controller\\b|\\bcreditmanager\\b|\\bcredit\\s*manager\\b|\\bdebiteuren\\w*\\b|\\bcrediteuren\\w*\\b|\\baccounts?\\s+(payable|receivable)\\b|\\bap\\b|\\bar\\b|\\bincasso\\b", "confidence": "high"},
+    {"id": "F07", "familie": "business_control", "patroon": "\\bbusiness\\s*controller\\b|\\bbusinesscontroller\\b|\\bcommercial\\s*controller\\b|\\boperational\\s*controller\\b|\\bconcern\\s*controller\\b", "confidence": "high"},
+    {"id": "F08", "familie": "financial_control", "patroon": "\\bfinancial\\s*controller\\b|\\bfinancieel\\s*controller\\b|\\bfinanci(eel|al)\\s+control\\b|\\bgroup\\s+controller\\b|\\breporting\\s+controller\\b", "confidence": "high"},
+    {"id": "F09", "familie": "assistant_junior_control", "patroon": "\\b(assistent|assistant|trainee)\\s*-?\\s*controller\\b|\\bcontroller\\s+assistent\\b|\\bmedewerker\\s+planning\\s*(&|en)\\s*control\\b", "confidence": "medium", "review": "alleen wanneer de titel geen discipline noemt; noemt hij die wel, dan wint de disciplinefamilie plus seniority"},
+    {"id": "F10", "familie": "accounting", "patroon": "\\b(assistent|assistant)?\\s*-?\\s*accountant\\b|\\bra\\b|\\baa\\b|\\bsamensteller\\b|\\bgeneral\\s+ledger\\b|\\bgl\\s+accountant\\b|\\bfinancial\\s+accountant\\b|\\bgrootboek\\w*\\b|\\bverslaggeving\\b|\\breporting\\s+specialist\\b", "confidence": "high"},
+    {"id": "F11", "familie": "finance_management", "patroon": "\\bfinance\\s*manager\\b|\\bfinanci(eel|ele)\\s+manager\\b|\\bmanager\\s+financi\\w+\\b|\\bhoofd\\s+(financi\\w+|administratie)\\b|\\bteamleider\\s+financi\\w+\\b|\\bmanager\\s+accounting\\b|\\bfinance\\s+lead\\b", "confidence": "high"},
+    {"id": "F12", "familie": "finance_administration", "patroon": "\\bfinanci(eel|ele)\\s+administratie\\w*\\b|\\bfinancieel\\s+administratief\\b|\\badministrateur\\b|\\bboekhouder\\b|\\bbookkeeper\\b|\\bfinancial\\s+administrat\\w+\\b|\\bmedewerker\\s+administratie\\b|\\badministratief\\s+medewerker\\b", "confidence": "high"},
+    {"id": "F13", "familie": "other_finance", "patroon": "\\bfiscalist\\b|\\btax\\s+\\w+\\b|\\bbelastingadviseur\\b|\\binternal\\s+audit\\w*\\b|\\bfinance\\s+trainee\\b|\\bfinance\\s+professional\\b|\\bpayroll\\b|\\bsalarisadministrat\\w+\\b", "confidence": "medium", "review": "restcategorie finance; kandidaat voor een eigen familie in v1.1"}
+  ],
+
+  "finance_markers": "\\bfinanc\\w+\\b|\\bcontroller\\b|\\bcontrolling\\b|\\baccount\\w*\\b|\\bboekhoud\\w+\\b|\\badministrat\\w+\\b|\\btreasur\\w+\\b|\\bfiscaal\\b|\\bfiscalist\\b|\\bcfo\\b|\\bfp&a\\b|\\bcredit\\b|\\bdebiteuren\\b|\\bcrediteuren\\b|\\bgrootboek\\w*\\b|\\bpayroll\\b|\\bsalarisadministrat\\w+\\b",
+
+  "seniority": [
+    {"niveau": "trainee", "patroon": "\\btrainee\\b|\\bstagiair\\w*\\b|\\bwerkstudent\\b|\\bstage\\b"},
+    {"niveau": "assistant", "patroon": "\\bassistent\\b|\\bassistant\\b"},
+    {"niveau": "junior", "patroon": "\\bjunior\\b|\\bjr\\.?\\b|\\bstarter\\b|\\bbeginnend\\b"},
+    {"niveau": "medior", "patroon": "\\bmedior\\b|\\bmid[- ]?level\\b"},
+    {"niveau": "senior", "patroon": "\\bsenior\\b|\\bsr\\.?\\b|\\bervaren\\b"},
+    {"niveau": "lead", "patroon": "\\blead\\b|\\bteamleider\\b|\\bteam\\s*lead\\b"},
+    {"niveau": "head", "patroon": "\\bhoofd\\b|\\bhead\\s+of\\b|\\bdirecteur\\b|\\bdirector\\b|\\bcfo\\b|\\bmanager\\b"}
+  ]
+}

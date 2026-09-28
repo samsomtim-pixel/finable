@@ -4,3 +4,7 @@ dist/
 .env
 .env.local
 .vercel/
+
+# Python-bijproducten van research/monitor
+__pycache__/
+*.pyc
