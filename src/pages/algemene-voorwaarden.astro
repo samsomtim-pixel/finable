@@ -1,5 +1,5 @@
 ---
-// Algemene Voorwaarden, versie 1.0 (september 2026). Informatieve pagina op dezelfde shell en met
+// Algemene Voorwaarden, versie 1.1 (oktober 2026). Informatieve pagina op dezelfde shell en met
 // exact dezelfde typografie en spacing als /privacy: Header, navy hero, editoriale kolom met
 // mini-inhoudsopgave, Footer.
 //
@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const versie = 'Versie 1.0 · september 2026';
+const versie = 'Versie 1.1 · oktober 2026';
 
 /** Artikel 1 is een definitielijst; de overige artikelen zijn genummerde leden. */
 const definities: { term: string; omschrijving: string }[] = [
@@ -162,13 +162,15 @@ const artikelen: Artikel[] = [
   {
     nr: 12, id: 'artikel-12', titel: 'Persoonsgegevens en beveiliging',
     leden: [
-      'Partijen leven bij de uitvoering van de Overeenkomst de toepasselijke privacywetgeving, waaronder de Algemene verordening gegevensbescherming, na.',
-      'Voor zover Finable persoonsgegevens namens Opdrachtgever verwerkt en daarbij als verwerker optreedt, sluiten partijen een afzonderlijke verwerkersovereenkomst.',
-      'De verwerkersovereenkomst vormt, indien van toepassing, onderdeel van de contractuele afspraken tussen partijen.',
-      'Finable treft passende technische en organisatorische maatregelen om persoonsgegevens en andere vertrouwelijke gegevens te beschermen, rekening houdend met de aard van de gegevens, de dienstverlening en redelijkerwijs voorzienbare risico’s.',
-      'Finable mag voor de uitvoering van de Diensten gebruikmaken van geschikte softwareleveranciers, hostingproviders en andere subverwerkers, met inachtneming van de toepasselijke privacywetgeving en de verwerkersovereenkomst.',
-      'Opdrachtgever is verantwoordelijk voor het bestaan van een geldige grondslag voor persoonsgegevens die aan Finable ter beschikking worden gesteld.',
-      'Partijen informeren elkaar zonder onredelijke vertraging over relevante beveiligingsincidenten of datalekken voor zover dit noodzakelijk is om aan wettelijke verplichtingen te kunnen voldoen.',
+      'Partijen leven bij de uitvoering van de Overeenkomst de toepasselijke privacywetgeving, waaronder de Algemene verordening gegevensbescherming (“AVG”), na.',
+      'Voor zover Finable persoonsgegevens namens Opdrachtgever verwerkt en daarbij als verwerker optreedt, sluiten partijen een verwerkersovereenkomst. Deze verwerkersovereenkomst vormt onderdeel van de contractuele afspraken tussen partijen.',
+      'Finable treft passende technische en organisatorische maatregelen om persoonsgegevens en andere vertrouwelijke gegevens te beschermen, rekening houdend met de aard van de verwerking, de dienstverlening en de redelijkerwijs voorzienbare risico’s.',
+      'Finable mag bij de uitvoering van de Diensten gebruikmaken van medewerkers, Professionals, softwareleveranciers, hostingproviders en andere derden of subverwerkers. Voor zover deze partijen persoonsgegevens namens Finable verwerken, worden zij ingeschakeld overeenkomstig de toepasselijke privacywetgeving en de verwerkersovereenkomst.',
+      'Indien voor het inschakelen of wijzigen van een subverwerker op grond van de AVG, de verwerkersovereenkomst of andere toepasselijke gegevensbeschermingsafspraken toestemming of autorisatie van Opdrachtgever vereist is, zal Finable deze overeenkomstig die afspraken verkrijgen. Nadere afspraken over de autorisatie, kennisgeving en eventuele bezwaren ten aanzien van subverwerkers kunnen in de verwerkersovereenkomst worden vastgelegd.',
+      'Finable kan voor de uitvoering van de Diensten partijen inschakelen die gevestigd zijn of werkzaamheden uitvoeren buiten de Europese Economische Ruimte (“EER”). Indien daarbij sprake is van een internationale doorgifte van persoonsgegevens, draagt Finable zorg voor een toepasselijk doorgiftemechanisme en de overige waarborgen die op grond van de toepasselijke privacywetgeving vereist zijn.',
+      'Opdrachtgever is verantwoordelijk voor het bestaan van een geldige grondslag voor de persoonsgegevens die door of namens Opdrachtgever aan Finable ter beschikking worden gesteld, voor zover deze verantwoordelijkheid op grond van de toepasselijke privacywetgeving bij Opdrachtgever ligt.',
+      'Partijen informeren elkaar zonder onredelijke vertraging over relevante beveiligingsincidenten of datalekken voor zover dit noodzakelijk is om aan wettelijke of contractuele verplichtingen te kunnen voldoen.',
+      'Indien bepalingen uit een toepasselijke verwerkersovereenkomst of overeenkomst inzake internationale doorgifte van persoonsgegevens afwijken van dit artikel, hebben die specifieke afspraken voor de betreffende verwerking of doorgifte voorrang.',
     ],
   },
   {
@@ -337,7 +339,7 @@ const artikelen: Artikel[] = [
 
         <section id="colofon">
           <h2>Versie</h2>
-          <p>Versie 1.0 &mdash; september 2026</p>
+          <p>Versie 1.1 &mdash; oktober 2026</p>
           <dl class="priv-meta">
             <div><dt>Organisatie</dt><dd>Finable</dd></div>
             <div><dt>Handelsnaam van</dt><dd>Accelr</dd></div>
