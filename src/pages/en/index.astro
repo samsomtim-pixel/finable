@@ -1,9 +1,9 @@
 ---
 // English homepage. Structure: components/Home.astro (shared with the Dutch homepage, which leads).
-// Copy: content/home.en.ts. Only language differs; sections, order and layout are identical.
+// Copy: copy/home.en.ts. Only language differs; sections, order and layout are identical.
 import Layout from '../../layouts/Layout.astro';
 import Home from '../../components/Home.astro';
-import { en } from '../../content/home.en';
+import { en } from '../../copy/home.en';
 ---
 <Layout title={en.meta.title} description={en.meta.description}>
   <Home copy={en} />

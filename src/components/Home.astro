@@ -1,5 +1,5 @@
 ---
-// Homepage-structuur, gedeeld door NL en EN. Alles wat per taal verschilt staat in content/home.*.ts;
+// Homepage-structuur, gedeeld door NL en EN. Alles wat per taal verschilt staat in copy/home.*.ts;
 // secties, volgorde, componenten, beeld, layout en CSS staan hier en zijn voor elke taal gelijk.
 // Nederlands is leidend: een nieuwe sectie wordt hier gebouwd en krijgt per taal copy, zodat de
 // twee talen niet opnieuw uit elkaar kunnen lopen.
@@ -7,7 +7,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Button from './Button.astro';
 import LogoMarquee from './LogoMarquee.astro';
-import type { HomeCopy } from '../content/home';
+import type { HomeCopy } from '../copy/home';
 
 interface Props { copy: HomeCopy }
 const { copy: c } = Astro.props;
