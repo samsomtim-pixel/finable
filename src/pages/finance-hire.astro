@@ -80,44 +80,47 @@ import Button from '../components/Button.astro';
     <div class="lbl" style="margin-bottom:22px">De afweging</div>
     <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:40px">Eén finance-hire versus Finable.</h2>
 
-    <!-- Mobiel (≤639): dezelfde vergelijking per onderwerp onder elkaar, zodat je niet hoeft terug te scrollen. -->
-    <div class="cmp-m">
-      <div class="cmp-m-pair"><div class="cmp-m-dim">Expertise en capaciteit</div><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Eén profiel met de uren van één persoon. Breder maken kan, door samen te werken met je boekhouder, accountant of een specialist.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Meerdere expertises binnen één team. De capaciteit is afgesproken, niet onbeperkt.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-dim">Aansturing en samenwerking</div><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Je stuurt zelf aan, dagelijks en dichtbij, en bepaalt zelf de prioriteiten.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Je stuurt op afspraken via één vast aanspreekpunt in Nederland. Het uitvoerende team werkt vanuit India.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-dim">Continuïteit en vervanging</div><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Bij vakantie, ziekte of vertrek moet je het werk tijdelijk elders beleggen.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Het werk is over een team verdeeld, dus je bent minder afhankelijk van één persoon. Dat vraagt wel vastgelegde processen en overdraagbare kennis.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-dim">Kostenstructuur</div><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Salaris, werkgeverslasten en werving. Een vaste post, ongeacht het volume.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Eén maandprijs op basis van scope, volume en complexiteit. Welke vorm voordeliger uitpakt, hangt af van je situatie.</span></div></div>
-      <div class="cmp-m-pair"><div class="cmp-m-dim">Onboarding en kennisoverdracht</div><div class="cmp-m-row"><span class="cmp-m-k">Eén finance-hire</span><span class="cmp-m-v">Werven, inwerken en kennis opbouwen kost tijd van je eigen organisatie.</span></div><div class="cmp-m-row is-fin"><span class="cmp-m-k">Finable</span><span class="cmp-m-v">Het team staat er al, maar moet je bedrijf, processen en systemen nog leren kennen. Ook dat vraagt input van jou.</span></div></div>
+    <div class="vgl">
+      <div class="vgl-head">
+        <div class="vgl-dim"></div>
+        <div class="vgl-a">Eén interne medewerker</div>
+        <div class="vgl-b">Finable</div>
+      </div>
+      <div class="vgl-row">
+        <div class="vgl-dim">Expertise</div>
+        <div class="vgl-a"><span class="vgl-lbl">Eén interne medewerker</span>Eén profiel binnen je organisatie</div>
+        <div class="vgl-b"><span class="vgl-lbl">Finable</span>Meerdere finance-expertises in één team</div>
+      </div>
+      <div class="vgl-row">
+        <div class="vgl-dim">Aansturing</div>
+        <div class="vgl-a"><span class="vgl-lbl">Eén interne medewerker</span>Je stuurt de medewerker zelf aan</div>
+        <div class="vgl-b"><span class="vgl-lbl">Finable</span>Eén vast aanspreekpunt in Nederland</div>
+      </div>
+      <div class="vgl-row">
+        <div class="vgl-dim">Continuïteit</div>
+        <div class="vgl-a"><span class="vgl-lbl">Eén interne medewerker</span>Je organiseert vervanging bij uitval</div>
+        <div class="vgl-b"><span class="vgl-lbl">Finable</span>Het team kan werkzaamheden opvangen</div>
+      </div>
+      <div class="vgl-row">
+        <div class="vgl-dim">Kosten</div>
+        <div class="vgl-a"><span class="vgl-lbl">Eén interne medewerker</span>Salaris, werkgeverslasten en werving</div>
+        <div class="vgl-b"><span class="vgl-lbl">Finable</span>Maandprijs voor de afgesproken scope</div>
+      </div>
+      <div class="vgl-row">
+        <div class="vgl-dim">Start</div>
+        <div class="vgl-a"><span class="vgl-lbl">Eén interne medewerker</span>Werven en inwerken</div>
+        <div class="vgl-b"><span class="vgl-lbl">Finable</span>Team onboarden op jouw bedrijf</div>
+      </div>
     </div>
-    <div class="cmp" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.9fr);gap:clamp(24px,3vw,44px);align-items:start">
-      <div style="border:1px solid var(--line);border-radius:12px;padding:30px 32px">
-        <h3 style="font-size:21px;margin-bottom:18px">Eén finance-hire</h3>
-        <div class="cmp-row"><span class="cmp-dim">Expertise en capaciteit</span><span class="cmp-val" style="color:var(--body)">Eén profiel met de uren van één persoon. Breder maken kan, door samen te werken met je boekhouder, accountant of een specialist.</span></div>
-        <div class="cmp-row"><span class="cmp-dim">Aansturing en samenwerking</span><span class="cmp-val" style="color:var(--body)">Je stuurt zelf aan, dagelijks en dichtbij, en bepaalt zelf de prioriteiten.</span></div>
-        <div class="cmp-row"><span class="cmp-dim">Continuïteit en vervanging</span><span class="cmp-val" style="color:var(--body)">Bij vakantie, ziekte of vertrek moet je het werk tijdelijk elders beleggen.</span></div>
-        <div class="cmp-row"><span class="cmp-dim">Kostenstructuur</span><span class="cmp-val" style="color:var(--body)">Salaris, werkgeverslasten en werving. Een vaste post, ongeacht het volume.</span></div>
-        <div class="cmp-row"><span class="cmp-dim">Onboarding en kennisoverdracht</span><span class="cmp-val" style="color:var(--body)">Werven, inwerken en kennis opbouwen kost tijd van je eigen organisatie.</span></div>
-      </div>
-      <div style="border:1px solid rgba(196,100,58,0.22);border-radius:12px;padding:30px 32px;background:var(--terracotta-soft)">
-        <h3 style="font-size:21px;margin-bottom:18px;color:var(--terracotta)">Finable</h3>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span class="cmp-dim">Expertise en capaciteit</span><span class="cmp-val" style="color:var(--navy)">Meerdere expertises binnen één team. De capaciteit is afgesproken, niet onbeperkt.</span></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span class="cmp-dim">Aansturing en samenwerking</span><span class="cmp-val" style="color:var(--navy)">Je stuurt op afspraken via één vast aanspreekpunt in Nederland. Het uitvoerende team werkt vanuit India.</span></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span class="cmp-dim">Continuïteit en vervanging</span><span class="cmp-val" style="color:var(--navy)">Het werk is over een team verdeeld, dus je bent minder afhankelijk van één persoon. Dat vraagt wel vastgelegde processen en overdraagbare kennis.</span></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span class="cmp-dim">Kostenstructuur</span><span class="cmp-val" style="color:var(--navy)">Eén maandprijs op basis van scope, volume en complexiteit. Welke vorm voordeliger uitpakt, hangt af van je situatie.</span></div>
-        <div class="cmp-row" style="border-color:rgba(27,58,92,0.1)"><span class="cmp-dim">Onboarding en kennisoverdracht</span><span class="cmp-val" style="color:var(--navy)">Het team staat er al, maar moet je bedrijf, processen en systemen nog leren kennen. Ook dat vraagt input van jou.</span></div>
-      </div>
-      <div style="padding-top:6px">
-        <div style="width:44px;height:2px;background:var(--terracotta);margin-bottom:22px"></div>
-        <h2 style="font-size:clamp(24px,2.8vw,34px);line-height:1.15;margin-bottom:20px">De finance-expertise die je nodig hebt. In één team.</h2>
-        <p style="font-size:15px;color:var(--body);text-wrap:pretty">Finable neemt afgesproken finance-werkzaamheden over, met één aanspreekpunt en een maandprijs die past bij de scope, het volume en de complexiteit.</p>
-      </div>
-    </div>
+    <p class="vgl-note">Een interne medewerker kan samenwerken met je boekhouder of accountant. Bij Finable spreken we capaciteit, onboarding en vervanging vooraf af. Welke inrichting het beste past, hangt af van je organisatie.</p>
   </section>
 
   <!-- HET ALTERNATIEF · NAVY ANKER -->
   <section id="alternatief" style="background:var(--navy)">
     <div class="wrap" style="padding-top:76px;padding-bottom:76px">
       <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">Het alternatief</div>
-      <h2 style="font-size:clamp(28px,3.4vw,42px);color:var(--white);margin-bottom:48px">De onderdelen die je afspreekt. In één team.</h2>
+      <h2 style="font-size:clamp(28px,3.4vw,42px);color:var(--white);margin-bottom:20px">Je finance geregeld. Met één team.</h2>
+      <p style="font-size:16px;color:var(--on-dark-secondary);max-width:720px;margin-bottom:48px;text-wrap:pretty">Van dagelijkse administratie tot afsluiting, controlling en rapportage. We spreken samen af wat Finable overneemt en wat intern blijft.</p>
       <div class="navy-grid" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(36px,4vw,64px);align-items:center">
         <div class="flow">
           <div>
@@ -148,7 +151,6 @@ import Button from '../components/Button.astro';
       </div>
       <div style="height:1px;background:rgba(255,255,255,.14);margin:48px 0 30px"></div>
       <p style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.3vw,28px);color:var(--white);max-width:760px;text-wrap:balance">De juiste expertise per onderdeel. Eén team en één aanspreekpunt.</p>
-      <p style="font-size:15px;color:var(--on-dark-secondary);margin-top:18px;max-width:760px;text-wrap:pretty">Daar hoort ook het bewaken van cash en het bijhouden van de forecast bij. Je kiest welke onderdelen Finable uitvoert; de rest blijft waar die nu ligt.</p>
       <p style="font-size:15px;color:var(--on-dark-secondary);margin-top:22px"><a href="/finance-uitbesteden" style="font-weight:600;color:var(--white)">Wat elk onderdeel precies inhoudt &rarr;</a></p>
     </div>
   </section>
@@ -174,7 +176,7 @@ import Button from '../components/Button.astro';
         <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">De relatie met je boekhouder, accountant of CFO, die betrokken kan blijven</span></div>
       </div>
     </div>
-    <p class="fh-alt">Vóór de start leggen we vast wie wat doet, wie welke toegang krijgt, welke controles bij het werk horen en hoe we samenwerken. Verandert de situatie, dan verandert de verdeling mee.</p>
+    <p class="fh-alt">Je hebt één vast aanspreekpunt in Nederland. Het uitvoerende team werkt vanuit India. Vóór de start leggen we vast wie wat doet, wie welke toegang krijgt, welke controles bij het werk horen en hoe we samenwerken. Verandert de situatie, dan verandert de verdeling mee.</p>
   </section>
 
   <div class="wrap"><div class="rule"></div></div>
@@ -246,14 +248,36 @@ import Button from '../components/Button.astro';
   /* Doorverwijzing naar de pillar: één regel onder de afweging, geen tweede CTA. */
   .fh-alt{margin-top:clamp(32px,3.4vw,44px);padding-top:26px;border-top:1px solid var(--line);font-size:16px;color:var(--body);text-wrap:pretty}
   .fh-alt a{font-weight:600}
+  /* Vergelijking: één raster, onderwerp links, beide antwoorden op dezelfde rij. Geen vinkjes of
+     scores; het verschil zit in de tekst. Finable krijgt een zachte terracotta kolom.
+     Onder 768px stapelt elke rij tot onderwerp + twee gelabelde antwoorden onder elkaar. */
+  .vgl{border-top:1px solid var(--line)}
+  .vgl-head,.vgl-row{display:grid;grid-template-columns:minmax(0,0.68fr) minmax(0,1fr) minmax(0,1fr);border-bottom:1px solid var(--line)}
+  .vgl-head>div,.vgl-row>div{padding:18px 24px}
+  .vgl-head>div:first-child,.vgl-row>div:first-child{padding-left:0}
+  .vgl-head{border-bottom-color:var(--navy)}
+  .vgl-head .vgl-a,.vgl-head .vgl-b{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--body)}
+  .vgl-head .vgl-b{color:var(--terracotta)}
+  .vgl-dim{font-size:15px;font-weight:600;color:var(--navy)}
+  .vgl-a{font-size:15px;color:var(--body);line-height:1.5;text-wrap:pretty}
+  .vgl-b{font-size:15px;color:var(--navy);line-height:1.5;background:var(--terracotta-soft);text-wrap:pretty}
+  .vgl-head .vgl-b{border-radius:10px 10px 0 0}
+  .vgl-row:last-of-type .vgl-b{border-radius:0 0 10px 10px}
+  .vgl-lbl{display:none}
+  .vgl-note{margin-top:28px;max-width:720px;font-size:15px;color:var(--body);line-height:1.65;text-wrap:pretty}
+  @media (max-width:767px){
+    .vgl{border-top:none}
+    .vgl-head{display:none}
+    .vgl-row{grid-template-columns:1fr;gap:10px;padding:20px 0}
+    .vgl-row>div,.vgl-row>div:first-child{padding:0}
+    .vgl-row:first-of-type{padding-top:0}
+    .vgl-dim{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta)}
+    .vgl-b{padding:12px 14px!important;border-radius:10px!important}
+    .vgl-lbl{display:block;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--body);margin-bottom:5px}
+    .vgl-b .vgl-lbl{color:var(--terracotta)}
+  }
   .chk{display:flex;align-items:flex-start;gap:14px;padding:11px 0}
   .chk svg{flex-shrink:0;margin-top:2px}
-  /* Vergelijking per onderwerp: onderwerp boven, waarde eronder. Zonder vink- en min-iconen,
-     die lazen als een score in plaats van als een verschil. */
-  .cmp-row{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:15px 0;border-top:1px solid var(--line);font-size:15px}
-  .cmp-row:first-of-type{border-top:none;padding-top:0}
-  .cmp-dim{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);opacity:.75}
-  .cmp-val{line-height:1.55;text-wrap:pretty}
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:16px;align-items:start}
   .flow .fa{align-self:center;color:var(--terracotta);padding-top:4px}
   details.fin-faq{border-top:1px solid var(--line)}
@@ -273,7 +297,6 @@ import Button from '../components/Button.astro';
   .split{grid-template-columns:1fr!important;gap:40px!important}
   .split .vdiv{display:none!important}
   .reveal{padding-top:0!important}
-  .cmp{grid-template-columns:1fr!important;gap:24px!important}
   .flow{grid-template-columns:1fr;gap:16px}
   .flow .fa{transform:rotate(90deg);justify-self:start}
   .navy-grid{grid-template-columns:1fr!important;gap:30px!important}
@@ -282,16 +305,10 @@ import Button from '../components/Button.astro';
   .cta-p{grid-template-columns:1fr!important;gap:24px!important}
   }
   /* Responsive (bouwopdracht §5): 1024 / 640 */
-  @media (min-width:640px){.cmp-m{display:none}}
   @media (max-width:639px){
     .cta-p{grid-template-columns:1fr!important}
     .cta-p>div:first-child{max-width:160px}
-    /* Vergelijking per onderwerp: hire-waarde boven, Finable-waarde eronder (zacht terracotta) */
-    .cmp-m{margin-bottom:36px}
-    .cmp-m-dim{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);opacity:.8;padding:0 12px 4px}
-    .cmp>div:nth-child(-n+2){display:none}
-    .cmp{gap:0!important}
-    /* Categorielabels leesbaar */
+      /* Categorielabels leesbaar */
     .cat{font-size:12px;opacity:.85}
     /* Navy-flow: icoon links van de titel, compacte verticale reeks */
     .flow{gap:12px}
