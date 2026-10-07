@@ -29,7 +29,7 @@ Nederlandse finance-as-a-service voor groeiende bedrijven van 10 tot 50 medewerk
 
 **Geen beige.** Warme tinten zoals `#F4EEE7` zijn er twee keer in geslopen. Als je een getinte sectie nodig hebt, gebruik een koele tint waarin de kanalen dicht bij elkaar liggen (`#F3F3F1`). Terracotta levert al genoeg warmte.
 
-**Typografie:** Inter voor koppen, zwaar gewicht. Playfair Display **alleen** voor de twee contrastclaims — "één persoon / meerdere expertises" en "Een heel finance-team / Voor minder dan één controller". Verder nergens serif.
+**Typografie:** Inter voor koppen, zwaar gewicht. Playfair Display **alleen** voor de twee contrastclaims — "één persoon / meerdere expertises" en "De finance-expertise die je nodig hebt / In één team". Verder nergens serif.
 
 **Stijl:** weinig kaarten, dunne lijnen en witruimte, geen sectienummers. Gebruik kaarten alleen waar ze informatie structureren. Zonder die regel wordt een editoriale opzet alsnog een raster van afgeronde tegeltjes.
 
@@ -74,7 +74,9 @@ Deze zijn allemaal minstens twee keer teruggeslopen. Controleer erop bij elke wi
 
 **De uitvoeringspartner nergens bij naam.** Niet Janesh, niet Quvisor. Wel: *"een vast finance-team waarmee Finable structureel samenwerkt."*
 
-**Geen prijsbedragen op de site.** Niet "rond een ton per jaar", niet "vanaf €X". Het anker is *"Een heel finance-team. Voor minder dan één controller."* Het getal komt in het gesprek.
+**Geen prijsbedragen op de site.** Niet "rond een ton per jaar", niet "vanaf €X". Het anker is *"De finance-expertise die je nodig hebt. In één team."* met als toelichting dat scope en maandprijs afhangen van de werkzaamheden, het volume en de complexiteit. Het getal komt in het gesprek.
+
+**Geen vergelijkende prijsclaim.** Niet "voor minder dan één controller", niet "goedkoper dan iemand aannemen". Dat was tot oktober 2026 het anker en is vervangen: het beloofde een uitkomst die per situatie verschilt. Wel: *"welke vorm voordeliger uitpakt, hangt af van je situatie."*
 
 **Geen verzonnen quotes of klantnamen.** The Good Roll is de enige klantcase, met exact deze quote: *Van sceptisch naar: "Ik zou het iedereen aanraden."* Geen tweede citaat, geen parafrase, geen anonieme cases.
 
