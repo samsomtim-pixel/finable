@@ -394,6 +394,7 @@ const faq = [
       <li>Bedrijven die moeite hebben om financecapaciteit te vinden of vast te houden.</li>
       <li>Bedrijven die betere controlling en rapportage nodig hebben dan er nu is.</li>
     </ul>
+    <p class="fu-wie-slot">Groeit je bedrijf sneller dan je finance meekomt, dan verandert er elk kwartaal iets aan die lijst. Wat er dan in welke volgorde misloopt, staat op <a href="/finance-voor-scaleups">finance organiseren tijdens snelle groei</a>.</p>
   </section>
 
   <!-- PRIJS -->
@@ -562,6 +563,8 @@ const faq = [
 
   /* Voor wie: twee kolommen met terracotta bullets. */
   .fu-wie{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px clamp(24px,3vw,48px)}
+  .fu-wie-slot{margin-top:26px;font-size:16px;color:var(--body);max-width:760px;text-wrap:pretty}
+  .fu-wie-slot a{font-weight:600}
   .fu-wie>li{position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--line);font-size:16px;color:var(--body);line-height:1.6;text-wrap:pretty}
   .fu-wie>li::before{content:"";position:absolute;left:2px;top:20px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
 
