@@ -13,6 +13,13 @@ export interface HomeCopy {
     imgAlt: string;
   };
   herken: { h2: string; aside: string; items: { h3: string; p: string }[] };
+  /** Doelgroepkaarten onder de probleemherkenning. null wanneer de doelgroeppagina's in deze taal
+   *  niet bestaan; de sectie wordt dan niet gerenderd. */
+  doelgroepen: {
+    h2: string;
+    intro: string;
+    items: { h3: string; p: string; cta: Link; accent?: boolean }[];
+  } | null;
   ervaring: { label: string };
   functie: { label: string; h2: string; flow: string[]; trio: string[] };
   verandert: {
