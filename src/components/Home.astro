@@ -191,11 +191,11 @@ const { copy: c } = Astro.props;
       tekstlink in plaats van een knop. De homepage blijft van de hoofdclaim. De toelichting staat
       in een JSX-comment: een HTML-comment zou ook op /en belanden, waar de banner niet bestaat. */}
   {c.kantoren && (
-    <section class="wrap" style="padding-top:clamp(40px,4.4vw,56px);padding-bottom:clamp(40px,4.4vw,56px)">
-      <div class="rule" style="margin-bottom:clamp(28px,3vw,36px)"></div>
+    <section class="wrap" style="padding-top:clamp(32px,2.8vw,40px);padding-bottom:28px">
+      <div class="rule" style="margin-bottom:clamp(20px,1.8vw,24px)"></div>
       <div class="kb">
         <div>
-          <div class="lbl" style="margin-bottom:12px">{c.kantoren.label}</div>
+          <div class="lbl" style="margin-bottom:10px">{c.kantoren.label}</div>
           <h2 class="kb-h">{c.kantoren.h2}</h2>
           <p class="kb-p">{c.kantoren.p}</p>
         </div>
@@ -256,11 +256,12 @@ const { copy: c } = Astro.props;
      dunne regel erboven. Zo blijft de aanvullende markt zichtbaar zonder een tweede propositie
      te suggereren. */
   .kb{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,48px);align-items:center}
-  .kb-h{font-size:clamp(20px,2.2vw,26px);line-height:1.22;margin-bottom:10px;text-wrap:balance}
+  .kb-h{font-size:clamp(19px,1.6vw,22px);line-height:1.22;margin-bottom:8px;text-wrap:balance}
   .kb-p{font-size:15.5px;color:var(--body);line-height:1.6;max-width:620px;text-wrap:pretty}
   .kb-a{font-size:15px;font-weight:600;color:var(--terracotta);white-space:nowrap}
   @media (max-width:767px){
-    .kb{grid-template-columns:1fr;gap:16px;align-items:start}
+    /* De tekstlink krijgt onder 1024px al 14px tik-padding mee; vandaar een kleine grid-gap. */
+    .kb{grid-template-columns:1fr;gap:4px;align-items:start}
     .kb-a{white-space:normal}
   }
   .cols4{display:grid;grid-template-columns:repeat(4,1fr)}
