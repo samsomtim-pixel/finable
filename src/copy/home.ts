@@ -13,13 +13,10 @@ export interface HomeCopy {
     imgAlt: string;
   };
   herken: { h2: string; aside: string; items: { h3: string; p: string }[] };
-  /** Doelgroepkaarten onder de probleemherkenning. null wanneer de doelgroeppagina's in deze taal
-   *  niet bestaan; de sectie wordt dan niet gerenderd. */
-  doelgroepen: {
-    h2: string;
-    intro: string;
-    items: { h3: string; p: string; cta: Link; accent?: boolean }[];
-  } | null;
+  /** Bescheiden verwijzing naar de aanvullende markt van boekhoud- en accountantskantoren, laag op
+   *  de pagina. Geen tweede propositie: de homepage blijft van de hoofdclaim. null wanneer
+   *  /voor-boekhouders in deze taal niet bestaat; de banner wordt dan niet gerenderd. */
+  kantoren: { label: string; h2: string; p: string; cta: Link } | null;
   ervaring: { label: string };
   functie: { label: string; h2: string; flow: string[]; trio: string[] };
   verandert: {

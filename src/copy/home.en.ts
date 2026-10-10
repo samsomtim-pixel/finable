@@ -29,8 +29,8 @@ export const en: HomeCopy = {
       { h3: 'You steer too much on gut feel.', p: 'You lack the current insight you need to grow.' },
     ],
   },
-  // De twee doelgroeppagina's bestaan alleen in het Nederlands; deze sectie blijft daarom leeg.
-  doelgroepen: null,
+  // /voor-boekhouders bestaat alleen in het Nederlands; de banner blijft daarom leeg.
+  kantoren: null,
   ervaring: { label: 'Experience of the team behind Finable' },
   functie: {
     label: 'The finance function',

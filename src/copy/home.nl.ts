@@ -41,22 +41,11 @@ export const nl: HomeCopy = {
       { h3: 'Je stuurt te veel op gevoel.', p: 'Je mist actuele inzichten om te groeien.' },
     ],
   },
-  doelgroepen: {
-    h2: 'Finance die past bij jouw organisatie.',
-    intro: 'Of je nu een groeiend bedrijf runt of een financieel dienstverlenend kantoor hebt: Finable sluit aan op je bestaande team, systemen en manier van werken.',
-    items: [
-      {
-        h3: 'Je bedrijf groeit. Je finance moet meegroeien.',
-        p: 'Van dagelijkse administratie en maandafsluiting tot controlling en rapportage. \u00c9\u00e9n finance-team dat met je meegroeit, zonder dat je alles zelf hoeft op te bouwen.',
-        cta: { href: '/finance-voor-scaleups', label: 'Finance voor groeiende bedrijven' },
-        accent: true,
-      },
-      {
-        h3: 'Meer capaciteit. Zonder direct extra mensen aan te nemen.',
-        p: 'Vang piekdrukte op, vergroot je uitvoeringscapaciteit en blijf je klanten goed bedienen. Met een vast team dat werkt binnen jouw processen en systemen.',
-        cta: { href: '/voor-boekhouders', label: 'Financecapaciteit voor kantoren' },
-      },
-    ],
+  kantoren: {
+    label: 'Ook voor financi\u00eble dienstverleners',
+    h2: 'Meer klanten bedienen, zonder je team uit te breiden.',
+    p: 'Finable ondersteunt ook boekhoud- en accountantskantoren met extra capaciteit, als verlengstuk van hun eigen team.',
+    cta: { href: '/voor-boekhouders', label: 'Bekijk de mogelijkheden' },
   },
   ervaring: { label: 'Ervaring van het team achter Finable' },
   functie: {
