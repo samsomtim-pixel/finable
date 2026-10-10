@@ -1,5 +1,5 @@
 ---
-// Doelgroeppagina voor boekhouders en administratiekantoren. Tweede route naar de markt, naast de
+// Doelgroeppagina voor administratie-, boekhoud- en accountantskantoren. Tweede route naar de markt, naast de
 // primaire propositie op de homepage. Sinds de SEO-launch indexeerbaar; hreflang blijft uit omdat er
 // geen Engelse tegenhanger is.
 //
@@ -54,7 +54,7 @@ const grens = [
 ];
 
 const zekerheden = [
-  { t: 'Vaste capaciteit', d: 'Een vaste bezetting die jouw kantoor en werkwijze leert kennen.' },
+  { t: 'Vaste capaciteit', d: 'Een vaste bezetting die jouw kantoor, processen en systemen leert kennen.' },
   { t: 'Vast aanspreekpunt', d: 'Eén persoon die de samenwerking kent en met je bespreekt wat er speelt.' },
   { t: 'Controle in het proces', d: 'Duidelijke afspraken over uitvoering, review en akkoord.' },
   { t: 'Voorspelbare kosten', d: 'Vooraf duidelijk welke capaciteit en werkzaamheden je afneemt.' },
@@ -79,8 +79,8 @@ const faq = [
 const arrow = 'M0 9h24M18 2l8 7-8 7';
 ---
 <Layout
-  title="Extra capaciteit voor boekhouders & administratiekantoren | Finable"
-  description="Extra capaciteit nodig voor je boekhoud- of administratiekantoor? Besteed terugkerend financewerk en afsluiting uit aan Finable."
+  title="Extra financecapaciteit voor boekhoud- en accountantskantoren | Finable"
+  description="Extra capaciteit nodig voor je administratie-, boekhoud- of accountantskantoor? Finable neemt terugkerend financewerk, afsluiting en de voorbereiding van jaarwerk op zich."
   hreflang={false}
 >
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
@@ -91,9 +91,9 @@ const arrow = 'M0 9h24M18 2l8 7-8 7';
   <section class="hero-navy" style="background:var(--navy)">
     <div class="wrap" style="padding-top:56px;padding-bottom:64px">
       <div style="max-width:840px">
-        <div class="lbl" style="margin-bottom:22px">Voor boekhouders &amp; administratiekantoren</div>
+        <div class="lbl" style="margin-bottom:22px">Voor boekhoud- en accountantskantoren</div>
         <h1 style="font-size:clamp(34px,4.6vw,58px);line-height:1.05;margin-bottom:24px;text-wrap:balance">Meer klanten bedienen. <span class="em">Zonder je team even hard te laten groeien.</span></h1>
-        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--on-dark-secondary);max-width:640px;text-wrap:pretty">Finable geeft boekhouders en administratiekantoren extra financecapaciteit voor terugkerend werk, afsluiting en piekdrukte. Begin klein of werk met vaste capaciteit die met je kantoor meegroeit.</p>
+        <p style="font-size:clamp(17px,1.7vw,20px);color:var(--on-dark-secondary);max-width:640px;text-wrap:pretty">Finable geeft administratie-, boekhoud- en accountantskantoren extra financecapaciteit voor terugkerend werk, afsluiting, werkdossiers en de voorbereiding van jaarwerk. We werken als verlengstuk van je eigen team, binnen jouw processen en systemen.</p>
         <div class="vb-hero-cta">
           <Button href="/gesprek">Plan een kennismaking &rarr;</Button>
           <a href="#overdragen" class="vb-hero-alt">Bekijk wat je kunt uitbesteden &darr;</a>
@@ -171,6 +171,7 @@ const arrow = 'M0 9h24M18 2l8 7-8 7';
           </div>
         ))}
       </div>
+      <p class="vb-grens-p">Finable levert uitvoeringscapaciteit binnen jouw processen en systemen, met vaste contactpersonen en vooraf vastgelegde afspraken over review en akkoord. Wettelijke controles, assurance-opdrachten en andere voorbehouden werkzaamheden blijven bij het kantoor; die voert Finable niet uit.</p>
     </div>
   </section>
 
@@ -282,6 +283,7 @@ const arrow = 'M0 9h24M18 2l8 7-8 7';
   .vb-cap ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
   .vb-cap li{font-size:15px;color:var(--on-dark-secondary);line-height:1.5;text-wrap:pretty}
 
+  .vb-grens-p{margin-top:26px;max-width:860px;font-size:15px;color:var(--on-dark-secondary);line-height:1.65;text-wrap:pretty}
   /* --- Jij bepaalt waar de grens ligt: subtiele panels, geen witte kaarten --- */
   .vb-grens-h{font-size:21px;color:var(--warm-white);margin-top:48px;margin-bottom:22px}
   .vb-grens{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}

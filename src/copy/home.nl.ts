@@ -41,6 +41,12 @@ export const nl: HomeCopy = {
       { h3: 'Je stuurt te veel op gevoel.', p: 'Je mist actuele inzichten om te groeien.' },
     ],
   },
+  kantoren: {
+    label: 'Ook voor financi\u00eble dienstverleners',
+    h2: 'Meer klanten bedienen, zonder je team uit te breiden.',
+    p: 'Finable ondersteunt ook boekhoud- en accountantskantoren met extra capaciteit, als verlengstuk van hun eigen team.',
+    cta: { href: '/voor-boekhouders', label: 'Bekijk de mogelijkheden' },
+  },
   ervaring: { label: 'Ervaring van het team achter Finable' },
   functie: {
     label: 'De finance-functie',
