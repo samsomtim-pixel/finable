@@ -104,16 +104,17 @@ Deze zijn allemaal minstens twee keer teruggeslopen. Controleer erop bij elke wi
 
 ---
 
-## Navigatie — eerstvolgende wijziging
+## Navigatie
 
-De huidige labels "Aanpak" en "Hoe het werkt" zijn te abstract en liggen te dicht bij elkaar. De inhoud verschilt prima; de labels dwingen de bezoeker te raden.
+**Menu:** Voor wie ▾ · Zo werkt Finable · Finance-team · Over · [Plan een gesprek]
 
-**Nieuw menu:** Finance-team · Zo werkt Finable · Over · [Plan een gesprek]
-
+- **"Voor wie"** is een dropdown met twee doelgroepen: *Groeiende bedrijven* naar /finance-voor-scaleups en *Boekhoud- en accountantskantoren* naar /voor-boekhouders. Beide pagina's zijn NL-only, dus het Engelse menu heeft dit item niet. Geen /voor-wie-overzichtspagina: twee bestemmingen rechtvaardigen geen tussenpagina.
 - "Finance-team" wijst naar /aanpak. Dat is de term die al in al het sterke materiaal staat — de one-pager, de vacature-A4, de boekhouderscampagne, de hoofdclaim.
 - "Zo werkt Finable" wijst naar /hoe-het-werkt. Beter dan "Hoe het werkt", want "het" is vaag.
-- **De URL's blijven `aanpak` en `hoe-het-werkt`.** Alleen de zichtbare labels wijzigen, dus geen migratie en niets kan breken.
-- De eyebrow op /aanpak wordt **FINANCE-TEAM** in plaats van AANPAK.
+- **De URL's blijven `aanpak` en `hoe-het-werkt`.** Alleen de zichtbare labels wijken af, dus geen migratie en niets kan breken.
+- De eyebrow op /aanpak is **FINANCE-TEAM**.
+
+**De dropdown werkt op hover én op klik.** Dat zijn twee losse redenen om open te staan; zonder die splitsing sluit een klik het menu dat de muis net heeft geopend. Toetsenbord en touch kennen geen hover en vallen terug op de klik-toestand. Op mobiel staat er geen dropdown: de twee doelgroepen staan als gelabelde groep boven in het menupaneel.
 
 **Niet doen: een menu-item "Diensten".** Dat leest als een administratiekantoor met een prijslijst, precies de categorie waar Finable uit wil. En "Zo werkt Finable" wegstoppen onder een ander item maakt de sterkste vertrouwenspagina onvindbaar.
 

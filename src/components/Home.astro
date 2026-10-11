@@ -187,6 +187,23 @@ const { copy: c } = Astro.props;
     </div>
   </section>
 
+  {/* KANTOREN — aanvullende markt, bewust ingetogen: een dunne regel, geen kaart, geen tint en een
+      tekstlink in plaats van een knop. De homepage blijft van de hoofdclaim. De toelichting staat
+      in een JSX-comment: een HTML-comment zou ook op /en belanden, waar de banner niet bestaat. */}
+  {c.kantoren && (
+    <section class="wrap" style="padding-top:clamp(32px,2.8vw,40px);padding-bottom:28px">
+      <div class="rule" style="margin-bottom:clamp(20px,1.8vw,24px)"></div>
+      <div class="kb">
+        <div>
+          <div class="lbl" style="margin-bottom:10px">{c.kantoren.label}</div>
+          <h2 class="kb-h">{c.kantoren.h2}</h2>
+          <p class="kb-p">{c.kantoren.p}</p>
+        </div>
+        <a href={c.kantoren.cta.href} class="kb-a">{c.kantoren.cta.label} &rarr;</a>
+      </div>
+    </section>
+  )}
+
   <!-- FAQ + TIM (navy) -->
   <section class="faq-navy" style="background:var(--navy)">
     <div class="wrap" style="padding-top:68px;padding-bottom:68px">
@@ -235,6 +252,18 @@ const { copy: c } = Astro.props;
   .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
   .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
   .flow .fa{align-self:center;color:var(--terracotta)}
+  /* KANTOREN-banner: tekst links, tekstlink rechts. Geen kaart, geen achtergrond, alleen een
+     dunne regel erboven. Zo blijft de aanvullende markt zichtbaar zonder een tweede propositie
+     te suggereren. */
+  .kb{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,48px);align-items:center}
+  .kb-h{font-size:clamp(19px,1.6vw,22px);line-height:1.22;margin-bottom:8px;text-wrap:balance}
+  .kb-p{font-size:15.5px;color:var(--body);line-height:1.6;max-width:620px;text-wrap:pretty}
+  .kb-a{font-size:15px;font-weight:600;color:var(--terracotta);white-space:nowrap}
+  @media (max-width:767px){
+    /* De tekstlink krijgt onder 1024px al 14px tik-padding mee; vandaar een kleine grid-gap. */
+    .kb{grid-template-columns:1fr;gap:4px;align-items:start}
+    .kb-a{white-space:normal}
+  }
   .cols4{display:grid;grid-template-columns:repeat(4,1fr)}
   .cols4>div{padding:0 30px;border-left:1px solid var(--line)}
   .cols4>div:first-child{padding-left:0;border-left:none}
