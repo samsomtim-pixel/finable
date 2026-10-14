@@ -5,14 +5,65 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
-    { "source": "/vacature", "destination": "/finance-hire", "permanent": true },
-    { "source": "/vacature/", "destination": "/finance-hire", "permanent": true },
-    { "source": "/en/aanpak", "destination": "/en/finance-team", "permanent": true },
-    { "source": "/en/hoe-het-werkt", "destination": "/en/how-it-works", "permanent": true },
-    { "source": "/en/over", "destination": "/en/about", "permanent": true },
-    { "source": "/en/indicatie", "destination": "/en/estimate", "permanent": true },
-    { "source": "/en/gesprek", "destination": "/en/book-a-call", "permanent": true },
-    { "source": "/en/vacature", "destination": "/en/finance-hire", "permanent": true },
-    { "source": "/en/home", "destination": "/en", "permanent": true }
+    {
+      "source": "/vacature",
+      "destination": "/finance-hire",
+      "permanent": true
+    },
+    {
+      "source": "/vacature/",
+      "destination": "/finance-hire",
+      "permanent": true
+    },
+    {
+      "source": "/en/aanpak",
+      "destination": "/en/finance-team",
+      "permanent": true
+    },
+    {
+      "source": "/en/hoe-het-werkt",
+      "destination": "/en/how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/en/over",
+      "destination": "/en/about",
+      "permanent": true
+    },
+    {
+      "source": "/en/indicatie",
+      "destination": "/en/estimate",
+      "permanent": true
+    },
+    {
+      "source": "/en/gesprek",
+      "destination": "/en/book-a-call",
+      "permanent": true
+    },
+    {
+      "source": "/en/vacature",
+      "destination": "/en/finance-hire",
+      "permanent": true
+    },
+    {
+      "source": "/en/home",
+      "destination": "/en",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/voorstellen/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline"
+        }
+      ]
+    }
   ]
 }
