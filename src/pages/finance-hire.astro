@@ -3,23 +3,37 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+
+/** De vier samenwerkingsvormen. Bewust geformuleerd als verdeling van werkzaamheden, niet als
+ *  functietitels: Finable neemt uitvoering over, geen formele CFO-verantwoordelijkheid. */
+const vormen = [
+  { n: '01', h: 'Een complete finance-functie',
+    p: 'Van dagelijkse administratie en maandafsluiting tot controlling en rapportage. Finable organiseert de uitvoering, met vaste aanspreekpunten en duidelijke verantwoordelijkheden.' },
+  { n: '02', h: 'Versterking van je bestaande team',
+    p: 'Je CFO of finance manager houdt de regie. Finable levert aanvullende capaciteit en expertise, werkt in jullie systemen en sluit aan op bestaande processen.' },
+  { n: '03', h: 'E\u00e9n of meerdere onderdelen uitbesteden',
+    p: 'Alleen de boekhouding, maandafsluiting, financi\u00eble analyses of rapportages? We beginnen waar de behoefte het grootst is.' },
+  { n: '04', h: 'Meegroeien met je organisatie',
+    p: 'Begin klein, breid uit wanneer het nodig is of bouw bepaalde functies later intern op. De verdeling van het werk verandert mee met je organisatie.' },
+];
 ---
-<Layout title="Finance-hire of Finable? Vergelijk hire en finance-team | Finable" description="Je zoekt één finance-professional. Vergelijk een interne hire met een Finable-team op expertise, continuïteit, kosten en onboarding, en zie wat intern blijft.">
+<Layout title="Finance-hire of Finable? Vergelijk hire en finance-team | Finable" description="Je zoekt een boekhouder, controller of finance manager. Vergelijk een interne hire met een Finable-team op expertise, continuïteit en kosten, en zie hoe Finable je finance-functie volledig of gedeeltelijk invult.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
 
   <!-- HERO (navy, één kolom: typografie is het beeld) -->
   <section class="hero-navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
+    <div class="wrap" style="padding-top:48px;padding-bottom:64px">
     <div class="hero" style="display:grid;grid-template-columns:1fr;gap:clamp(36px,4.6vw,68px);align-items:center">
       <div>
-        <div class="lbl" style="margin-bottom:26px">Overweeg je een finance-hire?</div>
-        <h1 style="font-size:clamp(36px,4.6vw,58px);line-height:1.05;margin-bottom:26px">Je zoekt één finance-professional. <span class="em">Misschien heb je een finance-team nodig.</span></h1>
-        <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:560px;text-wrap:pretty">Achter één vacature zit vaak werk van verschillende aard: dagelijkse finance, maandafsluiting, controlling, rapportage en cash en forecast. Soms past dat bij één medewerker. Soms vraagt het om meerdere expertises naast elkaar.</p>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
+        <div class="lbl" style="margin-bottom:20px">Overweeg je een finance-hire?</div>
+        <h1 style="font-size:clamp(34px,4.3vw,54px);line-height:1.07;margin-bottom:20px">Je zoekt financeprofessionals. <span class="em">Maar wat heeft je organisatie écht nodig?</span></h1>
+        <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:600px;text-wrap:pretty">Een boekhouder, controller, finance manager of misschien meerdere financeprofessionals tegelijk. Maar voordat je gaat werven, is het slim om te kijken welke werkzaamheden en expertises je organisatie daadwerkelijk nodig heeft.</p>
+        <p style="font-size:16px;color:rgba(255,255,255,.72);max-width:600px;margin-top:14px;text-wrap:pretty">Finable kan je volledige finance-functie verzorgen, je bestaande team versterken of specifieke onderdelen overnemen — met een vast aanspreekpunt in Nederland en een team dat werkt in jullie eigen systemen.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:28px">
           <Button href="#alternatief">Bekijk het alternatief &rarr;</Button>
-          <a href="/gesprek" style="font-weight:600;font-size:16px;color:var(--terracotta)">Bespreek je finance-vacature &rarr;</a>
+          <a href="/gesprek" style="font-weight:600;font-size:16px;color:var(--terracotta)">Bespreek je financebehoefte &rarr;</a>
         </div>
       </div>
     </div>
@@ -180,27 +194,30 @@ import Button from '../components/Button.astro';
 
   <div class="wrap"><div class="rule"></div></div>
 
-  <!-- WANNEER WAT PAST -->
-  <section class="wrap" style="padding-top:72px;padding-bottom:72px">
-    <div class="lbl" style="margin-bottom:22px">Wanneer wat past</div>
-    <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start">
-      <div>
-        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">Finable past waarschijnlijk als…</h2>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Je op meerdere onderdelen expertise nodig hebt, maar op geen enkel onderdeel een volledige rol</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">De complexiteit toeneemt: meer entiteiten, meer volume, meer stakeholders die cijfers vragen</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Continuïteit belangrijker wordt dan nabijheid</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Je nog geen compleet intern finance-team wilt bouwen</span></div>
-      </div>
-      <div class="vdiv" style="background:var(--line)"></div>
-      <div>
-        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">Iemand in dienst past waarschijnlijk beter als…</h2>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Er genoeg werk is voor één duidelijk afgebakende, volledige rol</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Finance dagelijks verweven is met sales, operations of productie</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Er veel werk op locatie ligt, of dicht bij de mensen op de vloer</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Je finance bewust intern wilt opbouwen en zelf wilt werven, aansturen en opleiden</span></div>
-      </div>
+  <!-- FLEXIBEL INGERICHT — vervangt de oude of-of-vergelijking "Finable past als / iemand in dienst
+       past beter als". Die zette aannemen en Finable tegenover elkaar, terwijl een bedrijf prima
+       een interne CFO kan hebben en daarnaast met Finable kan werken. De nuance dat een interne rol
+       soms de betere keuze is, staat nu in de FAQ en in vorm 02. Vier vormen, geen kaarten: dunne
+       lijnen en nummering, zodat de sectie duidelijker wordt en niet zwaarder. -->
+  <section class="wrap" style="padding-top:64px;padding-bottom:64px">
+    <div class="lbl" style="margin-bottom:22px">Flexibel ingericht</div>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:18px">Eén finance-team. Op jouw manier.</h2>
+    <p style="font-size:16px;color:var(--body);max-width:720px;margin-bottom:clamp(26px,2.8vw,36px);text-wrap:pretty">Of je nu nog niemand op finance hebt, al een CFO of finance manager in dienst hebt of meerdere vacatures probeert in te vullen: Finable sluit aan op wat er al is en vult aan wat ontbreekt.</p>
+    <div class="vorm">
+      {vormen.map((v) => (
+        <div class="vorm-i">
+          <div class="vorm-n">{v.n}</div>
+          <h3 class="vorm-h">{v.h}</h3>
+          <p class="vorm-p">{v.p}</p>
+        </div>
+      ))}
     </div>
-    <p class="fh-alt">Een combinatie komt ook voor: iemand intern voor het werk dat dichtbij moet liggen, en Finable voor de onderdelen die expertise of continuïteit vragen. Nog aan het bepalen of de behoefte er al is? Lees <a href="/kennis/wanneer-controller-nodig">wanneer een groeiend bedrijf controlling nodig heeft</a>. Overweeg je in plaats van aannemen je finance uit te besteden? <a href="/finance-uitbesteden">Lees wat dat in de praktijk betekent &rarr;</a> Groeit je organisatie hard, dan helpt het om eerst te zien <a href="/finance-voor-scaleups">wat er in een groeifase op je finance afkomt</a>.</p>
+    <p class="fh-alt is-plain">Je hoeft niet te kiezen tussen mensen aannemen en finance uitbesteden. Vaak werkt een combinatie juist het best.</p>
+    <div class="vorm-cta">
+      <Button href="/gesprek">Bespreek je financebehoefte &rarr;</Button>
+      <a href="/finance-uitbesteden" class="vorm-sec">Lees wat finance uitbesteden in de praktijk betekent &rarr;</a>
+    </div>
+    <p class="fh-meer">Verder lezen: <a href="/kennis/wanneer-controller-nodig">wanneer een groeiend bedrijf controlling nodig heeft</a> &middot; <a href="/finance-voor-scaleups">wat er in een groeifase op je finance afkomt</a>.</p>
   </section>
 
   <div class="wrap"><div class="rule"></div></div>
@@ -214,17 +231,17 @@ import Button from '../components/Button.astro';
         <details class="fin-faq"><summary><span class="fin-faq-q">Kan Finable een finance-hire vervangen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Soms wel, soms niet. Dat hangt af van de werkzaamheden achter de vacature, niet van de functietitel: dezelfde titel dekt bij het ene bedrijf vooral administratie en bij het andere vooral controlling en rapportage. Vragen die werkzaamheden om verschillende soorten expertise, dan is een team vaak een logischer antwoord dan één brede rol. Is er structureel genoeg werk voor één volledige interne functie, dan past iemand in dienst beter. Daarom beginnen we bij de werkzaamheden en het volume, en pas daarna bij de vorm.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">Wat als we later toch iemand willen aannemen?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Dat hoeft geen probleem te zijn. Wanneer je later besluit finance gedeeltelijk intern op te bouwen, bepalen we opnieuw welke werkzaamheden bij de nieuwe medewerker komen te liggen en welke Finable blijft uitvoeren. Waar nodig dragen we werkzaamheden gecontroleerd over. Finable hoeft daarmee geen permanente keuze tegen een intern finance-team te zijn; de inrichting kan meebewegen wanneer de organisatie daar klaar voor is.</p></div></details>
         <details class="fin-faq"><summary><span class="fin-faq-q">Wat gebeurt er bij ziekte of vakantie?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Omdat het werk door een team wordt uitgevoerd, ben je minder afhankelijk van de beschikbaarheid van één persoon. Kennis en verantwoordelijkheden liggen niet volledig bij één individu, waardoor het werk bij afwezigheid binnen het team kan worden opgevangen. Dat werkt wel alleen als de processen zijn vastgelegd en de kennis overdraagbaar is; dat is onderdeel van de inrichting en niet iets wat vanzelf ontstaat.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">Wanneer is iemand in dienst een betere keuze?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Wanneer er structureel genoeg werk is voor een duidelijk afgebakende, volledige finance-rol, finance dagelijks diep onderdeel moet zijn van interne teams, of je finance bewust intern wilt opbouwen en zelf wilt werven, aansturen en opleiden. In die gevallen is een interne aanstelling vaak logischer. We zeggen dat ook eerlijk: beide keuzes kunnen kloppen, afhankelijk van je situatie.</p></div></details>
+        <details class="fin-faq"><summary><span class="fin-faq-q">Wanneer is iemand in dienst een betere keuze?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Wanneer er structureel genoeg werk is voor een duidelijk afgebakende, volledige finance-rol, finance dagelijks diep onderdeel moet zijn van interne teams, of je finance bewust intern wilt opbouwen en zelf wilt werven, aansturen en opleiden. In die gevallen is een interne aanstelling vaak logischer. We zeggen dat ook eerlijk: beide keuzes kunnen kloppen, afhankelijk van je situatie. Het hoeft bovendien geen of-of te zijn. Naast een interne rol kan Finable onderdelen van de uitvoering voor zijn rekening nemen.</p></div></details>
       </div>
       <div class="vdiv" style="background:var(--on-dark-line)"></div>
       <div class="cta-p" style="display:grid;grid-template-columns:clamp(120px,15vw,160px) minmax(0,1fr);gap:26px;align-items:start">
         <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, oprichter van Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         <div>
           <div class="lbl" style="margin-bottom:16px">Persoonlijk kennismaken</div>
-          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px;color:var(--white)">Bespreek je finance-vacature</h2>
-          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:22px;text-wrap:pretty">In 30 minuten met Tim bekijken we de werkzaamheden achter je vacature, wat intern moet blijven en of Finable daar een passend alternatief of een aanvulling op is.</p>
+          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px;color:var(--white)">Bespreek je financebehoefte</h2>
+          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:22px;text-wrap:pretty">In 30 minuten met Tim bekijken we welke werkzaamheden er bij jullie liggen, wat intern moet blijven en of Finable daar een passend alternatief of een aanvulling op is.</p>
           <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-            <Button href="/gesprek">Bespreek je finance-vacature &rarr;</Button>
+            <Button href="/gesprek">Bespreek je financebehoefte &rarr;</Button>
             <a href="/indicatie" style="font-weight:600;font-size:15px;color:var(--white)">Vraag je indicatie aan &rarr;</a>
           </div>
           <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45;margin-top:20px"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Oprichter Finable</div>
@@ -280,6 +297,27 @@ import Button from '../components/Button.astro';
     .vgl-b{padding:12px 14px!important;border-radius:10px!important}
     .vgl-lbl{display:block;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--body);margin-bottom:5px}
     .vgl-b .vgl-lbl{color:var(--terracotta)}
+  }
+  /* Vier samenwerkingsvormen: 2x2 op desktop, dunne lijnen in plaats van kaarten. De verticale
+     lijn hoort bij de rechterkolom, de horizontale bij elke rij; samen vormen ze een rustig
+     raster zonder vlakken. Onder 767px vallen beide weg op de scheiding tussen de items na. */
+  .vorm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vorm-i{padding:22px 0 26px;border-top:1px solid var(--line)}
+  .vorm-i:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .vorm-i:nth-child(odd){padding-right:clamp(28px,3.6vw,56px)}
+  .vorm-i:nth-child(even){padding-left:clamp(28px,3.6vw,56px);border-left:1px solid var(--line)}
+  .vorm-n{font-size:11px;font-weight:600;letter-spacing:0.16em;color:var(--terracotta);margin-bottom:12px}
+  .vorm-h{font-size:clamp(18px,1.9vw,21px);line-height:1.25;margin-bottom:10px;text-wrap:balance}
+  .vorm-p{font-size:15.5px;color:var(--body);line-height:1.6;max-width:470px;text-wrap:pretty}
+  .vorm-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:24px}
+  .vorm-sec{font-weight:600;font-size:15px;color:var(--terracotta)}
+  .fh-alt.is-plain{border-top:none;padding-top:0;margin-top:clamp(26px,2.8vw,34px)}
+  .fh-meer{margin-top:20px;font-size:14.5px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fh-meer a{font-weight:600;color:var(--navy)}
+  @media (max-width:767px){
+    .vorm{grid-template-columns:1fr}
+    .vorm-i,.vorm-i:nth-child(odd),.vorm-i:nth-child(even){padding:20px 0 22px;border-left:none}
+    .vorm-p{max-width:none}
   }
   .chk{display:flex;align-items:flex-start;gap:14px;padding:11px 0}
   .chk svg{flex-shrink:0;margin-top:2px}
