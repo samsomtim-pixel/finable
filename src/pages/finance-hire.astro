@@ -28,9 +28,9 @@ const vormen = [
     <div class="hero" style="display:grid;grid-template-columns:1fr;gap:clamp(36px,4.6vw,68px);align-items:center">
       <div>
         <div class="lbl" style="margin-bottom:20px">Overweeg je een finance-hire?</div>
-        <h1 style="font-size:clamp(34px,4.3vw,54px);line-height:1.07;margin-bottom:20px">Je zoekt financeprofessionals. <span class="em">Maar wat heeft je organisatie écht nodig?</span></h1>
+        <h1 class="fh-h1" style="font-size:clamp(32px,4vw,50px);line-height:1.07;margin-bottom:20px">Je zoekt financeprofessionals.<span class="em">Maar wat heeft je organisatie écht nodig?</span></h1>
         <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:600px;text-wrap:pretty">Een boekhouder, controller, finance manager of misschien meerdere financeprofessionals tegelijk. Maar voordat je gaat werven, is het slim om te kijken welke werkzaamheden en expertises je organisatie daadwerkelijk nodig heeft.</p>
-        <p style="font-size:16px;color:rgba(255,255,255,.72);max-width:600px;margin-top:14px;text-wrap:pretty">Finable kan je volledige finance-functie verzorgen, je bestaande team versterken of specifieke onderdelen overnemen — met een vast aanspreekpunt in Nederland en een team dat werkt in jullie eigen systemen.</p>
+        <p style="font-size:16px;color:rgba(255,255,255,.72);max-width:600px;margin-top:14px;text-wrap:pretty">Finable kan je volledige finance-functie verzorgen, je bestaande team versterken of specifieke onderdelen overnemen. Je hebt één vast aanspreekpunt in Nederland en het team werkt in jullie eigen systemen.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:28px">
           <Button href="#alternatief">Bekijk het alternatief &rarr;</Button>
           <a href="/gesprek" style="font-weight:600;font-size:16px;color:var(--terracotta)">Bespreek je financebehoefte &rarr;</a>
@@ -260,6 +260,9 @@ const vormen = [
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.1}
+  /* De tweede zin van de H1 staat altijd op een eigen regel. Een block-span in plaats van een
+     <br>, zodat beide zinnen op smalle schermen gewoon natuurlijk doorlopen zonder lege regel. */
+  .fh-h1 .em{display:block}
   .cat{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta);opacity:.7;margin:0 0 4px}
   /* Doorverwijzing naar de pillar: één regel onder de afweging, geen tweede CTA. */
   .fh-alt{margin-top:clamp(32px,3.4vw,44px);padding-top:26px;border-top:1px solid var(--line);font-size:16px;color:var(--body);text-wrap:pretty}
