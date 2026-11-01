@@ -3,10 +3,13 @@
 // secties, volgorde, componenten, beeld, layout en CSS staan hier en zijn voor elke taal gelijk.
 // Nederlands is leidend: een nieuwe sectie wordt hier gebouwd en krijgt per taal copy, zodat de
 // twee talen niet opnieuw uit elkaar kunnen lopen.
+//
+// Sectievolgorde: hero · bewijs · herkenning · werk · case · mensen · kantoren · faq · starten.
+// De hero is bewust de eerste <section> en 'starten' de laatste: site-analytics.ts leidt
+// cta_location af uit de index van de sectie, dus 'hero' en 'closing' hangen aan die posities.
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Button from './Button.astro';
-import LogoMarquee from './LogoMarquee.astro';
 import type { HomeCopy } from '../copy/home';
 
 interface Props { copy: HomeCopy }
@@ -16,174 +19,121 @@ const { copy: c } = Astro.props;
 
   <Header />
 
-  <!-- HERO (navy) -->
+  <!-- HERO (navy) — links de claim, rechts de vier werkgebieden puur typografisch. Geen beeld,
+       geen cijfers, geen nagebootste software: de kop is het beeld. -->
   <section class="hero-navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:64px;padding-bottom:80px">
-    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(36px,4.6vw,72px);align-items:center">
+    <div class="wrap" style="padding-top:56px;padding-bottom:60px">
+    <div class="hero" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);gap:clamp(36px,4.6vw,72px);align-items:center">
       <div>
-        <div class="hero-brand" style="margin-bottom:26px">{c.hero.eyebrowA}<span>{c.hero.eyebrowB}</span></div>
-        <h1 style="font-size:clamp(38px,4.6vw,56px);line-height:1.05;margin-bottom:26px">{c.hero.h1a} <span class="hero-h1-b">{c.hero.h1b}</span></h1>
+        <div class="hero-brand" style="margin-bottom:24px">{c.hero.eyebrowA}<span>{c.hero.eyebrowB}</span></div>
+        <h1 style="font-size:clamp(38px,4.6vw,56px);line-height:1.05;margin-bottom:24px">{c.hero.h1a} <span class="hero-h1-b">{c.hero.h1b}</span></h1>
         <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:560px;text-wrap:pretty">{c.hero.sub}</p>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
+        <p class="hero-start">{c.hero.start}</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:30px">
           <Button href={c.hero.cta.href}>{c.hero.cta.label} &rarr;</Button>
           <a href={c.hero.secondary.href} class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">{c.hero.secondary.label} &rarr;</a>
         </div>
       </div>
-      <div class="hero-media">
-        <!-- Beeldslot uit het ontwerp (home-hero-still). Gevuld met de aangeleverde samenwerkingsfoto; alleen op desktop (≥1024px), daaronder bewust weggelaten (display:none), niet verkleind. -->
-        <div class="hero-img" style="height:clamp(260px,26vw,352px)"><picture><source media="(min-width:1024px)" srcset="/images/hero-team-call.webp" type="image/webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt={c.hero.imgAlt} width="1600" height="797" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:14px"></picture></div>
+      <div class="hv">
+        <div class="hv-lbl">{c.hero.veldenLabel}</div>
+        <ul class="hv-list">{c.hero.velden.map((v) => <li>{v}</li>)}</ul>
       </div>
     </div>
     </div>
   </section>
 
-  <!-- HERKENNING -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:72px">
-    <div class="rule" style="margin-bottom:44px"></div>
-    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px">
-      <h2 style="font-size:clamp(26px,3.2vw,38px)">{c.herken.h2}</h2>
-      <div style="font-size:15px;color:var(--body)">{c.herken.aside}</div>
+  <!-- BEWIJSREGEL — expertise die achter Finable beschikbaar is. De noot staat er bewust bij:
+       zonder die afbakening leest de regel als de bezetting die iedere klant krijgt. -->
+  <section class="wrap bw-sec">
+    <div class="bw">
+      {c.bewijs.items.map((it) => (
+        <div class="bw-i"><span class="bw-k">{it.k}</span><span class="bw-p">{it.p}</span></div>
+      ))}
     </div>
-    <div class="cols4t" style="display:grid;grid-template-columns:repeat(3,1fr)">
-      <div>
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><circle cx="14" cy="10" r="5"/><path d="M5 24c0-5 4-8 9-8s9 3 9 8"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">{c.herken.items[0].h3}</h3>
-        <p style="font-size:15px;color:var(--body)">{c.herken.items[0].p}</p>
-      </div>
-      <div>
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">{c.herken.items[1].h3}</h3>
-        <p style="font-size:15px;color:var(--body)">{c.herken.items[1].p}</p>
-      </div>
-      <div>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4643A" stroke-width="1.5" style="margin-bottom:18px" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="11" width="3" height="6"/><rect x="11" y="7" width="3" height="10"/><rect x="16" y="13" width="3" height="4"/></svg>
-        <h3 style="font-size:20px;margin-bottom:10px">{c.herken.items[2].h3}</h3>
-        <p style="font-size:15px;color:var(--body)">{c.herken.items[2].p}</p>
-      </div>
-    </div>
+    <p class="bw-note">{c.bewijs.note}</p>
   </section>
 
-  <!-- ERVARING / LOGO PROOF — ervaring van de mensen achter Finable, geen klantenlijst. -->
-  <section style="background:var(--terracotta-tint)">
-    <div class="wrap" style="padding-top:40px;padding-bottom:0">
-      <div style="margin-bottom:28px;text-align:center">
-        <div class="lbl">{c.ervaring.label}</div>
-      </div>
-    </div>
-    <div class="logo-rail" style="padding-bottom:40px">
-      <LogoMarquee />
-    </div>
-  </section>
-
-  <!-- NAVY ANKER · FINANCE-FUNCTIE -->
-  <section class="navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:80px;padding-bottom:80px;text-align:center">
-      <div class="lbl" style="color:var(--terracotta);margin-bottom:20px">{c.functie.label}</div>
-      <h2 style="font-size:clamp(28px,3.6vw,44px);color:var(--white);margin-bottom:44px">{c.functie.h2}</h2>
-      <div class="flow" style="max-width:1000px;margin:0 auto;text-align:left">
-        <div class="fn">{c.functie.flow[0]}</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div class="fn">{c.functie.flow[1]}</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div class="fn">{c.functie.flow[2]}</div>
-        <svg class="fa" width="26" height="15" viewBox="0 0 30 18" fill="none" stroke="#C4643A" stroke-width="2" aria-hidden="true"><path d="M0 9h24M18 2l8 7-8 7"/></svg>
-        <div class="fn">{c.functie.flow[3]}</div>
-      </div>
-      <div style="height:1px;background:rgba(255,255,255,0.14);max-width:1000px;margin:44px auto 30px"></div>
-      <div class="navy-trio" style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-family:'Playfair Display',serif;font-size:clamp(18px,1.9vw,23px);color:var(--white)">
-        <span>{c.functie.trio[0]}</span>
-        <span style="color:var(--on-dark-tertiary)">·</span>
-        <span>{c.functie.trio[1]}</span>
-        <span style="color:var(--on-dark-tertiary)">·</span>
-        <span>{c.functie.trio[2]}</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINANCE VERANDERT — context, geen klantenlijst. De corporate namen zijn uitsluitend
-       typografisch: het zijn geen klanten, partners of endorsements van Finable. -->
-  <section class="fv-sec" style="background:var(--section)">
-    <div class="wrap">
-      <div class="fv">
+  <!-- HERKENNING — situaties, geen diagnose: niet ieder groeiend bedrijf heeft deze vanzelf. -->
+  <section class="wrap" style="padding-top:clamp(44px,4.4vw,60px);padding-bottom:clamp(44px,4.4vw,60px)">
+    <div class="lbl" style="margin-bottom:18px">{c.herken.label}</div>
+    <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:clamp(28px,3vw,38px);text-wrap:balance">{c.herken.h2}</h2>
+    <div class="cols3">
+      {c.herken.items.map((it) => (
         <div>
-          <div class="lbl" style="margin-bottom:18px">{c.verandert.label}</div>
-          <h2 style="font-size:clamp(26px,3.2vw,38px);text-wrap:balance">{c.verandert.h2}</h2>
+          <h3 style="font-size:19px;margin-bottom:10px;text-wrap:balance">{it.h3}</h3>
+          <p style="font-size:15px;color:var(--body);line-height:1.6;text-wrap:pretty">{it.p}</p>
         </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- WERK EN OPLEVERING — vier regels, geen kaarten. Doel van de hero-link 'Dit kunnen we
+       overnemen'; vandaar het id en de scroll-marge onder de header. -->
+  <section id="werk" class="werk-sec" style="background:var(--section)">
+    <div class="wrap" style="padding-top:clamp(44px,4.4vw,60px);padding-bottom:clamp(44px,4.4vw,60px)">
+      <div class="lbl" style="margin-bottom:18px">{c.werk.label}</div>
+      <h2 style="font-size:clamp(26px,3.2vw,38px);margin-bottom:12px;text-wrap:balance">{c.werk.h2}</h2>
+      <p style="font-size:16px;color:var(--body);max-width:640px;margin-bottom:clamp(28px,3vw,38px);text-wrap:pretty">{c.werk.sub}</p>
+      <div class="wk">
+        {c.werk.items.map((it) => (
+          <div class="wk-r">
+            <h3 class="wk-h">{it.h3}</h3>
+            <p class="wk-p">{it.p}</p>
+          </div>
+        ))}
+      </div>
+      {c.werk.verderLezen.length > 0 && (
+        <p class="wk-meer">{c.werk.verderLezenLabel}: {c.werk.verderLezen.map((l, i) => (
+          <>{i > 0 && <span class="wk-sep"> &middot; </span>}<a href={l.href}>{l.label}</a></>
+        ))}</p>
+      )}
+    </div>
+  </section>
+
+  <!-- KLANTCASE — de goedgekeurde quote en de case dragen het bewijs. Geen resultaten,
+       percentages of aantallen: die zijn niet bevestigd. -->
+  <section class="wrap" style="padding-top:clamp(44px,4.4vw,60px);padding-bottom:clamp(44px,4.4vw,60px)">
+    <div class="lbl" style="margin-bottom:18px">{c.case.label}</div>
+    <h2 style="font-size:clamp(24px,2.8vw,34px);margin-bottom:clamp(28px,3vw,38px);text-wrap:balance">{c.case.h2}</h2>
+    <div class="case">
+      <div class="case-l">
+        <img src="/images/the-good-roll.png" alt={c.case.logoAlt} width="662" height="663" loading="lazy" style="width:64px;height:64px;border-radius:999px;display:block;margin-bottom:16px">
+        <div style="font-size:15px;color:var(--body)">{c.case.persoon}</div>
+      </div>
+      <div>
+        <p class="case-q">{c.case.quoteA}<span style="color:var(--terracotta)">{c.case.quoteB}</span></p>
+        <p style="font-size:16px;color:var(--body);max-width:620px;text-wrap:pretty">{c.case.body}</p>
+        <a href={c.case.link.href} data-case-link="the_good_roll" style="display:inline-block;margin-top:16px;font-size:15px;font-weight:600">{c.case.link.label} &rarr;</a>
+      </div>
+      <div class="case-img"><img src="/images/sander-the-good-roll.webp" alt={c.case.fotoAlt} width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+  </section>
+
+  <!-- MENSEN EN EXPERTISE — inclusief de transparante toelichting over waar het team werkt.
+       Die hoort hier en niet in de hero. -->
+  <section class="mn-sec" style="background:var(--terracotta-tint)">
+    <div class="wrap" style="padding-top:clamp(44px,4.4vw,60px);padding-bottom:clamp(44px,4.4vw,60px)">
+      <div class="mn">
         <div>
-          <p class="fv-body">{c.verandert.body}</p>
-          <p class="fv-concl">{c.verandert.concl}</p>
-          <ul class="fv-proof">{c.verandert.proof.map((n) => <li>{n}</li>)}</ul>
-          <details class="fv-src">
-            <summary><span>{c.verandert.bronnenLabel}</span><span class="fv-ic" aria-hidden="true"></span></summary>
-            <ul>
-              {c.verandert.bronnen.map((b) => (
-                <li><a href={b.url} target="_blank" rel="noopener noreferrer">{b.label} &rarr;</a></li>
-              ))}
-            </ul>
-          </details>
-          {c.verandert.read && (
-            <div class="fv-read">
-              <a href={c.verandert.read.href} class="fv-read-a">{c.verandert.read.label} &rarr;</a>
+          <div class="lbl" style="margin-bottom:18px">{c.mensen.label}</div>
+          <h2 style="font-size:clamp(24px,2.8vw,34px);margin-bottom:18px;text-wrap:balance">{c.mensen.h2}</h2>
+          <p style="font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty">{c.mensen.body}</p>
+          <p class="mn-toe">{c.mensen.toelichting}</p>
+          <a href={c.mensen.link.href} class="mn-a">{c.mensen.link.label} &rarr;</a>
+        </div>
+        <div class="mn-p">
+          {c.mensen.personen.map((p) => (
+            <div class="mn-c">
+              <img src={p.foto} alt={p.alt} width="800" height="699" loading="lazy" class="mn-img">
+              <div>
+                <div class="mn-n">{p.naam}</div>
+                <div class="mn-r">{p.rol}</div>
+                <div class="mn-s">{p.sub}</div>
+              </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WAT PAST BIJ JOUW SITUATIE -->
-  <section class="wrap" style="padding-top:80px;padding-bottom:72px">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
-      <h2 style="font-size:clamp(26px,3.2vw,38px)">{c.situatie.h2}</h2>
-      <a href={c.situatie.compare.href} style="font-weight:600;font-size:15px;color:var(--terracotta)">{c.situatie.compare.label} &rarr;</a>
-    </div>
-    <div class="cols4">
-      {c.situatie.items.map((it, i) => (
-        <div>
-          <div class="lbl" style={i === c.situatie.items.length - 1 ? 'margin-bottom:12px' : 'color:var(--body);margin-bottom:12px'}>{it.label}</div>
-          <p style={i === c.situatie.items.length - 1 ? 'font-size:15px;color:var(--navy);line-height:1.6' : 'font-size:15px;color:var(--body);line-height:1.6'}>{it.p}</p>
-          {it.link && <a href={it.link.href} style="display:inline-block;margin-top:10px;font-size:14px;font-weight:600;color:var(--terracotta)">{it.link.label} &rarr;</a>}
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- KLANTCASE -->
-  <section class="wrap" style="padding-top:8px;padding-bottom:72px">
-    <div class="rule" style="margin-bottom:52px"></div>
-    <div class="case" style="display:grid;grid-template-columns:auto minmax(0,1.7fr) clamp(185px,19vw,245px);gap:clamp(24px,3.5vw,48px);align-items:center">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <img src="/images/the-good-roll.png" alt={c.case.logoAlt} width="662" height="663" style="width:72px;height:72px;border-radius:999px;display:block">
-        <div>
-          <div class="lbl" style="color:var(--body);margin-bottom:6px">{c.case.label}</div>
-          <div style="font-size:15px;color:var(--body)">{c.case.persoon}</div>
-        </div>
-      </div>
-      <div>
-        <p style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);color:var(--navy);line-height:1.2;margin-bottom:22px;text-wrap:balance">{c.case.quoteA}<span style="color:var(--terracotta)">{c.case.quoteB}</span></p>
-        <p style="font-size:16px;color:var(--body);max-width:640px;text-wrap:pretty">{c.case.body}</p>
-        <a href={c.case.link.href} data-case-link="the_good_roll" style="display:inline-block;margin-top:18px;font-size:15px;font-weight:600">{c.case.link.label} &rarr;</a>
-      </div>
-      <div class="case-img" style="aspect-ratio:1200/711;border-radius:12px;overflow:hidden"><img src="/images/sander-the-good-roll.webp" alt={c.case.fotoAlt} width="1200" height="711" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-    </div>
-    <div class="rule" style="margin-top:52px"></div>
-  </section>
-
-  <!-- ZEKERHEDEN -->
-  <section style="background:var(--terracotta-tint)">
-    <div class="wrap" style="padding-top:56px;padding-bottom:56px">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px">
-      <h2 style="font-size:clamp(26px,3.2vw,38px)">{c.zekerheden.h2}</h2>
-      <div style="font-size:15px;color:var(--body)">{c.zekerheden.aside}</div>
-    </div>
-    <div class="cols4t" style="display:grid;grid-template-columns:repeat(4,1fr)">
-      {c.zekerheden.items.map((it) => (
-        <div>
-          <div class="lbl" style="color:var(--navy);margin-bottom:12px">{it.label}</div>
-          <p style="font-size:15px;color:var(--body);line-height:1.6">{it.p}</p>
-        </div>
-      ))}
-    </div>
     </div>
   </section>
 
@@ -204,34 +154,44 @@ const { copy: c } = Astro.props;
     </section>
   )}
 
-  <!-- FAQ + TIM (navy) -->
-  <section class="faq-navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:68px;padding-bottom:68px">
-    <div class="endmod" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(40px,5vw,72px);align-items:start">
-      <div>
-        <div class="lbl" style="margin-bottom:28px">{c.faq.label}</div>
-        <div style="max-width:900px">
-          {c.faq.items.map((f) => (
-            <details class="fin-faq"><summary><span class="fin-faq-q">{f.q}</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>{f.a}</p></div></details>
-          ))}
-        </div>
-        <div style="margin-top:26px"><a href={c.faq.alle.href} style="font-weight:600;font-size:15px;color:var(--terracotta)">{c.faq.alle.label} &rarr;</a></div>
-      </div>
-      <div class="endmod-cta" style="border-left:1px solid var(--on-dark-line);padding-left:clamp(28px,3vw,48px)">
-        <div class="lbl" style="margin-bottom:20px">{c.eind.label}</div>
-        <div class="tim-row" style="display:grid;grid-template-columns:clamp(120px,14vw,150px) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:24px">
-          <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt={c.eind.timAlt} width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-          <div>
-            <h2 style="font-size:clamp(21px,2.2vw,28px);line-height:1.12;margin-bottom:12px;color:var(--white)">{c.eind.h2}</h2>
-            <p style="font-size:15px;color:var(--on-dark-secondary);text-wrap:pretty">{c.eind.p}</p>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px">
-          <Button href={c.eind.cta.href}>{c.eind.cta.label} &rarr;</Button>
-          <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">{c.eind.timNaam}</span><br>{c.eind.timRol}</div>
-        </div>
-      </div>
+  <!-- FAQ -->
+  <section class="wrap" style="padding-top:clamp(38px,4vw,50px);padding-bottom:clamp(42px,4.4vw,56px)">
+    <div class="lbl" style="margin-bottom:22px">{c.faq.label}</div>
+    <div style="max-width:900px">
+      {c.faq.items.map((f) => (
+        <details class="fin-faq"><summary><span class="fin-faq-q">{f.q}</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>{f.a}</p></div></details>
+      ))}
     </div>
+    <div style="margin-top:24px"><a href={c.faq.alle.href} style="font-weight:600;font-size:15px;color:var(--terracotta)">{c.faq.alle.label} &rarr;</a></div>
+  </section>
+
+  <!-- STARTEN (navy) — laatste sectie, en daarmee de 'closing' CTA in de meetlaag. -->
+  <section class="st-sec" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:clamp(46px,4.6vw,62px);padding-bottom:clamp(46px,4.6vw,62px)">
+      <div class="st">
+        <div>
+          <div class="lbl" style="margin-bottom:18px">{c.starten.label}</div>
+          <h2 style="font-size:clamp(26px,3.2vw,38px);color:var(--white);margin-bottom:16px;text-wrap:balance">{c.starten.h2}</h2>
+          <p style="font-size:16px;color:var(--on-dark-secondary);max-width:560px;text-wrap:pretty">{c.starten.p}</p>
+          <ol class="st-steps">
+            {c.starten.stappen.map((s, i) => (
+              <li>
+                <span class="st-n">{String(i + 1).padStart(2, '0')}</span>
+                <span class="st-h">{s.h3}</span>
+                <span class="st-p">{s.p}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="st-cta">
+          <div class="tim-row" style="display:grid;grid-template-columns:clamp(110px,13vw,140px) minmax(0,1fr);gap:22px;align-items:center;margin-bottom:24px">
+            <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt={c.starten.timAlt} width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45"><span style="font-family:'Playfair Display',serif;font-weight:600;font-size:17px;color:var(--white)">{c.starten.timNaam}</span><br>{c.starten.timRol}</div>
+          </div>
+          <Button href={c.starten.cta.href}>{c.starten.cta.label} &rarr;</Button>
+          <p class="st-ger">{c.starten.gerust}</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -240,7 +200,7 @@ const { copy: c } = Astro.props;
 </div>
 
 <style is:global>
-  /* Hero-brandline (A2): klein en uppercase boven de H1; alleen 'in-house.' krijgt het terracotta-accent. */
+  /* Hero-brandline: klein en uppercase boven de H1; alleen 'in-house.' krijgt het terracotta-accent. */
   .hero-brand{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--on-dark-secondary)}
   .hero-brand span{color:var(--terracotta)}
   /* Zodra de hero éénkolommig wordt, krijgt "Elke maand." een eigen regel: hetzelfde ritme als op desktop,
@@ -249,9 +209,59 @@ const { copy: c } = Astro.props;
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .on-dark-link:hover{color:var(--terracotta);opacity:1}
-  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:18px;align-items:start}
-  .flow .fn{font-family:'Playfair Display',serif;font-size:clamp(17px,1.5vw,21px);color:var(--white)}
-  .flow .fa{align-self:center;color:var(--terracotta)}
+
+  /* De 'begin met één onderdeel'-regel: direct onder de introductie, iets rustiger gezet zodat de
+     introductie de kop blijft dragen en deze regel de drempel verlaagt. */
+  .hero-start{margin-top:16px;padding-left:16px;border-left:2px solid var(--terracotta);font-size:16px;color:var(--on-dark-secondary);line-height:1.6;max-width:560px;text-wrap:pretty}
+
+  /* Hero-kolom rechts: de vier werkgebieden, puur typografisch op dunne lijnen. */
+  .hv-lbl{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:14px}
+  .hv-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--on-dark-line)}
+  .hv-list li{padding:14px 0;border-bottom:1px solid var(--on-dark-line);font-family:'Playfair Display',Georgia,serif;font-size:clamp(17px,1.5vw,21px);color:var(--white);line-height:1.25}
+
+  /* BEWIJSREGEL: één compacte strook tussen twee dunne lijnen, geen kaarten. */
+  .bw-sec{padding-top:clamp(26px,2.6vw,34px);padding-bottom:clamp(26px,2.6vw,34px)}
+  .bw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bw-i{display:flex;align-items:baseline;gap:12px;padding:18px 26px}
+  .bw-i:first-child{padding-left:0}
+  .bw-i+.bw-i{border-left:1px solid var(--line)}
+  .bw-k{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,2.4vw,30px);color:var(--terracotta);line-height:1;flex-shrink:0}
+  .bw-p{font-size:15px;color:var(--body);line-height:1.5;text-wrap:pretty}
+  .bw-note{margin-top:16px;max-width:760px;font-size:14px;color:var(--body);line-height:1.6;text-wrap:pretty}
+
+  .cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cols3>div{padding:0 28px;border-left:1px solid var(--line)}
+  .cols3>div:first-child{padding-left:0;border-left:none}
+
+  /* WERK: vier regels op dunne lijnen. Titel links, oplevering rechts, zodat het blok in één
+     oogopslag te scannen is en op mobiel netjes onder elkaar valt. */
+  .wk{border-top:1px solid var(--line)}
+  .wk-r{display:grid;grid-template-columns:minmax(0,0.42fr) minmax(0,1fr);gap:clamp(16px,3vw,48px);align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line)}
+  .wk-h{font-size:clamp(17px,1.7vw,20px);line-height:1.3}
+  .wk-p{font-size:15.5px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .wk-meer{margin-top:22px;font-size:14.5px;color:var(--body);line-height:1.7;text-wrap:pretty}
+  .wk-meer a{font-weight:600;color:var(--navy)}
+  .wk-sep{color:var(--body);opacity:.5}
+  /* De hero-link springt hierheen; de ankerpositie moet niet onder de header vallen. */
+  .werk-sec{scroll-margin-top:12px}
+
+  /* KLANTCASE */
+  .case{display:grid;grid-template-columns:auto minmax(0,1.7fr) clamp(185px,19vw,245px);gap:clamp(24px,3.5vw,48px);align-items:center}
+  .case-q{font-family:'Playfair Display',serif;font-size:clamp(23px,2.8vw,34px);color:var(--navy);line-height:1.2;margin-bottom:20px;text-wrap:balance}
+  .case-img{aspect-ratio:1200/711;border-radius:12px;overflow:hidden}
+
+  /* MENSEN: tekst links, twee profielen rechts. Bestaande foto's, geen nieuwe beeldtaal. */
+  .mn{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:clamp(32px,4.4vw,64px);align-items:start}
+  .mn-toe{margin-top:18px;padding-left:16px;border-left:2px solid var(--terracotta);font-size:15px;color:var(--body);line-height:1.65;text-wrap:pretty}
+  .mn-a{display:inline-block;margin-top:20px;font-size:15px;font-weight:600;color:var(--terracotta)}
+  .mn-p{display:grid;gap:20px}
+  .mn-c{display:grid;grid-template-columns:clamp(84px,9vw,104px) minmax(0,1fr);gap:20px;align-items:center;padding-top:20px;border-top:1px solid var(--line)}
+  .mn-c:first-child{padding-top:0;border-top:none}
+  .mn-img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block}
+  .mn-n{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;color:var(--navy);line-height:1.2}
+  .mn-r{margin-top:4px;font-size:14px;color:var(--terracotta);font-weight:600}
+  .mn-s{margin-top:3px;font-size:14px;color:var(--body);line-height:1.5}
+
   /* KANTOREN-banner: tekst links, tekstlink rechts. Geen kaart, geen achtergrond, alleen een
      dunne regel erboven. Zo blijft de aanvullende markt zichtbaar zonder een tweede propositie
      te suggereren. */
@@ -259,19 +269,11 @@ const { copy: c } = Astro.props;
   .kb-h{font-size:clamp(19px,1.6vw,22px);line-height:1.22;margin-bottom:8px;text-wrap:balance}
   .kb-p{font-size:15.5px;color:var(--body);line-height:1.6;max-width:620px;text-wrap:pretty}
   .kb-a{font-size:15px;font-weight:600;color:var(--terracotta);white-space:nowrap}
-  @media (max-width:767px){
-    /* De tekstlink krijgt onder 1024px al 14px tik-padding mee; vandaar een kleine grid-gap. */
-    .kb{grid-template-columns:1fr;gap:4px;align-items:start}
-    .kb-a{white-space:normal}
-  }
-  .cols4{display:grid;grid-template-columns:repeat(4,1fr)}
-  .cols4>div{padding:0 30px;border-left:1px solid var(--line)}
-  .cols4>div:first-child{padding-left:0;border-left:none}
-  .cols4t>div{padding:0 26px;border-left:1px solid var(--line)}
-  .cols4t>div:first-child{padding-left:0;border-left:none}
+
+  /* FAQ */
   details.fin-faq{border-top:1px solid var(--line)}
   details.fin-faq:last-of-type{border-bottom:1px solid var(--line)}
-  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:24px 0}
+  details.fin-faq>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding:22px 0}
   details.fin-faq>summary::-webkit-details-marker{display:none}
   .fin-faq-q{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(17px,1.7vw,20px);color:var(--navy);line-height:1.35;letter-spacing:-0.01em}
   .fin-faq-ic{position:relative;width:17px;height:17px;flex-shrink:0;margin-top:6px}
@@ -280,84 +282,43 @@ const { copy: c } = Astro.props;
   .fin-faq-ic::after{left:7.5px;top:0;width:2px;height:17px}
   details.fin-faq[open] .fin-faq-ic::after{opacity:0}
   details.fin-faq>summary:hover .fin-faq-q{color:var(--terracotta)}
-  .fin-faq-a{max-width:720px;padding:0 0 28px;font-size:15.5px;color:var(--body);line-height:1.72}
-  @media (max-width:1023px){
-  .hero{grid-template-columns:1fr!important;gap:40px!important}
-  .flow{grid-template-columns:1fr;gap:16px}
-  .flow .fa{transform:rotate(90deg);justify-self:start}
-  .cols4,.cols4t{grid-template-columns:1fr 1fr;gap:26px 0}
-  .cols4>div,.cols4t>div{padding:22px 0;border-left:none;border-top:1px solid var(--line)}
-  .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:none}
-  .case{grid-template-columns:1fr!important;gap:28px!important}
-  .case-img{max-width:420px}
-  .endmod{grid-template-columns:1fr!important;gap:36px!important}
-  .endmod>div:last-child{border-left:none!important;padding-left:0!important;border-top:1px solid var(--on-dark-line);padding-top:36px!important}
-  }
-  /* Responsive (bouwopdracht §5): 1024 / 640 */
-  @media (max-width:1023px){
-    .hero-media{display:none}
-    .cols4,.cols4t{grid-template-columns:1fr 1fr!important}
-    .tim-row{grid-template-columns:1fr!important}
-    .tim-row>div:first-child{max-width:150px}
-  }
-  /* Mobiel (≤639): compositie */
-  @media (max-width:639px){
-    .navy-trio{flex-direction:column;gap:6px!important}
-    .navy-trio>span[style]{display:none}
-    .flow{gap:12px}
-    .cols4>div,.cols4t>div{padding:18px 0!important}
-    .logo-rail{padding-bottom:36px!important}
-  }
-  @media (max-width:639px){
-    .cols4,.cols4t{grid-template-columns:1fr!important;gap:0}
-    .cols4>div:nth-child(-n+2),.cols4t>div:nth-child(-n+2){border-top:1px solid var(--line)}
-    .cols4>div:first-child,.cols4t>div:first-child{border-top:none;padding-top:0}
-  }
+  .fin-faq-a{max-width:720px;padding:0 0 26px;font-size:15.5px;color:var(--body);line-height:1.72}
 
-  /* FINANCE VERANDERT — twee kolommen op desktop, gestapeld op mobiel. */
-  .fv{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(32px,4.4vw,72px);align-items:start}
-  .fv-body{font-size:16px;color:var(--body);line-height:1.7;text-wrap:pretty}
-  /* De Finable-conclusie is visueel het belangrijkste rechts: terracotta accentlijn. */
-  .fv-concl{margin-top:20px;padding-left:18px;border-left:3px solid var(--terracotta);font-family:'Playfair Display',Georgia,serif;font-size:clamp(18px,1.9vw,23px);line-height:1.35;color:var(--navy);text-wrap:balance}
-  /* Corporate namen: context, geen logo's, geen badges. Bewust kleiner dan de conclusie.
-     Een lijst met flex-wrap in plaats van losse tekst met ' · ' ertussen: zo kan een regel niet
-     meer eindigen of beginnen met een zwevende separator. Boven 767px past de reeks op een regel en
-     staan de middots ertussen; daaronder wordt er gewrapt en scheidt alleen de ruimte de namen. */
-  .fv-proof{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:0;list-style:none;margin-top:22px;padding:0;font-size:13px;letter-spacing:0.06em;color:var(--body);line-height:1.9}
-  .fv-proof li+li::before{content:"·";margin-right:5px}
-  /* Eigen sectiepadding in plaats van inline: mobile.css vertaalt inline .wrap-paddings via
-     attribuutselectors, en die vertaling gold hier niet meer nadat desktop compacter werd. */
-  .fv-sec>.wrap{padding-top:52px;padding-bottom:52px}
-  .fv-src{margin-top:22px}
-  /* Het tikdoel van 44px is een mobiele eis. Op desktop maakte het de bronnenregel 23px hoger
-     dan de tekst zelf, precies in het midden van deze sectie. */
-  .fv-src>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--terracotta)}
-  .fv-src>summary::-webkit-details-marker{display:none}
-  .fv-src>summary:hover{opacity:.72}
-  .fv-ic{position:relative;width:11px;height:11px;flex-shrink:0}
-  .fv-ic::before,.fv-ic::after{content:"";position:absolute;background:var(--terracotta);transition:opacity .2s}
-  .fv-ic::before{left:0;top:4.5px;width:11px;height:2px}
-  .fv-ic::after{left:4.5px;top:0;width:2px;height:11px}
-  .fv-src[open] .fv-ic::after{opacity:0}
-  .fv-src ul{list-style:none;margin:10px 0 0;padding:0}
-  .fv-src li{margin-bottom:2px}
-  .fv-src a{display:inline-block;font-size:14px;color:var(--body);line-height:1.5;padding:7px 0}
-  .fv-src a:hover{color:var(--terracotta);opacity:1}
-  /* Doorverwijzing naar het kennisartikel: redactioneel, geen tweede CTA. */
-  .fv-read{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
-  .fv-read-a{display:inline-block;font-size:15px;font-weight:600;color:var(--terracotta)}
+  /* STARTEN: drie stappen links, Tim en de CTA rechts. */
+  .st{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(36px,4.6vw,68px);align-items:start}
+  .st-steps{list-style:none;margin:clamp(28px,3vw,36px) 0 0;padding:0;border-top:1px solid var(--on-dark-line)}
+  .st-steps li{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;padding:14px 0;border-bottom:1px solid var(--on-dark-line)}
+  .st-n{grid-row:1/3;font-size:12px;font-weight:600;letter-spacing:0.14em;color:var(--terracotta);padding-top:4px}
+  .st-h{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:17px;color:var(--white);line-height:1.3}
+  .st-p{margin-top:4px;font-size:15px;color:var(--on-dark-secondary);line-height:1.55;text-wrap:pretty}
+  .st-cta{border-left:1px solid var(--on-dark-line);padding-left:clamp(28px,3vw,48px)}
+  .st-ger{margin-top:20px;font-size:14.5px;color:var(--on-dark-secondary);line-height:1.6;text-wrap:pretty}
+
+  /* ---------- Responsief ---------- */
   @media (max-width:1023px){
-    .fv{grid-template-columns:1fr;gap:26px}
-    /* Gestapeld leest de sectie langer; daar blijft het tikdoel van 44px staan. */
-    .fv-src>summary{min-height:44px}
-    .fv-src{margin-top:18px}
+    .hero{grid-template-columns:1fr!important;gap:36px!important}
+    .cols3{grid-template-columns:1fr 1fr}
+    .cols3>div{padding:20px 0 0;border-left:none;border-top:1px solid var(--line)}
+    .cols3>div:nth-child(-n+2){border-top:none;padding-top:0}
+    .case{grid-template-columns:1fr!important;gap:26px!important}
+    .case-img{max-width:420px}
+    .mn{grid-template-columns:1fr;gap:32px}
+    .st{grid-template-columns:1fr!important;gap:36px!important}
+    .st-cta{border-left:none;padding-left:0;border-top:1px solid var(--on-dark-line);padding-top:32px}
+    .tim-row{grid-template-columns:clamp(110px,16vw,140px) minmax(0,1fr)!important}
   }
   @media (max-width:767px){
-    .fv-proof{column-gap:16px}
-    .fv-proof li+li::before{display:none}
+    .bw{grid-template-columns:1fr;border-bottom:none}
+    .bw-i{padding:14px 0;border-left:none!important;border-bottom:1px solid var(--line)}
+    .wk-r{grid-template-columns:1fr;gap:6px;padding:16px 0}
+    .kb{grid-template-columns:1fr;gap:4px;align-items:start}
+    .kb-a{white-space:normal}
   }
   @media (max-width:639px){
-    /* Mobiel hield al 56px; die ruimte blijft zoals hij was. */
-    .fv-sec>.wrap{padding-top:56px;padding-bottom:56px}
+    .cols3{grid-template-columns:1fr!important}
+    .cols3>div{padding:18px 0 0!important;border-top:1px solid var(--line)!important}
+    .cols3>div:first-child{border-top:none!important;padding-top:0!important}
+    .mn-c{grid-template-columns:72px minmax(0,1fr);gap:16px}
+    .hv-list li{padding:12px 0}
   }
 </style>

@@ -9,34 +9,48 @@ export interface HomeCopy {
     eyebrowA: string; eyebrowB: string;
     h1a: string; h1b: string;
     sub: string;
-    cta: Link; secondary: Link;
-    imgAlt: string;
+    /** Eén regel direct onder de introductie: je hoeft niet alles tegelijk over te dragen. */
+    start: string;
+    cta: Link;
+    /** Wijst naar het werkzaamhedenblok op deze pagina, niet naar een andere pagina. */
+    secondary: Link;
+    /** De vier werkgebieden, rustig typografisch naast de kop. Geen cijfers, geen interface. */
+    veldenLabel: string;
+    velden: string[];
   };
-  herken: { h2: string; aside: string; items: { h3: string; p: string }[] };
+  /** Expertise die achter Finable beschikbaar is. De note zegt expliciet dat dit niet de bezetting
+   *  van iedere klant beschrijft, zodat de regel geen beloftekarakter krijgt. */
+  bewijs: { items: { k: string; p: string }[]; note: string };
+  herken: { label: string; h2: string; items: { h3: string; p: string }[] };
+  /** Werkzaamheden én wat je ervan terugkrijgt. verderLezen is per taal verschillend: het
+   *  kennisartikel en /finance-uitbesteden bestaan alleen in het Nederlands. */
+  werk: {
+    label: string; h2: string; sub: string;
+    items: { h3: string; p: string }[];
+    verderLezenLabel: string;
+    verderLezen: Link[];
+  };
+  case: {
+    logoAlt: string; label: string; h2: string; persoon: string;
+    quoteA: string; quoteB: string;
+    body: string; link: Link; fotoAlt: string;
+  };
+  /** De mensen achter het werk, inclusief de transparante toelichting over de teaminrichting. */
+  mensen: {
+    label: string; h2: string; body: string; toelichting: string;
+    personen: { naam: string; rol: string; sub: string; foto: string; alt: string }[];
+    link: Link;
+  };
   /** Bescheiden verwijzing naar de aanvullende markt van boekhoud- en accountantskantoren, laag op
    *  de pagina. Geen tweede propositie: de homepage blijft van de hoofdclaim. null wanneer
    *  /voor-boekhouders in deze taal niet bestaat; de banner wordt dan niet gerenderd. */
   kantoren: { label: string; h2: string; p: string; cta: Link } | null;
-  ervaring: { label: string };
-  functie: { label: string; h2: string; flow: string[]; trio: string[] };
-  verandert: {
-    label: string; h2: string; body: string; concl: string;
-    proof: string[];
-    bronnenLabel: string;
-    bronnen: { label: string; url: string }[];
-    /** Verwijzing naar het kennisartikel. null wanneer dat artikel in deze taal niet bestaat. */
-    read: Link | null;
-  };
-  situatie: { h2: string; compare: Link; items: { label: string; p: string; link?: Link }[] };
-  case: {
-    logoAlt: string; label: string; persoon: string;
-    quoteA: string; quoteB: string;
-    body: string; link: Link; fotoAlt: string;
-  };
-  zekerheden: { h2: string; aside: string; items: { label: string; p: string }[] };
   faq: { label: string; items: { q: string; a: string }[]; alle: Link };
-  eind: {
-    label: string; timAlt: string; h2: string; p: string;
-    cta: Link; timNaam: string; timRol: string;
+  /** Afsluitende sectie: drie stappen, de CTA en Tim als aanspreekpunt. */
+  starten: {
+    label: string; h2: string; p: string;
+    stappen: { h3: string; p: string }[];
+    cta: Link; gerust: string;
+    timAlt: string; timNaam: string; timRol: string;
   };
 }
