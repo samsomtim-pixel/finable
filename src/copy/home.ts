@@ -9,6 +9,8 @@ export interface HomeCopy {
     eyebrowA: string; eyebrowB: string;
     h1a: string; h1b: string;
     sub: string;
+    /** Eén regel direct onder de introductie: je hoeft niet alles tegelijk over te dragen. */
+    start: string;
     cta: Link; secondary: Link;
     imgAlt: string;
   };

@@ -24,7 +24,8 @@ const { copy: c } = Astro.props;
         <div class="hero-brand" style="margin-bottom:26px">{c.hero.eyebrowA}<span>{c.hero.eyebrowB}</span></div>
         <h1 style="font-size:clamp(38px,4.6vw,56px);line-height:1.05;margin-bottom:26px">{c.hero.h1a} <span class="hero-h1-b">{c.hero.h1b}</span></h1>
         <p style="font-size:clamp(17px,1.7vw,20px);color:rgba(255,255,255,.78);max-width:560px;text-wrap:pretty">{c.hero.sub}</p>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
+        <p class="hero-start">{c.hero.start}</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:30px">
           <Button href={c.hero.cta.href}>{c.hero.cta.label} &rarr;</Button>
           <a href={c.hero.secondary.href} class="on-dark-link" style="font-weight:600;font-size:16px;color:var(--white)">{c.hero.secondary.label} &rarr;</a>
         </div>
@@ -246,6 +247,10 @@ const { copy: c } = Astro.props;
   /* Zodra de hero éénkolommig wordt, krijgt "Elke maand." een eigen regel: hetzelfde ritme als op desktop,
      en op mobiel voorkomt het dat de balanced wrap midden in "Wij runnen je finance." breekt. */
   @media (max-width:1023px){ .hero-h1-b{display:block} }
+  /* De 'begin met één onderdeel'-regel: direct onder de introductie, iets rustiger gezet met een
+     terracotta accentlijn, zodat de introductie de kop blijft dragen en deze regel de drempel
+     verlaagt in plaats van om aandacht te concurreren. */
+  .hero-start{margin-top:16px;padding-left:16px;border-left:2px solid var(--terracotta);font-size:16px;color:var(--on-dark-secondary);line-height:1.6;max-width:560px;text-wrap:pretty}
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .on-dark-link:hover{color:var(--terracotta);opacity:1}

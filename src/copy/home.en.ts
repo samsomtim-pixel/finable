@@ -16,6 +16,7 @@ export const en: HomeCopy = {
     h1a: 'We run your finance.',
     h1b: 'Every month.',
     sub: 'From bookkeeping and month-end close to controlling and management reporting. One team with several areas of expertise, without having to build all those roles yourself.',
+    start: 'Start with a single part, strengthen your existing team, or let us take on more of your day-to-day finance.',
     cta: { href: '/en/book-a-call', label: 'Book a call' },
     secondary: { href: '/en/how-it-works', label: 'See how Finable works' },
     imgAlt: 'A video call with a spreadsheet on screen',
