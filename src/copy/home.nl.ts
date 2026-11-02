@@ -28,6 +28,7 @@ export const nl: HomeCopy = {
     h1a: 'Wij runnen je finance.',
     h1b: 'Elke maand.',
     sub: 'Van financiële administratie en maandafsluiting tot controlling en managementrapportage. Één team met verschillende expertises, zonder dat je al die rollen zelf hoeft op te bouwen.',
+    start: 'Begin met \u00e9\u00e9n onderdeel, versterk je bestaande team of laat ons je dagelijkse finance breder verzorgen.',
     cta: { href: '/gesprek', label: 'Plan een gesprek' },
     secondary: { href: '/hoe-het-werkt', label: 'Bekijk hoe Finable werkt' },
     imgAlt: 'Overleg via videobellen, met een spreadsheet op het scherm',
