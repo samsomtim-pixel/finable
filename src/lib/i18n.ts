@@ -10,6 +10,7 @@ export const PAGE_MAP: { nl: string; en: string }[] = [
   { nl: '/indicatie', en: '/en/estimate' },
   { nl: '/gesprek', en: '/en/book-a-call' },
   { nl: '/finance-voor-scaleups', en: '/en/finance-for-scaleups' },
+  { nl: '/voor-boekhouders', en: '/en/for-accounting-firms' },
   { nl: '/privacy', en: '/en/privacy' },
   { nl: '/finance-hire', en: '/en/finance-hire' },
   { nl: '/cases/the-good-roll', en: '/en/cases/the-good-roll' },

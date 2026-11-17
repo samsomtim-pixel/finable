@@ -107,7 +107,7 @@ Deze zijn allemaal minstens twee keer teruggeslopen. Controleer erop bij elke wi
 
 **Menu:** Voor wie ▾ · Zo werkt Finable · Finance-team · Over · [Plan een gesprek]
 
-- **"Voor wie"** is een dropdown met twee doelgroepen: *Groeiende bedrijven* naar /finance-voor-scaleups en *Boekhoud- en accountantskantoren* naar /voor-boekhouders. Het Engelse menu toont **Who we help** met *Growing businesses* naar /en/finance-for-scaleups. Een Engelse pagina voor Nederlandse kantoren vraagt eerst bevestiging van de doelgroep en behoefte.
+- **"Voor wie"** is een dropdown met twee doelgroepen: *Groeiende bedrijven* naar /finance-voor-scaleups en *Boekhoud- en accountantskantoren* naar /voor-boekhouders. Het Engelse menu toont **Who we help** met eerst *Growing businesses* naar /en/finance-for-scaleups, gevolgd door *Dutch bookkeeping and accounting firms* naar /en/for-accounting-firms. De kantorenpropositie richt zich in beide talen op Nederlandse kantoren.
 - "Finance-team" wijst naar /aanpak. Dat is de term die al in al het sterke materiaal staat — de one-pager, de vacature-A4, de boekhouderscampagne, de hoofdclaim.
 - "Zo werkt Finable" wijst naar /hoe-het-werkt. Beter dan "Hoe het werkt", want "het" is vaag.
 - **De URL's blijven `aanpak` en `hoe-het-werkt`.** Alleen de zichtbare labels wijken af, dus geen migratie en niets kan breken.
