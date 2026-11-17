@@ -1,0 +1,19 @@
+---
+import { alternatePair, langOf, normalise } from '../lib/i18n';
+
+interface Props {
+  class?: string;
+}
+
+const { class: placement } = Astro.props;
+const path = normalise(Astro.url.pathname);
+const lang = langOf(path);
+const pair = alternatePair(path);
+const nl = pair?.nl ?? (lang === 'nl' ? path : '/');
+const en = pair?.en ?? (lang === 'en' ? path : '/en');
+---
+<nav class:list={['lang-switch', placement]} aria-label={lang === 'en' ? 'Language' : 'Taal'}>
+  <a href={nl} hreflang="nl" lang="nl" class:list={[{ 'is-on': lang === 'nl' }]} aria-current={lang === 'nl' ? 'page' : undefined}>{!pair && lang === 'en' ? 'NL home' : 'NL'}</a>
+  <span aria-hidden="true">·</span>
+  <a href={en} hreflang="en" lang="en" class:list={[{ 'is-on': lang === 'en' }]} aria-current={lang === 'en' ? 'page' : undefined}>{!pair && lang === 'nl' ? 'EN home' : 'EN'}</a>
+</nav>

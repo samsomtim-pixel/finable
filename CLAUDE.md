@@ -6,12 +6,9 @@ Nederlandse finance-as-a-service voor groeiende bedrijven van 10 tot 50 medewerk
 
 ## Wat er staat
 
-**Zeven kernpagina's** (`.dc.html` in de ontwerpomgeving, schone URL's in productie):
-`index` · `aanpak` · `hoe-het-werkt` · `over` · `indicatie` · `gesprek` · `vacature`
+De productiesite is een Astro-site op Vercel. Routes staan in `src/pages/`, met Engelse pagina's onder `src/pages/en/`. Gelijkwaardige routes zijn gekoppeld in `src/lib/i18n.ts`. Afbeeldingen staan in `public/images/`.
 
-**Twee A4 one-pagers:** `vacature-onepager.html` en de hoofd-one-pager, print-klaar via `doc-page.js`.
-
-**Assets in `assets/`:** Finable-logo's, The Good Roll-logo, foto Tim Samsom.
+`/finance-hire` is de campagnepagina. Vercel stuurt het oude pad `/vacature` permanent door naar `/finance-hire`.
 
 ---
 
@@ -43,7 +40,7 @@ Dit zijn twee bedoelde systemen die verschillende dingen betekenen. Ze zijn een 
 **Verwerken → Controleren → Begrijpen → Sturen**
 Dit legt uit welk niveau van waarde hoger in de functie ontstaat.
 
-**Het maandritme.** Overal waar het operationele ritme bedoeld wordt — home, /over, /hoe-het-werkt, /vacature:
+**Het maandritme.** Overal waar het operationele ritme bedoeld wordt — home, /over, /hoe-het-werkt, /finance-hire:
 **Uitvoeren → Afsluiten → Controleren → Rapporteren → Bespreken**
 Zelfde woorden, zelfde volgorde, geen synoniemen. Niet samenvoegen tot "Afsluiten & controleren".
 
@@ -96,7 +93,9 @@ Deze zijn allemaal minstens twee keer teruggeslopen. Controleer erop bij elke wi
 | /over | Wie zit erachter — Tim, het team, de constructie |
 | /indicatie | Wat kost het ongeveer — intake in drie stappen |
 | /gesprek | Primaire conversie |
-| /vacature | Campagnepagina, buiten de navigatie, noindex |
+| /finance-hire | Campagnepagina over aannemen, samenwerken en werk verdelen |
+| /finance-voor-scaleups | Groeiende bedrijven, met CFO en finance manager als beslissers binnen die doelgroep |
+| /voor-boekhouders | Aanvullende propositie voor Nederlandse kantoren |
 
 **De home doet de claim, /aanpak doet de nuance.** Als de home al begint met "je hoeft niet alles af te nemen", verklein je jezelf voordat je iets hebt geclaimd.
 
@@ -108,39 +107,23 @@ Deze zijn allemaal minstens twee keer teruggeslopen. Controleer erop bij elke wi
 
 **Menu:** Voor wie ▾ · Zo werkt Finable · Finance-team · Over · [Plan een gesprek]
 
-- **"Voor wie"** is een dropdown met twee doelgroepen: *Groeiende bedrijven* naar /finance-voor-scaleups en *Boekhoud- en accountantskantoren* naar /voor-boekhouders. Beide pagina's zijn NL-only, dus het Engelse menu heeft dit item niet. Geen /voor-wie-overzichtspagina: twee bestemmingen rechtvaardigen geen tussenpagina.
+- **"Voor wie"** is een dropdown met twee doelgroepen: *Groeiende bedrijven* naar /finance-voor-scaleups en *Boekhoud- en accountantskantoren* naar /voor-boekhouders. Het Engelse menu toont **Who we help** met eerst *Growing businesses* naar /en/finance-for-scaleups, gevolgd door *Dutch bookkeeping and accounting firms* naar /en/for-accounting-firms. De kantorenpropositie richt zich in beide talen op Nederlandse kantoren.
 - "Finance-team" wijst naar /aanpak. Dat is de term die al in al het sterke materiaal staat — de one-pager, de vacature-A4, de boekhouderscampagne, de hoofdclaim.
 - "Zo werkt Finable" wijst naar /hoe-het-werkt. Beter dan "Hoe het werkt", want "het" is vaag.
 - **De URL's blijven `aanpak` en `hoe-het-werkt`.** Alleen de zichtbare labels wijken af, dus geen migratie en niets kan breken.
 - De eyebrow op /aanpak is **FINANCE-TEAM**.
 
-**De dropdown werkt op hover én op klik.** Dat zijn twee losse redenen om open te staan; zonder die splitsing sluit een klik het menu dat de muis net heeft geopend. Toetsenbord en touch kennen geen hover en vallen terug op de klik-toestand. Op mobiel staat er geen dropdown: de twee doelgroepen staan als gelabelde groep boven in het menupaneel.
+**De dropdown werkt op hover én op klik.** Dat zijn twee losse redenen om open te staan; zonder die splitsing sluit een klik het menu dat de muis net heeft geopend. Toetsenbord en touch kennen geen hover en vallen terug op de klik-toestand. Op mobiel staat er geen dropdown: de doelgroeplinks staan als gelabelde groep boven in het menupaneel.
 
 **Niet doen: een menu-item "Diensten".** Dat leest als een administratiekantoor met een prijslijst, precies de categorie waar Finable uit wil. En "Zo werkt Finable" wegstoppen onder een ander item maakt de sterkste vertrouwenspagina onvindbaar.
 
 ---
 
-## Laatst gedaan — /vacature herbouwd op de one-pager
+## Conversie en openstaande verificatie
 
-Flow: hero-contrast → vijf disciplines → donker slate-blok → waarom een team (Capaciteit, Continuïteit, Inzicht, Minder afhankelijkheid) → bewijs The Good Roll → overstap-visual → Tim-CTA.
-
-Verwijderd: het dubbele argument, Flexibiliteit en Kwaliteit, sectienummers, de aparte prijssectie, en de losse "wanneer past dit niet" (nu één rustige regel onder "waarom een team").
-
-`noindex, nofollow` plus de comment *NIET LIVE tot delivery, pricing en commitment definitief zijn afgestemd.*
-
-Responsive bug verholpen: de benefits-grid overlapte de prijslink tussen 560 en 900 pixels.
-
----
-
-## Openstaand vóór live
-
-**Blokkerend:**
-- Formulieren op /gesprek en /indicatie naar een werkend endpoint. Bevestiging alleen bij een succesvolle response, zichtbare fout bij mislukken, nooit een succesmelding die altijd verschijnt.
-- Echte foto van Tim, echt The Good Roll-logo, echte KVK en statutaire naam.
-- Privacyverklaring en AVG-review.
-
-**Blokkerend voor sterkere copy, niet voor live:**
-- Partnerafspraken over data-eigendom, overdraagbaarheid, aansprakelijkheid en opzegtermijn. Zodra die staan kan de exit-passage op /hoe-het-werkt sterker.
-- Bevestiging van "ruim twintig specialisten", de Big Four-achtergrond en de vier internationale referenties.
+- `/gesprek` en `/en/book-a-call` gebruiken Calendly. De indicatieformulieren gaan naar `/api/indicatie`, met servervalidatie, origin-controle, rate limiting en honeypot. De client toont een bevestiging bij een succesvolle response.
+- De Nederlandse privacyverklaring en voorwaarden staan op `/privacy` en `/algemene-voorwaarden`. Laat de vertaling op `/en/privacy` juridisch beoordelen vóór publicatie. De Engelse footer verwijst voor voorwaarden expliciet naar de Nederlandse tekst.
+- Open voor bevestiging: partnerafspraken over data-eigendom, overdraagbaarheid, aansprakelijkheid en opzegtermijn.
+- De live over-pagina's noemen ruim twintig specialisten, een Big Four-achtergrond en vier internationale referenties. Bevestig deze claims met de uitvoeringspartner voordat je ze op andere pagina's gebruikt of aanpast.
 
 **Werkwijze bij een ronde over meerdere pagina's:** lees ze eerst allemaal naast elkaar en markeer de patronen voordat je herschrijft. Losse optimalisaties zijn lokaal goed maar creëren globaal opnieuw complexiteit — zo is de eerdere leesbaarheidsschuld ontstaan.

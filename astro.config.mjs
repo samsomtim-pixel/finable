@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { absolute, alternatePair } from './src/lib/i18n.ts';
 
 /** Routes met <meta name="robots" content="noindex"> in Layout.astro. Nu leeg: /voor-boekhouders is
  *  bij de SEO-launch vrijgegeven. De filter blijft staan voor een volgende noindex-route. */
@@ -13,5 +14,21 @@ export default defineConfig({
   // /vacature was de oude route van de finance-hire-pagina; permanente redirect (ook in vercel.json).
   redirects: { '/vacature': { status: 301, destination: '/finance-hire' } },
   // Pagina's op noindex horen niet in de sitemap: dat zou Google tegenstrijdige signalen geven.
-  integrations: [sitemap({ filter: (page) => !NOINDEX.some((p) => new URL(page).pathname.replace(/\/$/, '') === p) })],
+  integrations: [sitemap({
+    filter: (page) => !NOINDEX.some((p) => new URL(page).pathname.replace(/\/$/, '') === p),
+    serialize(item) {
+      const url = new URL(item.url);
+      const pair = alternatePair(url.pathname);
+      if (!pair) return item;
+
+      return {
+        ...item,
+        links: [
+          { lang: 'nl', url: absolute(pair.nl, url) },
+          { lang: 'en', url: absolute(pair.en, url) },
+          { lang: 'x-default', url: absolute(pair.nl, url) },
+        ],
+      };
+    },
+  })],
 });

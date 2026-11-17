@@ -3,23 +3,35 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Button from '../../components/Button.astro';
+
+const vormen = [
+  { n: '01', h: 'A complete finance function',
+    p: 'From bookkeeping and month-end close to financial control and reporting. Finable runs the agreed work, with clear responsibilities and a dedicated point of contact.' },
+  { n: '02', h: 'Support for your existing team',
+    p: 'Your CFO or finance manager stays in charge. Finable adds capacity and expertise, working in your systems and following your existing processes.' },
+  { n: '03', h: 'Help with specific parts of finance',
+    p: 'Need help with bookkeeping, month-end close, analysis or reporting? We start where you need us most.' },
+  { n: '04', h: 'A setup that grows with you',
+    p: 'Start with one area, expand when you need to or bring work in-house later. The division of work can change as your organisation grows.' },
+];
 ---
-<Layout title="Finance hire or Finable? Compare a hire with a finance team | Finable" description="You're looking for one finance professional. Compare an internal hire with a Finable team on expertise, continuity, cost and onboarding, and see what stays in-house.">
+<Layout title="Finance hire or Finable? Compare a hire with a finance team | Finable" description="Hiring a bookkeeper, controller or finance manager? See how Finable can run your finance function, support your team or take on specific work.">
 <div style="max-width:100%;overflow-x:hidden;background:var(--white)">
 
   <Header />
 
   <!-- HERO (navy, single column: typography is the visual) -->
   <section class="hero-navy" style="background:var(--navy)">
-    <div class="wrap" style="padding-top:56px;padding-bottom:72px">
+    <div class="wrap" style="padding-top:48px;padding-bottom:64px">
     <div class="hero" style="display:grid;grid-template-columns:1fr;gap:clamp(36px,4.6vw,68px);align-items:center">
       <div>
-        <div class="lbl" style="margin-bottom:26px">Considering a finance hire?</div>
-        <h1 style="font-size:clamp(36px,4.6vw,58px);line-height:1.05;margin-bottom:26px">You're looking for one finance professional. <span class="em">You may need a finance team.</span></h1>
-        <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:560px;text-wrap:pretty">Behind one vacancy there is often work of several kinds: day-to-day finance, month-end close, controlling, reporting, and cash and forecast. Sometimes that fits one employee. Sometimes it calls for several areas of expertise side by side.</p>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px">
-          <Button href="#alternative">See the alternative &rarr;</Button>
-          <a href="/en/book-a-call" style="font-weight:600;font-size:16px;color:var(--terracotta)">Discuss your finance vacancy &rarr;</a>
+        <div class="lbl" style="margin-bottom:20px">Considering a finance hire?</div>
+        <h1 class="fh-h1" style="font-size:clamp(32px,4vw,50px);line-height:1.07;margin-bottom:20px"><span>You’re looking for finance professionals.</span><span class="em">What does your organisation actually need?</span></h1>
+        <p style="font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:600px;text-wrap:pretty">You may be looking for a bookkeeper, a controller, a finance manager or several people at once. Before you recruit, look at the work that needs doing and the expertise it calls for.</p>
+        <p style="font-size:16px;color:rgba(255,255,255,.72);max-width:600px;margin-top:14px;text-wrap:pretty">Finable can run your full finance function, strengthen your existing team or take on specific tasks. You have one dedicated point of contact in the Netherlands and the team works in your systems.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:28px">
+          <Button href="#alternative">See how Finable can help &rarr;</Button>
+          <a href="/en/book-a-call" style="font-weight:600;font-size:16px;color:var(--terracotta)">Discuss your finance needs &rarr;</a>
         </div>
       </div>
     </div>
@@ -54,6 +66,17 @@ import Button from '../../components/Button.astro';
         <h2 style="font-size:clamp(28px,3.4vw,42px);line-height:1.14;margin-bottom:24px">That's not just one role.<br>That's a finance function.</h2>
         <p style="font-size:16px;color:var(--body);max-width:520px;text-wrap:pretty">What starts as one vacancy often combines accounting, financial control, reporting and business control. That does not mean one employee is unsuitable: it depends on the volume per area and on the level you need in each. It is the question worth answering before you start recruiting.</p>
       </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="rule"></div></div>
+
+  <section class="wrap" style="padding-top:64px;padding-bottom:72px">
+    <div style="max-width:700px">
+      <div class="lbl" style="margin-bottom:22px">While you’re hiring</div>
+      <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:26px">The vacancy is open. The work carries on.</h2>
+      <p style="font-size:16px;color:var(--body);margin-bottom:18px;text-wrap:pretty">Invoices, bank transactions and month-end close continue while you recruit. Interim cover can help during the search.</p>
+      <p style="font-size:16px;color:var(--body);text-wrap:pretty">If you redistribute the work in the meantime, take another look at the original job description. You may still need that role, or you may find that the work is better shared between an employee and a team.</p>
     </div>
   </section>
 
@@ -144,7 +167,7 @@ import Button from '../../components/Button.astro';
        agreement made before the start, not a standard package. -->
   <section class="wrap" style="padding-top:72px;padding-bottom:72px">
     <div class="lbl" style="margin-bottom:22px">The split</div>
-    <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:12px">What stays with you, what Finable takes over?</h2>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:12px">What stays in-house and what does Finable take on?</h2>
     <p style="font-size:16px;color:var(--body);max-width:700px;margin-bottom:40px;text-wrap:pretty">Finable takes responsibility for the agreed parts of your finance function. Together we decide what our team runs, what stays in-house and how the two fit together.</p>
     <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start">
       <div>
@@ -166,27 +189,25 @@ import Button from '../../components/Button.astro';
 
   <div class="wrap"><div class="rule"></div></div>
 
-  <!-- WHEN EACH OPTION FITS -->
-  <section class="wrap" style="padding-top:72px;padding-bottom:72px">
-    <div class="lbl" style="margin-bottom:22px">When each option fits</div>
-    <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start">
-      <div>
-        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">Finable may be a better fit when&hellip;</h2>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You need expertise in several areas, but a full role in none of them</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Complexity is growing: more entities, more volume, more stakeholders asking for figures</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Continuity matters more to you than proximity</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You don't want to build a complete internal finance team yet</span></div>
-      </div>
-      <div class="vdiv" style="background:var(--line)"></div>
-      <div>
-        <h2 style="font-size:clamp(22px,2.5vw,30px);margin-bottom:26px">An internal hire may be a better fit when&hellip;</h2>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">There is enough work for one clearly defined, full role</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">Finance is interwoven with sales, operations or production day by day</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">A lot of the work is on site, or close to the people on the floor</span></div>
-        <div class="chk"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#C4643A" stroke-width="1.7" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg><span style="font-size:16px;color:var(--body)">You want to build finance in-house and recruit, manage and develop it yourself</span></div>
-      </div>
+  <section class="wrap" style="padding-top:64px;padding-bottom:64px">
+    <div class="lbl" style="margin-bottom:22px">Ways to work together</div>
+    <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:18px">How much of your finance work can we take on?</h2>
+    <p style="font-size:16px;color:var(--body);max-width:720px;margin-bottom:clamp(26px,2.8vw,36px);text-wrap:pretty">Whether you are setting up finance, working with a CFO or finance manager, or filling several vacancies, Finable builds on the team and processes you already have.</p>
+    <div class="vorm">
+      {vormen.map((v) => (
+        <div class="vorm-i">
+          <div class="vorm-n">{v.n}</div>
+          <h3 class="vorm-h">{v.h}</h3>
+          <p class="vorm-p">{v.p}</p>
+        </div>
+      ))}
     </div>
-    <p style="font-size:16px;color:var(--body);max-width:760px;margin-top:clamp(32px,3.4vw,44px);padding-top:26px;border-top:1px solid var(--line);text-wrap:pretty">A combination also happens: someone internal for the work that has to sit close by, and Finable for the parts that call for expertise or continuity. The question is not whether outsourcing or hiring is better, but which setup fits the finance work your organisation actually needs.</p>
+    <p class="fh-alt is-plain">Hiring in-house and working with Finable can work well together.</p>
+    <div class="vorm-cta">
+      <Button href="/en/book-a-call">Discuss your finance needs &rarr;</Button>
+      <a href="/en/how-it-works" class="vorm-sec">See how Finable works month to month &rarr;</a>
+    </div>
+    <p class="fh-meer">See how <a href="/en/finance-for-scaleups">finance needs change as your business grows</a>.</p>
   </section>
 
   <div class="wrap"><div class="rule"></div></div>
@@ -197,23 +218,22 @@ import Button from '../../components/Button.astro';
     <div class="end" style="display:grid;grid-template-columns:minmax(0,1.1fr) 1px minmax(0,0.9fr);gap:clamp(40px,5vw,68px);align-items:start">
       <div>
         <div class="lbl" style="margin-bottom:26px">Frequently asked questions</div>
-        <details class="fin-faq"><summary><span class="fin-faq-q">Can Finable replace a finance hire?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Sometimes, sometimes not. It depends on the work behind the vacancy, not on the job title: the same title covers mostly bookkeeping at one company and mostly controlling and reporting at another. If that work calls for several kinds of expertise, a team is often a more logical answer than one broad role. If there is structurally enough work for one full internal role, hiring someone fits better. So we start with the work and the volume, and only then with the form.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">What if we want to hire someone later?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>That's possible. Your finance setup doesn't have to stay the same forever. As your organisation grows, responsibilities can move in-house or the Finable scope can change. The aim is to organise finance around what the business needs at each stage.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">Who actually does the work?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>The work is handled by finance professionals within the Finable team. Different responsibilities can be handled by different people depending on the expertise required, while you maintain one clear point of contact.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">How much capacity do we get?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Finable isn't sold as a fixed number of employee hours. We agree on the finance scope and organise the team around the work required to deliver it. The exact setup depends on the workload and complexity of your organisation.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">Does Finable work in our existing systems?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Where possible, yes. We first look at the systems and processes you already use. What works can stay. If changes would materially improve the finance operation, we'll discuss them as part of the setup.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">What happens if someone is ill or on holiday?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>Because the work is organised across a team, you're less dependent on the availability of one individual. That only works where processes are documented and knowledge is transferable, which is part of the setup rather than something that happens by itself.</p></div></details>
-        <details class="fin-faq"><summary><span class="fin-faq-q">When is hiring someone internally the better option?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>An internal hire can be the better choice when you have enough work for a clearly defined full-time role, need someone deeply embedded in the organisation every day or want to build and manage the finance function internally.</p></div></details>
+        <details class="fin-faq"><summary><span class="fin-faq-q">Can Finable replace a finance hire?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>It depends on the work and how much of it there is. A team can make sense if the role calls for several kinds of expertise. If there is enough recurring work for a clearly defined full-time role, hiring in-house may be a better fit.</p></div></details>
+        <details class="fin-faq"><summary><span class="fin-faq-q">What if we want to hire someone later?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>We agree which tasks move to your new colleague and which Finable keeps. Where needed, we organise a handover so the scope can change as your business grows.</p></div></details>
+        <details class="fin-faq"><summary><span class="fin-faq-q">What happens during illness or holidays?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>A team makes you less dependent on one person. We document the work and share knowledge as part of the setup so colleagues can cover for each other when someone is away.</p></div></details>
+        <details class="fin-faq"><summary><span class="fin-faq-q">When is an in-house hire the better choice?</span><span class="fin-faq-ic"></span></summary><div class="fin-faq-a"><p>An in-house hire can make sense when there is enough work for a clearly defined role, when finance needs to work closely with internal teams every day, or when you want to recruit and develop your own team. Finable can take on specific tasks alongside that role.</p></div></details>
       </div>
       <div class="vdiv" style="background:var(--on-dark-line)"></div>
       <div class="cta-p" style="display:grid;grid-template-columns:clamp(120px,15vw,160px) minmax(0,1fr);gap:26px;align-items:start">
         <div style="aspect-ratio:1/1;border-radius:12px;overflow:hidden"><img src="/images/tim-samsom.webp" alt="Tim Samsom, founder of Finable" width="800" height="699" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         <div>
           <div class="lbl" style="margin-bottom:16px">Personal introduction</div>
-          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px;color:var(--white)">Discuss your finance vacancy</h2>
-          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:22px;text-wrap:pretty">Book 30 minutes with Tim to talk through what you're looking for in a finance hire and whether a Finable team could be a logical alternative.</p>
-          <Button href="/en/book-a-call">Discuss your finance vacancy &rarr;</Button>
+          <h2 style="font-size:clamp(21px,2.2vw,27px);line-height:1.14;margin-bottom:14px;color:var(--white)">Discuss your finance needs</h2>
+          <p style="font-size:15px;color:var(--on-dark-secondary);margin-bottom:22px;text-wrap:pretty">In 30 minutes with Tim, we look at the work on your plate, what should stay in-house and where Finable could take over or support your team.</p>
+          <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+            <Button href="/en/book-a-call">Discuss your finance needs &rarr;</Button>
             <a href="/en/estimate" style="font-weight:600;font-size:15px;color:var(--white)">Get an estimate &rarr;</a>
+          </div>
           <div style="font-size:14px;color:var(--on-dark-secondary);line-height:1.45;margin-top:20px"><span style="font-family:'Playfair Display',serif;font-weight:600;color:var(--white)">Tim Samsom</span><br>Founder, Finable</div>
         </div>
       </div>
@@ -227,6 +247,27 @@ import Button from '../../components/Button.astro';
 </Layout>
 
 <style is:global>
+  .fh-h1>span{display:block}
+  .fh-alt{margin-top:clamp(32px,3.4vw,44px);padding-top:26px;border-top:1px solid var(--line);font-size:16px;color:var(--body);text-wrap:pretty}
+  .fh-alt a{font-weight:600}
+  .vorm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vorm-i{padding:22px 0 26px;border-top:1px solid var(--line)}
+  .vorm-i:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .vorm-i:nth-child(odd){padding-right:clamp(28px,3.6vw,56px)}
+  .vorm-i:nth-child(even){padding-left:clamp(28px,3.6vw,56px);border-left:1px solid var(--line)}
+  .vorm-n{font-size:11px;font-weight:600;letter-spacing:0.16em;color:var(--terracotta);margin-bottom:12px}
+  .vorm-h{font-size:clamp(18px,1.9vw,21px);line-height:1.25;margin-bottom:10px;text-wrap:balance}
+  .vorm-p{font-size:15.5px;color:var(--body);line-height:1.6;max-width:470px;text-wrap:pretty}
+  .vorm-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:24px}
+  .vorm-sec{font-weight:600;font-size:15px;color:var(--terracotta)}
+  .fh-alt.is-plain{border-top:none;padding-top:0;margin-top:clamp(26px,2.8vw,34px)}
+  .fh-meer{margin-top:20px;font-size:14.5px;color:var(--body);line-height:1.6;text-wrap:pretty}
+  .fh-meer a{font-weight:600;color:var(--navy)}
+  @media (max-width: 767px) {
+    .vorm{grid-template-columns:1fr}
+    .vorm-i,.vorm-i:nth-child(odd),.vorm-i:nth-child(even){padding:20px 0 22px;border-left:none}
+    .vorm-p{max-width:none}
+  }
   a{transition:opacity .15s}
   a:hover{opacity:.72}
   .cav{font-family:'Caveat',cursive;font-weight:600;color:var(--terracotta);line-height:1.1}
