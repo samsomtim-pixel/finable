@@ -9,6 +9,8 @@ export const PAGE_MAP: { nl: string; en: string }[] = [
   { nl: '/over', en: '/en/about' },
   { nl: '/indicatie', en: '/en/estimate' },
   { nl: '/gesprek', en: '/en/book-a-call' },
+  { nl: '/finance-voor-scaleups', en: '/en/finance-for-scaleups' },
+  { nl: '/privacy', en: '/en/privacy' },
   { nl: '/finance-hire', en: '/en/finance-hire' },
   { nl: '/cases/the-good-roll', en: '/en/cases/the-good-roll' },
 ];
@@ -24,11 +26,10 @@ export function langOf(path: string): Lang {
   return p === '/en' || p.startsWith('/en/') ? 'en' : 'nl';
 }
 
-/** De NL- en EN-variant van de huidige pagina (valt terug op de homepages). */
-export function alternates(path: string): { nl: string; en: string } {
+/** De NL- en EN-variant van de huidige pagina, indien beschikbaar. */
+export function alternatePair(path: string) {
   const p = normalise(path);
-  const entry = PAGE_MAP.find((e) => normalise(e.nl) === p || normalise(e.en) === p);
-  return entry ? { nl: entry.nl, en: entry.en } : { nl: '/', en: '/en' };
+  return PAGE_MAP.find((entry) => entry.nl === p || entry.en === p);
 }
 
 /** Absolute URL zonder trailing slash (behalve de root), gelijk aan de interne links. */

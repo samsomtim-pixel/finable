@@ -4,13 +4,13 @@
 import '../styles/tokens.css';
 import '../styles/fonts.css';
 import '../styles/mobile.css';
-import { alternates, langOf, absolute } from '../lib/i18n';
+import { alternatePair, langOf, absolute } from '../lib/i18n';
 
 interface Props {
   title: string;
   description: string;
   noindex?: boolean;
-  /** Uit voor pagina's zonder tegenhanger in de andere taal (bijv. /privacy): dan is elke hreflang-verwijzing onjuist. */
+  /** Uit voor pagina's zonder tegenhanger in de andere taal (bijv. /kennis): dan is elke hreflang-verwijzing onjuist. */
   hreflang?: boolean;
   /** Kruimelpad voor BreadcrumbList-schema. Alleen zetten als elke tussenstap een bestaande URL heeft. */
   breadcrumbs?: { name: string; path?: string }[];
@@ -21,10 +21,8 @@ const { title, description, noindex = false, hreflang = true, breadcrumbs, artic
 const site = Astro.site ?? new URL('https://www.finable.nl');
 const path = Astro.url.pathname;
 const lang = langOf(path);
-const alt = alternates(path);
+const alt = hreflang ? alternatePair(path) : undefined;
 const canonical = absolute(path, site);
-const hrefNl = absolute(alt.nl, site);
-const hrefEn = absolute(alt.en, site);
 const ogImage = new URL('/og.png', site).href;
 // Organization-schema met uitsluitend geverifieerde gegevens (geen reviews, aantallen, prijzen of oprichtingsdatum).
 const organization = {
@@ -91,9 +89,9 @@ const articleSchema = article
   <meta name="description" content={description}>
   <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"}>
   <link rel="canonical" href={canonical}>
-  {hreflang && <link rel="alternate" hreflang="nl" href={hrefNl}>}
-  {hreflang && <link rel="alternate" hreflang="en" href={hrefEn}>}
-  {hreflang && <link rel="alternate" hreflang="x-default" href={hrefNl}>}
+  {alt && <link rel="alternate" hreflang="nl" href={absolute(alt.nl, site)}>}
+  {alt && <link rel="alternate" hreflang="en" href={absolute(alt.en, site)}>}
+  {alt && <link rel="alternate" hreflang="x-default" href={absolute(alt.nl, site)}>}
   <!-- Iconen: het Finable-beeldmerk in terracotta. De ?v-query omzeilt de hardnekkige favicon-cache van browsers
        na een kleurwijziging; verhoog hem als de iconen opnieuw veranderen (zie scripts/build-icons.mjs). -->
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">

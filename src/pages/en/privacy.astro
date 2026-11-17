@@ -1,0 +1,313 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const updated = '14 September 2026';
+
+const toc = [
+  { id: 'verantwoordelijk', label: 'Who is responsible?' },
+  { id: 'gegevens', label: 'What personal data do we process?' },
+  { id: 'doelen', label: 'What do we use personal data for?' },
+  { id: 'grondslagen', label: 'What are our legal bases for processing?' },
+  { id: 'indicatie', label: 'Requesting an estimate' },
+  { id: 'calendly', label: 'Booking a call through Calendly' },
+  { id: 'resend', label: 'Email processing through Resend' },
+  { id: 'cookies', label: 'Cookies' },
+  { id: 'analytics', label: 'Google Analytics and Google Tag Manager' },
+  { id: 'welke-cookies', label: 'Which cookies do we use?' },
+  { id: 'bewaartermijnen', label: 'Retention periods' },
+  { id: 'delen', label: 'Sharing with other parties' },
+  { id: 'doorgifte', label: 'Transfers outside the EEA' },
+  { id: 'beveiliging', label: 'Security' },
+  { id: 'rechten', label: 'Your privacy rights' },
+  { id: 'klacht', label: 'Making a complaint' },
+  { id: 'voorkeuren', label: 'Changing your cookie preferences' },
+  { id: 'wijzigingen', label: 'Changes' },
+];
+---
+<Layout
+  title="Privacy and cookie notice | Finable"
+  description="How Finable handles personal data, cookies, website analytics, estimate requests and bookings."
+>
+<div style="max-width:100%;overflow-x:hidden;background:var(--white)">
+
+  <Header />
+
+  <!-- HERO (navy, compact) -->
+  <section class="hero-navy" style="background:var(--navy)">
+    <div class="wrap" style="padding-top:48px;padding-bottom:56px">
+      <div style="max-width:760px">
+        <div class="lbl" style="margin-bottom:20px">Privacy &amp; cookies</div>
+        <h1 style="font-size:clamp(30px,4.2vw,46px);margin-bottom:22px;text-wrap:balance">Privacy and cookie notice</h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);color:var(--on-dark-secondary);text-wrap:pretty">At Finable, we take care when handling personal data. This notice explains what data we collect through our website, why we collect it, which parties may be involved and what rights you have.</p>
+        <p style="margin-top:26px;font-size:14px;color:var(--on-dark-tertiary)">Last updated <time datetime="2026-09-14">{updated}</time></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INHOUD -->
+  <section class="wrap" style="padding-top:56px;padding-bottom:80px">
+    <div class="priv-grid">
+
+      <!-- Mini-inhoudsopgave; alleen op desktop, de tekst leest verder gewoon lineair. -->
+      <nav class="priv-toc" aria-label="On this page">
+        <div class="lbl" style="color:var(--body);margin-bottom:16px">On this page</div>
+        <ul>
+          {toc.map((t) => (
+            <li><a href={`#${t.id}`}>{t.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="priv-body">
+        <!-- Legal review required before production publication. -->
+        <p><strong>English translation pending legal review.</strong> Read the <a href="/privacy" hreflang="nl">Dutch privacy and cookie notice</a>.</p>
+
+        <section id="verantwoordelijk">
+          <h2>Who is responsible?</h2>
+          <p>Finable is responsible for processing personal data as described in this notice.</p>
+          <dl class="priv-meta">
+            <div><dt>Organisation</dt><dd>Finable</dd></div>
+            <div><dt>Dutch Chamber of Commerce</dt><dd>99623544</dd></div>
+            <div><dt>Website</dt><dd><a href="https://www.finable.nl">www.finable.nl</a></dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:tim@finable.nl">tim@finable.nl</a></dd></div>
+          </dl>
+        </section>
+
+        <section id="gegevens">
+          <h2>What personal data do we process?</h2>
+          <p>Depending on how you use our website, we may process the following personal data.</p>
+          <ul>
+            <li>name</li>
+            <li>work email address</li>
+            <li>phone number, if you provide it voluntarily</li>
+            <li>company name</li>
+            <li>your organisation’s website</li>
+            <li>information you provide when requesting an estimate</li>
+            <li>information you provide when booking a call</li>
+            <li>technical data about how you use our website, such as pages visited, device and browser information and interactions with the website</li>
+            <li>cookie and consent preferences</li>
+          </ul>
+          <p>We only ask for personal data that is reasonably necessary for the purpose concerned.</p>
+        </section>
+
+        <section id="doelen">
+          <h2>What do we use personal data for?</h2>
+          <p>We may use personal data for the following purposes.</p>
+          <ul>
+            <li>preparing an estimate you requested and contacting you about it</li>
+            <li>arranging and holding an introductory call</li>
+            <li>answering questions and other requests</li>
+            <li>keeping our website working properly and securely</li>
+            <li>analysing how our website is used and improving it, with consent</li>
+            <li>complying with legal obligations</li>
+          </ul>
+        </section>
+
+        <section id="grondslagen">
+          <h2>What are our legal bases for processing?</h2>
+          <p>Depending on the activity, we rely on one of the following legal bases.</p>
+          <ul>
+            <li>performing a contract or taking steps at the data subject’s request before entering into a contract</li>
+            <li>our legitimate interests, such as answering questions and securing and improving our services and website, where your privacy interests do not override those interests</li>
+            <li>consent, for example for analytics cookies where consent is required</li>
+            <li>a legal obligation, where the law requires us to retain or disclose data</li>
+          </ul>
+        </section>
+
+        <section id="indicatie">
+          <h2>Requesting an estimate</h2>
+          <p>When you <a href="/en/estimate">request an estimate</a>, we process the information you submit to assess your situation, prepare an initial estimate and contact you about it.</p>
+          <p>The form asks about your organisation and finance setup. It also asks for your name, work email address, company name, industry and preferred start period, with an optional website and phone number.</p>
+          <p>Finable reviews each request before providing an estimate. We do not calculate prices automatically.</p>
+          <p>Resend delivers submissions from this form to Finable.</p>
+        </section>
+
+        <section id="calendly">
+          <h2>Booking a call through Calendly</h2>
+          <p>We use Calendly on our <a href="/en/book-a-call">booking page</a> to arrange appointments.</p>
+          <p>When you book through the Calendly widget, the data you provide is processed to schedule and manage the appointment.</p>
+          <p>Calendly is a third-party service provider. Personal data may be processed outside the European Economic Area. Contractual safeguards apply where applicable.</p>
+        </section>
+
+        <section id="resend">
+          <h2>Email processing through Resend</h2>
+          <p>Finable uses Resend to process and deliver emails from the estimate form.</p>
+          <p>Resend may process information from those messages, delivery information and related technical data on Finable’s behalf.</p>
+          <p>Resend stores customer data in the United States. Appropriate safeguards are used for international transfers where applicable.</p>
+        </section>
+
+        <section id="cookies">
+          <h2>Cookies</h2>
+          <p>Finable uses cookies and similar technologies.</p>
+
+          <h3>Necessary cookies</h3>
+          <p>These cookies keep the website working and remember essential choices, such as cookie preferences. Where they are strictly necessary, consent is not required.</p>
+
+          <h3>Analytics cookies</h3>
+          <p>With your consent, we may use analytics technologies to understand how visitors use the site. These include Google Analytics 4 via Google Tag Manager.</p>
+          <p>Examples of what we may measure include the following.</p>
+          <ul>
+            <li>pages viewed</li>
+            <li>general interactions with the website</li>
+            <li>clicks on key calls to action</li>
+            <li>starts and completions of relevant steps on the website</li>
+          </ul>
+          <p>We do not send the contents of form fields, such as your name, email address or phone number, to Google Analytics.</p>
+
+          <h3>CookieYes</h3>
+          <p>Finable uses CookieYes to record cookie preferences and manage consent.</p>
+          <p>You can accept or reject cookies, customise your preferences and change or withdraw your choice later.</p>
+        </section>
+
+        <section id="analytics">
+          <h2>Google Analytics and Google Tag Manager</h2>
+          <p>We use Google Tag Manager to manage measurement tags and Google Analytics 4 to analyse website use.</p>
+          <p>We use Google Consent Mode with CookieYes. This setup determines which storage and measurement options are allowed based on your choice in the cookie notice.</p>
+          <p>Measurement follows your consent choice.</p>
+        </section>
+
+        <section id="welke-cookies">
+          <h2>Which cookies do we use?</h2>
+          <p>The cookies and technologies in use may change as our website or services change. You can see the current categories, purposes and available cookie information in our cookie settings.</p>
+        </section>
+
+        <section id="bewaartermijnen">
+          <h2>Retention periods</h2>
+          <p>We retain personal data for as long as needed for the purpose for which it was collected, unless a legal obligation, a dispute or another legitimate reason requires a longer retention period.</p>
+        </section>
+
+        <section id="delen">
+          <h2>Sharing with other parties</h2>
+          <p>Finable may share personal data with providers where necessary for the website or our services. The current providers, where applicable, are listed below.</p>
+          <ul>
+            <li>Vercel for hosting and infrastructure</li>
+            <li>Google for Tag Manager and Analytics</li>
+            <li>CookieYes for consent management</li>
+            <li>Calendly for appointment scheduling</li>
+            <li>Resend for email delivery</li>
+          </ul>
+          <p>These parties may act as processors or as independent controllers, depending on the service.</p>
+          <p>Finable does not sell personal data.</p>
+        </section>
+
+        <section id="doorgifte">
+          <h2>Transfers outside the EEA</h2>
+          <p>Some service providers may process personal data outside the European Economic Area, including in the United States.</p>
+          <p>Where required, international transfers use appropriate safeguards, such as adequacy decisions, the EU-U.S. Data Privacy Framework where applicable, or Standard Contractual Clauses approved by the European Commission.</p>
+        </section>
+
+        <section id="beveiliging">
+          <h2>Security</h2>
+          <p>Finable takes appropriate technical and organisational measures to protect personal data from loss, unauthorised access, misuse or unauthorised alteration.</p>
+        </section>
+
+        <section id="rechten">
+          <h2>Your privacy rights</h2>
+          <p>Depending on your situation, your rights under the GDPR include the following.</p>
+          <ul>
+            <li>access to your personal data</li>
+            <li>correction of inaccurate data</li>
+            <li>erasure</li>
+            <li>restriction of processing</li>
+            <li>objection to certain processing</li>
+            <li>data portability where the right applies</li>
+            <li>withdrawal of consent previously given</li>
+          </ul>
+          <p>You can send a request to <a href="mailto:tim@finable.nl">tim@finable.nl</a>.</p>
+          <p>We may request additional information where reasonably necessary to verify your identity.</p>
+        </section>
+
+        <section id="klacht">
+          <h2>Making a complaint</h2>
+          <p>If you have a complaint about how Finable handles personal data, we ask that you contact us first so we can try to resolve it.</p>
+          <p>You also have the right to lodge a complaint with the <a href="https://autoriteitpersoonsgegevens.nl/" target="_blank" rel="noopener noreferrer">Dutch Data Protection Authority</a>.</p>
+        </section>
+
+        <section id="voorkeuren">
+          <h2>Changing your cookie preferences</h2>
+          <p>You can review and change your cookie preferences at any time.</p>
+          <!-- CookieYes bindt zelf aan .cky-banner-element; het script komt uit de bestaande GTM-container.
+               Laadt CookieYes niet (bijvoorbeeld omdat tags geblokkeerd zijn), dan verbergt het script hieronder
+               de knop, zodat er geen dode knop blijft staan. -->
+          <p style="margin-top:26px">
+            <button type="button" class="btn cky-banner-element" data-cky-open hidden>Change cookie preferences</button>
+          </p>
+        </section>
+
+        <section id="wijzigingen">
+          <h2>Changes</h2>
+          <p>Finable may update this notice when our website, services or applicable laws and regulations change.</p>
+          <p>The latest version is always available on this page.</p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+</div>
+</Layout>
+
+<style is:global>
+  a{transition:opacity .15s}
+  a:hover{opacity:.72}
+  .priv-grid{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start}
+  /* Mini-inhoudsopgave: rustig, klein, meeschuivend. Geen sectienummers. */
+  .priv-toc{position:sticky;top:32px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:8px}
+  .priv-toc ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .priv-toc a{display:block;font-size:13.5px;line-height:1.45;color:var(--body);padding:5px 0;text-wrap:pretty}
+  .priv-toc a:hover{color:var(--terracotta);opacity:1}
+  .priv-body{max-width:760px}
+  /* Editoriale leestekst: dunne scheidingslijnen tussen de secties, geen kaarten. */
+  .priv-body>section+section{margin-top:40px;padding-top:40px;border-top:1px solid var(--line)}
+  .priv-body h2{font-size:clamp(22px,2.4vw,28px);margin-bottom:18px;text-wrap:balance}
+  .priv-body h3{font-size:17px;margin:28px 0 10px}
+  .priv-body p{font-size:16px;color:var(--body);text-wrap:pretty}
+  .priv-body p+p{margin-top:14px}
+  .priv-body ul{list-style:none;margin:16px 0 0}
+  .priv-body li{position:relative;font-size:16px;color:var(--body);padding-left:20px;margin-bottom:8px}
+  .priv-body li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:999px;background:var(--terracotta)}
+  .priv-body ul+p{margin-top:18px}
+  /* Gegevensblok onder "Wie is verantwoordelijk?": twee kolommen tekst, geen kaart. */
+  .priv-meta{margin-top:22px;border-top:1px solid var(--line)}
+  .priv-meta>div{display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr);gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .priv-meta dt{font-size:13px;font-weight:600;color:var(--navy)}
+  .priv-meta dd{font-size:15px;color:var(--body)}
+  .priv-body .btn{border:none;font-family:inherit;cursor:pointer}
+  @media (max-width:1023px){
+    /* Eén kolom; de inhoudsopgave is een desktop-hulpmiddel en verdwijnt. */
+    .priv-grid{grid-template-columns:1fr;gap:0}
+    .priv-toc{display:none}
+    .priv-body{max-width:none}
+    .priv-body>section+section{margin-top:34px;padding-top:34px}
+  }
+  @media (max-width:639px){
+    .priv-body h3{margin-top:24px}
+  }
+</style>
+
+<script>
+  // Het voorkeurencentrum komt van CookieYes (geladen via de bestaande GTM-container). We bouwen hier
+  // geen eigen consentoplossing: de knop draagt de klasse waar CookieYes zelf aan bindt, en we tonen hem
+  // pas zodra CookieYes daadwerkelijk aanwezig is. Zo staat er nooit een knop die niets doet.
+  const btn = document.querySelector<HTMLButtonElement>('[data-cky-open]');
+  if (btn) {
+    type CkyWindow = Window & { revisitCkyConsent?: () => void };
+    const present = () =>
+      typeof (window as CkyWindow).revisitCkyConsent === 'function' ||
+      !!document.querySelector('.cky-consent-container, .cky-btn-revisit-wrapper, #cookieyes');
+    const reveal = () => { if (present()) { btn.hidden = false; return true; } return false; };
+    if (!reveal()) {
+      // CookieYes komt via GTM binnen; even blijven kijken en daarna opgeven.
+      let tries = 0;
+      const timer = setInterval(() => { if (reveal() || ++tries > 20) clearInterval(timer); }, 250);
+    }
+    btn.addEventListener('click', () => {
+      const revisit = (window as CkyWindow).revisitCkyConsent;
+      if (typeof revisit === 'function') revisit();
+    });
+  }
+</script>
